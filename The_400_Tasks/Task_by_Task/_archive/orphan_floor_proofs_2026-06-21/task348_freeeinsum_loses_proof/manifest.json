@@ -1,0 +1,39 @@
+{
+  "task": "task348",
+  "candidate": "task348.onnx",
+  "description": "free-output separable Einsum chevron (NO 900B canvas) \u2014 factored placement variant (FAC2)",
+  "baseline_cost": 1693,
+  "baseline_breakdown": "v5 reducel1: mem 1625 (900 canvas + 240 marginals + 300 chevron-build + 185 plumbing) + params 68",
+  "achieved_cost": 3120,
+  "achieved_breakdown": {
+    "memory_bytes": 2374,
+    "params_elements": 746,
+    "memory_dominant": "Rv[21,10]F16=420 + Cw[21,10]F16=420 + reach/Cev/Cod[10,10]F16=600 (separable machinery 1440) + marginals cs7/ccm/rcm[1,30]F32=360 + reb/casts ~174",
+    "params_dominant": "P[10,30]=300 + K[21,10]=210 + Rsm20[20,10]=200 (placement+routing+row one-hots 710) + scalars ~36"
+  },
+  "sha256": "e327be5f37af9d9acab7854a21e2c0122a4ee9212086fde5b7f62cb901e3ea2b",
+  "onnx_bytes": 2978,
+  "opset": 14,
+  "output_dtype": "F16 {0,1} (LIVE is BOOL; validator >0-binarize handles it, #109)",
+  "subset_gates": {
+    "N_truth": 3000,
+    "truth_full": "3000/3000 EXACT (also 500/500 + 200/200 reconfirm)",
+    "N_ab": 500,
+    "ab_binarized_vs_LIVE": "500/500",
+    "ab_byte_equal": "NO (different architecture + F16 vs BOOL output) \u2014 binarized-equal instead"
+  },
+  "cost_method": "expose every node output + ORT ORT_DISABLE_ALL run; mem=sum(intermediate bytes, excl input/output/initializers); params=sum(initializer element counts); cost=mem+params",
+  "calibration": "measure()+params() on LIVE (extract_task 348) reproduces baseline EXACTLY: mem 1625 + par 68 = 1693 (also matches staged v5 byte-for-byte cost)",
+  "what_changed": "Replaced the [1,1,30,30] U8 Equal-tail canvas (900B) + 3-value chevron build chain (300B) with a SINGLE free-output separable Einsum tk,tv,tw,vr,wc,b->bkrc emitting [1,10,30,30] directly (named output => uncharged). Only K/R/placement are static params; Cw (data-dependent col content) + reach/parity products are computed. ch0 background folded via K rows e_color - e0 plus an in-grid term (#109 negative-fold).",
+  "variants_measured": {
+    "direct tk,tr,tc[21,30]": 6988,
+    "factored FAC2 (CHOSEN best)": 3120,
+    "static-R 30-term S30": 3229,
+    "parity-axis PAX": 3360
+  },
+  "free_einsum_structural_floor_estimate": "~2510 even with ALL plumbing waste removed (separable machinery 1440 mem + placement/routing 710 par + 3 unavoidable input-stat marginals 360) \u2014 still +817 over v5",
+  "verdict": "CONFIRM \u2014 could NOT beat 1693. Best EXACT free-output Einsum = 3120 (mem 2374 + par 746), ~1.84x baseline. The omitted-family lever does NOT win for this task.",
+  "reason": "task348 active grid <=10x10 => C*active_cells (10*100=1000) >= full_grid_cells (900): exactly the by_symptom #500 boundary where free-output one-hot folds LOSE. The chevron presence is a rank~L (<=9) staircase, so the separable col operand needs ~10 row-level terms; parity doubles them and the background fold adds more; the data-dependent col content (Cw) plus the [10,30] placement-to-30 operand cannot be made static. The 900B canvas + cheap U8 build chain (v5) is structurally cheaper than encoding staircase x parity x bg as separable Einsum operands. Confirms task348.md #68 formulation-relative floor proof: free-Einsum was the one un-priced final-op family, now priced at 3120 > 1693.",
+  "note": "NOT 200k-gated in sandbox (ort 1.23) \u2014 pending Claude Code env; captain ships.",
+  "do_not_submit": true
+}

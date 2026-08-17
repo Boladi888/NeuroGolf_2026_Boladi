@@ -1,0 +1,11 @@
+# task225 hard record — scalar/moment SeparableMomentCore infeasible
+
+- Live/team-best bar used: cost 363, sha256 `682e08ff319c04ab4d5b8b7e89294895559525a24f8a29f4167afc3e4754e610`, source `python tools/ng_current_bar.py --task 225 --json` / team manifest, owner Vamshi, updated 2026-07-12T15:15:54Z.
+- Locked reviewer route: recover top-left `(r,c)` and four block colors from free-input scalar/per-channel moments, then build destination bands from scalar residues or coordinate-polynomial output bases, without parent `G[6,30]`, dense `N[3,6,6]`, `[6,6]`/`[30,30]` planes, or rank >= 8 shift tensors.
+- Numpy proof command: `python The_400_Tasks/Task_by_Task/task225/prototypes/task225_moment_scalar_proof.py`.
+- Numpy proof result: `fresh_arcgen_rows=8000`, `moment_recovery=PASS`; recovered `(r,c)` and `a,b,c,d` from per-channel `n/R/C/RC` moments on all 8000 fresh ARC-GEN rows.
+- Role-span lower bound: top/source/bottom clipped row-role matrix over `r in {1,2,3}` has rank 6; the same holds for columns. Any scalar-output-tail basis spanning these bands therefore needs at least `6*30` row params + `6*30` col params = 360 params before moment tensors/arithmetic. That is the same rank-6 active-axis basis class as the forbidden `G[6,30]` embed.
+- ONNX pricing skeleton: `The_400_Tasks/Task_by_Task/task225/prototypes/task225_moment_skeleton_price.onnx`.
+- Exact failed stop gate: `python -c "from tools._score_v2 import score_network_v2; p='The_400_Tasks/Task_by_Task/task225/prototypes/task225_moment_skeleton_price.onnx'; r=score_network_v2(p); print(r); print(None if r is None else r[1]+r[2])"` returned `(0, 160, 400)` and cost `560`.
+- Why dead: the moment core itself needs four `[1,10]` moment vectors (160 B) plus `fg/iota` params (40), and the cheapest legal scalar tail already needs the 360-param rank-6 row+col active-axis basis. Static skeleton cost `560 >= 363`, so the reviewer strict stop applies before a full output-tail build or visible/truth gates.
+- One remaining hypothesis: only a different analytic output representation that avoids both the rank-6 active-axis basis and materialized role vectors could reopen this route; the reviewed scalar/moment basis formulation cannot beat the 363 parent.

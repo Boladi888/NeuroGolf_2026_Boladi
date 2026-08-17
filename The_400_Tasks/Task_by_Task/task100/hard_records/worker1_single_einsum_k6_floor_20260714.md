@@ -1,0 +1,23 @@
+# task100 hard record - single-Einsum k<=6 scorer family
+
+- Worker: bo_ng_worker1 task100 reviewer rework.
+- Live bar rechecked: 183 static/profile cost from `python tools/ng_current_bar.py --task 100 --json`; authoritative source `manifest`; owner Vamshi; sha256 `ca221eee6f25754161b6d2d14f91d15def8fc33898f32e4babd189bb766cd56f`; current graph `Team_Best_Onnx/task100.onnx`.
+- Locked hypothesis tested: one charged `[1,10,1,1]` score tensor from one multi-input self-correlation `Einsum`, replacing live `count`, `four`, and `score`; existing `ReduceMax -> Equal -> Expand -> Pad` tail left unchanged per #67/#81. Predicted profile if a valid equation existed: 103 (`score` 40 + `mx` 4 + `sel` 10 + `block` 40 + 9 params), strictly below live 183.
+- Equation family tested by `The_400_Tasks/Task_by_Task/task100/prototypes/check_single_einsum_k6_family.py`: for each k=1..6, every row-label set partition and every column-label set partition over the k repeated input operands, i.e. single separable row/column equality-pattern equations of the form `Einsum(input x k, one[1,1] -> ncab)`. This includes the live-style four-corner self-correlation pattern but forbids post-Einsum linear combinations, as requested.
+- Finite corpus for the certificate: all generated hollow-rectangle dimension pairs from `task_445eab21` with distinct areas, including the optional transpose (`1824` ordered pair cases; `55` unique rectangle dimensions). Background layout enumeration is implemented, but no pattern reached it because strict area ordering already failed.
+- Exact command:
+  - `python -u The_400_Tasks\Task_by_Task\task100\prototypes\check_single_einsum_k6_family.py`
+- Exact result lines:
+  - `dimension_pair_cases_with_transpose=1824`
+  - `unique_rectangle_dims=55`
+  - `predicted_profile_if_family_passes=103 (memory 94 + params 9), live_bar=183`
+  - `k=1 tested_partition_pairs=1 area_order_pass=0 background_pass=0`
+  - `k=2 tested_partition_pairs=4 area_order_pass=0 background_pass=0`
+  - `k=3 tested_partition_pairs=25 area_order_pass=0 background_pass=0`
+  - `k=4 tested_partition_pairs=225 area_order_pass=0 background_pass=0`
+  - `k=5 tested_partition_pairs=2704 area_order_pass=0 background_pass=0`
+  - `k=6 tested_partition_pairs=41209 area_order_pass=0 background_pass=0`
+  - `TOTAL tested_partition_pairs=44168 area_order_pass=0 background_pass=0`
+  - `SURVIVORS_REACHED_BACKGROUND_CHECK=no`
+- Stop condition: no ONNX was built. The finite exhaustive check found zero strict area-ordering equations under k<=6, so there was no candidate to profile, gate, safety-check, or stage.
+- Remaining hypothesis: only outside this locked pass: allow a signed linear combination of multiple self-correlation features inside one scorer, introduce coordinate/value weights, or find a byte-equal algebraic compression of the current two-feature live scorer.

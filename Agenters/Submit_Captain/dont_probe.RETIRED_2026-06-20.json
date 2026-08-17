@@ -1,0 +1,34 @@
+[
+  {
+    "task": "task009",
+    "reason": "public_negative_hidden_bad: papaya10_orange10_task009_block_grid_line_fill dropped public score; do not stack/probe task009 unless fresh isolated evidence overturns it"
+  },
+  {
+    "task": "task153",
+    "reason": "tested_public_negative_hidden_bad: date9_cherry9_task153_afr5044_cheaper passed local visible/arc-gen but public-hidden zeroed; require task153 synthetic guard/fresh proof"
+  },
+  {
+    "task": "task175",
+    "reason": "tested_public_negative_hidden_bad: elderberry10_banana10_task175_afr5044_static dropped public score; avoid this payload/family unless fresh isolated positive"
+  },
+  {
+    "task": "task177",
+    "reason": "tested_public_negative_hidden_bad: xigua9_tangerine9_task177_konbu_cost_probe dropped public score; kernel-output-konbu17-lb5126 replacement is suspect"
+  },
+  {
+    "task": "task187",
+    "reason": "tested_public_negative_hidden_bad: cherry10_banana10_task187_afr5501_partition dropped public score; raw dynamic-shape cost probe is suspect"
+  },
+  {
+    "task": "task224",
+    "reason": "tested_public_negative_hidden_bad: watermelon9_tangerine9_task224_afr5653_cost_probe dropped public score; afr1ste-5653-86 replacement is suspect"
+  },
+  {
+    "task": "task351",
+    "reason": "owner-lifted 2026-06-19 to stage byte-equal v9_sepgrid (1358, ab_full 200265/200265 byte_equal, probe-verified iso-Codex-20260619T195928Z); guard REINSTATED. The original afr5501 cost-probe formulation dropped public score \u2014 any FUTURE task351 candidate must be byte-equal-to-LIVE (ab_full pass) and owner-cleared before probing."
+  },
+  {
+    "task": "task303",
+    "reason": "owner-methodology probe 2026-06-19: byte-equal v=lane_nomix (220, ab 200265/200265 vs team 228) probe-VERIFIED 19.60 (no public drop) -> STAGED. Guard REINSTATED: the original afr5501 cost-probe dropped public score; future NON-byte-equal task303 candidates must be byte-equal-to-LIVE + probe-exposed before staging."
+  }
+]

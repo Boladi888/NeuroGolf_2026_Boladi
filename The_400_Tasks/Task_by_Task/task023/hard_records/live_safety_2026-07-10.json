@@ -1,0 +1,66 @@
+{
+  "kind": "model",
+  "source": "Team_Best_Onnx\\task023.onnx",
+  "verdict": "WARN",
+  "summary": {
+    "n_failures": 0,
+    "n_warnings": 1,
+    "runtime_integer_denominator_count": 0
+  },
+  "model": {
+    "task": "task023",
+    "name": "task023.onnx",
+    "source": "Team_Best_Onnx\\task023.onnx",
+    "sha256": "8c4f45c3e418c4da5b3bf349cf8723f8fc6b748147d2411d76649d5d1a8b89e0",
+    "size_bytes": 5610,
+    "failures": [],
+    "warnings": [
+      {
+        "code": "WARN_X86_QUANTIZED_OP_FAMILY",
+        "ops": [
+          "QLinearConv"
+        ]
+      }
+    ],
+    "op_inventory": {
+      "Add": 4,
+      "And": 1,
+      "Cast": 4,
+      "Concat": 2,
+      "Div": 2,
+      "Equal": 4,
+      "Expand": 1,
+      "Gather": 3,
+      "Greater": 2,
+      "Not": 1,
+      "Or": 2,
+      "Pad": 1,
+      "QLinearConv": 3,
+      "ReduceSum": 1,
+      "Reshape": 6,
+      "ScatterElements": 1,
+      "Slice": 2,
+      "TopK": 1,
+      "Unsqueeze": 2,
+      "Where": 2
+    },
+    "risk_op_flags": [
+      "Cast",
+      "Div",
+      "QLinearConv"
+    ],
+    "runtime_integer_denominators": [],
+    "runtime_denominators_unknown_dtype": [],
+    "official_io_contract": {
+      "data_inputs": [
+        "input"
+      ],
+      "outputs": [
+        "output"
+      ],
+      "ok": true
+    },
+    "load_after_sanitize": "ok",
+    "verdict": "WARN"
+  }
+}

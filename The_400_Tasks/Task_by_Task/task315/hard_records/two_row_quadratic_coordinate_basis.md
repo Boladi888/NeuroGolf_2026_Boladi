@@ -1,0 +1,8 @@
+# task315 two-row quadratic coordinate-basis lower-bound record
+
+- Live bar used: 146, SHA-256 `013dbc694b331f0991b4e4f9a637a01c318e96a0f89289052e15bf526280ebb7`, source `python tools/ng_current_bar.py --task 315 --json`, authoritative source `manifest`, owner Vamshi, updated `2026-07-02T02:35:15Z`.
+- Attempted route: replace the live one-node terminal-Einsum coordinate side `B[3,30] + P[3,2,2] + WL[2,3] + WB[2,3]` with a two-row coordinate basis while preserving the free-output single-Einsum form.
+- Exact failed gate: pre-build rank/price audit, `python The_400_Tasks/Task_by_Task/task315/prototypes/two_row_basis_rank_audit.py` -> `selector_stack_rank=5, two_row_quadratic_dim=3, direct_degree4_floor=188`.
+- Why dead: the live graph needs two selector families over the output coordinate axis: local-position rows (`x mod 3`) and block-position rows (`floor(x/3)`). Their combined rowspace rank is 5. A same-degree two-row homogeneous quadratic coordinate basis exposes only 3 feature dimensions, so it cannot span both families. The first direct dense higher-degree repair with enough feature dimension uses two `3x2x2x2x2` selector cores plus `B2[2,30]` and the unchanged 32-param channel side, pricing at least 188 params (`+42` vs live) before any safety margin.
+- Manifest: `The_400_Tasks/Task_by_Task/task315/prototypes/two_row_basis_rank_audit_manifest.json`.
+- Remaining hypothesis: only an unrestricted new terminal-Einsum tensor-network factorization that shares the local/block selector decoders more cleverly than the direct dense degree-4 repair could beat 146; prompt-style Range/ConstantOfShape/Gather/Pad/Equal families have already been priced above the current bar.

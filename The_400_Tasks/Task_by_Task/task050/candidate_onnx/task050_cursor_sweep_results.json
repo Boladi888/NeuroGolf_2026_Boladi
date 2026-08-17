@@ -1,0 +1,72 @@
+[
+  {
+    "attempt": "baseline_current",
+    "onnx": "The_400_Tasks/Task_by_Task/task050/candidate_onnx/task050_baseline_current.onnx",
+    "check_network": true,
+    "macs": 0,
+    "memory": 108900,
+    "params": 117,
+    "cost": 109017,
+    "points": 13.4007,
+    "passes": 271,
+    "fails": 0,
+    "visible_n": 9,
+    "arcgen_n": 262
+  },
+  {
+    "attempt": "bool_slice",
+    "onnx": "The_400_Tasks/Task_by_Task/task050/candidate_onnx/task050_bool_slice.onnx",
+    "check_network": true,
+    "macs": 0,
+    "memory": 85500,
+    "params": 117,
+    "cost": 85617,
+    "points": 13.6424,
+    "passes": 271,
+    "fails": 0,
+    "visible_n": 9,
+    "arcgen_n": 262
+  },
+  {
+    "attempt": "bool_split",
+    "onnx": "The_400_Tasks/Task_by_Task/task050/candidate_onnx/task050_bool_split.onnx",
+    "check_network": true,
+    "macs": 0,
+    "memory": 85500,
+    "params": 77,
+    "cost": 85577,
+    "points": 13.6428,
+    "passes": 271,
+    "fails": 0,
+    "visible_n": 9,
+    "arcgen_n": 262
+  },
+  {
+    "attempt": "h_only_negative",
+    "onnx": "The_400_Tasks/Task_by_Task/task050/candidate_onnx/task050_h_only_negative.onnx",
+    "check_network": true,
+    "macs": 0,
+    "memory": 67500,
+    "params": 39,
+    "cost": 67539,
+    "points": 0.0,
+    "passes": 102,
+    "fails": 169,
+    "visible_n": 9,
+    "arcgen_n": 262
+  },
+  {
+    "attempt": "v_only_negative",
+    "onnx": "The_400_Tasks/Task_by_Task/task050/candidate_onnx/task050_v_only_negative.onnx",
+    "check_network": true,
+    "macs": 0,
+    "memory": 67500,
+    "params": 39,
+    "cost": 67539,
+    "points": 0.0,
+    "passes": 122,
+    "fails": 149,
+    "visible_n": 9,
+    "arcgen_n": 262
+  }
+]

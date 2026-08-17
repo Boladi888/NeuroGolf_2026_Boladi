@@ -1,0 +1,147 @@
+{
+  "schema": "neurogolf.task379.fp32_bool_classifier_masks_mulwhere_probe.v1",
+  "kanban_task": "t_9eb9c898",
+  "baseline": {
+    "path": "submissions/submission.zip::task379.onnx",
+    "cost": {
+      "path": "submissions/submission.zip::task379.onnx",
+      "macs": 43124,
+      "memory": 106685,
+      "params": 1729,
+      "cost": 108414,
+      "points": 13.4063,
+      "cascade_risk": false,
+      "ops": {
+        "Add": 3,
+        "Cast": 12,
+        "Concat": 1,
+        "Conv": 3,
+        "CumSum": 4,
+        "Greater": 16,
+        "Less": 4,
+        "MaxPool": 2,
+        "Mul": 17,
+        "Pad": 1,
+        "ReduceMax": 2,
+        "ReduceSum": 9,
+        "Slice": 3,
+        "Sub": 13,
+        "Sum": 6,
+        "Where": 16
+      },
+      "error": null
+    },
+    "ops": {
+      "Slice": 3,
+      "ReduceSum": 9,
+      "ReduceMax": 2,
+      "Sub": 13,
+      "Add": 3,
+      "Greater": 16,
+      "Cast": 12,
+      "CumSum": 4,
+      "Where": 16,
+      "MaxPool": 2,
+      "Conv": 3,
+      "Sum": 6,
+      "Mul": 17,
+      "Less": 4,
+      "Concat": 1,
+      "Pad": 1
+    }
+  },
+  "candidate": {
+    "path": "C:\\Users\\Qx\\.worktrees\\t_9eb9c898\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v11_fp32_bool_classifier_masks_mulwhere.onnx",
+    "sha256": "c0a3b6e8104e3731bdaed1deed7743cbcbc041fb279ffc6c14ae080bae315944",
+    "cost": {
+      "path": "C:\\Users\\Qx\\.worktrees\\t_9eb9c898\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v11_fp32_bool_classifier_masks_mulwhere.onnx",
+      "macs": 47832,
+      "memory": 103172,
+      "params": 1655,
+      "cost": 104827,
+      "points": 13.4399,
+      "cascade_risk": false,
+      "ops": {
+        "Add": 2,
+        "And": 12,
+        "Cast": 12,
+        "Concat": 1,
+        "Conv": 3,
+        "CumSum": 4,
+        "Equal": 4,
+        "Greater": 11,
+        "MaxPool": 2,
+        "Mul": 13,
+        "Not": 4,
+        "Or": 1,
+        "Pad": 1,
+        "ReduceMax": 2,
+        "ReduceSum": 5,
+        "Slice": 7,
+        "Sub": 6,
+        "Sum": 6
+      },
+      "error": null
+    },
+    "ops": {
+      "Slice": 7,
+      "ReduceSum": 5,
+      "ReduceMax": 2,
+      "Sub": 6,
+      "Add": 2,
+      "Greater": 11,
+      "Cast": 12,
+      "CumSum": 4,
+      "Mul": 13,
+      "MaxPool": 2,
+      "Not": 4,
+      "And": 12,
+      "Conv": 3,
+      "Sum": 6,
+      "Equal": 4,
+      "Or": 1,
+      "Concat": 1,
+      "Pad": 1
+    }
+  },
+  "rewrite": "v10 plus exact replacement of six remaining Where(cond, data, 0) nodes with Cast(cond)->Mul(data); avoids FP16, zero-channel replacement, final mask-union, boundary-cast sinking.",
+  "standard_parity": {
+    "cases": 266,
+    "mismatches_exact": 0,
+    "max_abs": 0.0,
+    "modes": {
+      "zeros": 1,
+      "sparse-binary": 89,
+      "dense-fp32": 88,
+      "onehot": 88
+    }
+  },
+  "extended_parity": {
+    "cases": 2600,
+    "mismatches_exact": 0,
+    "max_abs": 0.0,
+    "modes": {
+      "zeros": 1,
+      "onehot30": 520,
+      "inner-onehot20": 520,
+      "onehot": 347,
+      "sparse-binary": 347,
+      "ones": 519,
+      "dense-fp32": 346
+    }
+  },
+  "package_audit": {
+    "package": "C:\\Users\\Qx\\.worktrees\\t_9eb9c898\\The_400_Tasks\\Task_by_Task\\task379\\evidence\\task379_v11_fp32_bool_classifier_masks_mulwhere_local_submission.zip",
+    "package_sha256": "18e89ba4c7fb3c6a5dec95614685fa673ed6f8813671afa052d11a53add932ae",
+    "changed_entries": [
+      {
+        "filename": "task379.onnx",
+        "old_sha256": "ae5e0d30e44c560fc97deedf95e710bdefd28584ada458020921e04e4395090b",
+        "new_sha256": "c0a3b6e8104e3731bdaed1deed7743cbcbc041fb279ffc6c14ae080bae315944",
+        "old_size": 15567,
+        "new_size": 15062
+      }
+    ],
+    "entries": 401
+  }
+}

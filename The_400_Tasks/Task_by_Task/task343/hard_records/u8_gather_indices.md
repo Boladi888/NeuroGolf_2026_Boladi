@@ -1,0 +1,5 @@
+live bar: manifest cost 284, sha256 0f6183c194758d53723e9879fa73d48e4fec26c40adc8bba53fd4d74d4242755; current task-local staged/live candidate is `task343_period4hash_cost284`.
+attempted route: `prototypes/task343_u8_gather_probe.onnx` removed the final `Cast(chosen30_u8 -> INT32)` and fed `chosen30_u8` directly as the axis-3 `Gather` index vector.
+failed gate: `python tools/ng_gate.py visible --task 343 --cand The_400_Tasks/Task_by_Task/task343/prototypes/task343_u8_gather_probe.onnx` -> `[visible] ERROR: InvalidGraph: [ONNXRuntimeError] : 10 : INVALID_GRAPH : This is an invalid model. Type Error: Type 'tensor(uint8)' of input parameter (safe_name_23) of operator (Gather) in node (output) is invalid.`
+why dead: ONNX Runtime requires `Gather` indices to be INT32/INT64 here, so the 120-byte `chosen30` INT32 tensor is forced for the current dynamic-index output formulation.
+remaining hypothesis: a sub-284 route must avoid dynamic `Gather` indexing altogether or derive a cheaper period/output formulation; narrowing the final index dtype is not viable.

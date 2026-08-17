@@ -1,0 +1,7 @@
+{
+  "mode": "truth",
+  "correct": 200000,
+  "total": 200000,
+  "pct": 100.0,
+  "first_fail_idx": null
+}

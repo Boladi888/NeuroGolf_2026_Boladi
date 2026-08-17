@@ -1,0 +1,11 @@
+# task328 hard record: exact generated P/wrap basis floor
+
+- Live bar used: manifest/team-best cost 456, sha256 `6a7846c6e08678ba5abdf4044d4a906ca43c2c2ddce695bca66e3694574e137c` (Aditya, updated 2026-07-04T05:54:11Z).
+- Reviewer hypothesis tested: replace the live stored `P[2,3,30]` + `Pow(Vbases,H)` basis exactly with a generated runtime coordinate/period basis inside the terminal contraction, leaving `C[10,10]` unchanged.
+- Fresh rule check before graph work: `python The_400_Tasks/Task_by_Task/task328/prototypes/rule_ref.py 200` -> `numpy ref vs ARC-GEN truth: 200/200 = 100.000%`.
+- Skeleton build: `prototypes/build_live456_generated_basis_skeleton.py` creates only the geometry/period basis, no color logic. It uses the cheaper exact Gather equivalent of a wrap/shift: `idx = H - r`, `Gather(Ptop[3,30], idx)` to synthesize the bottom/right side basis. Any `Pad(mode="wrap")` route must materialize an equivalent F32 `[3,30]` or `[2,3,30]` basis before the F32 terminal Einsum.
+- Exact score: `task328_live456_generated_basis_skeleton.onnx` scores `(macs=0, memory=488, params=185)`, cost **673**, sha256 `2b7166651e497d9bb8b3c4af887c3cbf57e8f60ff40018e783769e217ec37c95`.
+- Charged tensors: `Pbot` F32 `[3,30]` = 360 B, `rev_idx` INT32 `[30]` = 120 B, `H_i32` = 4 B, `H` = 4 B. Params: `Ptop` 90, `idx30` 30, plus shared/live H-extraction inits in the standalone skeleton.
+- Why this proves the graft floor: even excluding already-live shared H extraction (`R/v2/vtail/H`) and the dummy output add, the generated replacement requires at least `Ptop 90 + idx30 30 + H_i32 4 + rev_idx 120 + Pbot 360 = 604` charged units before color/output. The live stored basis path being replaced is only `P 180 + Vbases 6 + V 24 = 210` charged units. Net floor worsens by at least `+394`, so a live graft is bounded at `>=850`, before any full `[2,3,30]` concat/selector needed to keep the current equation shape.
+- Exact failed stop condition: generated exact P/wrap basis costs `>=456` before color logic; do not build a live graft or run visible/truth/AB on this family.
+- One remaining hypothesis: only a new analytic terminal formula that removes this H-keyed basis family entirely could beat 456; generated shift/wrap replacement of the current basis is a cost wall.

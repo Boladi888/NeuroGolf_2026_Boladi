@@ -1,0 +1,504 @@
+{
+  "scope": {
+    "canonical_zip": "submissions/submission.zip::*.onnx",
+    "filesystem_roots": [
+      "*.onnx at repo root",
+      "The_400_Tasks/Task_by_Task/**/*.onnx",
+      "staged_submits/**/*.onnx",
+      "work/**/*.onnx"
+    ]
+  },
+  "models_enumerated": 7162,
+  "models_loaded": 7162,
+  "load_failures": [],
+  "load_failure_count": 0,
+  "shape_infer_failure_count": 69,
+  "shape_infer_failures_sample": [
+    {
+      "path": "The_400_Tasks/Task_by_Task/task016/prototypes/task016_sparse_init.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Gather): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (3) vs (4)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task016/prototypes/task016_sparse_init_flat.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Gather): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (3) vs (4)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task018/prototypes/task018_probe_c3_scalar.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:TopK): [ShapeInferenceError] K input must be a one-dimensional tensor of size 1.\n(op_type:TopK): [ShapeInferenceError] K input must be a one-dimensional tensor of size 1.\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task018/prototypes/task018_probe_c6_scalar.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:TopK): [ShapeInferenceError] K input must be a one-dimensional tensor of size 1.\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task030/prototypes/task030_v15_sparse_safe.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Concat, node name: row_ch10): [ShapeInferenceError] All inputs to Concat must have same rank. Input 3 has rank 0 != 4\n(op_type:Concat, node name: row_ch30): [TypeInferenceError] Input 0 expected to have type but instead is null\n(op_type:BitwiseAnd, node name: output): [TypeInferenceError] Input 0 expected to have type but instead is null\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task042/prototypes/task042_grouped_qconv123_sparsew_gate_threshold_noclean_9ch.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:QLinearConv): [TypeInferenceError] inputs are expected to have tensor type in node QLinearConv.\n(op_type:ReduceMax): [TypeInferenceError] Input 0 expected to have type but instead is null\n(op_type:QLinearConv): [TypeInferenceError] inputs are expected to have tensor type in node QLinearConv.\n(op_type:QLinearConv): [TypeInferenceError] inputs are expected to have tensor type in node QLinearConv.\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task051/prototypes/task051_crop20_eqfold.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Or, node name: line_mask_or): [ShapeInferenceError] Incompatible dimensions\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task053/prototypes/task053_sparse_idx29.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Gather): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (3) vs (4)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task061/prototypes/task061_int16_bank.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Gather, node name: select_mod_table): [TypeInferenceError] Inferred elem type differs from existing elem type: (5) vs (7)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task061/prototypes/task061_int32_bank.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Gather, node name: select_mod_table): [TypeInferenceError] Inferred elem type differs from existing elem type: (6) vs (7)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task079/prototypes/probe_f32_input_f16_weight.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Conv): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task079/prototypes/task079_probe_bool_reduce.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:ReduceSum): [TypeInferenceError] Inferred elem type differs from existing elem type: (9) vs (10)\n(op_type:Gather): [TypeInferenceError] Inferred elem type differs from existing elem type: (9) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task080/prototypes/task080_f16trick_45843CAB.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:And): [TypeInferenceError] Inferred elem type differs from existing elem type: (9) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task089/prototypes/tmp_f16_task089_f16_test.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Cast, node name: Cast_42): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_45): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_47): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_52): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task094/prototypes/task094_v5_einsum_basis.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Einsum): [ShapeInferenceError] Rank of input 1 (0) does not match the equation indices (2).\n(op_type:Einsum): [ShapeInferenceError] Rank of input 1 (0) does not match the equation indices (2).\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task110/prototypes/tmp_f16_task110_f16_test.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Cast, node name: Cast_3): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task110/prototypes/tmp_ob_task110_v1.onnx",
+      "error": "InferenceError: [ShapeInferenceError] (op_type:Unsqueeze): Input 1 is out of bounds."
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task113/prototypes/_idxsparse.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Gather): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (3) vs (4)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task122/prototypes/build_task122_v4_vecorient.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Where): [ShapeInferenceError] Incompatible dimensions\n(op_type:Pad): [TypeInferenceError] Input 0 expected to have type but instead is null\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task133/prototypes/task133_compact_structural_v2_fp16.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Less): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 2: (30) vs (1)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Less): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (4) vs (1)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Less): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (4) vs (1)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Less): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (4) vs (1)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Less): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (4) vs (1)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Less): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (4) vs (1)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Less): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (4) vs (1)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Less): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (4) vs (1)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Less): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (4) vs (1)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Less): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (4) vs (1)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Less): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (4) vs (1)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Less): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (4) vs (1)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Less): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (4) vs (1)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Less): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (4) vs (1)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Less): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (4) vs (1)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Less): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (4) vs (1)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Less): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (4) vs (1)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Less): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (4) vs (1)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task158/prototypes/tmp_f16_task158_f16_test.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Cast, node name: Cast_8): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_31): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_51): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_71): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_91): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_111): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_131): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_151): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_171): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_191): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_211): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_231): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_251): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_271): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_291): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_311): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_331): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_351): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_371): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task161/prototypes/tmp_f16_task161_f16_test.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Cast, node name: Cast_4): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_11): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_14): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_16): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_20): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_23): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 2: (1) vs (20)\n(op_type:Cast, node name: Cast_26): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 2: (20) vs (1)\n(op_type:Cast, node name: Cast_29): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_39): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_46): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_51): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task170/prototypes/work_task170_radical/task170_projection_gathernd_f32.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Greater, node name: motif_col_b): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (4) vs (1)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task170/prototypes/work_task170_radical/task170_projection_lie_f16_vi.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:ReduceSum, node name: row_proj): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:ReduceSum, node name: col_proj): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:ReduceSum, node name: nonmotif_count): [TypeInferenceError] Inferred elem type differs from existing elem type: (10) vs (1)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task178/prototypes/task178_v21_sparse_pick.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Einsum): [ShapeInferenceError] Rank of input 2 (0) does not match the equation indices (1).\n(op_type:Einsum): [ShapeInferenceError] Rank of input 2 (0) does not match the equation indices (1).\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task182/prototypes/_task182_shrink_lane/task182_pass2_fp16_keepio.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task182/prototypes/_task182_shrink_lane/task182_pass3_fp16_onnxsim.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task182/prototypes/_task182_shrink_lane_deep/task182_pass6_fp16_castout.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task182/prototypes/_task182_shrink_lane_deep/task182_pass6_fp16_castout_onnxsim.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task182/prototypes/_task182_shrink_lane_deep/task182_pass7_int64_to_int32.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Reshape, node name: ): [ShapeInferenceError] ParseData type mismatch for tensor: v10. Expected:int64 Actual:int32\n(op_type:Sub, node name: ): [TypeInferenceError] Input 0 expected to have type but instead is null\n(op_type:Mul, node name: ): [TypeInferenceError] Input 0 expected to have type but instead is null\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task182/prototypes/_task182_shrink_lane_deep/task182_pass8_fp16_full_with_io_casts.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task182/prototypes/tmp_f16_task182_f16_test.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Cast, node name: Cast_9): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_15): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task183/prototypes/task183_coloridx_einsum_B310B289.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:OneHot): [ShapeInferenceError] Indices tensor must have rank >= 1\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task183/prototypes/task183_sparse_einsum_probe_B4EDA83C.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Einsum): [ShapeInferenceError] Rank of input 1 (0) does not match the equation indices (1).\n(op_type:Add): [TypeInferenceError] Input 0 expected to have type but instead is null\n(op_type:Einsum): [ShapeInferenceError] Rank of input 1 (0) does not match the equation indices (1).\n(op_type:Einsum): [ShapeInferenceError] Rank of input 1 (0) does not match the equation indices (1).\n(op_type:Einsum): [ShapeInferenceError] Rank of input 1 (0) does not match the equation indices (1).\n(op_type:Einsum): [ShapeInferenceError] Rank of input 1 (0) does not match the equation indices (1).\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task183/prototypes/task183_sparse_presafe_DF79045C.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Einsum, node name: safe_name_12): [ShapeInferenceError] Rank of input 1 (0) does not match the equation indices (1).\n(op_type:Add, node name: safe_name_13): [TypeInferenceError] Input 0 expected to have type but instead is null\n(op_type:Einsum, node name: safe_name_20): [ShapeInferenceError] Rank of input 1 (0) does not match the equation indices (1).\n(op_type:Einsum, node name: safe_name_22): [ShapeInferenceError] Rank of input 1 (0) does not match the equation indices (1).\n(op_type:Einsum, node name: safe_name_24): [ShapeInferenceError] Rank of input 1 (0) does not match the equation indices (1).\n(op_type:Einsum, node name: safe_name_26): [ShapeInferenceError] Rank of input 1 (0) does not match the equation indices (1).\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task205/prototypes/task205_v21_masks_B11DA8E1.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Einsum, node name: cnt_main_e): [ShapeInferenceError] Rank of input 1 (4) does not match the equation indices (2).\n(op_type:Reshape, node name: v764_f32): [TypeInferenceError] Input 0 expected to have type but instead is null\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task209/prototypes/task209_f16trick_E79E00D2.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Equal, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (9) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task213/prototypes/work_task213_f16.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task225/prototypes/task225_v16_small_role_where.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Equal): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 2: (4) vs (1)\n(op_type:Where): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 2: (4) vs (1)\n(op_type:QLinearConv): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 2: (3) vs (6)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task225/prototypes/task225_v17_small_role_bool.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Equal): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 2: (4) vs (1)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task225/prototypes/task225_v18_small_x9pad.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:QLinearConv): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 2: (1) vs (4)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task225/prototypes/task225_v31_einsum_cidx_realout.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Einsum): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 2: (1) vs (4)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task225/prototypes/task225_v32_einsum_mixed_expand.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Einsum): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 2: (1) vs (4)\n(op_type:Cast): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 2: (4) vs (1)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task225/prototypes/task225_v9_dummy_s1_canvasreal.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Equal): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 2: (6) vs (1)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task233/prototypes/risky_width_probes/task233_lookup_u8tail_k10.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Gather, node name: ): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 1: (10) vs (15)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task233/prototypes/risky_width_probes/task233_lookup_u8tail_k12.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Gather, node name: ): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 1: (12) vs (15)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task233/prototypes/risky_width_probes/task233_lookup_u8tail_k13.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Gather, node name: ): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 1: (13) vs (15)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task233/prototypes/risky_width_probes/task233_lookup_u8tail_k14.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Gather, node name: ): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 1: (14) vs (15)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task233/prototypes/risky_width_probes/task233_lookup_u8tail_k4.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Gather, node name: ): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 1: (4) vs (15)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task233/prototypes/risky_width_probes/task233_lookup_u8tail_k6.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Gather, node name: ): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 1: (6) vs (15)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task233/prototypes/risky_width_probes/task233_lookup_u8tail_k8.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Gather, node name: ): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 1: (8) vs (15)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task243/prototypes/tmp_f16_task243_f16_test.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Cast, node name: Cast_13): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 2: (1) vs (18)\n(op_type:Cast, node name: Cast_16): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 2: (18) vs (1)\n(op_type:Cast, node name: Cast_18): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: Cast_20): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 3: (18) vs (1)\n(op_type:Cast, node name: Cast_22): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task268/prototypes/task268_probe_sparse_nonbg.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Einsum): [ShapeInferenceError] Rank of input 1 (0) does not match the equation indices (1).\n(op_type:Einsum): [ShapeInferenceError] Rank of input 1 (0) does not match the equation indices (1).\n(op_type:Gather): [TypeInferenceError] Input 0 expected to have type but instead is null\n(op_type:Gather): [TypeInferenceError] Input 0 expected to have type but instead is null\n(op_type:Gather): [TypeInferenceError] Input 0 expected to have type but instead is null\n(op_type:Gather): [TypeInferenceError] Input 0 expected to have type but instead is null\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task293/prototypes/task293_v6_sparse_inits.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Einsum): [ShapeInferenceError] Rank of input 1 (0) does not match the equation indices (2).\n(op_type:Einsum): [ShapeInferenceError] Rank of input 1 (0) does not match the equation indices (2).\n(op_type:Einsum): [TypeInferenceError] type case mismatch. existing=tensor_type inferred=sparse_tensor_type\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task293/prototypes/task293_v7_sparse_presafe.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Einsum): [ShapeInferenceError] Rank of input 1 (0) does not match the equation indices (2).\n(op_type:Einsum): [ShapeInferenceError] Rank of input 1 (0) does not match the equation indices (2).\n(op_type:Einsum): [TypeInferenceError] type case mismatch. existing=tensor_type inferred=sparse_tensor_type\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task303/prototypes/task303_team_sparse_maps.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Einsum): [ShapeInferenceError] Rank of input 6 (0) does not match the equation indices (3).\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task337/prototypes/task337_sparse_idx9.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Gather): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (3) vs (4)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task340/prototypes/work_task340_f16.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task340/prototypes/work_task340_f16c.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task340/prototypes/work_task340_f16d.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task340/prototypes/work_task340_f16e.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Cast, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task340/prototypes/work_task340_f16fix.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Mul, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:ReduceSum, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:ReduceSum, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Sub, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Sub, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Slice, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Mul, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Slice, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Mul, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Mul, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Mul, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n(op_type:Mul, node name: ): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (10)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task354/prototypes/task354_v4_dynamic_pad_probe.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Equal): [ShapeInferenceError] Inferred shape and existing shape differ in dimension 2: (10) vs (30)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task360/prototypes/task360_v3_sparse_direct.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Einsum): [ShapeInferenceError] Rank of input 2 (0) does not match the equation indices (2).\n(op_type:Einsum): [ShapeInferenceError] Rank of input 2 (0) does not match the equation indices (2).\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task360/prototypes/task360_v4_sparse_presafe.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Einsum): [ShapeInferenceError] Rank of input 2 (0) does not match the equation indices (2).\n(op_type:Einsum): [ShapeInferenceError] Rank of input 2 (0) does not match the equation indices (2).\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task366/prototypes/_tmp_spread_candidate.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Squeeze, node name: top_counts_47): [ShapeInferenceError] Dimension of input 2 must be 1 instead of 15\n(op_type:ReduceMax, node name: top_max_49): [TypeInferenceError] Input 0 expected to have type but instead is null\n(op_type:Squeeze, node name: bottom_counts_52): [ShapeInferenceError] Dimension of input 2 must be 1 instead of 15\n(op_type:ReduceMax, node name: bottom_max_54): [TypeInferenceError] Input 0 expected to have type but instead is null\n(op_type:Squeeze, node name: left_counts_57): [ShapeInferenceError] Dimension of input 2 must be 1 instead of 15\n(op_type:ReduceMax, node name: left_max_59): [TypeInferenceError] Input 0 expected to have type but instead is null\n(op_type:Squeeze, node name: right_counts_62): [ShapeInferenceError] Dimension of input 2 must be 1 instead of 15\n(op_type:ReduceMax, node name: right_max_64): [TypeInferenceError] Input 0 expected to have type but instead is null\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task381/prototypes/task381_freeout_smallout_novert_minsub.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Where): [ShapeInferenceError] Incompatible dimensions\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task385/prototypes/G_sparse_gather.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Gather): [ShapeInferenceError] Inferred shape and existing shape differ in rank: (3) vs (4)\n"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task396/prototypes/task396_longrun_lied_bool.onnx",
+      "error": "InferenceError: [ShapeInferenceError] Inference error(s): (op_type:Concat): [TypeInferenceError] Inferred elem type differs from existing elem type: (7) vs (9)\n(op_type:Concat): [TypeInferenceError] Inferred elem type differs from existing elem type: (7) vs (9)\n(op_type:Slice): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (9)\n(op_type:Concat): [TypeInferenceError] Inferred elem type differs from existing elem type: (7) vs (9)\n(op_type:Concat): [TypeInferenceError] Inferred elem type differs from existing elem type: (7) vs (9)\n(op_type:Slice): [TypeInferenceError] Inferred elem type differs from existing elem type: (1) vs (9)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (10) vs (9)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (10) vs (9)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (10) vs (9)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (10) vs (9)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (10) vs (9)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (10) vs (9)\n(op_type:ArgMax): [TypeInferenceError] Inferred elem type differs from existing elem type: (7) vs (9)\n(op_type:Gather): [TypeInferenceError] Inferred elem type differs from existing elem type: (10) vs (9)\n(op_type:ArgMax): [TypeInferenceError] Inferred elem type differs from existing elem type: (7) vs (9)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (10) vs (9)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (10) vs (9)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (10) vs (9)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (10) vs (9)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (10) vs (9)\n(op_type:ArgMax): [TypeInferenceError] Inferred elem type differs from existing elem type: (7) vs (9)\n(op_type:Gather): [TypeInferenceError] Inferred elem type differs from existing elem type: (10) vs (9)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (10) vs (9)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (10) vs (9)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (7) vs (9)\n(op_type:Cast): [TypeInferenceError] Inferred elem type differs from existing elem type: (7) vs (9)\n(op_type:Where): [TypeInferenceError] Inferred elem type differs from existing elem type: (10) vs (9)\n"
+    }
+  ],
+  "op_counts": {
+    "Abs": 3063,
+    "Add": 57994,
+    "And": 63084,
+    "ArgMax": 14172,
+    "ArgMin": 1052,
+    "AveragePool": 334,
+    "BitShift": 4733,
+    "BitwiseAnd": 15152,
+    "BitwiseNot": 649,
+    "BitwiseOr": 17477,
+    "BitwiseXor": 161,
+    "Cast": 104872,
+    "Ceil": 11,
+    "Clip": 3259,
+    "Compress": 3,
+    "Concat": 15017,
+    "ConcatFromSequence": 2,
+    "Constant": 60,
+    "ConstantOfShape": 73,
+    "Conv": 13479,
+    "ConvInteger": 547,
+    "ConvTranspose": 1648,
+    "CumSum": 1076,
+    "DepthToSpace": 5,
+    "Div": 12193,
+    "Einsum": 4924,
+    "Equal": 35860,
+    "Expand": 2021,
+    "EyeLike": 1,
+    "Flatten": 70,
+    "Floor": 860,
+    "Gather": 83153,
+    "GatherElements": 3067,
+    "GatherND": 1793,
+    "Gemm": 82,
+    "Greater": 23034,
+    "GreaterOrEqual": 2204,
+    "GridSample": 58,
+    "Identity": 264,
+    "If": 12,
+    "Less": 38601,
+    "LessOrEqual": 3448,
+    "Log": 32,
+    "MatMul": 2611,
+    "MatMulInteger": 266,
+    "Max": 22937,
+    "MaxPool": 8921,
+    "Min": 15558,
+    "Mod": 8579,
+    "Mul": 59279,
+    "Neg": 658,
+    "Not": 12509,
+    "OneHot": 408,
+    "Or": 18034,
+    "Pad": 14970,
+    "Pow": 2,
+    "QLinearConv": 7661,
+    "QLinearMatMul": 221,
+    "QuantizeLinear": 54,
+    "Range": 684,
+    "ReduceL1": 12,
+    "ReduceL2": 3,
+    "ReduceMax": 17971,
+    "ReduceMin": 9304,
+    "ReduceProd": 2,
+    "ReduceSum": 15108,
+    "ReduceSumSquare": 7,
+    "Relu": 325,
+    "Reshape": 35317,
+    "Resize": 106,
+    "ReverseSequence": 3,
+    "Round": 44,
+    "Scatter": 24,
+    "ScatterElements": 2337,
+    "ScatterND": 1255,
+    "SequenceConstruct": 2,
+    "Shape": 638,
+    "Sign": 51,
+    "Slice": 26518,
+    "Split": 182,
+    "Sqrt": 99,
+    "Squeeze": 3886,
+    "Sub": 45071,
+    "Sum": 2003,
+    "Tile": 172,
+    "TopK": 5263,
+    "Transpose": 1156,
+    "Unsqueeze": 15502,
+    "Where": 57898,
+    "Xor": 609
+  },
+  "models_with_softmax": [],
+  "models_with_attention": [],
+  "softmax_chain_count": 0,
+  "softmax_chains": [],
+  "pairwise_near_miss_count": 5,
+  "pairwise_near_misses_top25": [
+    {
+      "task": "154",
+      "path": "The_400_Tasks/Task_by_Task/task154/prototypes/task154.onnx",
+      "node_index": 37,
+      "chain": "MatMul->MatMul",
+      "tensor": "c5_r_4d",
+      "tensor_info": {
+        "dtype": "F32",
+        "shape": [
+          1,
+          1,
+          30,
+          30
+        ],
+        "elements": 900,
+        "bytes": 3600,
+        "charged": true,
+        "charged_bytes": 3600
+      },
+      "current_intermediate_bytes": 3600,
+      "reason_not_candidate": "pairwise MatMul/Einsum aggregation without Softmax; generic matrix product, not ONNX Attention"
+    },
+    {
+      "task": "088",
+      "path": "The_400_Tasks/Task_by_Task/task088/prototypes/task088_compress_v1.onnx",
+      "node_index": 45,
+      "chain": "MatMul->MatMul",
+      "tensor": "shape_up",
+      "tensor_info": {
+        "dtype": "F16",
+        "shape": [
+          1,
+          1,
+          24,
+          24
+        ],
+        "elements": 576,
+        "bytes": 1152,
+        "charged": true,
+        "charged_bytes": 1152
+      },
+      "current_intermediate_bytes": 1152,
+      "reason_not_candidate": "pairwise MatMul/Einsum aggregation without Softmax; generic matrix product, not ONNX Attention"
+    },
+    {
+      "task": "088",
+      "path": "The_400_Tasks/Task_by_Task/task088/prototypes/task088_compress_v2.onnx",
+      "node_index": 46,
+      "chain": "MatMul->MatMul",
+      "tensor": "shape_up",
+      "tensor_info": {
+        "dtype": "F16",
+        "shape": [
+          1,
+          1,
+          24,
+          24
+        ],
+        "elements": 576,
+        "bytes": 1152,
+        "charged": true,
+        "charged_bytes": 1152
+      },
+      "current_intermediate_bytes": 1152,
+      "reason_not_candidate": "pairwise MatMul/Einsum aggregation without Softmax; generic matrix product, not ONNX Attention"
+    },
+    {
+      "task": "088",
+      "path": "The_400_Tasks/Task_by_Task/task088/prototypes/task088_compress_v3.onnx",
+      "node_index": 48,
+      "chain": "MatMul->MatMul",
+      "tensor": "shape_up",
+      "tensor_info": {
+        "dtype": "F16",
+        "shape": [
+          1,
+          1,
+          24,
+          24
+        ],
+        "elements": 576,
+        "bytes": 1152,
+        "charged": true,
+        "charged_bytes": 1152
+      },
+      "current_intermediate_bytes": 1152,
+      "reason_not_candidate": "pairwise MatMul/Einsum aggregation without Softmax; generic matrix product, not ONNX Attention"
+    },
+    {
+      "task": "088",
+      "path": "The_400_Tasks/Task_by_Task/task088/prototypes/task088_f16trick_80BA06BD.onnx",
+      "node_index": 44,
+      "chain": "MatMul->MatMul",
+      "tensor": "shape_up",
+      "tensor_info": {
+        "dtype": "F16",
+        "shape": [
+          1,
+          1,
+          24,
+          24
+        ],
+        "elements": 576,
+        "bytes": 1152,
+        "charged": true,
+        "charged_bytes": 1152
+      },
+      "current_intermediate_bytes": 1152,
+      "reason_not_candidate": "pairwise MatMul/Einsum aggregation without Softmax; generic matrix product, not ONNX Attention"
+    }
+  ],
+  "attention_candidate_count": 0
+}

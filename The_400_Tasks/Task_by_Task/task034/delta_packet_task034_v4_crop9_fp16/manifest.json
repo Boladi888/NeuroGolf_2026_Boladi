@@ -1,0 +1,31 @@
+{
+  "task": "task034",
+  "candidate": "task034_v4_crop9_fp16",
+  "created_utc": "2026-05-17T17:42:40Z",
+  "base_zip": "submissions\\submission.zip",
+  "candidate_onnx": "The_400_Tasks\\Task_by_Task\\task034\\prototypes\\task034_v4_crop9_fp16.onnx",
+  "candidate_zip": "The_400_Tasks\\Task_by_Task\\task034\\delta_packet_task034_v4_crop9_fp16\\submission_task034_v4_crop9_fp16.zip",
+  "onnx_sha256": "746393482d98cf62424d6311629038d546c1dae30142c74c7cabde63c13ddf7f",
+  "zip_sha256": "6bc814e6ebedd7b988102d849881b7c45cae0e190d50995c0a4d57bc3a5b16e4",
+  "current_cost": 124798,
+  "candidate_cost": 29452,
+  "delta_cost": -95346,
+  "current_points": 13.265548290851973,
+  "candidate_points": 14.709482901511393,
+  "delta_points": 1.44393461065942,
+  "validation": {
+    "visible_arcgen_expected": "267/267",
+    "live_match": "267/267",
+    "score_tuple": [
+      0,
+      29205,
+      247
+    ],
+    "original_score_tuple": [
+      0,
+      122841,
+      1957
+    ]
+  },
+  "notes": "Structural crop-to-9 sweep: task034 visible+arc-gen are all 9x9, so the live fp16 diagonal-band graph is preserved but spatial working tensors/constants are cropped to 9x9. Output shape is 1x10x9x9; local decoder matches live on all 267 <=30x30 pairs."
+}

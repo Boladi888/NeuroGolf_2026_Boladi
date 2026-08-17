@@ -1,0 +1,104 @@
+{
+ "_comment": "Seed for /api/door/campaign. tutorials = Solved tasks with known door answers (ghostPath glows the next door). leads = NotSolved tasks the greedy door search already cracked on all official sets (numpy-verified 2026-06-04) - open, replay, export.",
+ "tutorials": [
+  {
+   "taskId": "task031",
+   "label": "Tutorial 1: Snip!",
+   "hint": "Cut away the empty space around the picture.",
+   "ghostPath": [
+    {
+     "op": "crop_content",
+     "params": {}
+    }
+   ]
+  },
+  {
+   "taskId": "task087",
+   "label": "Tutorial 2: Spin!",
+   "hint": "Turn the whole picture upside down.",
+   "ghostPath": [
+    {
+     "op": "rotate",
+     "params": {
+      "turns": 2
+     }
+    }
+   ]
+  },
+  {
+   "taskId": "task164",
+   "label": "Tutorial 3: Mirror!",
+   "hint": "Stick a mirrored copy on one side.",
+   "ghostPath": [
+    {
+     "op": "mirror_concat",
+     "params": {
+      "direction": "right"
+     }
+    }
+   ]
+  },
+  {
+   "taskId": "task276",
+   "label": "Tutorial 4: Paint!",
+   "hint": "One color wants to become another color.",
+   "ghostPath": [
+    {
+     "op": "recolor",
+     "params": {
+      "from": 6,
+      "to": 2
+     }
+    }
+   ]
+  }
+ ],
+ "leads": [
+  {
+   "taskId": "task150",
+   "label": "Lead: one flip wins",
+   "ghostPath": [
+    {
+     "op": "flip_h",
+     "params": {}
+    }
+   ]
+  },
+  {
+   "taskId": "task155",
+   "label": "Lead: one flip wins",
+   "ghostPath": [
+    {
+     "op": "flip_v",
+     "params": {}
+    }
+   ]
+  },
+  {
+   "taskId": "task177",
+   "label": "Lead: snip then flip",
+   "ghostPath": [
+    {
+     "op": "crop_content",
+     "params": {}
+    },
+    {
+     "op": "flip_h",
+     "params": {}
+    }
+   ]
+  }
+ ],
+ "solutions": [
+  {
+   "taskId": "task001",
+   "ghostPath": [
+    {
+     "op": "stamp",
+     "params": {}
+    }
+   ],
+   "_comment": "Solved tasks with known door answers, used ONLY by /api/task-rule reveal (not shown as campaign entries)."
+  }
+ ]
+}

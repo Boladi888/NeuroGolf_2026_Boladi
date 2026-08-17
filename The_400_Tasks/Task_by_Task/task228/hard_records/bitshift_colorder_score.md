@@ -1,0 +1,7 @@
+# task228 hard record: BitShift / packed column-order score
+
+- Live/team bar used: manifest live cost 871, SHA `97d5271f3cd5824d84b51a06c7f8d306e84e318605e0de1534551661f276e234`; task-local staged bar cost 869, SHA `b006fb37ef87c138c211150da39c6f99fe606e8f75ba8aaa3059247a50fb9a12`.
+- Attempted route: encode both row and column marker order into the UINT8 score feeding `TopK`, using the existing inverted row/column moments plus cheap U8 arithmetic / shift-style packed ordering, so `is_left` could be removed from the v57 sparse-ScatterND family.
+- Failed gate: pre-build corpus/pricing gate. On the cached 200000 corpus, row-only selects the marker set 200000/200000 but has only 25.057% TL/TR/BL/BR order; tested combined scores such as `r+c`, `2r+c`, `4r+c`, `8r+c`, `r+(c>>k)` all miss the marker set before visible gating (`r+c` best observed set rate 98.737%). Even a perfect combined score would add a `[10,1]` U8 score tensor (10 B) while only deleting `is_left [4,1]` (4 B), so it cannot beat the 869 bar in this family.
+- Why dead: final `ScatterND` still forces the 64-element INT64 index tensor (512 B). BitShift/packed carriers can shrink intermediate mask transport, but this graph does not materialize dense mask planes; the packed route must either unpack back to the same final index or build dense output/update masks that price above v57.
+- Remaining hypothesis: only revisit if a different write primitive avoids the final INT64 `ScatterND` index without materializing a full `[1,10,30,30]` input/update/output mask.

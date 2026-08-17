@@ -1,0 +1,10 @@
+# DEAD ROUTE — perfect-25 zero-param (cost≤1) ceiling for task164
+
+- **Live bar:** cost **30**, sha256 `250771b94d3db4658d4ac04e3bd9a0740f2af0f3aba0bb9b5df4d6181bb470d4` (manifest, owner Vamshi, 2026-07-02). Points 21.5988.
+- **Route attempted:** the prompt's "perfect-25 ZeroopsweepCeilingAudit" — a hypothesized cost≤1 no-payload direct-output op (Identity / Transpose perm / attr-only elementwise) that is byte-equal to LIVE with no counted initializer/intermediate.
+- **Exact failed gate:** visible byte-equality vs LIVE. Every zero-param one-node op scored **cost 0 but 0/267 byte-equal** (Identity, Neg, Abs, Relu, Floor, Ceil, Cast(F32), all 24 Transpose perms). Slice(col reverse step=-1) = cost 4, 0/267. Kill rule fired → no truth/ab/battery run.
+- **Why it's dead (forced-component argument):** the task164 rule is a horizontal mirror-**stack** — `out[r] = [c0,c1,c2, c2,c1,c0, 0×24]` — which **duplicates column 2**. A zero-param op only permutes/relabels/passes existing axes; none can *duplicate* an element within an axis. Duplication forces a data-carrying reorder, and the minimal correct one-op form is `Gather(input, idx[30], axis=3)` → params = 30 (element count), memory 0 → **cost 30**. This is not a whole-grid identity/transpose/flip/rotate task, so the perfect-25 zero-param family does not apply. Cost≤1 is unreachable.
+- **One remaining hypothesis (already closed):** sub-30 via sparse Gather index (28 NNZ) — dead at the ONNX op-schema level (ORT `INVALID_ARGUMENT` + Gather shape-inf rejects sparse `indices`); `Constant(sparse_value)→Gather` = cost 268. See task164.md Attempts 2026-06-01. No open sub-floor route remains.
+- **Reproduction:** `prototypes/perfect25_zeroparam_sweep.py` (this pass) + `prototypes/floor_probe.py` (full sub-30 sweep). Both re-run fresh 2026-07-07: LIVE `(0,0,30)`, 2000/2000 ARC-GEN both twins (6d0aefbc, c9e6f938).
+
+**Verdict: WALL. Floor = 30 = K for the single `Gather(idx[K])`→output family. Do not re-explore perfect-25/zero-param for this task.**

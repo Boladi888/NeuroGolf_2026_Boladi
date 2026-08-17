@@ -1,0 +1,155 @@
+{
+  "schema": "neurogolf.task379.fp32_bool_shift_masks_probe.v1",
+  "kanban_task": "t_210cee8f",
+  "baseline": {
+    "extraction": {
+      "package": "C:\\Users\\Qx\\.worktrees\\t_210cee8f\\submissions\\submission.zip",
+      "package_sha256": "5ecc4a4be545e9bc6665dfba6f716afa73096362efc46dad70703af953e539fa",
+      "task379_sha256": "ae5e0d30e44c560fc97deedf95e710bdefd28584ada458020921e04e4395090b",
+      "task379_size": 15567
+    },
+    "path": "C:\\Users\\Qx\\.worktrees\\t_210cee8f\\work\\task379_v8_fp32_classifier_slice_probe\\current_best_task379.onnx",
+    "cost": {
+      "path": "C:\\Users\\Qx\\.worktrees\\t_210cee8f\\work\\task379_v8_fp32_classifier_slice_probe\\current_best_task379.onnx",
+      "macs": 43124,
+      "memory": 106685,
+      "params": 1729,
+      "cost": 108414,
+      "points": 13.4063,
+      "cascade_risk": false,
+      "ops": {
+        "Add": 3,
+        "Cast": 12,
+        "Concat": 1,
+        "Conv": 3,
+        "CumSum": 4,
+        "Greater": 16,
+        "Less": 4,
+        "MaxPool": 2,
+        "Mul": 17,
+        "Pad": 1,
+        "ReduceMax": 2,
+        "ReduceSum": 9,
+        "Slice": 3,
+        "Sub": 13,
+        "Sum": 6,
+        "Where": 16
+      },
+      "error": null
+    },
+    "ops": {
+      "Slice": 3,
+      "ReduceSum": 9,
+      "ReduceMax": 2,
+      "Sub": 13,
+      "Add": 3,
+      "Greater": 16,
+      "Cast": 12,
+      "CumSum": 4,
+      "Where": 16,
+      "MaxPool": 2,
+      "Conv": 3,
+      "Sum": 6,
+      "Mul": 17,
+      "Less": 4,
+      "Concat": 1,
+      "Pad": 1
+    }
+  },
+  "candidate": {
+    "path": "C:\\Users\\Qx\\.worktrees\\t_210cee8f\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v12_fp32_bool_shift_masks.onnx",
+    "sha256": "37bffe749c8c1200ad8a2ef7d0ed9dd9c9b6f7fc631b3e109f012a8b1d8e155f",
+    "cost": {
+      "path": "C:\\Users\\Qx\\.worktrees\\t_210cee8f\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v12_fp32_bool_shift_masks.onnx",
+      "macs": 45032,
+      "memory": 92972,
+      "params": 1674,
+      "cost": 94646,
+      "points": 13.5421,
+      "cascade_risk": false,
+      "ops": {
+        "Add": 2,
+        "And": 14,
+        "Cast": 8,
+        "Concat": 3,
+        "Conv": 1,
+        "CumSum": 4,
+        "Equal": 4,
+        "Greater": 9,
+        "MaxPool": 2,
+        "Mul": 7,
+        "Not": 4,
+        "Or": 4,
+        "Pad": 1,
+        "ReduceMax": 2,
+        "ReduceSum": 5,
+        "Slice": 9,
+        "Sub": 6,
+        "Sum": 4,
+        "Where": 4
+      },
+      "error": null
+    },
+    "ops": {
+      "Slice": 9,
+      "ReduceSum": 5,
+      "ReduceMax": 2,
+      "Sub": 6,
+      "Add": 2,
+      "Greater": 9,
+      "Cast": 8,
+      "CumSum": 4,
+      "Where": 4,
+      "MaxPool": 2,
+      "Not": 4,
+      "And": 14,
+      "Concat": 3,
+      "Or": 4,
+      "Conv": 1,
+      "Sum": 4,
+      "Equal": 4,
+      "Mul": 7,
+      "Pad": 1
+    }
+  },
+  "rewrite": "v10-safe FP32/boolean lane plus exact bool Slice/Concat replacement for the two row-shift Conv masks and bool Or unions for v70/v76; avoids FP16, zero-channel replacement, final mask-union rewrite, and boundary-cast sinking.",
+  "standard_parity": {
+    "cases": 266,
+    "mismatches_exact": 0,
+    "max_abs": 0.0,
+    "modes": {
+      "zeros": 1,
+      "sparse-binary": 89,
+      "dense-fp32": 88,
+      "onehot": 88
+    }
+  },
+  "extended_parity": {
+    "cases": 3200,
+    "mismatches_exact": 0,
+    "max_abs": 0.0,
+    "modes": {
+      "zeros": 1,
+      "onehot30": 640,
+      "inner-onehot20": 640,
+      "onehot": 427,
+      "sparse-binary": 427,
+      "ones": 639,
+      "dense-fp32": 426
+    }
+  },
+  "package_audit": {
+    "package": "C:\\Users\\Qx\\.worktrees\\t_210cee8f\\The_400_Tasks\\Task_by_Task\\task379\\evidence\\task379_v12_fp32_bool_shift_masks_local_submission.zip",
+    "package_sha256": "13ad6e6095284de05581d1f78000b7b9685fc836510d90544e7d17b8c81253fa",
+    "changed_entries": [
+      {
+        "filename": "task379.onnx",
+        "old_sha256": "ae5e0d30e44c560fc97deedf95e710bdefd28584ada458020921e04e4395090b",
+        "new_sha256": "37bffe749c8c1200ad8a2ef7d0ed9dd9c9b6f7fc631b3e109f012a8b1d8e155f",
+        "old_size": 15567,
+        "new_size": 15272
+      }
+    ],
+    "entries": 401
+  }
+}

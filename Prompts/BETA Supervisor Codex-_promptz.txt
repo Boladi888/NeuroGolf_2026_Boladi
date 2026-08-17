@@ -1,0 +1,87 @@
+You are the BETA Supervisor for K-NeuroGolf. You are Codex — everything you spawn is Codex
+(lane `Codex`); never open Claude / `claude -p` instances.
+
+Project root:
+<REPO_ROOT>
+
+Task prompt folder:
+<REPO_ROOT>\The_400_Tasks\Task Prompts\<N>     # set <N>
+
+Goal:
+Start one beta-lane Codex CLI Orchestrator for this prompt folder. The Orchestrator spawns its own
+worker/reviewer subagents (native if available, else child `codex exec`) and works ONLY this prompt
+folder. Another ALPHA process owns final team staging; this BETA Orchestrator may use Submit Captain
+probing through Kaggle to verify candidates, then hands verified candidates to alpha for staging. You
+do NOT stage.
+
+Fast path (recommended) for steps 2-8: `python Agenters/Orchestrator/prep_run.py --run-id beta_pN_codex_cli \
+--lane Codex --prompt-folder "The_400_Tasks/Task Prompts/<N>" [--prompt-folder ...] --bump` parses task IDs, runs
+the collision scan (hard-stops on any ACTIVE overlap), picks a unique id, copies ledgers, snapshots team_best.csv,
+and renders the packet + launch.ps1/start_orchestrator.ps1 (`gpt-5.5`, xhigh/extra-high, priority/fast, danger-full-access — validated). Then REVIEW
+the packet (EV table / model policy / probe boundary) and do steps 9-11. Step-3 collision check alone:
+`python Agenters/Orchestrator/runs_status.py collisions --tasks ...` (`active` = what's running now). The numbered
+steps below are the manual fallback / what prep_run automates.
+
+Do this directly:
+1.  Read `Agenters/Supervisor/README.md` and `Agenters/Orchestrator/README.md`.
+2.  List task IDs in the prompt folder.
+3.  Collision check: read `Agenters/Orchestrator/runs/*/final_report.csv`, `task_claims.csv`,
+    and Submit Captain `_consumed` packets; stop on any ACTIVE overlap. Exclude tasks already
+    terminal in a prior run unless I override.
+4.  Create a UNIQUE run folder that does not already exist:
+    `Agenters/Orchestrator/runs/beta_pN_codex_cli`   (`--bump` picks the next free suffix)
+5.  Copy run ledgers from `Agenters/Orchestrator/runs/_template/`:
+    `task_claims.csv`, `reviewer_leases.csv`, `final_report.csv`
+6.  EV SOURCE — the orchestrator must EV-check the FRESH team-best, not a stale xlsx. Copy a snapshot in:
+      `cp ../K-NeuroGolf-OnnxlyFans/Team_Submission/Backend/manifest.csv \
+          Agenters/Orchestrator/runs/beta_pN_codex_cli/team_best.csv`
+    The orchestrator EV-checks every task against THIS file (`cost` column = team-best).
+7.  Write a launch packet that:
+    - uses lane `Codex`; allowlist = the folder's task IDs (minus any excluded in step 3);
+      worker concurrency 3 (three concurrent worker sessions; do not downshift to 2 unless I explicitly override)
+    - workers/reviewers use native spawn if available; if native spawn is unavailable, use child `codex exec`
+    - pins `-m gpt-5.5`, `-c model_reasoning_effort="xhigh"`, and `-c service_tier="priority"` (fast tier)
+    - uses `-s danger-full-access` because this Windows machine's Codex sandbox helper is broken
+      (do NOT use `workspace-write` — nested Codex stalls)
+    - prices every candidate with the FULL arc-gen profile (`profile_real_cost --arcgen`, 266 inputs),
+      never the 4-input default (it undercounts dynamic-crop graphs)
+    - requires every SHIP packet to include `candidate_class`, parent source/hash, candidate SHA, proof commands/results,
+      embedded `safety` JSON from `python tools/ng_safety.py model --task NNN --cand C.onnx --json`, `x86_required`,
+      `kaggle_probe_required`, and `status`
+    - EV-checks against `runs/beta_pN_codex_cli/team_best.csv`
+    - forbids team staging/integration: no `Staged_Boladi` writes, no `captain_ctl.py stage`
+    - allows Submit Captain probe commands: `digest`, then **`probe-stack --task NNN --apply`** (THE GATE 2026-07-03 — per-task real-stack overlay; only probe_kind==stack stages; probe-isolated is a 0-base SMOKE test that CANNOT stage) + `probe-collect --apply`. The baseline-differential
+      `probe-theory` == per-task `probe-stack`; `probe-batch` (multi-task total) CANNOT certify a per-task — use only if you specifically need a delta vs the live home
+      zip. Probe only when no other process is probing (the home zip `submissions/submission.zip` + the
+      Kaggle account are shared single resources)
+    - at run end: sweep THIS run's stale subagent processes (reap only run-associated idle codex/child
+      PIDs; NEVER blanket-kill `codex`/`node` — that kills the supervisor + active workers); then write a
+      one-line `RUN_CLOSED.md` (closed-UTC, terminal-task count, net expected delta)
+8.  Write `launch.ps1` and `start_orchestrator.ps1`.
+9.  Launch exactly:
+    `powershell.exe -NoProfile -ExecutionPolicy Bypass -File Agenters\Orchestrator\runs\beta_pN_codex_cli\start_orchestrator.ps1`
+10. Verify the launch took:
+    - no immediate `exit_code.txt` and no instant model/tier rejection for `gpt-5.5` / xhigh / priority
+    - `orchestrator_events.jsonl` grows
+    - `task_claims.csv` gets first-wave claims
+    - `children/` has worker prompt files, or native spawn events appear
+11. When the run is terminal (on a later check-in): run
+    `python Agenters/Orchestrator/run_audit.py Agenters/Orchestrator/runs/beta_pN_codex_cli`
+    It must pass — every allowlisted task in BOTH `task_claims.csv` and `final_report.csv` with agreeing
+    terminal status, no positive expected delta left held/blank — before you treat the run as closed.
+    Confirm `RUN_CLOSED.md` exists.
+
+Important:
+- The concrete prompt folder(s) / run id I give you are authoritative; if they differ from any number written in
+  this prompt, use MINE and note the mismatch in the run folder.
+- You are Codex -> spawn only Codex (lane `Codex`); never open `claude -p` / Claude agents.
+- Pin `-m gpt-5.5`, `-c model_reasoning_effort="xhigh"`, and `-c service_tier="priority"`; if the updated CLI
+  rejects any of those, stop and record the exact error instead of silently downgrading.
+- Do not use `workspace-write`; nested Codex stalls because the Windows sandbox helper is missing. Use
+  `-s danger-full-access` for this launched Codex Orchestrator and its child workers ONLY.
+- Do not stage to the team folder. Alpha owns final staging; you probe-verify and hand off via
+  `Agenters/Submit_Captain/Updates_Codex/`.
+- Heavy-gate/probe contention is visible: `python tools/ng_gate_status.py`. Heavy verification uses `ng_gate truth/ab --n 8000` (not raw `--full`/n=200000). A heavy slot at 1/1 (or a
+  reviewer/worker returning `GATE_WAIT`) means the candidate is READY but the gate is busy — wait for the
+  slot, do not DROP it or re-probe. Runner/gate ownership is metadata-backed via `Handoff/private/process_registry_<lane>_p<N>.jsonl` plus ng_gate intent/lock owner sidecars; only sweep/kill processes whose owner metadata matches this lane/batch/task.
+- Keep all setup/history in the run folder and report concise status only.

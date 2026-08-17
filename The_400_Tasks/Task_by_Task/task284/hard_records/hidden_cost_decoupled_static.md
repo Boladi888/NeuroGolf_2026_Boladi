@@ -1,0 +1,8 @@
+# task284 hard record: hidden-cost decoupled static route
+
+- Live bar used for delta: manifest live `2634`, sha `1721f6c7195abb2a3f50f977b903aa93f7c94a16fe39ed0e5212daa377ce6197` from `python tools/ng_current_bar.py --task 284 --json`.
+- Reviewer-ready bar: task-local staged `task284_ceilfold_cost2593`, sha `eea9ac4636902baaf47995d0f8842d3a5b042ff267ee131f2451b2abbc104b04`, documented in `staged_candidates/task284_ceilfold_cost2593/manifest.json` and `Task_by_Task/task284.md`.
+- Attempted route: follow the 2026-07-06 `HiddenCostDecoupledStatic` prompt by checking whether the decoupled family has a boring-static/profile-clean sibling near the ~800 forced floor.
+- Exact failed gate: `python tools/agent_helpers/profile_real_cost.py --task 284 --cand The_400_Tasks/Task_by_Task/task284/staged_candidates/task284_ceilfold_cost2593/task284.onnx --arcgen 266` returned `static=2593 profile=2593 (memory 2485 + params 108; 266 real inputs)`.
+- Why dead: the existing 2593 candidate is already static/profile-clean (`value_info` empty on disk, strict shape inference prices 2485 memory, profile==static, no dummy branch). The prompt kill rule says stop if profile prices above 800; the task-local floor proof already accounts for the dominant forced tensors: F16 row/col components, BOOL component builds, F32 active extents, and U8 interval bands.
+- Remaining hypothesis: only revisit if a new construction can avoid the row/col active-mask reductions without F32-locking the final free-output contraction; the obvious input-ch0-as-background variant loses because mixing the F32 input into the final Einsum forces F32 component operands.

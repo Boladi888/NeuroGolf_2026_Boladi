@@ -1,0 +1,29 @@
+{
+  "task": 221,
+  "candidate": "task221_floor_convT",
+  "opset": 13,
+  "ir_version": 8,
+  "cost": 2822,
+  "memory": 2700,
+  "params": 122,
+  "macs": 0,
+  "points": 17.054799,
+  "profile_cost": 2822,
+  "profile_gap_pct": 0.0,
+  "prev_live_cost": 4420,
+  "delta": -1598,
+  "cost_ratio": 1.5663,
+  "points_gain": 0.4487,
+  "sha256": "aaba1dc3bac109efe64f9a3c6b39258ddb19f7ff2d0b82f68c3921e3a789832d",
+  "gates": {
+    "visible": "267/267 (100%)",
+    "truth_full": "200000/200000 (100%)",
+    "ab_full": "byte-equal 200267/200267, divergences=0",
+    "score_v2": "memory 2700 + params 122 = 2822",
+    "gate5_profile": "static=2822 profile=2822 (55 real inputs), gap 0%"
+  },
+  "ship_class": "gold (byte-equal vs LIVE + 100% truth)",
+  "builder": "build_t221.py (in this dir; job 11ec9cfe)",
+  "rule": "input 3x3 one-hot in [1,10,30,30]; k=#nonzero, z=9-k=macro M; output=kron(macro,input), macro MxM with first k row-major cells; ConvTranspose stride3 of [1,2,10,10] (active|stamp) x weight [2,10,3,3] ([W_active bg-fill]|[-fg,colors]); 30x30x10 output uncounted.",
+  "arch_note": "Architecture floor. Both conv-input channels built by ONE broadcasting compare c<min(C[ch]-r*z, z) with C=[z*z,k] (active=ch0, stamp=ch1) -> no per-cell idx tensor, no separate A/M bool masks. Operand floor X(800)+W(720)=1520 irreducible; weight assembly grid(324)+W_stamp(360); X-cast Xb(200)+X(800). See task221.md floor proof (5 final-op families enumerated w/ kill-numbers)."
+}

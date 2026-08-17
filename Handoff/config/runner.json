@@ -1,0 +1,196 @@
+{
+  "schema": "neurogolf.handoff.runner.v1",
+  "project": {
+    "name": "NeuroGolf_HO",
+    "project_id": "82513bd2-0f60-434a-91b2-538d71010fa8",
+    "team_id": "team_644ac577",
+    "testnet_only": true,
+    "preferred_settlement_network": "base-sepolia"
+  },
+  "agents": {
+    "orchestrator": "bo_ng_orchestrator",
+    "worker": "bo_ng_worker1",
+    "reviewer": "bo_ng_reviewer1",
+    "submit_captain": "bo_ng_submit_captain",
+    "owner_admin": "boladi_a",
+    "workers": [
+      "bo_ng_worker1",
+      "bo_ng_cdx_worker2",
+      "bo_ng_cdx_worker3"
+    ],
+    "reviewers": [
+      "bo_ng_reviewer1",
+      "bo_ng_cdx_reviewer2"
+    ]
+  },
+  "codex": {
+    "executable": "codex",
+    "model": "gpt-5.5",
+    "reasoning_effort": "xhigh",
+    "ask_for_approval": "never",
+    "sandbox": "workspace-write",
+    "bypass_sandbox": true,
+    "config_overrides": [
+      "service_tier=\"priority\""
+    ],
+    "timeout_seconds": 14400,
+    "worker_timeout_seconds": 14400,
+    "reviewer_timeout_seconds": 10800
+  },
+  "paths": {
+    "prompt_dir": "The_400_Tasks/Task Prompts/31",
+    "private_state": "Handoff/private/runner_state_batch31.json",
+    "raw_log_dir": "Handoff/logs/raw/runner",
+    "operation_log": "Handoff/logs/operations.jsonl",
+    "captain_lane_inbox": "Agenters/Submit_Captain/Updates_Codex",
+    "runner_prompt_dir": "Handoff/runner/prompts"
+  },
+  "workflow": {
+    "lane": "Codex",
+    "worker_max_active": 3,
+    "worker_attempts_before_review": 1,
+    "worker_max_failures": 2,
+    "reviewer_max_failures": 1,
+    "max_rework_cycles": 3,
+    "force_first_rework": false,
+    "reviewer_affinity": true,
+    "captain_batch_size": 3,
+    "captain_safe_batch_command": [
+      "probe-batch",
+      "--lane",
+      "codex",
+      "--apply"
+    ],
+    "captain_risky_probe_command": [
+      "probe-isolated",
+      "--lane",
+      "codex",
+      "--apply"
+    ],
+    "full_gate_audit_after_failed_probe": true,
+    "kaggle_submit_default": "disabled_until_allow_flag",
+    "reviewer_max_active": 2
+  },
+  "tasks": [
+    {
+      "task": "task286",
+      "handoff_task_id": "52ba262b-8ae9-4485-89d7-0e50a77876d2",
+      "title": "FloodFillComponentRewrite",
+      "prompt_file": "Prompt_2026-06-28T3101Z_Task286_FloodFillComponentRewrite.md"
+    },
+    {
+      "task": "task366",
+      "handoff_task_id": "2ce50341-e771-4b61-9c2a-b2b349111ee9",
+      "title": "SceneLibraryColorRewrite",
+      "prompt_file": "Prompt_2026-06-28T3102Z_Task366_SceneLibraryColorRewrite.md"
+    },
+    {
+      "task": "task233",
+      "handoff_task_id": "9275f730-5a09-4b5a-8904-412865f6c02b",
+      "title": "DecorationRegionRewrite",
+      "prompt_file": "Prompt_2026-06-28T3103Z_Task233_DecorationRegionRewrite.md"
+    },
+    {
+      "task": "task158",
+      "handoff_task_id": "8d6bc574-1fbe-43a0-897a-ab2f18047f33",
+      "title": "RoleColorScalarRewrite",
+      "prompt_file": "Prompt_2026-06-28T3104Z_Task158_RoleColorScalarRewrite.md"
+    },
+    {
+      "task": "task054",
+      "handoff_task_id": "093b68d0-7231-4fcf-a40f-90aa9006aca3",
+      "title": "PaletteRemapFloorRewrite",
+      "prompt_file": "Prompt_2026-06-28T3105Z_Task054_PaletteRemapFloorRewrite.md"
+    },
+    {
+      "task": "task133",
+      "handoff_task_id": "6b3e1988-a7cf-41d2-961b-da296701c4e3",
+      "title": "FillRegionRuleRewrite",
+      "prompt_file": "Prompt_2026-06-28T3106Z_Task133_FillRegionRuleRewrite.md"
+    },
+    {
+      "task": "task076",
+      "handoff_task_id": "c829b581-a3af-410a-a968-bc0ca0db328e",
+      "title": "HoleFillTopologyRewrite",
+      "prompt_file": "Prompt_2026-06-28T3107Z_Task076_HoleFillTopologyRewrite.md"
+    },
+    {
+      "task": "task367",
+      "handoff_task_id": "060864e7-3387-4807-acd8-a533f78ed162",
+      "title": "RowPocketLabelRewrite",
+      "prompt_file": "Prompt_2026-06-28T3108Z_Task367_RowPocketLabelRewrite.md"
+    },
+    {
+      "task": "task018",
+      "handoff_task_id": "10a941c1-4c4a-47e0-b3ba-43fc0f79fa90",
+      "title": "GravityObjectCopyRewrite",
+      "prompt_file": "Prompt_2026-06-28T3109Z_Task018_GravityObjectCopyRewrite.md"
+    },
+    {
+      "task": "task173",
+      "handoff_task_id": "41ed07e0-4db6-466f-9fce-a909376c18a4",
+      "title": "FloodFillShapeRewrite",
+      "prompt_file": "Prompt_2026-06-28T3110Z_Task173_FloodFillShapeRewrite.md"
+    },
+    {
+      "task": "task285",
+      "handoff_task_id": "3ea044d3-b41f-406d-95fe-b82279ebceca",
+      "title": "WildcardGridRewrite",
+      "prompt_file": "Prompt_2026-06-28T3111Z_Task285_WildcardGridRewrite.md"
+    },
+    {
+      "task": "task349",
+      "handoff_task_id": "2d18d321-c311-4b94-b111-2a1a07f24c21",
+      "title": "WideRegionMergeRewrite",
+      "prompt_file": "Prompt_2026-06-28T3112Z_Task349_WideRegionMergeRewrite.md"
+    },
+    {
+      "task": "task025",
+      "handoff_task_id": "edcaa287-e807-48f5-b452-841362ff4cd6",
+      "title": "LineProjectionRewrite",
+      "prompt_file": "Prompt_2026-06-28T3113Z_Task025_LineProjectionRewrite.md"
+    },
+    {
+      "task": "task364",
+      "handoff_task_id": "dbe5cb46-dd5d-4e35-94b2-81880c281a01",
+      "title": "PaletteDecisionRewrite",
+      "prompt_file": "Prompt_2026-06-28T3114Z_Task364_PaletteDecisionRewrite.md"
+    },
+    {
+      "task": "task255",
+      "handoff_task_id": "009b3316-29ab-4f1b-a535-65874c0c4bf2",
+      "title": "CorridorFillAmbiguityRewrite",
+      "prompt_file": "Prompt_2026-06-28T3115Z_Task255_CorridorFillAmbiguityRewrite.md"
+    },
+    {
+      "task": "task319",
+      "handoff_task_id": "eae912e1-3701-4a88-beb3-eede6ae58ee2",
+      "title": "CropObjectSelectorRewrite",
+      "prompt_file": "Prompt_2026-06-28T3116Z_Task319_CropObjectSelectorRewrite.md"
+    },
+    {
+      "task": "task118",
+      "handoff_task_id": "200cda56-99f3-4644-806d-fb4a70f8acde",
+      "title": "ColorLogicRewrite",
+      "prompt_file": "Prompt_2026-06-28T3117Z_Task118_ColorLogicRewrite.md"
+    },
+    {
+      "task": "task145",
+      "handoff_task_id": "3f21f659-4c30-43f4-b18e-ca66dc140bae",
+      "title": "HiddenAlignedRuleRecon",
+      "prompt_file": "Prompt_2026-06-28T3118Z_Task145_HiddenAlignedRuleRecon.md"
+    },
+    {
+      "task": "task101",
+      "handoff_task_id": "472230ce-1bd5-4080-92b5-d900a853e2dc",
+      "title": "RegionFillRewrite",
+      "prompt_file": "Prompt_2026-06-28T3119Z_Task101_RegionFillRewrite.md"
+    },
+    {
+      "task": "task243",
+      "handoff_task_id": "eb784f4c-bf90-40e7-b0cb-fd68d08a7398",
+      "title": "BitpackFloodFillRewrite",
+      "prompt_file": "Prompt_2026-06-28T3120Z_Task243_BitpackFloodFillRewrite.md"
+    }
+  ]
+}

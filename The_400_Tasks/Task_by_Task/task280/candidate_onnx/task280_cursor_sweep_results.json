@@ -1,0 +1,204 @@
+[
+  {
+    "name": "baseline_current",
+    "path": "The_400_Tasks/Task_by_Task/task280/candidate_onnx/task280_live_base.onnx",
+    "sha256": "9b0b2a55fc45ef3a64dbba8f87be13f6b78fe5747628fc8001f3af46817c51bb",
+    "bytes": 26127,
+    "score_network_v2": {
+      "macs": 0,
+      "memory": 225600,
+      "params": 294,
+      "cost": 225894,
+      "points": 12.672178858321606
+    },
+    "verify": {
+      "total": 267,
+      "vs_expected": 267,
+      "vs_live": 267,
+      "first_live_mismatch": null
+    },
+    "note": "Current synced live task280 extracted from submissions/submission.zip."
+  },
+  {
+    "name": "conv_hv_pm5",
+    "path": "The_400_Tasks/Task_by_Task/task280/candidate_onnx/task280_live_conv_hv_pm5.onnx",
+    "sha256": "0258af7d5b2932fb9c77e257b0cd56b74913b658832ddbdf0699f3e7ca8b6c92",
+    "bytes": 20131,
+    "score_network_v2": {
+      "macs": 0,
+      "memory": 193600,
+      "params": 316,
+      "cost": 193916,
+      "points": 12.82481964541236
+    },
+    "verify": {
+      "total": 267,
+      "vs_expected": 0,
+      "vs_live": 0,
+      "first_live_mismatch": {
+        "pair_index": 0,
+        "shape": [
+          10,
+          10
+        ]
+      }
+    },
+    "note": "High-EV hypothesis: replace all four 10-shift Sum groups with radius-5 Conv kernels."
+  },
+  {
+    "name": "conv_h_pm1",
+    "path": "The_400_Tasks/Task_by_Task/task280/candidate_onnx/task280_live_conv_h_pm1.onnx",
+    "sha256": "47e3fe0646d8caf502cda1dcff21331a351c0de6e7d295c7e7502d393d9d0e22",
+    "bytes": 20131,
+    "score_network_v2": {
+      "macs": 0,
+      "memory": 193600,
+      "params": 316,
+      "cost": 193916,
+      "points": 12.82481964541236
+    },
+    "verify": {
+      "total": 267,
+      "vs_expected": 0,
+      "vs_live": 0,
+      "first_live_mismatch": {
+        "pair_index": 0,
+        "shape": [
+          10,
+          10
+        ]
+      }
+    },
+    "note": "Replace only the horizontal 10-shift groups with +/-1 Conv kernels; vertical groups zeroed by construction."
+  },
+  {
+    "name": "conv_v_pm1",
+    "path": "The_400_Tasks/Task_by_Task/task280/candidate_onnx/task280_live_conv_v_pm1.onnx",
+    "sha256": "107c3ccb8237181dcf0717a9370ce9d9c380b0cf384ca900061a405c054d28fc",
+    "bytes": 20131,
+    "score_network_v2": {
+      "macs": 0,
+      "memory": 193600,
+      "params": 316,
+      "cost": 193916,
+      "points": 12.82481964541236
+    },
+    "verify": {
+      "total": 267,
+      "vs_expected": 0,
+      "vs_live": 0,
+      "first_live_mismatch": {
+        "pair_index": 0,
+        "shape": [
+          10,
+          10
+        ]
+      }
+    },
+    "note": "Replace only the vertical 10-shift groups with +/-1 Conv kernels; horizontal groups zeroed by construction."
+  },
+  {
+    "name": "conv_hv_pm1",
+    "path": "The_400_Tasks/Task_by_Task/task280/candidate_onnx/task280_live_conv_hv_pm1.onnx",
+    "sha256": "cf12b8af1babecdb6ca8a96046772503d1bdec384287156ef1ccbd81b2340717",
+    "bytes": 20131,
+    "score_network_v2": {
+      "macs": 0,
+      "memory": 193600,
+      "params": 316,
+      "cost": 193916,
+      "points": 12.82481964541236
+    },
+    "verify": {
+      "total": 267,
+      "vs_expected": 91,
+      "vs_live": 91,
+      "first_live_mismatch": {
+        "pair_index": 1,
+        "shape": [
+          20,
+          20
+        ]
+      }
+    },
+    "note": "Replace all four 10-shift groups with +/-1 Conv kernels."
+  },
+  {
+    "name": "prune_h_pm1",
+    "path": "The_400_Tasks/Task_by_Task/task280/candidate_onnx/task280_live_prune_h_pm1.onnx",
+    "sha256": "40a26dd89e8d38150c8218f073f9e1a25b15c27623825adbea30f3f884e7e41e",
+    "bytes": 21031,
+    "score_network_v2": {
+      "macs": 0,
+      "memory": 202240,
+      "params": 294,
+      "cost": 202534,
+      "points": 12.781336947330535
+    },
+    "verify": {
+      "total": 267,
+      "vs_expected": 135,
+      "vs_live": 135,
+      "first_live_mismatch": {
+        "pair_index": 2,
+        "shape": [
+          20,
+          20
+        ]
+      }
+    },
+    "note": "Keep original Slice+Pad mechanics but prune horizontal groups down to +/-1 only."
+  },
+  {
+    "name": "prune_v_pm1",
+    "path": "The_400_Tasks/Task_by_Task/task280/candidate_onnx/task280_live_prune_v_pm1.onnx",
+    "sha256": "495ddc420e98036ef6f535082068cb3a925ef534c758069d018fcffe7bc4ee83",
+    "bytes": 21001,
+    "score_network_v2": {
+      "macs": 0,
+      "memory": 202240,
+      "params": 294,
+      "cost": 202534,
+      "points": 12.781336947330535
+    },
+    "verify": {
+      "total": 267,
+      "vs_expected": 113,
+      "vs_live": 113,
+      "first_live_mismatch": {
+        "pair_index": 1,
+        "shape": [
+          20,
+          20
+        ]
+      }
+    },
+    "note": "Keep original Slice+Pad mechanics but prune vertical groups down to +/-1 only."
+  },
+  {
+    "name": "prune_hv_pm1",
+    "path": "The_400_Tasks/Task_by_Task/task280/candidate_onnx/task280_live_prune_hv_pm1.onnx",
+    "sha256": "d6ba048437b42df6976ca89161fe331725206648083cd7890fabc99bd8438a68",
+    "bytes": 15904,
+    "score_network_v2": {
+      "macs": 0,
+      "memory": 178880,
+      "params": 294,
+      "cost": 179174,
+      "points": 12.903887320289217
+    },
+    "verify": {
+      "total": 267,
+      "vs_expected": 91,
+      "vs_live": 91,
+      "first_live_mismatch": {
+        "pair_index": 1,
+        "shape": [
+          20,
+          20
+        ]
+      }
+    },
+    "note": "Keep original Slice+Pad mechanics but prune all four groups to +/-1 only."
+  }
+]

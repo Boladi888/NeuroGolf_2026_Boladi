@@ -1,0 +1,9 @@
+# task059 w1_single_plane_code dead route
+
+- live bar: 470, SHA256 `105da16b59be13e9d797c5d0121e3cc1fb749eb4799b254155921b686bf0900d` (`python tools/ng_current_bar.py --task 59 --json`, manifest source, owner Sho, updated 2026-07-09T01:09:17Z). Live profile rechecked: `static=470 profile=470`.
+- attempted route: reviewer-locked collapse of Sho v28's final two-channel F16 carrier `state4 [1,2,4,4]` and `state_channel [2,10]` into a single coarse F16 code plane `code4 [1,1,4,4]` decoded directly by the free-output `Einsum`.
+- static price sketch: remove `state4` 64B and `state_channel` 20 params; add `code4` 32B and `code_channel` 10 params. Projected official cost if semantics worked: memory `223 - 64 + 32 = 191`, params `247 - 20 + 10 = 237`, total `428` (42 below live).
+- exact failed gate: `python tools/ng_gate.py visible --task 59 --cand The_400_Tasks/Task_by_Task/task059/prototypes/task059_w1_single_plane_linear_code.onnx --json --no-watch-queue` returned `0/266 (0.0%) FAIL`.
+- why dead: a one-plane final `Einsum` is linear in the scalar code. After NeuroGolf's `>0` decoder, each output channel can select only one sign side of that scalar, so it can separate at most two state sets. Task059 needs three disjoint states at the coarse cells: background, fixed divider, and winner/object. Choosing codes `background=-1`, `divider=1`, `winner=2` makes divider and winner share the positive side, producing multi-hot divider/winner channels. Any affine rescale or sign flip has the same one-threshold limitation; adding a bias/constant feature is exactly a second carrier plane, which recreates the live `state4` class.
+- one remaining hypothesis: a nonlinear final decoder would need an existing U8/INT8 code feature for free-output QLinearConv or an extra F16 feature such as `code^2`; both violate this single-plane route and must be priced as a different representation.
+

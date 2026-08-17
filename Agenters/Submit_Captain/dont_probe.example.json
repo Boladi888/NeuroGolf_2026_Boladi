@@ -1,0 +1,4 @@
+[
+  {"task": "task177", "reason": "EXAMPLE — public-negative: locally correct (byte-equal/truth pass) but LB-negative. A bare task entry blocks EVERY candidate for that task from probe + stage."},
+  {"task": "task025", "sha256": "PUT_THE_EXACT_BAD_ONNX_SHA256_HERE", "reason": "EXAMPLE — this EXACT candidate hidden-zeros; matching by sha256 blocks just this one onnx, so a genuinely-new task025 candidate is still probeable."}
+]

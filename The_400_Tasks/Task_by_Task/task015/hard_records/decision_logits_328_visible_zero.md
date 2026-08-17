@@ -1,0 +1,6 @@
+live bar: 431, sha256 94c5e8748d1d756fa21a7094f8212625b3bfb73e7a764f4bec0b77eb370635b7 (ng_current_bar.py manifest, 2026-07-09T01:09:17Z)
+attempted route: copied sibling `Creator_bianfu/.scratch/task015_j1_328.onnx` as `prototypes/task015_j1_328_probe.onnx`; this is a 328-param single-Einsum decision-equivalent-logit factorization, not official-threshold sign exact.
+failed gate: `python tools/ng_gate.py visible --task 15 --cand The_400_Tasks/Task_by_Task/task015/prototypes/task015_j1_328_probe.onnx --no-watch-queue` -> `[visible] 0/265 (0.00%)  FAIL`.
+why dead: NeuroGolf decodes every output channel by `>0.0`, not argmax/winner-takes-all; the route may choose the correct class by decision margin but emits wrong positive/negative channel signs, so it is guaranteed hidden 0 by the visible-fail axiom.
+repair probe: a per-output-channel active-cell bias is infeasible on the 265 bundled examples; for every channel, at least one expected-negative logit exceeds at least one expected-positive logit, so no global channel shift can make official signs exact.
+one remaining hypothesis: a sign-constrained low-rank single-Einsum factorization could still beat 431, but decision-only logits without official sign exactness should not be re-run.

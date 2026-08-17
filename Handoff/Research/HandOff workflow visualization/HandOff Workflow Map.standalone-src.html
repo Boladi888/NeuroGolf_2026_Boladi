@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#0b0e13">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0b0e13"/>
+    <rect x="360" y="150" width="480" height="90" rx="14" fill="#0e1a20" stroke="#23414b" stroke-width="3"/>
+    <rect x="360" y="150" width="8" height="90" fill="#5ec8cf"/>
+    <rect x="360" y="360" width="480" height="90" rx="14" fill="#1b1610" stroke="#423318" stroke-width="3"/>
+    <rect x="360" y="360" width="8" height="90" fill="#e0b061"/>
+    <rect x="360" y="570" width="480" height="90" rx="14" fill="#16101f" stroke="#382a4d" stroke-width="3"/>
+    <rect x="360" y="570" width="8" height="90" fill="#b89be0"/>
+    <path d="M600 240 L600 360 M600 450 L600 570" stroke="#3f4a63" stroke-width="4" stroke-dasharray="10 8"/>
+    <text x="600" y="712" font-family="monospace" font-size="30" fill="#5ec8cf" text-anchor="middle">⇄ HandOff</text>
+  </svg>
+</template>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#0b0e13;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#e7ecf5;-webkit-font-smoothing:antialiased}
+  @keyframes driftpulse{0%,100%{opacity:.5}50%{opacity:1}}
+  ::-webkit-scrollbar{width:9px;height:9px}
+  ::-webkit-scrollbar-thumb{background:#26304a;border-radius:5px}
+  ::-webkit-scrollbar-track{background:transparent}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:radial-gradient(1200px 700px at 25% -10%,#141b2a 0%,#0b0e13 62%);display:flex;flex-direction:column">
+
+  <!-- HEADER -->
+  <header style="display:flex;align-items:center;justify-content:space-between;padding:13px 22px;border-bottom:1px solid #1b2434;background:#0d111a;position:sticky;top:0;z-index:20">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#5ec8cf,#3a7d8a);display:flex;align-items:center;justify-content:center;font:700 13px 'IBM Plex Mono';color:#0b0e13">⇄</div>
+      <div>
+        <div style="font:700 15px 'IBM Plex Sans';letter-spacing:.3px">HandOff Workflow — NeuroGolf_HO</div>
+        <div style="font:500 10.5px 'IBM Plex Mono';color:#6f7d9c;letter-spacing:.4px;margin-top:1px">handoff.socnet.lol · shared board + 3 local lanes · see what happened, where it landed, and what to fix</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;font:500 10px 'IBM Plex Mono';color:#8a97b4">
+      <span style="color:#5ec8cf">/mcp · /api/v1</span>
+      <span style="display:flex;align-items:center;gap:6px;color:#63cf95;border:1px solid #274031;background:#0f1710;border-radius:20px;padding:3px 9px"><span style="width:6px;height:6px;border-radius:50%;background:#63cf95"></span>base-sepolia · testnet</span>
+    </div>
+  </header>
+
+  <!-- TOOLBAR -->
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:9px 22px;border-bottom:1px solid #161e2c;background:#0c1017">
+    <div style="display:flex;gap:2px;flex-wrap:wrap">
+      <button onClick="{{ setMode }}" data-mode="current" style="position:relative;background:none;border:none;cursor:pointer;padding:7px 11px 9px;font:600 11.5px 'IBM Plex Sans';color:#cdd6e8;white-space:nowrap">
+        Current
+        <sc-if value="{{ modeCurrent }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:9px;right:9px;bottom:0;height:2px;background:#e0b061;border-radius:2px"></span></sc-if>
+      </button>
+      <button onClick="{{ setMode }}" data-mode="objects" style="position:relative;background:none;border:none;cursor:pointer;padding:7px 11px 9px;font:600 11.5px 'IBM Plex Sans';color:#cdd6e8;white-space:nowrap">
+        Objects &amp; layers
+        <sc-if value="{{ modeObjects }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:9px;right:9px;bottom:0;height:2px;background:#5ec8cf;border-radius:2px"></span></sc-if>
+      </button>
+      <button onClick="{{ setMode }}" data-mode="confusions" style="position:relative;background:none;border:none;cursor:pointer;padding:7px 11px 9px;font:600 11.5px 'IBM Plex Sans';color:#cdd6e8;white-space:nowrap">
+        Confusion points
+        <sc-if value="{{ modeConfusions }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:9px;right:9px;bottom:0;height:2px;background:#e5736a;border-radius:2px"></span></sc-if>
+      </button>
+      <button onClick="{{ setMode }}" data-mode="signals" style="position:relative;background:none;border:none;cursor:pointer;padding:7px 11px 9px;font:600 11.5px 'IBM Plex Sans';color:#cdd6e8;white-space:nowrap">
+        Signals
+        <sc-if value="{{ modeSignals }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:9px;right:9px;bottom:0;height:2px;background:#b89be0;border-radius:2px"></span></sc-if>
+      </button>
+      <button onClick="{{ setMode }}" data-mode="optimized" style="position:relative;background:none;border:none;cursor:pointer;padding:7px 11px 9px;font:600 11.5px 'IBM Plex Sans';color:#cdd6e8;white-space:nowrap">
+        Ideal loop
+        <sc-if value="{{ modeOptimized }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:9px;right:9px;bottom:0;height:2px;background:#63cf95;border-radius:2px"></span></sc-if>
+      </button>
+      <button onClick="{{ setMode }}" data-mode="improvements" style="position:relative;background:none;border:none;cursor:pointer;padding:7px 11px 9px;font:600 11.5px 'IBM Plex Sans';color:#cdd6e8;white-space:nowrap">
+        HandOff asks
+        <sc-if value="{{ modeImprovements }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:9px;right:9px;bottom:0;height:2px;background:#d98f4e;border-radius:2px"></span></sc-if>
+      </button>
+    </div>
+    <sc-if value="{{ showMapLegend }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;align-items:center;gap:12px;font:500 9.5px 'IBM Plex Mono';color:#6f7d9c;flex-wrap:wrap">
+      <span style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:#5ec8cf"></span>HandOff board</span>
+      <span style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:#e0b061"></span>local runner</span>
+      <span style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:#b89be0"></span>submit captain</span>
+      <span style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:#63cf95"></span>terminal / new</span>
+      <span style="width:1px;height:13px;background:#26304a"></span>
+      <span style="display:flex;align-items:center;gap:5px"><span style="font:600 8.5px 'IBM Plex Mono';color:#5b6884;border:1px solid #2a3450;border-radius:9px;padding:1px 6px">BOARD status</span>which HandOff state it's in</span>
+      <span style="display:flex;align-items:center;gap:5px"><span style="font:700 9px 'IBM Plex Mono';color:#8a97b4">⇄</span>agent handoff</span>
+    </div>
+    </sc-if>
+    <sc-if value="{{ showReadingHint }}" hint-placeholder-val="{{ false }}">
+    <div style="font:500 9.5px 'IBM Plex Mono';color:#5b6884;display:flex;align-items:center;gap:6px">reading view · click a card for detail →</div>
+    </sc-if>
+  </div>
+
+  <!-- BODY -->
+  <div style="display:flex;align-items:stretch;flex:1;min-height:0">
+
+    <!-- MAIN SCROLL -->
+    <div style="flex:1;overflow:auto;padding:20px 22px 28px">
+      <div style="max-width:940px;margin:0 auto;display:flex;flex-direction:column;gap:9px">
+
+        <!-- =================== CURRENT =================== -->
+        <sc-if value="{{ modeCurrent }}" hint-placeholder-val="{{ true }}">
+
+          <!-- BAND: HandOff board -->
+          <section style="background:#0c1017;border:1px solid #161e2c;border-radius:12px;padding:13px 15px 15px">
+            <header style="display:flex;align-items:center;gap:9px;margin-bottom:12px">
+              <span style="width:4px;height:15px;border-radius:2px;background:#5ec8cf"></span>
+              <span style="font:700 11px 'IBM Plex Mono';letter-spacing:1.4px;color:#e7ecf5">HANDOFF PUBLIC BOARD</span>
+              <span style="font:500 10px 'IBM Plex Mono';color:#5b6884">shared &amp; public · project → goals → tasks</span>
+            </header>
+            <div style="display:flex;align-items:stretch;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+              <div onClick="{{ select }}" data-id="project" style="background:#0e1a20;border:1px solid #23414b;border-left:3px solid #5ec8cf;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:150px;display:flex;flex-direction:column;gap:3px" style-hover="border-color:#5ec8cf"><div style="font:600 12.5px 'IBM Plex Sans'">Project · NeuroGolf_HO</div><div style="font:500 9px 'IBM Plex Mono';color:#5ec8cf">82513bd2… · team_644ac577</div></div>
+              <span style="color:#3f4a63;font:600 15px 'IBM Plex Mono';align-self:center">→</span>
+              <div onClick="{{ select }}" data-id="goal" style="background:#0e1a20;border:1px solid #23414b;border-left:3px solid #5ec8cf;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:150px;display:flex;flex-direction:column;gap:3px" style-hover="border-color:#5ec8cf"><div style="font:600 12.5px 'IBM Plex Sans'">Batch goal</div><div style="font:500 9px 'IBM Plex Mono';color:#5ec8cf">neurogolf:batch44:codex</div></div>
+              <span style="color:#3f4a63;font:600 15px 'IBM Plex Mono';align-self:center">→</span>
+              <div onClick="{{ select }}" data-id="task" style="background:#0e1a20;border:1px solid #23414b;border-left:3px solid #5ec8cf;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:150px;display:flex;flex-direction:column;gap:3px" style-hover="border-color:#5ec8cf"><div style="font:600 12.5px 'IBM Plex Sans'">Task cards</div><div style="font:500 9px 'IBM Plex Mono';color:#5ec8cf">external_key per ARC task</div></div>
+              <div onClick="{{ select }}" data-id="api" style="margin-left:auto;background:#0e1a20;border:1px solid #23414b;border-left:3px solid #5ec8cf;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:150px;display:flex;flex-direction:column;gap:3px" style-hover="border-color:#5ec8cf"><div style="font:600 12.5px 'IBM Plex Sans'">MCP + REST · realtime</div><div style="font:500 9px 'IBM Plex Mono';color:#5ec8cf">inbox · webhooks · signals</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+              <span style="font:600 9px 'IBM Plex Mono';color:#5b6884;margin-right:4px">CANONICAL STATUSES</span>
+              <span style="font:600 10.5px 'IBM Plex Mono';color:#cdd6e8;background:#161d2b;border:1px solid #2a3450;border-radius:6px;padding:5px 11px">todo</span>
+              <span style="color:#3f4a63">→</span>
+              <span style="font:600 10.5px 'IBM Plex Mono';color:#5ec8cf;background:#0f1c22;border:1px solid #234852;border-radius:6px;padding:5px 11px">in_progress</span>
+              <span style="color:#3f4a63">→</span>
+              <span style="font:600 10.5px 'IBM Plex Mono';color:#e6b25c;background:#1c150c;border:1px solid #4a3a1a;border-radius:6px;padding:5px 11px">pending_verification ⚠</span>
+              <span style="color:#3f4a63">→</span>
+              <span style="font:600 10.5px 'IBM Plex Mono';color:#63cf95;background:#0f1710;border:1px solid #274031;border-radius:6px;padding:5px 11px">verified</span>
+              <span style="color:#3f4a63">|</span>
+              <span style="font:600 10.5px 'IBM Plex Mono';color:#e5736a;background:#1e100f;border:1px solid #43201d;border-radius:6px;padding:5px 11px">rejected</span>
+            </div>
+          </section>
+
+          <!-- DRIFT strip -->
+          <div onClick="{{ openMapping }}" style="background:linear-gradient(90deg,#1e100f,#160f13);border:1px solid #43201d;border-radius:11px;padding:11px 15px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;cursor:pointer" style-hover="border-color:#e5736a">
+            <span style="display:flex;align-items:center;gap:8px;font:700 11px 'IBM Plex Mono';color:#e5736a;letter-spacing:.5px"><span style="width:8px;height:8px;border-radius:50%;background:#e5736a;box-shadow:0 0 8px #e5736a;animation:driftpulse 2s ease-in-out infinite"></span>BOARD ↔ LOCAL DRIFT</span>
+            <span style="font:500 10px 'IBM Plex Mono';color:#d7a09a">review_running → board still shows <b style="color:#e6b25c">pending_verification</b></span>
+            <span style="color:#5b3a37">·</span>
+            <span style="font:500 10px 'IBM Plex Mono';color:#d7a09a">worker_running → board still <b style="color:#e6b25c">todo</b></span>
+            <span style="color:#5b3a37">·</span>
+            <span style="font:500 10px 'IBM Plex Mono';color:#d7a09a">pending_verification overloaded · 403 needs assigned agent key</span>
+            <span style="margin-left:auto;font:600 10px 'IBM Plex Mono';color:#e5736a">state map →</span>
+          </div>
+
+          <!-- BAND: Local runner -->
+          <section style="background:#0c1017;border:1px solid #161e2c;border-radius:12px;padding:13px 15px 15px">
+            <header style="display:flex;align-items:center;gap:9px;margin-bottom:12px">
+              <span style="width:4px;height:15px;border-radius:2px;background:#e0b061"></span>
+              <span style="font:700 11px 'IBM Plex Mono';letter-spacing:1.4px;color:#e7ecf5">LOCAL K-NEUROGOLF RUNNER</span>
+              <span style="font:500 10px 'IBM Plex Mono';color:#5b6884">this machine · Codex &amp; Claude sessions do the real work</span>
+            </header>
+            <div style="display:flex;align-items:stretch;gap:7px;flex-wrap:wrap">
+              <div onClick="{{ select }}" data-id="prompts" style="background:#1b1610;border:1px solid #423318;border-left:3px solid #e0b061;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:110px;display:flex;flex-direction:column;gap:3px" style-hover="border-color:#e0b061"><div style="font:600 12px 'IBM Plex Sans'">Prompt folder</div><div style="font:500 9px 'IBM Plex Mono';color:#e0b061">Task Prompts/44</div></div>
+              <span style="color:#3f4a63;font:600 15px 'IBM Plex Mono';align-self:center">→</span>
+              <div onClick="{{ select }}" data-id="prepare" style="background:#1b1610;border:1px solid #423318;border-left:3px solid #e0b061;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:110px;display:flex;flex-direction:column;gap:4px" style-hover="border-color:#e0b061"><div style="font:600 12px 'IBM Plex Sans'">prepare_batch.py</div><div style="font:500 9px 'IBM Plex Mono';color:#e0b061">render + create tasks</div><div style="display:flex;align-items:center;gap:4px"><span style="font:600 7.5px 'IBM Plex Mono';color:#5b6884">SETS</span><span style="font:600 8.5px 'IBM Plex Mono';color:#cdd6e8;background:#161d2b;border:1px solid #2a3450;border-radius:9px;padding:1px 7px">todo</span></div></div>
+              <span style="color:#3f4a63;font:600 15px 'IBM Plex Mono';align-self:center">→</span>
+              <div onClick="{{ select }}" data-id="scheduler" style="background:#1b1610;border:1px solid #423318;border-left:3px solid #e0b061;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:110px;display:flex;flex-direction:column;gap:3px" style-hover="border-color:#e0b061"><div style="font:600 12px 'IBM Plex Sans'">Runner scheduler</div><div style="font:500 9px 'IBM Plex Mono';color:#e0b061">refilling · 3w / 2r</div></div>
+
+              <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;align-self:center;padding:0 1px"><span style="font:700 7.5px 'IBM Plex Mono';letter-spacing:.6px;color:#8a97b4;white-space:nowrap">⇄ HAND OFF</span><span style="color:#5ec8cf;font:600 16px 'IBM Plex Mono';line-height:.7">→</span><span style="font:600 8px 'IBM Plex Mono';color:#5ec8cf;background:#0f1c22;border:1px solid #234852;border-radius:10px;padding:1px 6px;white-space:nowrap">→ in_progress</span></div>
+
+              <div onClick="{{ select }}" data-id="workers" style="background:#1b1610;border:1px solid #423318;border-left:3px solid #e0b061;border-radius:8px;padding:8px 11px;cursor:pointer;min-width:120px;display:flex;flex-direction:column;gap:4px" style-hover="border-color:#e0b061"><div style="font:600 12px 'IBM Plex Sans'">Worker pool</div><div style="font:500 9px 'IBM Plex Mono';color:#e0b061">build candidates</div><div style="display:flex;align-items:center;gap:4px"><span style="font:600 7.5px 'IBM Plex Mono';color:#5b6884">BOARD</span><span style="font:600 8.5px 'IBM Plex Mono';color:#5ec8cf;background:#0f1c22;border:1px solid #234852;border-radius:9px;padding:1px 7px">in_progress</span></div></div>
+
+              <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;align-self:center;padding:0 1px"><span style="font:700 7.5px 'IBM Plex Mono';letter-spacing:.6px;color:#8a97b4;white-space:nowrap">⇄ HAND OFF</span><span style="color:#5ec8cf;font:600 16px 'IBM Plex Mono';line-height:.7">→</span><span style="font:600 7.5px 'IBM Plex Mono';color:#9aa6c2;white-space:nowrap">packet</span></div>
+
+              <div onClick="{{ select }}" data-id="reviewers" style="background:#1b1610;border:1px solid #423318;border-left:3px solid #e0b061;border-radius:8px;padding:8px 11px;cursor:pointer;min-width:120px;display:flex;flex-direction:column;gap:4px" style-hover="border-color:#e0b061"><div style="font:600 12px 'IBM Plex Sans'">Reviewer pool</div><div style="font:500 9px 'IBM Plex Mono';color:#e0b061">affinity · attack</div><div style="display:flex;align-items:center;gap:4px"><span style="font:600 7.5px 'IBM Plex Mono';color:#5b6884">BOARD</span><span style="font:600 8.5px 'IBM Plex Mono';color:#e6b25c;background:#1c150c;border:1px solid #4a3a1a;border-radius:9px;padding:1px 7px">pending_verification</span></div></div>
+              <span style="color:#3f4a63;font:600 15px 'IBM Plex Mono';align-self:center">→</span>
+              <div onClick="{{ select }}" data-id="verdict" style="background:#171b12;border:1px solid #423318;border-left:3px solid #e0b061;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:172px;display:flex;flex-direction:column;gap:5px;justify-content:center" style-hover="border-color:#e0b061">
+                <div style="font:600 12px 'IBM Plex Sans'">Reviewer verdict</div>
+                <div style="display:flex;flex-direction:column;gap:3px;font:600 9px 'IBM Plex Mono'">
+                  <span style="color:#63cf95">SHIP → packet · <b>verified</b></span>
+                  <span style="color:#e6b25c">KEEP_WORKING ↺ <b>in_progress</b></span>
+                  <span style="color:#e5736a">DROP ■ <b>rejected</b></span>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:11px;padding-top:11px;border-top:1px dashed #262f1c">
+              <div onClick="{{ select }}" data-id="monitor" style="background:#10151f;border:1px solid #26304a;border-left:3px solid #7c8bb0;border-radius:8px;padding:8px 11px;cursor:pointer;min-width:150px;display:flex;flex-direction:column;gap:2px" style-hover="border-color:#7c8bb0"><div style="font:600 12px 'IBM Plex Sans'">Monitor loop</div><div style="font:500 9px 'IBM Plex Mono';color:#9aa6c2">artifacts + board drift · detects, can't repair</div></div>
+              <div onClick="{{ select }}" data-id="state" style="background:#10151f;border:1px solid #26304a;border-left:3px solid #7c8bb0;border-radius:8px;padding:8px 11px;cursor:pointer;min-width:150px;display:flex;flex-direction:column;gap:2px" style-hover="border-color:#7c8bb0"><div style="font:600 12px 'IBM Plex Sans'">State + ops logs</div><div style="font:500 9px 'IBM Plex Mono';color:#9aa6c2">runner_state.json · operations.jsonl</div></div>
+              <span style="align-self:center;font:500 9.5px 'IBM Plex Mono';color:#5b6884">pid files must be lane+batch scoped →</span>
+            </div>
+          </section>
+
+          <!-- inter-band handoff: reviewer -> captain -->
+          <div style="display:flex;justify-content:center"><div onClick="{{ select }}" data-id="inbox_codex" style="display:flex;align-items:center;gap:9px;background:#0e1512;border:1px solid #274031;border-radius:20px;padding:5px 14px;cursor:pointer" style-hover="border-color:#63cf95"><span style="font:700 8.5px 'IBM Plex Mono';letter-spacing:1px;color:#8a97b4">⇄ HANDOFF</span><span style="font:600 10px 'IBM Plex Mono';color:#cdd6e8">Reviewer → Submit Captain</span><span style="font:600 9px 'IBM Plex Mono';color:#b89be0">SHIP packet</span><span style="font:600 8.5px 'IBM Plex Mono';color:#63cf95;background:#0f1710;border:1px solid #274031;border-radius:10px;padding:1px 7px">→ verified</span></div></div>
+
+          <!-- BAND: Submit Captain -->
+          <section style="background:#0c1017;border:1px solid #161e2c;border-radius:12px;padding:13px 15px 15px">
+            <header style="display:flex;align-items:center;gap:9px;margin-bottom:12px">
+              <span style="width:4px;height:15px;border-radius:2px;background:#b89be0"></span>
+              <span style="font:700 11px 'IBM Plex Mono';letter-spacing:1.4px;color:#e7ecf5">SUBMIT CAPTAIN / SCORING</span>
+              <span style="font:500 10px 'IBM Plex Mono';color:#5b6884">SHIP packets only · Kaggle stays gated</span>
+            </header>
+            <div style="display:flex;align-items:stretch;gap:8px;flex-wrap:wrap">
+              <div onClick="{{ select }}" data-id="validate" style="background:#16101f;border:1px solid #382a4d;border-left:3px solid #b89be0;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:130px;display:flex;flex-direction:column;gap:3px" style-hover="border-color:#b89be0"><div style="font:600 12px 'IBM Plex Sans'">Packet validator</div><div style="font:500 9px 'IBM Plex Mono';color:#b89be0">schema + provenance</div></div>
+              <span style="color:#3f4a63;font:600 15px 'IBM Plex Mono';align-self:center">→</span>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div onClick="{{ select }}" data-id="inbox_codex" style="background:#16101f;border:1px solid #382a4d;border-left:3px solid #b89be0;border-radius:8px;padding:8px 11px;cursor:pointer;min-width:150px;display:flex;flex-direction:column;gap:2px" style-hover="border-color:#b89be0"><div style="font:600 12px 'IBM Plex Sans'">Updates_Codex inbox</div><div style="font:500 9px 'IBM Plex Mono';color:#b89be0">Codex + Codex2 lanes</div></div>
+                <div onClick="{{ select }}" data-id="inbox_claude" style="background:#16101f;border:1px solid #382a4d;border-left:3px solid #b89be0;border-radius:8px;padding:8px 11px;cursor:pointer;min-width:150px;display:flex;flex-direction:column;gap:2px" style-hover="border-color:#b89be0"><div style="font:600 12px 'IBM Plex Sans'">Updates_Claude inbox</div><div style="font:500 9px 'IBM Plex Mono';color:#b89be0">Claude lane</div></div>
+              </div>
+              <span style="color:#3f4a63;font:600 15px 'IBM Plex Mono';align-self:center">→</span>
+              <div onClick="{{ select }}" data-id="captain_gate" style="background:#16101f;border:1px solid #382a4d;border-left:3px solid #b89be0;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:150px;display:flex;flex-direction:column;gap:3px" style-hover="border-color:#b89be0"><div style="font:600 12px 'IBM Plex Sans'">Captain probe/stage gate</div><div style="font:500 9px 'IBM Plex Mono';color:#b89be0">HELD·PROBING·PROBE_OK·STAGED</div><div style="display:flex;align-items:center;gap:4px"><span style="font:600 7.5px 'IBM Plex Mono';color:#5b6884">OFF-BOARD</span><span style="font:600 8px 'IBM Plex Mono';color:#e5736a;background:#1e100f;border:1px solid #43201d;border-radius:9px;padding:1px 7px">no board status</span></div></div>
+
+              <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;align-self:center;padding:0 1px"><span style="font:700 7.5px 'IBM Plex Mono';letter-spacing:.6px;color:#8a97b4;white-space:nowrap">⇄ HAND OFF</span><span style="color:#63cf95;font:600 16px 'IBM Plex Mono';line-height:.7">→</span><span style="font:600 7.5px 'IBM Plex Mono';color:#9aa6c2;white-space:nowrap">Captain → Team</span></div>
+
+              <div onClick="{{ select }}" data-id="submit" style="background:#0f1710;border:1px solid #274031;border-left:3px solid #63cf95;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:150px;display:flex;flex-direction:column;gap:3px" style-hover="border-color:#63cf95"><div style="font:600 12px 'IBM Plex Sans'">Team submit.py</div><div style="font:500 9px 'IBM Plex Mono';color:#63cf95">rebuild manifest.csv</div></div>
+            </div>
+          </section>
+
+          <!-- LANE STRIP -->
+          <sc-if value="{{ showLanes }}" hint-placeholder-val="{{ true }}">
+          <section style="background:#0c1017;border:1px solid #161e2c;border-radius:12px;padding:13px 15px 15px">
+            <header style="display:flex;align-items:center;gap:9px;margin-bottom:12px">
+              <span style="width:4px;height:15px;border-radius:2px;background:#7c8bb0"></span>
+              <span style="font:700 11px 'IBM Plex Mono';letter-spacing:1.4px;color:#e7ecf5">3 LIVE LANES · ONE SHARED PROJECT</span>
+              <span style="font:500 10px 'IBM Plex Mono';color:#5b6884">separate configs · agents · state · logs · captain inbox — snapshot 2026-07-03 ~15:30Z</span>
+            </header>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+              <div style="background:#10151f;border:1px solid #26304a;border-radius:9px;padding:11px 12px">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><span style="font:700 12px 'IBM Plex Sans'">Codex · batch 44</span><span style="font:600 8.5px 'IBM Plex Mono';color:#e5736a;background:#1e100f;border:1px solid #43201d;border-radius:20px;padding:2px 7px">drift</span></div>
+                <div style="font:500 9px 'IBM Plex Mono';color:#6f7d9c;margin-bottom:9px">Updates_Codex · 3 workers / 2 reviewers</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;font:600 9.5px 'IBM Plex Mono'">
+                  <span style="color:#cdd6e8;background:#161d2b;border-radius:5px;padding:3px 7px">todo 9</span>
+                  <span style="color:#e0b061;background:#1b1610;border-radius:5px;padding:3px 7px">worker 3</span>
+                  <span style="color:#e6b25c;background:#1c150c;border-radius:5px;padding:3px 7px">review 2</span>
+                  <span style="color:#63cf95;background:#0f1710;border-radius:5px;padding:3px 7px">ship 3</span>
+                  <span style="color:#e5736a;background:#1e100f;border-radius:5px;padding:3px 7px">drop 3</span>
+                </div>
+              </div>
+              <div style="background:#10151f;border:1px solid #26304a;border-radius:9px;padding:11px 12px">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><span style="font:700 12px 'IBM Plex Sans'">Codex2 · batch 45</span><span style="font:600 8.5px 'IBM Plex Mono';color:#e5736a;background:#1e100f;border:1px solid #43201d;border-radius:20px;padding:2px 7px">drift</span></div>
+                <div style="font:500 9px 'IBM Plex Mono';color:#6f7d9c;margin-bottom:9px">Updates_Codex · 3 workers / 2 reviewers</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;font:600 9.5px 'IBM Plex Mono'">
+                  <span style="color:#cdd6e8;background:#161d2b;border-radius:5px;padding:3px 7px">todo 12</span>
+                  <span style="color:#e0b061;background:#1b1610;border-radius:5px;padding:3px 7px">worker 3</span>
+                  <span style="color:#e6b25c;background:#1c150c;border-radius:5px;padding:3px 7px">review 1</span>
+                  <span style="color:#e5736a;background:#1e100f;border-radius:5px;padding:3px 7px">drop 3</span>
+                </div>
+              </div>
+              <div style="background:#10151f;border:1px solid #26304a;border-radius:9px;padding:11px 12px">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><span style="font:700 12px 'IBM Plex Sans'">Claude · batch 46</span><span style="font:600 8.5px 'IBM Plex Mono';color:#e5736a;background:#1e100f;border:1px solid #43201d;border-radius:20px;padding:2px 7px">drift</span></div>
+                <div style="font:500 9px 'IBM Plex Mono';color:#6f7d9c;margin-bottom:9px">Updates_Claude · 3 workers / 2 reviewers</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;font:600 9.5px 'IBM Plex Mono'">
+                  <span style="color:#cdd6e8;background:#161d2b;border-radius:5px;padding:3px 7px">todo 5</span>
+                  <span style="color:#e6b25c;background:#1c150c;border-radius:5px;padding:3px 7px">review 1</span>
+                  <span style="color:#9aa6c2;background:#141a26;border-radius:5px;padding:3px 7px">+extra dirs</span>
+                </div>
+              </div>
+            </div>
+          </section>
+          </sc-if>
+
+        </sc-if>
+
+        <!-- =================== OPTIMIZED =================== -->
+        <sc-if value="{{ modeOptimized }}" hint-placeholder-val="{{ false }}">
+
+          <!-- ideal operating loop framer -->
+          <div style="background:linear-gradient(90deg,#0f1710,#0c1017);border:1px solid #274031;border-radius:12px;padding:12px 15px">
+            <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px;flex-wrap:wrap"><span style="font:700 11px 'IBM Plex Mono';letter-spacing:1.2px;color:#63cf95">◎ THE IDEAL OPERATING LOOP FOR NG</span><span style="font:500 9.5px 'IBM Plex Mono';color:#5b6884">every step should leave a visible trace on a shared object</span></div>
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;font:600 10px 'IBM Plex Mono';color:#cdd6e8">
+              <span style="background:#0f1710;border:1px solid #274031;border-radius:6px;padding:4px 9px">1 · create + assign task</span>
+              <span style="color:#3f4a63">→</span>
+              <span style="background:#0f1710;border:1px solid #274031;border-radius:6px;padding:4px 9px">2 · attach compact context</span>
+              <span style="color:#3f4a63">→</span>
+              <span style="background:#0f1710;border:1px solid #274031;border-radius:6px;padding:4px 9px">3 · worker works</span>
+              <span style="color:#3f4a63">→</span>
+              <span style="background:#0f1710;border:1px solid #274031;border-radius:6px;padding:4px 9px">4 · reviewer verifies</span>
+              <span style="color:#3f4a63">→</span>
+              <span style="background:#0f1710;border:1px solid #274031;border-radius:6px;padding:4px 9px">5 · captain gate</span>
+              <span style="color:#3f4a63">→</span>
+              <span style="background:#0f1710;border:1px solid #274031;border-radius:6px;padding:4px 9px">6 · deliverable lands visibly</span>
+              <span style="color:#3f4a63">→</span>
+              <span style="background:#0f1710;border:1px solid #274031;border-radius:6px;padding:4px 9px">7 · requester audits</span>
+            </div>
+            <div style="font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;margin-top:9px;line-height:1.5">The pipeline below is how NG reaches that loop. The test that makes it auditable: a requester should answer <b style="color:#cdd6e8">"did work happen, and where is it?"</b> from the task alone — status, messages, artifacts, and a linked deliverable — without opening a terminal.</div>
+          </div>
+
+          <!-- BAND: Selection & triage -->
+          <section style="background:#0c1017;border:1px solid #161e2c;border-radius:12px;padding:13px 15px 15px">
+            <header style="display:flex;align-items:center;gap:9px;margin-bottom:12px">
+              <span style="width:4px;height:15px;border-radius:2px;background:#7c8bb0"></span>
+              <span style="font:700 11px 'IBM Plex Mono';letter-spacing:1.4px;color:#e7ecf5">1 · CHOOSE WORK BEFORE CREATING TASKS</span>
+              <span style="font:500 10px 'IBM Plex Mono';color:#63cf95">new — filter earlier, spend less</span>
+            </header>
+            <div style="display:flex;align-items:stretch;gap:8px;flex-wrap:wrap">
+              <div onClick="{{ select }}" data-id="pool" style="background:#10151f;border:1px solid #26304a;border-left:3px solid #7c8bb0;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:120px;display:flex;flex-direction:column;gap:3px" style-hover="border-color:#7c8bb0"><div style="font:600 12px 'IBM Plex Sans'">Candidate pool</div><div style="font:500 9px 'IBM Plex Mono';color:#9aa6c2">all prompts</div></div>
+              <span style="color:#3f4a63;font:600 15px 'IBM Plex Mono';align-self:center">→</span>
+              <div onClick="{{ select }}" data-id="preflight" style="background:#0f1710;border:1px solid #274031;border-left:3px solid #63cf95;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:130px;display:flex;flex-direction:column;gap:3px" style-hover="border-color:#63cf95"><div style="font:600 12px 'IBM Plex Sans'">Preflight scan <span style="color:#63cf95;font-size:8.5px">NEW</span></div><div style="font:500 9px 'IBM Plex Mono';color:#63cf95">collision vs manifest</div></div>
+              <span style="color:#3f4a63;font:600 15px 'IBM Plex Mono';align-self:center">→</span>
+              <div onClick="{{ select }}" data-id="scout" style="background:#0f1710;border:1px solid #274031;border-left:3px solid #63cf95;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:140px;display:flex;flex-direction:column;gap:3px" style-hover="border-color:#63cf95"><div style="font:600 12px 'IBM Plex Sans'">◇ Scout gate <span style="color:#63cf95;font-size:8.5px">NEW</span></div><div style="font:500 9px 'IBM Plex Mono';color:#63cf95">cheap triage · needs_specialist?</div></div>
+              <span style="color:#3f4a63;font:600 15px 'IBM Plex Mono';align-self:center">→</span>
+              <div onClick="{{ select }}" data-id="planner" style="background:#10151f;border:1px solid #26304a;border-left:3px solid #7c8bb0;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:120px;display:flex;flex-direction:column;gap:3px" style-hover="border-color:#7c8bb0"><div style="font:600 12px 'IBM Plex Sans'">Batch planner</div><div style="font:500 9px 'IBM Plex Mono';color:#9aa6c2">survivors only</div></div>
+              <div onClick="{{ select }}" data-id="excluded" style="margin-left:auto;align-self:center;background:#0f1710;border:1px solid #274031;border-left:3px solid #63cf95;border-radius:8px;padding:8px 11px;cursor:pointer;min-width:140px;display:flex;flex-direction:column;gap:2px" style-hover="border-color:#63cf95"><div style="font:600 11px 'IBM Plex Sans'">⤵ Excluded report</div><div style="font:500 9px 'IBM Plex Mono';color:#63cf95">owned·dup·wall·stale</div></div>
+            </div>
+          </section>
+
+          <div style="display:flex;justify-content:center"><span style="font:500 9.5px 'IBM Plex Mono';color:#5b6884">↓ create board cards only for survivors</span></div>
+
+          <!-- BAND: HandOff board -->
+          <section style="background:#0c1017;border:1px solid #161e2c;border-radius:12px;padding:13px 15px 15px">
+            <header style="display:flex;align-items:center;gap:9px;margin-bottom:12px">
+              <span style="width:4px;height:15px;border-radius:2px;background:#5ec8cf"></span>
+              <span style="font:700 11px 'IBM Plex Mono';letter-spacing:1.4px;color:#e7ecf5">2 · HANDOFF BOARD — KEPT SIMPLE</span>
+              <span style="font:500 10px 'IBM Plex Mono';color:#5b6884">5 canonical statuses · substates live in task detail, not new columns</span>
+            </header>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <div onClick="{{ select }}" data-id="create" style="background:#0e1a20;border:1px solid #23414b;border-left:3px solid #5ec8cf;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:150px;display:flex;flex-direction:column;gap:3px" style-hover="border-color:#5ec8cf"><div style="font:600 12px 'IBM Plex Sans'">Create goal + tasks</div><div style="font:500 9px 'IBM Plex Mono';color:#5ec8cf">stable external keys</div></div>
+              <span style="color:#3f4a63;font:600 15px 'IBM Plex Mono'">→</span>
+              <span style="font:600 10px 'IBM Plex Mono';color:#cdd6e8;background:#161d2b;border:1px solid #2a3450;border-radius:6px;padding:5px 9px">todo</span>
+              <span style="color:#3f4a63">→</span>
+              <span style="font:600 10px 'IBM Plex Mono';color:#5ec8cf;background:#0f1c22;border:1px solid #234852;border-radius:6px;padding:5px 9px">in_progress</span>
+              <span style="color:#3f4a63">→</span>
+              <span style="font:600 10px 'IBM Plex Mono';color:#e6b25c;background:#1c150c;border:1px solid #4a3a1a;border-radius:6px;padding:5px 9px">pending_verification</span>
+              <span style="color:#3f4a63">→</span>
+              <span style="font:600 10px 'IBM Plex Mono';color:#63cf95;background:#0f1710;border:1px solid #274031;border-radius:6px;padding:5px 9px">verified</span>
+              <span style="color:#3f4a63">|</span>
+              <span style="font:600 10px 'IBM Plex Mono';color:#e5736a;background:#1e100f;border:1px solid #43201d;border-radius:6px;padding:5px 9px">rejected</span>
+            </div>
+          </section>
+
+          <!-- BAND: Execution -->
+          <section style="background:#0c1017;border:1px solid #161e2c;border-radius:12px;padding:13px 15px 15px">
+            <header style="display:flex;align-items:center;gap:9px;margin-bottom:12px">
+              <span style="width:4px;height:15px;border-radius:2px;background:#e0b061"></span>
+              <span style="font:700 11px 'IBM Plex Mono';letter-spacing:1.4px;color:#e7ecf5">3 · BOUNDED EXECUTION</span>
+              <span style="font:500 10px 'IBM Plex Mono';color:#5b6884">lane+batch scoped · budgets stop tails automatically</span>
+            </header>
+            <div style="display:flex;align-items:stretch;gap:8px;flex-wrap:wrap">
+              <div onClick="{{ select }}" data-id="scheduler" style="background:#1b1610;border:1px solid #423318;border-left:3px solid #e0b061;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:120px;display:flex;flex-direction:column;gap:3px" style-hover="border-color:#e0b061"><div style="font:600 12px 'IBM Plex Sans'">Runner scheduler</div><div style="font:500 9px 'IBM Plex Mono';color:#e0b061">bounded concurrency</div></div>
+              <span style="color:#3f4a63;font:600 15px 'IBM Plex Mono';align-self:center">→</span>
+              <div onClick="{{ select }}" data-id="budget" style="background:#0f1710;border:1px dashed #274031;border-radius:8px;padding:6px;display:flex;flex-direction:column;gap:6px;cursor:pointer" style-hover="border-color:#63cf95">
+                <div style="font:600 8.5px 'IBM Plex Mono';color:#63cf95;text-align:center;letter-spacing:.5px">◹ BUDGET GUARD</div>
+                <div style="display:flex;gap:6px">
+                  <div onClick="{{ select }}" data-id="workers" style="background:#1b1610;border:1px solid #423318;border-left:3px solid #e0b061;border-radius:7px;padding:8px 10px;cursor:pointer;min-width:120px;display:flex;flex-direction:column;gap:2px" style-hover="border-color:#e0b061"><div style="font:600 11.5px 'IBM Plex Sans'">Worker pool</div><div style="font:500 9px 'IBM Plex Mono';color:#e0b061">specialists only</div></div>
+                  <div onClick="{{ select }}" data-id="reviewers" style="background:#1b1610;border:1px solid #423318;border-left:3px solid #e0b061;border-radius:7px;padding:8px 10px;cursor:pointer;min-width:120px;display:flex;flex-direction:column;gap:2px" style-hover="border-color:#e0b061"><div style="font:600 11.5px 'IBM Plex Sans'">Reviewer pool</div><div style="font:500 9px 'IBM Plex Mono';color:#e0b061">affinity</div></div>
+                </div>
+              </div>
+              <span style="color:#3f4a63;font:600 15px 'IBM Plex Mono';align-self:center">→</span>
+              <div onClick="{{ select }}" data-id="verdict" style="background:#171b12;border:1px solid #423318;border-left:3px solid #e0b061;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:150px;display:flex;flex-direction:column;gap:5px;justify-content:center" style-hover="border-color:#e0b061">
+                <div style="font:600 12px 'IBM Plex Sans'">◇ Verdict</div>
+                <div style="display:flex;flex-direction:column;gap:3px;font:600 9px 'IBM Plex Mono'">
+                  <span style="color:#63cf95">SHIP → validator ↓</span>
+                  <span style="color:#e6b25c">KEEP_WORKING ↺ bounded</span>
+                  <span style="color:#e5736a">DROP ■ + reason</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- BAND: Captain -->
+          <section style="background:#0c1017;border:1px solid #161e2c;border-radius:12px;padding:13px 15px 15px">
+            <header style="display:flex;align-items:center;gap:9px;margin-bottom:12px">
+              <span style="width:4px;height:15px;border-radius:2px;background:#b89be0"></span>
+              <span style="font:700 11px 'IBM Plex Mono';letter-spacing:1.4px;color:#e7ecf5">4 · SUBMIT CAPTAIN</span>
+              <span style="font:500 10px 'IBM Plex Mono';color:#5b6884">provenance injected before queue · batch gate</span>
+            </header>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <div onClick="{{ select }}" data-id="validate" style="background:#16101f;border:1px solid #382a4d;border-left:3px solid #b89be0;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:150px;display:flex;flex-direction:column;gap:3px" style-hover="border-color:#b89be0"><div style="font:600 12px 'IBM Plex Sans'">Packet validator</div><div style="font:500 9px 'IBM Plex Mono';color:#b89be0">inject full provenance</div></div>
+              <span style="color:#3f4a63;font:600 15px 'IBM Plex Mono'">→</span>
+              <div onClick="{{ select }}" data-id="inbox_codex" style="background:#16101f;border:1px solid #382a4d;border-left:3px solid #b89be0;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:130px;display:flex;flex-direction:column;gap:3px" style-hover="border-color:#b89be0"><div style="font:600 12px 'IBM Plex Sans'">Captain inbox</div><div style="font:500 9px 'IBM Plex Mono';color:#b89be0">per-lane</div></div>
+              <span style="color:#3f4a63;font:600 15px 'IBM Plex Mono'">→</span>
+              <div onClick="{{ select }}" data-id="captain_gate" style="background:#16101f;border:1px solid #382a4d;border-left:3px solid #b89be0;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:150px;display:flex;flex-direction:column;gap:3px" style-hover="border-color:#b89be0"><div style="font:600 12px 'IBM Plex Sans'">Captain batch gate</div><div style="font:500 9px 'IBM Plex Mono';color:#b89be0">probe · stage · merge</div></div>
+              <span style="color:#3f4a63;font:600 15px 'IBM Plex Mono'">→</span>
+              <div onClick="{{ select }}" data-id="submit" style="background:#0f1710;border:1px solid #274031;border-left:3px solid #63cf95;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:130px;display:flex;flex-direction:column;gap:3px" style-hover="border-color:#63cf95"><div style="font:600 12px 'IBM Plex Sans'">manifest.csv</div><div style="font:500 9px 'IBM Plex Mono';color:#63cf95">authoritative</div></div>
+            </div>
+          </section>
+
+          <!-- CONTROL PLANE -->
+          <section style="background:linear-gradient(90deg,#0f1710,#0c1017);border:1px solid #274031;border-radius:12px;padding:13px 15px 15px">
+            <header style="display:flex;align-items:center;gap:9px;margin-bottom:12px">
+              <span style="width:4px;height:15px;border-radius:2px;background:#63cf95"></span>
+              <span style="font:700 11px 'IBM Plex Mono';letter-spacing:1.4px;color:#e7ecf5">5 · TRUTH RECONCILIATION + CONTROL PLANE</span>
+              <span style="font:500 10px 'IBM Plex Mono';color:#63cf95">new — the fix for board drift</span>
+            </header>
+            <div style="display:flex;align-items:stretch;gap:8px;flex-wrap:wrap">
+              <div onClick="{{ select }}" data-id="reconciler" style="background:#0f1710;border:1px solid #274031;border-left:3px solid #63cf95;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:200px;display:flex;flex-direction:column;gap:4px" style-hover="border-color:#63cf95">
+                <div style="font:600 12.5px 'IBM Plex Sans'">Monitor + reconciler</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;font:600 8.5px 'IBM Plex Mono';color:#63cf95"><span style="border:1px solid #274031;border-radius:4px;padding:2px 6px">board</span><span style="border:1px solid #274031;border-radius:4px;padding:2px 6px">local</span><span style="border:1px solid #274031;border-radius:4px;padding:2px 6px">process</span><span style="border:1px solid #274031;border-radius:4px;padding:2px 6px">artifact</span></div>
+                <div style="font:500 9px 'IBM Plex Mono';color:#7fae90">→ repairs, not just alerts</div>
+              </div>
+              <div onClick="{{ select }}" data-id="lifecycle" style="background:#0f1710;border:1px solid #274031;border-left:3px solid #63cf95;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:210px;display:flex;flex-direction:column;gap:4px" style-hover="border-color:#63cf95">
+                <div style="font:600 12.5px 'IBM Plex Sans'">Lifecycle controls</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;font:600 8.5px 'IBM Plex Mono';color:#63cf95"><span style="border:1px solid #274031;border-radius:4px;padding:2px 6px">pause</span><span style="border:1px solid #274031;border-radius:4px;padding:2px 6px">resume</span><span style="border:1px solid #274031;border-radius:4px;padding:2px 6px">stop</span><span style="border:1px solid #274031;border-radius:4px;padding:2px 6px">repair</span><span style="border:1px solid #274031;border-radius:4px;padding:2px 6px">closeout</span></div>
+                <div style="font:500 9px 'IBM Plex Mono';color:#7fae90">→ visible &amp; reversible, not shell hacks</div>
+              </div>
+              <div onClick="{{ select }}" data-id="event" style="background:#0f1710;border:1px solid #274031;border-left:3px solid #63cf95;border-radius:8px;padding:9px 11px;cursor:pointer;min-width:200px;display:flex;flex-direction:column;gap:4px" style-hover="border-color:#63cf95">
+                <div style="font:600 12.5px 'IBM Plex Sans'">Event-driven backbone</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;font:600 8.5px 'IBM Plex Mono';color:#63cf95"><span style="border:1px solid #274031;border-radius:4px;padding:2px 6px">long-poll</span><span style="border:1px solid #274031;border-radius:4px;padding:2px 6px">webhooks</span><span style="border:1px solid #274031;border-radius:4px;padding:2px 6px">signals</span><span style="border:1px solid #274031;border-radius:4px;padding:2px 6px">♥ presence</span></div>
+                <div style="font:500 9px 'IBM Plex Mono';color:#7fae90">→ "online" = a real worker is behind it</div>
+              </div>
+            </div>
+          </section>
+
+        </sc-if>
+
+        <!-- =================== OBJECTS & LAYERS =================== -->
+        <sc-if value="{{ modeObjects }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;align-items:flex-start;gap:12px;background:#0c1017;border:1px solid #161e2c;border-radius:12px;padding:13px 15px">
+            <span style="font:600 19px 'IBM Plex Mono';color:#5ec8cf;line-height:1">◱</span>
+            <div><div style="font:700 13px 'IBM Plex Sans'">The vocabulary — what actually exists in the workflow</div>
+            <div style="font:400 11.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.5;margin-top:3px">Two stacks. <b style="color:#5ec8cf">HandOff-native objects</b> are the shared record — anyone on the project can see them. <b style="color:#e0b061">Local NG automation</b> is private to this machine. Most confusion is a gap between the two: work happens locally but never becomes a native object. Click any card for detail.</div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+            <section style="background:#0c1017;border:1px solid #161e2c;border-radius:12px;padding:12px 13px">
+              <header style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="width:4px;height:14px;border-radius:2px;background:#5ec8cf"></span><span style="font:700 10.5px 'IBM Plex Mono';letter-spacing:1px">HANDOFF-NATIVE OBJECTS</span><span style="font:500 9px 'IBM Plex Mono';color:#5b6884">shared · visible to the requester</span></header>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div onClick="{{ select }}" data-id="project" style="background:#0e1a20;border:1px solid #23414b;border-left:3px solid #5ec8cf;border-radius:8px;padding:8px 10px;cursor:pointer" style-hover="border-color:#5ec8cf"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:6px"><span style="font:600 11.5px 'IBM Plex Sans'">Project</span><span style="font:500 8px 'IBM Plex Mono';color:#5b6884">NG uses one</span></div><div style="font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">Top container: one body of work with its own team, board and files — NeuroGolf_HO.</div></div>
+                <div onClick="{{ select }}" data-id="goal" style="background:#0e1a20;border:1px solid #23414b;border-left:3px solid #5ec8cf;border-radius:8px;padding:8px 10px;cursor:pointer" style-hover="border-color:#5ec8cf"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:6px"><span style="font:600 11.5px 'IBM Plex Sans'">Goal</span><span style="font:500 8px 'IBM Plex Mono';color:#5b6884">batch = goal</span></div><div style="font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">A milestone / grouping under a project. NG maps one prompt batch to one goal.</div></div>
+                <div onClick="{{ select }}" data-id="task" style="background:#0e1a20;border:1px solid #23414b;border-left:3px solid #5ec8cf;border-radius:8px;padding:8px 10px;cursor:pointer" style-hover="border-color:#5ec8cf"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:6px"><span style="font:600 11.5px 'IBM Plex Sans'">Task</span><span style="font:500 8px 'IBM Plex Mono';color:#5b6884">the atom</span></div><div style="font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">The unit you assign, track and verify. Has status, assignee, messages, files.</div></div>
+                <div onClick="{{ select }}" data-id="assignee" style="background:#0e1a20;border:1px solid #23414b;border-left:3px solid #5ec8cf;border-radius:8px;padding:8px 10px;cursor:pointer" style-hover="border-color:#5ec8cf"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:6px"><span style="font:600 11.5px 'IBM Plex Sans'">Assignee / agent</span><span style="font:500 8px 'IBM Plex Mono';color:#5b6884">holds the key</span></div><div style="font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">The agent that owns a task and holds the key to move its status.</div></div>
+                <div onClick="{{ select }}" data-id="api" style="background:#0e1a20;border:1px solid #23414b;border-left:3px solid #5ec8cf;border-radius:8px;padding:8px 10px;cursor:pointer" style-hover="border-color:#5ec8cf"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:6px"><span style="font:600 11.5px 'IBM Plex Sans'">Status / event</span><span style="font:500 8px 'IBM Plex Mono';color:#5b6884">shared lifecycle</span></div><div style="font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">Canonical status + event stream — the shared heartbeat of progress.</div></div>
+                <div onClick="{{ select }}" data-id="message" style="background:#0e1a20;border:1px solid #23414b;border-left:3px solid #5ec8cf;border-radius:8px;padding:8px 10px;cursor:pointer" style-hover="border-color:#5ec8cf"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:6px"><span style="font:600 11.5px 'IBM Plex Sans'">Message / comment</span><span style="font:500 8px 'IBM Plex Mono';color:#5b6884">narrative</span></div><div style="font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">Human-readable notes on a task — the cheapest record of what happened.</div></div>
+                <div onClick="{{ select }}" data-id="fileshare" style="background:#0e1a20;border:1px solid #23414b;border-left:3px solid #5ec8cf;border-radius:8px;padding:8px 10px;cursor:pointer" style-hover="border-color:#5ec8cf"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:6px"><span style="font:600 11.5px 'IBM Plex Sans'">File share</span><span style="font:500 8px 'IBM Plex Mono';color:#5b6884">shared files</span></div><div style="font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">Files attached to the shared record so anyone on the project can retrieve them.</div></div>
+                <div onClick="{{ select }}" data-id="artifact" style="background:#0e1a20;border:1px solid #23414b;border-left:3px solid #5ec8cf;border-radius:8px;padding:8px 10px;cursor:pointer" style-hover="border-color:#5ec8cf"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:6px"><span style="font:600 11.5px 'IBM Plex Sans'">Artifact</span><span style="font:500 8px 'IBM Plex Mono';color:#5b6884">evidence</span></div><div style="font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">Any output made while working — often intermediate. Proof work happened.</div></div>
+                <div onClick="{{ select }}" data-id="deliverable" style="background:#0f1710;border:1px solid #274031;border-left:3px solid #63cf95;border-radius:8px;padding:8px 10px;cursor:pointer" style-hover="border-color:#63cf95"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:6px"><span style="font:600 11.5px 'IBM Plex Sans'">Deliverable</span><span style="font:500 8px 'IBM Plex Mono';color:#63cf95">accepted · final</span></div><div style="font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">The finished, accepted output meant to be handed over. HandOff supports this; NG needs to publish to it.</div></div>
+                <div onClick="{{ select }}" data-id="proposal" style="background:#0f1710;border:1px solid #274031;border-left:3px solid #63cf95;border-radius:8px;padding:8px 10px;cursor:pointer" style-hover="border-color:#63cf95"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:6px"><span style="font:600 11.5px 'IBM Plex Sans'">Proposal</span><span style="font:500 8px 'IBM Plex Mono';color:#63cf95">pending approval</span></div><div style="font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">A suggested change submitted for approval before acting.</div></div>
+              </div>
+            </section>
+            <section style="background:#0c1017;border:1px solid #161e2c;border-radius:12px;padding:12px 13px">
+              <header style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="width:4px;height:14px;border-radius:2px;background:#e0b061"></span><span style="font:700 10.5px 'IBM Plex Mono';letter-spacing:1px">LOCAL NG AUTOMATION</span><span style="font:500 9px 'IBM Plex Mono';color:#5b6884">private to this machine</span></header>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div onClick="{{ select }}" data-id="scheduler" style="background:#1b1610;border:1px solid #423318;border-left:3px solid #e0b061;border-radius:8px;padding:8px 10px;cursor:pointer" style-hover="border-color:#e0b061"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:6px"><span style="font:600 11.5px 'IBM Plex Sans'">Runner</span><span style="font:500 8px 'IBM Plex Mono';color:#5b6884">orchestrator</span></div><div style="font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">Drives worker / reviewer sessions; claims and should update tasks.</div></div>
+                <div onClick="{{ select }}" data-id="workers" style="background:#1b1610;border:1px solid #423318;border-left:3px solid #e0b061;border-radius:8px;padding:8px 10px;cursor:pointer" style-hover="border-color:#e0b061"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:6px"><span style="font:600 11.5px 'IBM Plex Sans'">Worker</span><span style="font:500 8px 'IBM Plex Mono';color:#5b6884">builds</span></div><div style="font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">A session that builds the candidate — where the work is invented.</div></div>
+                <div onClick="{{ select }}" data-id="reviewers" style="background:#1b1610;border:1px solid #423318;border-left:3px solid #e0b061;border-radius:8px;padding:8px 10px;cursor:pointer" style-hover="border-color:#e0b061"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:6px"><span style="font:600 11.5px 'IBM Plex Sans'">Reviewer</span><span style="font:500 8px 'IBM Plex Mono';color:#5b6884">verifies</span></div><div style="font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">A session that attacks the result and returns a verdict.</div></div>
+                <div onClick="{{ select }}" data-id="captain_gate" style="background:#16101f;border:1px solid #382a4d;border-left:3px solid #b89be0;border-radius:8px;padding:8px 10px;cursor:pointer" style-hover="border-color:#b89be0"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:6px"><span style="font:600 11.5px 'IBM Plex Sans'">Submit Captain</span><span style="font:500 8px 'IBM Plex Mono';color:#5b6884">scarce gate</span></div><div style="font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">The scarce submit / release gate to the team.</div></div>
+                <div onClick="{{ select }}" data-id="validate" style="background:#16101f;border:1px solid #382a4d;border-left:3px solid #b89be0;border-radius:8px;padding:8px 10px;cursor:pointer" style-hover="border-color:#b89be0"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:6px"><span style="font:600 11.5px 'IBM Plex Sans'">Packet validation</span><span style="font:500 8px 'IBM Plex Mono';color:#5b6884">pre-queue check</span></div><div style="font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">Schema + provenance check before a result is queued to the captain.</div></div>
+                <div onClick="{{ select }}" data-id="monitor" style="background:#10151f;border:1px solid #26304a;border-left:3px solid #7c8bb0;border-radius:8px;padding:8px 10px;cursor:pointer" style-hover="border-color:#7c8bb0"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:6px"><span style="font:600 11.5px 'IBM Plex Sans'">Monitor</span><span style="font:500 8px 'IBM Plex Mono';color:#5b6884">watches</span></div><div style="font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">Watches liveness, freshness and board ↔ local drift.</div></div>
+                <div onClick="{{ select }}" data-id="state" style="background:#10151f;border:1px solid #26304a;border-left:3px solid #7c8bb0;border-radius:8px;padding:8px 10px;cursor:pointer" style-hover="border-color:#7c8bb0"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:6px"><span style="font:600 11.5px 'IBM Plex Sans'">Local logs / state</span><span style="font:500 8px 'IBM Plex Mono';color:#5b6884">local truth</span></div><div style="font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">runner_state.json + operations.jsonl — the local source of truth.</div></div>
+                <div onClick="{{ select }}" data-id="presence" style="background:#10151f;border:1px solid #26304a;border-left:3px solid #7c8bb0;border-radius:8px;padding:8px 10px;cursor:pointer" style-hover="border-color:#7c8bb0"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:6px"><span style="font:600 11.5px 'IBM Plex Sans'">Heartbeat / presence</span><span style="font:500 8px 'IBM Plex Mono';color:#5b6884">online</span></div><div style="font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">Keeps an agent "online" so absence is detectable.</div></div>
+              </div>
+            </section>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start;background:#12100c;border:1px solid #4a3a1a;border-radius:11px;padding:11px 14px">
+            <span style="font:700 12px 'IBM Plex Mono';color:#e6b25c;flex:none">⚖</span>
+            <div style="font:400 11.5px 'IBM Plex Sans';color:#d8c9a6;line-height:1.55"><b style="color:#e6b25c">Rule of thumb — new PROJECT vs GOAL vs TASK.</b> New <b>project</b> only for a different team / permission boundary or a long-lived separate initiative. A <b>goal</b> is a batch or milestone inside NG. A <b>task</b> is one unit of work. When in doubt, prefer a goal / task under NeuroGolf_HO — a new project fragments visibility and permissions.</div>
+          </div>
+        </sc-if>
+
+        <!-- =================== CONFUSION POINTS =================== -->
+        <sc-if value="{{ modeConfusions }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;align-items:flex-start;gap:12px;background:#0c1017;border:1px solid #161e2c;border-radius:12px;padding:13px 15px">
+            <span style="font:600 19px 'IBM Plex Mono';color:#e5736a;line-height:1">?</span>
+            <div><div style="font:700 13px 'IBM Plex Sans'">Where confusion actually happens</div>
+            <div style="font:400 11.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.5;margin-top:3px">Six real questions this workflow keeps raising. The pattern behind all of them: <b style="color:#e5736a">local truth is richer than the board, and nothing forces the two to reconcile.</b> Each card says how to tell.</div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+            <div onClick="{{ openMapping }}" style="background:#10151f;border:1px solid #1b2434;border-left:3px solid #e5736a;border-radius:10px;padding:12px 13px;cursor:pointer" style-hover="border-color:#e5736a">
+              <div style="font:600 13px 'IBM Plex Sans';color:#e7ecf5;margin-bottom:5px">“Did the agent actually do anything?”</div>
+              <div style="font:400 11px 'IBM Plex Sans';color:#9aa6c2;line-height:1.5;margin-bottom:8px">Board status can sit at <b style="color:#cdd6e8">todo</b> while a worker runs for hours locally — the runner doesn’t post back.</div>
+              <div style="font:500 9.5px 'IBM Plex Mono';color:#e5736a;background:#1a0f0e;border-radius:6px;padding:6px 8px;margin-bottom:6px">WHAT THIS MEANS · board silence ≠ no work</div>
+              <div style="font:500 9.5px 'IBM Plex Mono';color:#5ec8cf;line-height:1.4">TELL BY → runner logs + heartbeat + task messages, not the board column alone</div>
+            </div>
+            <div onClick="{{ select }}" data-id="deliverable" style="background:#10151f;border:1px solid #1b2434;border-left:3px solid #e5736a;border-radius:10px;padding:12px 13px;cursor:pointer" style-hover="border-color:#e5736a">
+              <div style="font:600 13px 'IBM Plex Sans';color:#e7ecf5;margin-bottom:5px">“Where did the output land?”</div>
+              <div style="font:400 11px 'IBM Plex Sans';color:#9aa6c2;line-height:1.5;margin-bottom:8px">Results are written to local <b style="color:#cdd6e8">Updates_*</b> inboxes and staged files — not uploaded to the task.</div>
+              <div style="font:500 9.5px 'IBM Plex Mono';color:#e5736a;background:#1a0f0e;border-radius:6px;padding:6px 8px;margin-bottom:6px">WHAT THIS MEANS · the task looks empty; the output is real but off-board</div>
+              <div style="font:500 9.5px 'IBM Plex Mono';color:#5ec8cf;line-height:1.4">TELL BY → captain inbox / manifest.csv locally; ideally a deliverable linked on the task</div>
+            </div>
+            <div onClick="{{ openMapping }}" style="background:#10151f;border:1px solid #1b2434;border-left:3px solid #e5736a;border-radius:10px;padding:12px 13px;cursor:pointer" style-hover="border-color:#e5736a">
+              <div style="font:600 13px 'IBM Plex Sans';color:#e7ecf5;margin-bottom:5px">“Which status actually matters?”</div>
+              <div style="font:400 11px 'IBM Plex Sans';color:#9aa6c2;line-height:1.5;margin-bottom:8px">The board has 5 canonical statuses; the runner tracks SHIP / HELD / PROBING / … on top.</div>
+              <div style="font:500 9.5px 'IBM Plex Mono';color:#e5736a;background:#1a0f0e;border-radius:6px;padding:6px 8px;margin-bottom:6px">WHAT THIS MEANS · board = shared truth; local substates = richer but private</div>
+              <div style="font:500 9.5px 'IBM Plex Mono';color:#5ec8cf;line-height:1.4">TELL BY → for coordination trust the board; for detail open the task’s substate</div>
+            </div>
+            <div onClick="{{ select }}" data-id="monitor" style="background:#10151f;border:1px solid #1b2434;border-left:3px solid #e5736a;border-radius:10px;padding:12px 13px;cursor:pointer" style-hover="border-color:#e5736a">
+              <div style="font:600 13px 'IBM Plex Sans';color:#e7ecf5;margin-bottom:5px">“Is this live or stale?”</div>
+              <div style="font:400 11px 'IBM Plex Sans';color:#9aa6c2;line-height:1.5;margin-bottom:8px">A file timestamp or an “online” badge doesn’t prove a process is alive.</div>
+              <div style="font:500 9.5px 'IBM Plex Mono';color:#e5736a;background:#1a0f0e;border-radius:6px;padding:6px 8px;margin-bottom:6px">WHAT THIS MEANS · fresh-looking ≠ running</div>
+              <div style="font:500 9.5px 'IBM Plex Mono';color:#5ec8cf;line-height:1.4">TELL BY → monitor state_age + pid liveness + last heartbeat &lt; poll interval</div>
+            </div>
+            <div onClick="{{ select }}" data-id="artifact" style="background:#10151f;border:1px solid #1b2434;border-left:3px solid #e5736a;border-radius:10px;padding:12px 13px;cursor:pointer" style-hover="border-color:#e5736a">
+              <div style="font:600 13px 'IBM Plex Sans';color:#e7ecf5;margin-bottom:5px">“Deliverable, or just an artifact?”</div>
+              <div style="font:400 11px 'IBM Plex Sans';color:#9aa6c2;line-height:1.5;margin-bottom:8px">Both are files in a folder; nothing marks which one is the accepted hand-over.</div>
+              <div style="font:500 9.5px 'IBM Plex Mono';color:#e5736a;background:#1a0f0e;border-radius:6px;padding:6px 8px;margin-bottom:6px">WHAT THIS MEANS · not every artifact is meant to be consumed</div>
+              <div style="font:500 9.5px 'IBM Plex Mono';color:#5ec8cf;line-height:1.4">TELL BY → only a reviewer-verified, explicitly-marked output is a deliverable</div>
+            </div>
+            <div onClick="{{ select }}" data-id="project" style="background:#10151f;border:1px solid #1b2434;border-left:3px solid #e5736a;border-radius:10px;padding:12px 13px;cursor:pointer" style-hover="border-color:#e5736a">
+              <div style="font:600 13px 'IBM Plex Sans';color:#e7ecf5;margin-bottom:5px">“New project, or a goal / task?”</div>
+              <div style="font:400 11px 'IBM Plex Sans';color:#9aa6c2;line-height:1.5;margin-bottom:8px">It’s tempting to spin a new project per batch or experiment.</div>
+              <div style="font:500 9.5px 'IBM Plex Mono';color:#e5736a;background:#1a0f0e;border-radius:6px;padding:6px 8px;margin-bottom:6px">WHAT THIS MEANS · new projects fragment visibility and permissions</div>
+              <div style="font:500 9.5px 'IBM Plex Mono';color:#5ec8cf;line-height:1.4">TELL BY → new project only for a different team / boundary; else a goal / task under NeuroGolf_HO</div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- =================== SIGNALS =================== -->
+        <sc-if value="{{ modeSignals }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;align-items:flex-start;gap:12px;background:#0c1017;border:1px solid #161e2c;border-radius:12px;padding:13px 15px">
+            <span style="font:600 19px 'IBM Plex Mono';color:#b89be0;line-height:1">◉</span>
+            <div><div style="font:700 13px 'IBM Plex Sans'">Did work happen? — the signals to check</div>
+            <div style="font:400 11.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.5;margin-top:3px">Before assuming nothing happened, check these — cheapest first. The <b>WHERE</b> badge says whether the signal lives on the shared board, only locally, or both.</div></div>
+          </div>
+          <section style="background:#0c1017;border:1px solid #161e2c;border-radius:12px;padding:6px 14px 12px">
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 0 7px;border-bottom:1px solid #1b2434;font:600 9px 'IBM Plex Mono';color:#5b6884;letter-spacing:.8px"><span style="flex:1">SIGNAL</span><span style="width:96px;text-align:center">WHERE</span><span style="flex:1.4">GOOD LOOKS LIKE</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #10151f"><span style="flex:1;font:600 11.5px 'IBM Plex Sans';color:#e7ecf5">Task status change</span><span style="width:96px;text-align:center"><span style="font:600 8.5px 'IBM Plex Mono';color:#5ec8cf;background:#0f1c22;border:1px solid #234852;border-radius:9px;padding:2px 8px">BOARD</span></span><span style="flex:1.4;font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">moved todo → in_progress → pending_verification → verified <span style="color:#5b6884">(can lag)</span></span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #10151f"><span style="flex:1;font:600 11.5px 'IBM Plex Sans';color:#e7ecf5">Messages / comments</span><span style="width:96px;text-align:center"><span style="font:600 8.5px 'IBM Plex Mono';color:#5ec8cf;background:#0f1c22;border:1px solid #234852;border-radius:9px;padding:2px 8px">BOARD</span></span><span style="flex:1.4;font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">agent posted a progress note or a blocker</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #10151f"><span style="flex:1;font:600 11.5px 'IBM Plex Sans';color:#e7ecf5">Artifacts attached</span><span style="width:96px;text-align:center"><span style="font:600 8.5px 'IBM Plex Mono';color:#63cf95;background:#0f1710;border:1px solid #274031;border-radius:9px;padding:2px 8px">BOTH</span></span><span style="flex:1.4;font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">new files on the task, or new files in the lane inbox</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #10151f"><span style="flex:1;font:600 11.5px 'IBM Plex Sans';color:#e7ecf5">Deliverable produced</span><span style="width:96px;text-align:center"><span style="font:600 8.5px 'IBM Plex Mono';color:#63cf95;background:#0f1710;border:1px solid #274031;border-radius:9px;padding:2px 6px">BOARD target</span></span><span style="flex:1.4;font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">published deliverable/file_id; local staged output only means the bridge is missing</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #10151f"><span style="flex:1;font:600 11.5px 'IBM Plex Sans';color:#e7ecf5">File shares</span><span style="width:96px;text-align:center"><span style="font:600 8.5px 'IBM Plex Mono';color:#5ec8cf;background:#0f1c22;border:1px solid #234852;border-radius:9px;padding:2px 8px">BOARD</span></span><span style="flex:1.4;font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">output uploaded and retrievable by the requester</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #10151f"><span style="flex:1;font:600 11.5px 'IBM Plex Sans';color:#e7ecf5">Agent heartbeat</span><span style="width:96px;text-align:center"><span style="font:600 8.5px 'IBM Plex Mono';color:#63cf95;background:#0f1710;border:1px solid #274031;border-radius:9px;padding:2px 8px">BOTH</span></span><span style="flex:1.4;font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">last presence within the poll interval</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #10151f"><span style="flex:1;font:600 11.5px 'IBM Plex Sans';color:#e7ecf5">Runner logs</span><span style="width:96px;text-align:center"><span style="font:600 8.5px 'IBM Plex Mono';color:#e0b061;background:#1b1610;border:1px solid #423318;border-radius:9px;padding:2px 8px">LOCAL</span></span><span style="flex:1.4;font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">fresh operations.jsonl events; state_age low</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 0"><span style="flex:1;font:600 11.5px 'IBM Plex Sans';color:#e7ecf5">Closeout note</span><span style="width:96px;text-align:center"><span style="font:600 8.5px 'IBM Plex Mono';color:#e0b061;background:#1b1610;border:1px solid #423318;border-radius:9px;padding:2px 6px">LOCAL→board</span></span><span style="flex:1.4;font:400 10.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.4">a run summary / closeout recorded</span></div>
+          </section>
+          <div style="display:flex;gap:10px;align-items:flex-start;background:#160f13;border:1px solid #43201d;border-radius:11px;padding:11px 14px">
+            <span style="font:700 12px 'IBM Plex Mono';color:#e5736a;flex:none">▲</span>
+            <div style="font:400 11.5px 'IBM Plex Sans';color:#c9b6b3;line-height:1.55">Today the trustworthy chain is mostly <b style="color:#e0b061">LOCAL</b>. Every LOCAL-only signal is a place the requester is flying blind — the <b style="color:#d98f4e">HandOff asks</b> view lists exactly what to mirror onto the board.</div>
+          </div>
+        </sc-if>
+
+        <!-- =================== IMPROVEMENTS =================== -->
+        <sc-if value="{{ modeImprovements }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;align-items:flex-start;gap:12px;background:#0c1017;border:1px solid #161e2c;border-radius:12px;padding:13px 15px">
+            <span style="font:600 19px 'IBM Plex Mono';color:#d98f4e;line-height:1">✚</span>
+            <div><div style="font:700 13px 'IBM Plex Sans'">Concrete asks for the HandOff product</div>
+            <div style="font:400 11.5px 'IBM Plex Sans';color:#9aa6c2;line-height:1.5;margin-top:3px">Grouped by theme — the gaps that force NG to keep a private shadow system. Ordered by leverage: observability and deliverables first.</div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+            <section style="background:#0c1017;border:1px solid #161e2c;border-left:3px solid #5ec8cf;border-radius:10px;padding:12px 14px">
+              <div style="font:700 12.5px 'IBM Plex Sans';margin-bottom:8px">Observability</div>
+              <div style="display:flex;flex-direction:column;gap:5px;font:400 10.5px 'IBM Plex Sans';color:#c3ccde;line-height:1.4">
+                <div style="display:flex;gap:7px"><span style="color:#5ec8cf">▸</span>per-task &amp; per-agent activity feed</div>
+                <div style="display:flex;gap:7px"><span style="color:#5ec8cf">▸</span>board status that reflects real progress, not just create / verify</div>
+                <div style="display:flex;gap:7px"><span style="color:#5ec8cf">▸</span>a drift / last-synced indicator on each task</div>
+              </div>
+              <div style="font:500 9.5px 'IBM Plex Mono';color:#5b6884;margin-top:9px;line-height:1.4">WHY NG → so "did work happen?" is answerable from the task</div>
+            </section>
+            <section style="background:#0c1017;border:1px solid #161e2c;border-left:3px solid #63cf95;border-radius:10px;padding:12px 14px">
+              <div style="font:700 12.5px 'IBM Plex Sans';margin-bottom:8px">Artifacts &amp; deliverables</div>
+              <div style="display:flex;flex-direction:column;gap:5px;font:400 10.5px 'IBM Plex Sans';color:#c3ccde;line-height:1.4">
+                <div style="display:flex;gap:7px"><span style="color:#63cf95">▸</span>use HandOff deliverables for accepted SHIP outputs</div>
+                <div style="display:flex;gap:7px"><span style="color:#63cf95">▸</span>use artifacts for runner evidence, logs and review packets</div>
+                <div style="display:flex;gap:7px"><span style="color:#63cf95">▸</span>link the final deliverable from the task so “where did it land?” has one answer</div>
+              </div>
+              <div style="font:500 9.5px 'IBM Plex Mono';color:#5b6884;margin-top:9px;line-height:1.4">WHY NG → ends the "where did it land?" problem</div>
+            </section>
+            <section style="background:#0c1017;border:1px solid #161e2c;border-left:3px solid #7c8bb0;border-radius:10px;padding:12px 14px">
+              <div style="font:700 12.5px 'IBM Plex Sans';margin-bottom:8px">Task history / audit</div>
+              <div style="display:flex;flex-direction:column;gap:5px;font:400 10.5px 'IBM Plex Sans';color:#c3ccde;line-height:1.4">
+                <div style="display:flex;gap:7px"><span style="color:#7c8bb0">▸</span>an immutable event log per task</div>
+                <div style="display:flex;gap:7px"><span style="color:#7c8bb0">▸</span>status transitions stamped with actor + time</div>
+                <div style="display:flex;gap:7px"><span style="color:#7c8bb0">▸</span>message history retained and readable</div>
+              </div>
+              <div style="font:500 9.5px 'IBM Plex Mono';color:#5b6884;margin-top:9px;line-height:1.4">WHY NG → a requester can audit without local logs</div>
+            </section>
+            <section style="background:#0c1017;border:1px solid #161e2c;border-left:3px solid #b89be0;border-radius:10px;padding:12px 14px">
+              <div style="font:700 12.5px 'IBM Plex Sans';margin-bottom:8px">File uploads</div>
+              <div style="display:flex;flex-direction:column;gap:5px;font:400 10.5px 'IBM Plex Sans';color:#c3ccde;line-height:1.4">
+                <div style="display:flex;gap:7px"><span style="color:#b89be0">▸</span>attach files / outputs to a task via API + MCP</div>
+                <div style="display:flex;gap:7px"><span style="color:#b89be0">▸</span>reasonable size limits, resumable</div>
+                <div style="display:flex;gap:7px"><span style="color:#b89be0">▸</span>retrievable by anyone on the project</div>
+              </div>
+              <div style="font:500 9.5px 'IBM Plex Mono';color:#5b6884;margin-top:9px;line-height:1.4">WHY NG → outputs stop hiding in local folders</div>
+            </section>
+            <section style="background:#0c1017;border:1px solid #161e2c;border-left:3px solid #e0b061;border-radius:10px;padding:12px 14px">
+              <div style="font:700 12.5px 'IBM Plex Sans';margin-bottom:8px">Agent activity &amp; presence</div>
+              <div style="display:flex;flex-direction:column;gap:5px;font:400 10.5px 'IBM Plex Sans';color:#c3ccde;line-height:1.4">
+                <div style="display:flex;gap:7px"><span style="color:#e0b061">▸</span>heartbeat coupled to a task lease</div>
+                <div style="display:flex;gap:7px"><span style="color:#e0b061">▸</span>"last active" on each agent</div>
+                <div style="display:flex;gap:7px"><span style="color:#e0b061">▸</span>auto-flag stale / orphaned agents</div>
+              </div>
+              <div style="font:500 9.5px 'IBM Plex Mono';color:#5b6884;margin-top:9px;line-height:1.4">WHY NG → "online" stops lying</div>
+            </section>
+            <section style="background:#0c1017;border:1px solid #161e2c;border-left:3px solid #5ec8cf;border-radius:10px;padding:12px 14px">
+              <div style="font:700 12.5px 'IBM Plex Sans';margin-bottom:8px">Structure: project / goal / task</div>
+              <div style="display:flex;flex-direction:column;gap:5px;font:400 10.5px 'IBM Plex Sans';color:#c3ccde;line-height:1.4">
+                <div style="display:flex;gap:7px"><span style="color:#5ec8cf">▸</span>lightweight goal grouping for batches</div>
+                <div style="display:flex;gap:7px"><span style="color:#5ec8cf">▸</span>substates shown in task detail, not new columns</div>
+                <div style="display:flex;gap:7px"><span style="color:#5ec8cf">▸</span>external_key as a first-class field</div>
+              </div>
+              <div style="font:500 9.5px 'IBM Plex Mono';color:#5b6884;margin-top:9px;line-height:1.4">WHY NG → one project stays legible instead of fragmenting</div>
+            </section>
+          </div>
+        </sc-if>
+
+      </div>
+    </div>
+
+    <!-- DETAIL DRAWER -->
+    <aside style="width:372px;flex:none;border-left:1px solid #1b2434;background:#0d111a;overflow:auto;padding:20px">
+
+      <sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:9px">
+          <div style="font:700 17px 'IBM Plex Sans';letter-spacing:.2px;line-height:1.2">{{ selName }}</div>
+          <button onClick="{{ clearSel }}" style="flex:none;background:none;border:1px solid #26304a;color:#8a97b4;border-radius:6px;width:26px;height:26px;cursor:pointer;font:500 13px 'IBM Plex Mono'">×</button>
+        </div>
+        <div style="display:inline-block;font:600 9px 'IBM Plex Mono';text-transform:uppercase;letter-spacing:1px;padding:3px 9px;border-radius:20px;border:1px solid {{ selTagColor }};color:{{ selTagColor }};margin-bottom:14px">{{ selTag }}</div>
+        <p style="font:400 13px 'IBM Plex Sans';color:#c3ccde;line-height:1.55;margin-bottom:16px">{{ selMission }}</p>
+
+        <sc-for list="{{ selRows }}" as="r" hint-placeholder-count="3">
+          <div style="display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid #161e2c">
+            <span style="font:500 10px 'IBM Plex Mono';color:#6f7d9c;text-transform:uppercase;letter-spacing:.6px;flex:none">{{ r.k }}</span>
+            <span style="font:500 11px 'IBM Plex Mono';color:#cdd6e8;text-align:right;word-break:break-word">{{ r.v }}</span>
+          </div>
+        </sc-for>
+
+        <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px">
+          <sc-for list="{{ selNotes }}" as="n" hint-placeholder-count="1">
+            <div style="display:flex;gap:9px;padding:9px 11px;background:#10151f;border-radius:8px;border:1px solid #1b2434">
+              <span style="width:5px;flex:none;border-radius:3px;background:{{ n.color }}"></span>
+              <span style="font:400 11.5px 'IBM Plex Sans';color:#c3ccde;line-height:1.5">{{ n.text }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ showCurrentDefault }}" hint-placeholder-val="{{ true }}">
+        <div style="font:700 15px 'IBM Plex Sans';margin-bottom:3px">Reading the current map</div>
+        <div style="font:500 10px 'IBM Plex Mono';color:#6f7d9c;margin-bottom:15px">three layers, one shared board</div>
+        <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:18px">
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:9px;height:9px;border-radius:2px;background:#5ec8cf;margin-top:3px;flex:none"></span><span style="font:400 12px 'IBM Plex Sans';color:#c3ccde;line-height:1.45"><b>HandOff board</b> — the public, shared coordination layer. 5 canonical statuses.</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:9px;height:9px;border-radius:2px;background:#e0b061;margin-top:3px;flex:none"></span><span style="font:400 12px 'IBM Plex Sans';color:#c3ccde;line-height:1.45"><b>Local runner</b> — the private execution engine that actually does the work.</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:9px;height:9px;border-radius:2px;background:#b89be0;margin-top:3px;flex:none"></span><span style="font:400 12px 'IBM Plex Sans';color:#c3ccde;line-height:1.45"><b>Submit Captain</b> — vets SHIP packets and stages to the team.</span></div>
+        </div>
+        <div style="padding:12px;background:#1a0f0e;border:1px solid #43201d;border-radius:9px">
+          <div style="font:600 12px 'IBM Plex Sans';color:#e5736a;margin-bottom:6px">The core problem: drift</div>
+          <div style="font:400 11.5px 'IBM Plex Sans';color:#c9b6b3;line-height:1.5">The runner tracks richer substates than the board can hold, so <b style="color:#e6b25c">worker_running</b> lingers as board <b>todo</b> and <b>review_running</b> hides inside <b style="color:#e6b25c">pending_verification</b>. Click the red <b style="color:#e5736a">DRIFT</b> bar for the full state map — then switch to <b style="color:#63cf95">Optimized</b> to see the fix.</div>
+        </div>
+        <div style="margin-top:10px;padding:11px 12px;background:#10151f;border:1px solid #1b2434;border-left:3px solid #63cf95;border-radius:9px;font:400 11.5px 'IBM Plex Sans';color:#b7c1d6;line-height:1.5"><b style="color:#63cf95">Next bridge to build:</b> worker/reviewer/captain events should update the task, attach artifacts, and publish accepted SHIP output as a HandOff deliverable. Local files can remain the execution truth; the task should become the audit truth.</div>
+      </sc-if>
+
+      <sc-if value="{{ showOptimizedDefault }}" hint-placeholder-val="{{ false }}">
+        <div style="font:700 15px 'IBM Plex Sans';margin-bottom:3px">What the optimized flow changes</div>
+        <div style="font:500 10px 'IBM Plex Mono';color:#6f7d9c;margin-bottom:15px">current → optimized</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="padding:10px 12px;background:#10151f;border:1px solid #1b2434;border-left:3px solid #63cf95;border-radius:8px"><div style="font:600 11.5px 'IBM Plex Sans';margin-bottom:3px">Filter before the board</div><div style="font:400 11px 'IBM Plex Sans';color:#b7c1d6;line-height:1.45">Preflight collision scan + cheap scout gate cut owned / duplicate / wall tasks before any card or expensive worker.</div></div>
+          <div style="padding:10px 12px;background:#10151f;border:1px solid #1b2434;border-left:3px solid #63cf95;border-radius:8px"><div style="font:600 11.5px 'IBM Plex Sans';margin-bottom:3px">Board stays simple, detail gets richer</div><div style="font:400 11px 'IBM Plex Sans';color:#b7c1d6;line-height:1.45">Keep the 5 canonical statuses; push worker/reviewer/captain substates into task detail — so nothing drifts.</div></div>
+          <div style="padding:10px 12px;background:#10151f;border:1px solid #1b2434;border-left:3px solid #63cf95;border-radius:8px"><div style="font:600 11.5px 'IBM Plex Sans';margin-bottom:3px">Budgets stop the tails</div><div style="font:400 11px 'IBM Plex Sans';color:#b7c1d6;line-height:1.45">Per-task session + wall-clock caps end expensive hard-task grind automatically.</div></div>
+          <div style="padding:10px 12px;background:#10151f;border:1px solid #1b2434;border-left:3px solid #63cf95;border-radius:8px"><div style="font:600 11.5px 'IBM Plex Sans';margin-bottom:3px">Reconcile 4 truths, then repair</div><div style="font:400 11px 'IBM Plex Sans';color:#b7c1d6;line-height:1.45">Board / local / process / artifact reconciled in one loop, with visible pause·resume·stop·repair·closeout controls.</div></div>
+          <div style="padding:10px 12px;background:#10151f;border:1px solid #1b2434;border-left:3px solid #63cf95;border-radius:8px"><div style="font:600 11.5px 'IBM Plex Sans';margin-bottom:3px">Event-driven, not blind polling</div><div style="font:400 11px 'IBM Plex Sans';color:#b7c1d6;line-height:1.45">Long-poll / webhooks / signals + lease-coupled presence — the heartbeat you wanted already exists.</div></div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ showObjectsDefault }}" hint-placeholder-val="{{ false }}">
+        <div style="font:700 15px 'IBM Plex Sans';margin-bottom:3px">Native vs local — the core lens</div>
+        <div style="font:500 10px 'IBM Plex Mono';color:#6f7d9c;margin-bottom:15px">shared record vs private machine</div>
+        <p style="font:400 12px 'IBM Plex Sans';color:#c3ccde;line-height:1.55;margin-bottom:14px">If you can’t point to a <b style="color:#5ec8cf">native object</b> — a task, message, file, artifact or deliverable — for a piece of work, the requester can’t see it. Every <b style="color:#e0b061">local</b> step should mint or update a native object.</p>
+        <div style="padding:11px 12px;background:#10151f;border:1px solid #1b2434;border-radius:9px;font:400 11.5px 'IBM Plex Sans';color:#b7c1d6;line-height:1.5">Click any card to see where it lives and what to look for. The important NG gap is not that HandOff lacks deliverables/artifacts; it is that local runner outputs rarely get published back to them.</div>
+      </sc-if>
+
+      <sc-if value="{{ showConfusionsDefault }}" hint-placeholder-val="{{ false }}">
+        <div style="font:700 15px 'IBM Plex Sans';margin-bottom:3px">The one pattern behind all six</div>
+        <div style="font:500 10px 'IBM Plex Mono';color:#6f7d9c;margin-bottom:15px">richer local truth, no forced reconcile</div>
+        <p style="font:400 12px 'IBM Plex Sans';color:#c3ccde;line-height:1.55;margin-bottom:14px">Each card is a real question this setup keeps raising. They all reduce to the same root: the runner knows more than the board, and nothing makes the board catch up.</p>
+        <div style="padding:11px 12px;background:#1a0f0e;border:1px solid #43201d;border-radius:9px;font:400 11.5px 'IBM Plex Sans';color:#c9b6b3;line-height:1.5">Two cards link to the <b style="color:#e5736a">board ↔ local state map</b>. Fixes live in <b style="color:#63cf95">Ideal loop</b> and <b style="color:#d98f4e">HandOff asks</b>.</div>
+      </sc-if>
+
+      <sc-if value="{{ showSignalsDefault }}" hint-placeholder-val="{{ false }}">
+        <div style="font:700 15px 'IBM Plex Sans';margin-bottom:3px">Work leaves traces</div>
+        <div style="font:500 10px 'IBM Plex Mono';color:#6f7d9c;margin-bottom:15px">make every trace visible on the board</div>
+        <p style="font:400 12px 'IBM Plex Sans';color:#c3ccde;line-height:1.55;margin-bottom:14px">The list is ordered cheapest-first. Today most reliable signals live <b style="color:#e0b061">LOCAL</b> — the goal is to move each one onto the shared board so “did anything happen?” is answerable in one glance.</p>
+        <div style="padding:11px 12px;background:#10151f;border:1px solid #1b2434;border-radius:9px;font:400 11.5px 'IBM Plex Sans';color:#b7c1d6;line-height:1.5">Rule: if the only proof of work is a local file or log, treat the task as <b style="color:#e6b25c">unverified from the requester’s side</b>.</div>
+      </sc-if>
+
+      <sc-if value="{{ showImprovementsDefault }}" hint-placeholder-val="{{ false }}">
+        <div style="font:700 15px 'IBM Plex Sans';margin-bottom:3px">A punch-list for HandOff</div>
+        <div style="font:500 10px 'IBM Plex Mono';color:#6f7d9c;margin-bottom:15px">retire the private shadow system</div>
+        <p style="font:400 12px 'IBM Plex Sans';color:#c3ccde;line-height:1.55;margin-bottom:14px">Sorted by leverage. The observability + deliverable asks come first because they’re what let NG stop maintaining a private mirror of the board.</p>
+        <div style="padding:11px 12px;background:#10151f;border:1px solid #1b2434;border-left:3px solid #d98f4e;border-radius:9px;font:400 11.5px 'IBM Plex Sans';color:#b7c1d6;line-height:1.5">Each theme names <b style="color:#cdd6e8">why NG needs it</b> — every gap here currently forces a local workaround shown in the other views.</div>
+      </sc-if>
+
+    </aside>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1024},&quot;startMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;current&quot;,&quot;objects&quot;,&quot;confusions&quot;,&quot;signals&quot;,&quot;optimized&quot;,&quot;improvements&quot;],&quot;default&quot;:&quot;current&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;View&quot;},&quot;showLanes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;View&quot;}}">
+class Component extends DCLogic {
+  state = { mode: '', selId: '' };
+
+  NODES = {
+    project: { name: 'Project · NeuroGolf_HO', tag: 'HandOff board', tagColor: '#5ec8cf',
+      mission: 'The shared, public coordination board. All three lanes create their tasks under this one project/request.',
+      rows: [{k:'project id',v:'82513bd2…010fa8'},{k:'team',v:'team_644ac577'},{k:'owner',v:'boladi_a · admin'},{k:'model',v:'project → goals → tasks'}],
+      notes: [{color:'#5ec8cf',text:'Board state is public and shared; the actual work is private and local to this machine.'}] },
+    goal: { name: 'Batch goal', tag: 'HandOff board', tagColor: '#5ec8cf',
+      mission: 'Each prompt batch becomes one Handoff goal under NeuroGolf_HO, addressed by a stable external key.',
+      rows: [{k:'external key',v:'neurogolf:batch44:codex'},{k:'created by',v:'prepare_handoff_batch.py'}], notes: [] },
+    task: { name: 'HandOff task card', tag: 'HandOff board', tagColor: '#5ec8cf',
+      mission: 'One card per ARC task. A stable external_key lets board ids be repointed without losing the local mapping.',
+      rows: [{k:'external_key',v:'neurogolf:batch44:codex:task134'},{k:'read via',v:'GET /requests/{id}/tasks + resolve'},{k:'write via',v:'PUT /tasks/{id}'}],
+      notes: [{color:'#e5736a',text:'A bare GET /tasks/{id} returns the SPA / 404 — reliable reads use the project task listing plus external_key resolve.'}] },
+    api: { name: 'MCP + REST · realtime', tag: 'HandOff board', tagColor: '#5ec8cf',
+      mission: 'Handoff exposes an MCP endpoint and a REST API. Agents register, heartbeat, claim, submit, verify, and exchange messages, files, and signals.',
+      rows: [{k:'MCP',v:'handoff.socnet.lol/mcp'},{k:'REST',v:'/api/v1'},{k:'realtime',v:'long-poll inbox · webhooks · SSE'},{k:'signals',v:'PAUSE RESUME STEER ABORT REASSIGN'}], notes: [] },
+    assignee: { name: 'Assignee / agent', tag: 'HandOff object', tagColor: '#5ec8cf',
+      mission: 'The identity that owns a task — a registered agent (or human). Holds the X-Agent-Key used to move status, plus heartbeat / presence.',
+      rows: [{k:'identity',v:'agent id + X-Agent-Key'},{k:'presence',v:'last heartbeat / online'},{k:'scope',v:'one assignee per task'}],
+      notes: [{color:'#e5736a',text:'Only the assigned agent\u2019s key can transition its task — the owner token alone gets 403. "Assigned" and "actually working" are not the same thing.'}] },
+    message: { name: 'Message / comment', tag: 'HandOff object', tagColor: '#5ec8cf',
+      mission: 'Human-readable notes on a task or goal — the narrative record of what happened and why.',
+      rows: [{k:'lives on',v:'task / goal thread'},{k:'look for',v:'progress · blockers · decisions'}],
+      notes: [{color:'#5ec8cf',text:'The cheapest "did anything happen?" signal — but only if agents post. Today the runner rarely comments back to the board.'}] },
+    fileshare: { name: 'File share', tag: 'HandOff object', tagColor: '#5ec8cf',
+      mission: 'Files exchanged through HandOff and attached to the shared record, so anyone on the project can retrieve them.',
+      rows: [{k:'lives on',v:'task / project files'},{k:'not this',v:'local Updates_* dirs are NOT shares'}],
+      notes: [{color:'#e6b25c',text:'Most outputs land in local inbox folders and are never uploaded — so the shared record looks empty even when work is done.'}] },
+    artifact: { name: 'Artifact', tag: 'HandOff object', tagColor: '#5ec8cf',
+      mission: 'ANY output produced during work — a candidate file, a log, an intermediate result. Evidence that work happened; not necessarily the thing to hand over.',
+      rows: [{k:'meaning',v:'intermediate · evidence'},{k:'volume',v:'many per task'}],
+      notes: [{color:'#e6b25c',text:'Artifact \u2260 deliverable. Blurring the two is a top confusion — see the Confusion points view.'}] },
+    deliverable: { name: 'Deliverable', tag: 'HandOff object', tagColor: '#63cf95',
+      mission: 'The finished, accepted output meant to be consumed or handed over — produced only after review passes. One (or few) per task.',
+      rows: [{k:'meaning',v:'accepted · final'},{k:'gate',v:'after reviewer verify'},{k:'should be',v:'linked on the task'}],
+      notes: [{color:'#63cf95',text:'HandOff supports deliverables and artifacts. NG should publish accepted SHIP outputs there instead of leaving them only in staged files.'}] },
+    proposal: { name: 'Proposal', tag: 'HandOff object', tagColor: '#63cf95',
+      mission: 'A suggested change or plan submitted for approval before it is acted on — distinct from a finished deliverable.',
+      rows: [{k:'meaning',v:'suggested · pending approval'},{k:'lives',v:'Agenters/_proposals/'}],
+      notes: [{color:'#e6b25c',text:'HandOff has plan/proposal-style APIs, but NG _proposals are local until they are posted, attached, or converted into tasks.'}] },
+    presence: { name: 'Agent heartbeat / presence', tag: 'Local + platform', tagColor: '#7c8bb0',
+      mission: 'A periodic signal that an agent is alive. Start-HandoffPresence.ps1 polls and posts presence so "online" reflects a real worker.',
+      rows: [{k:'script',v:'Start-HandoffPresence.ps1'},{k:'poll',v:'60 s'},{k:'couple to',v:'active task lease'}],
+      notes: [{color:'#63cf95',text:'The heartbeat you asked about already exists — run it as a service, and tie "online" to holding a task lease so it can\u2019t lie.'}] },
+    mapping: { name: 'Board ↔ local state drift', tag: 'reconciliation', tagColor: '#e5736a',
+      mission: 'The board has 5 canonical statuses; the runner tracks a richer set of substates. Where they can\u2019t map cleanly, the board drifts from reality.',
+      rows: [{k:'todo',v:'todo'},{k:'worker_running',v:'in_progress'},{k:'pending_review',v:'pending_verification'},{k:'review_running',v:'⚠ pending_verification / in_progress'},{k:'worker_rework',v:'in_progress'},{k:'ship_packeted',v:'verified / local-terminal'},{k:'drop',v:'rejected'},{k:'*_failed · wall_budget',v:'no clean board status'}],
+      notes: [{color:'#e5736a',text:'pending_verification is overloaded: "worker submitted, waiting for reviewer" vs "review underway".'},{color:'#e6b25c',text:'pending_review is NOT canonical; SHIP / KEEP_WORKING / DROP are local labels layered above the API.'},{color:'#e5736a',text:'Status transitions need the assigned agent\u2019s X-Agent-Key — the owner token alone returns 403.'}] },
+    prompts: { name: 'Prompt folder', tag: 'Local runner', tagColor: '#e0b061',
+      mission: 'The batch input: numbered prompt folders written upstream by the Prompter.',
+      rows: [{k:'path',v:'The_400_Tasks/Task Prompts/44'}], notes: [] },
+    prepare: { name: 'prepare_handoff_batch.py', tag: 'Local runner', tagColor: '#e0b061',
+      mission: 'Renders a prompt folder into a lane batch config and creates or reuses Handoff board tasks with stable external keys.',
+      rows: [{k:'invoke',v:'--lane Codex --batch 44 --sync-board'},{k:'writes',v:'config/runner_codex_p44.json'}],
+      notes: [{color:'#63cf95',text:'Optimized: prune already-owned / duplicate / wall tasks here, before board cards exist.'}] },
+    scheduler: { name: 'Runner scheduler', tag: 'Local runner', tagColor: '#e0b061',
+      mission: 'A refilling concurrent scheduler: a freed slot is refilled the instant a task finishes, so one slow worker no longer stalls the whole batch.',
+      rows: [{k:'worker_max_active',v:'3'},{k:'reviewer_max_active',v:'2'},{k:'start',v:'Start-HandoffRunner.ps1 -Loop'}], notes: [] },
+    workers: { name: 'Worker pool', tag: 'Local runner', tagColor: '#e0b061',
+      mission: 'Codex / Claude worker sessions build candidate rewrites, one task each — this is where the solution is invented.',
+      rows: [{k:'agents',v:'worker1 · cdx_worker2 · cdx_worker3'},{k:'timeout',v:'4h, role-aware'},{k:'retries',v:'worker_max_failures = 2'}],
+      notes: [{color:'#e6b25c',text:'Long or hung workers can burn hours — the optimized flow adds per-task session + wall-clock budgets.'}] },
+    reviewers: { name: 'Reviewer pool', tag: 'Local runner', tagColor: '#e0b061',
+      mission: 'Reviewer sessions attack the worker packet and return one verdict. Affinity keeps the same reviewer on a task through rework.',
+      rows: [{k:'agents',v:'reviewer1 · cdx_reviewer2'},{k:'verdicts',v:'SHIP · KEEP_WORKING · DROP'},{k:'rework cap',v:'max_rework_cycles = 3'}], notes: [] },
+    verdict: { name: 'Reviewer verdict', tag: 'Local runner', tagColor: '#e0b061',
+      mission: 'The branch point. SHIP validates + packets; KEEP_WORKING reopens bounded rework on the same task; DROP is a terminal reject.',
+      rows: [{k:'SHIP',v:'verify accept = true → verified'},{k:'KEEP_WORKING',v:'accept false → reopen rework'},{k:'DROP',v:'accept false → rejected'}], notes: [] },
+    monitor: { name: 'Monitor loop', tag: 'control plane', tagColor: '#7c8bb0',
+      mission: 'Watches artifacts (state freshness + task statuses), not just process liveness. -CheckBoard adds read-only board/local drift detection.',
+      rows: [{k:'emits',v:'complete · interrupted · stalled · drift'},{k:'reads board',v:'GET /requests/{id}/tasks (once/pass)'},{k:'stale',v:'--stale-seconds 18000 (5h)'}],
+      notes: [{color:'#e5736a',text:'Today it only detects drift — it does not repair it. The optimized flow promotes it to a reconciler.'}] },
+    state: { name: 'State + operations logs', tag: 'control plane', tagColor: '#7c8bb0',
+      mission: 'Runner state JSON + operations.jsonl are the local source of truth. Pid files must be lane+batch scoped so a dead loop is itself detectable.',
+      rows: [{k:'state',v:'Handoff/private/runner_state.json'},{k:'ops',v:'Handoff/logs/operations.jsonl'}],
+      notes: [{color:'#e6b25c',text:'Historically pid files went stale or lane-global — the batch31 monitor orphaned silently.'}] },
+    validate: { name: 'Packet validator', tag: 'Submit Captain', tagColor: '#b89be0',
+      mission: 'A SHIP verdict validates the packet schema and writes a packet into the lane\u2019s captain inbox.',
+      rows: [{k:'provenance',v:'batch · runner · task · external_key'},{k:'+',v:'goal · worker · reviewer · created'}],
+      notes: [{color:'#63cf95',text:'Optimized: inject complete provenance before the packet is queued.'}] },
+    inbox_codex: { name: 'Updates_Codex inbox', tag: 'Submit Captain', tagColor: '#b89be0',
+      mission: 'Both the Codex and Codex2 lanes drop SHIP packets here — a plain file drop, with no Handoff event.',
+      rows: [{k:'path',v:'Agenters/Submit_Captain/Updates_Codex/'}],
+      notes: [{color:'#e5736a',text:'No hook fires on the drop, so captain-lane state never reaches the board.'}] },
+    inbox_claude: { name: 'Updates_Claude inbox', tag: 'Submit Captain', tagColor: '#b89be0',
+      mission: 'The Claude lane\u2019s SHIP packets land here, on its own captain path.',
+      rows: [{k:'path',v:'Agenters/Submit_Captain/Updates_Claude/'}], notes: [] },
+    captain_gate: { name: 'Captain probe/stage gate', tag: 'Submit Captain', tagColor: '#b89be0',
+      mission: 'The Submit Captain own-stack validates accumulated packets and stages only probe_ok candidates. Kaggle-affecting commands stay gated.',
+      rows: [{k:'tool',v:'captain_ctl.py'},{k:'gate',v:'-AllowKaggleSubmit required'},{k:'states',v:'HELD · PROBING · PROBE_OK · STAGED'}],
+      notes: [{color:'#e5736a',text:'HELD is non-terminal and invisible on the board — a silent backlog until a human looks.'}] },
+    submit: { name: 'Team submit.py → manifest', tag: 'terminal', tagColor: '#63cf95',
+      mission: 'Staged candidates run the team submit.py, which rebuilds manifest.csv — the authoritative team-best record.',
+      rows: [{k:'authoritative',v:'Team_Submission/Backend/manifest.csv'}], notes: [] },
+    pool: { name: 'Candidate prompt pool', tag: 'Selection', tagColor: '#7c8bb0',
+      mission: 'Every candidate prompt, before any Handoff task exists.', rows: [], notes: [] },
+    preflight: { name: 'Preflight collision scan', tag: 'Selection · NEW', tagColor: '#63cf95',
+      mission: 'Scan the live manifest, staged/consumed outputs, prior runner reports, claims, and existing board cards; exclude already-owned, duplicate, or hard-wall tasks before creating cards.',
+      rows: [{k:'emits',v:'excluded_by_reason.csv'}],
+      notes: [{color:'#63cf95',text:'Create board cards only for tasks that should really run.'}] },
+    scout: { name: 'Scout gate', tag: 'Selection · NEW', tagColor: '#63cf95',
+      mission: 'A cheap / no-LLM triage pass before the expensive worker. Only needs_specialist tasks reach the pinned model.',
+      rows: [{k:'outputs',v:'park_wall · park_owned'},{k:'or',v:'needs_specialist(levers[])'}],
+      notes: [{color:'#63cf95',text:'The biggest token lever — stops workers re-confirming known floors.'}] },
+    excluded: { name: 'Excluded-by-reason report', tag: 'Selection · NEW', tagColor: '#63cf95',
+      mission: 'A visible funnel: how many candidates were excluded, and exactly why.',
+      rows: [{k:'reasons',v:'owned · duplicate · wall · stale'}], notes: [] },
+    planner: { name: 'Batch planner', tag: 'Selection', tagColor: '#7c8bb0',
+      mission: 'Assembles the surviving tasks into a lane+batch config with stable external keys.', rows: [], notes: [] },
+    create: { name: 'Create goal + tasks', tag: 'HandOff board', tagColor: '#5ec8cf',
+      mission: 'Only vetted tasks become Handoff goal + task cards. The board stays simple — the 5 canonical statuses, nothing bolted on.',
+      rows: [{k:'keys',v:'stable external_key per task'}],
+      notes: [{color:'#5ec8cf',text:'Keep worker/reviewer/captain substates in the task detail panel, not as new board columns.'}] },
+    budget: { name: 'Budget guard', tag: 'Execution · NEW', tagColor: '#63cf95',
+      mission: 'Per-task session and wall-clock budgets that stop expensive tails automatically instead of looping invisibly.',
+      rows: [{k:'caps',v:'max_task_sessions'},{k:'+',v:'max_task_wallclock_minutes'},{k:'terminal',v:'wall_budget_exhausted'}], notes: [] },
+    reconciler: { name: 'Monitor + reconciler', tag: 'Control · NEW', tagColor: '#63cf95',
+      mission: 'A first-class loop that reconciles four different truths and exposes repair actions instead of only raising alerts.',
+      rows: [{k:'board',v:'Handoff task listing'},{k:'local',v:'runner state JSON'},{k:'process',v:'pid / process tree'},{k:'artifact',v:'logs + captain packets'},{k:'badges',v:'drift · stale pid · orphan · sync miss'}],
+      notes: [{color:'#63cf95',text:'Board, process and artifact truth are different signals — reconciling them is what kills drift.'}] },
+    lifecycle: { name: 'Lifecycle controls', tag: 'Control · NEW', tagColor: '#63cf95',
+      mission: 'Make every manual intervention a visible, reversible tool — not a hidden shell command run after the fact.',
+      rows: [{k:'batch',v:'Pause · Resume · Stop · Repair · Closeout'},{k:'task',v:'Stop-HandoffTask · Repair-HandoffTask'}], notes: [] },
+    event: { name: 'Event-driven backbone', tag: 'Control · NEW', tagColor: '#63cf95',
+      mission: 'Move from blind polling to event-driven assignment: long-poll inbox, webhooks, and signals, with lease-coupled presence so "online" means a real worker is behind it.',
+      rows: [{k:'signals',v:'PAUSE RESUME STEER ABORT REASSIGN'},{k:'presence',v:'Start-HandoffPresence.ps1'}],
+      notes: [{color:'#63cf95',text:'The heartbeat program you asked about already exists — run it as a service.'}] }
+  };
+
+  select = (e) => this.setState({ selId: e.currentTarget.dataset.id });
+  openMapping = () => this.setState({ selId: 'mapping' });
+  clearSel = () => this.setState({ selId: '' });
+  setMode = (e) => this.setState({ mode: e.currentTarget.dataset.mode, selId: '' });
+
+  renderVals() {
+    const mode = this.state.mode || (this.props.startMode || 'current');
+    const n = this.NODES[this.state.selId];
+    return {
+      select: this.select, openMapping: this.openMapping, clearSel: this.clearSel, setMode: this.setMode,
+      modeCurrent: mode === 'current',
+      modeOptimized: mode === 'optimized',
+      modeObjects: mode === 'objects',
+      modeConfusions: mode === 'confusions',
+      modeSignals: mode === 'signals',
+      modeImprovements: mode === 'improvements',
+      showMapLegend: mode === 'current' || mode === 'optimized',
+      showReadingHint: mode === 'objects' || mode === 'confusions' || mode === 'signals' || mode === 'improvements',
+      showLanes: this.props.showLanes ?? true,
+      hasSel: !!n,
+      showCurrentDefault: !n && mode === 'current',
+      showOptimizedDefault: !n && mode === 'optimized',
+      showObjectsDefault: !n && mode === 'objects',
+      showConfusionsDefault: !n && mode === 'confusions',
+      showSignalsDefault: !n && mode === 'signals',
+      showImprovementsDefault: !n && mode === 'improvements',
+      selName: n ? n.name : '',
+      selTag: n ? n.tag : '',
+      selTagColor: n ? n.tagColor : '#8a97b4',
+      selMission: n ? n.mission : '',
+      selRows: n ? n.rows : [],
+      selNotes: n ? n.notes : []
+    };
+  }
+}
+</script>
+</body>
+</html>

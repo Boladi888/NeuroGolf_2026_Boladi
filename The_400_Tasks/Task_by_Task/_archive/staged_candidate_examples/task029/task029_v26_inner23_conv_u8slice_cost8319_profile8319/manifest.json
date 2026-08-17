@@ -1,0 +1,46 @@
+{
+  "task": 29,
+  "candidate": "task029.onnx",
+  "version": "v26",
+  "description": "Strict-below byte-equal candidate. Replaces v23's full 30x30 F32->U8 color-index canvas with a Conv-read of the fixed inner 23x23 source window (full-grid rows/cols 1..23), then dynamic U8 Slice, Pad(fill=10), Equal output.",
+  "builder": "The_400_Tasks/Task_by_Task/task029/prototypes/build_task029_v26_inner23_conv_u8slice.py",
+  "prototype": "The_400_Tasks/Task_by_Task/task029/prototypes/task029_v26_inner23_conv_u8slice.onnx",
+  "parent": "The_400_Tasks/Task_by_Task/task029/prototypes/build_task029_v23_u8canvas_honest_slice.py",
+  "cost": 8319,
+  "score_v2": {
+    "macs": 0,
+    "memory": 7643,
+    "params": 676
+  },
+  "profile_cost": 8319,
+  "profile": {
+    "memory": 7643,
+    "params": 676,
+    "arcgen_inputs": 262,
+    "total_real_inputs": 266,
+    "result": "static=8319 profile=8319",
+    "gap_pct": 0.0
+  },
+  "sha256": "450F4A0A994ACD5D2169014A6B99A6B8C0A40E31163545EE03E90D6B8AC762F1",
+  "gates": {
+    "visible": "[visible] 266/266 (100.00%)  PASS",
+    "ab_full": "[ab] vs submission.zip: match 200266/200266 | divergences=0 | byte_equal=True (first_div=None)",
+    "truth_full": "[truth] vs ARC-GEN ground truth: 199813/200000 (99.906%)",
+    "score_v2": "score_network_v2 -> (0, 7643, 676), total=8319",
+    "profile_real_cost_arcgen262": "task029 task029_v26_inner23_conv_u8slice.onnx: static=8319 profile=8319 (memory 7643 + params 676; 266 real inputs)"
+  },
+  "comparison": {
+    "banked_bar": 8481,
+    "delta_vs_banked_bar": -162,
+    "v23_honest_floor_before": 9510,
+    "delta_vs_v23": -1191,
+    "byte_equal_to_live": true,
+    "truth_class": "filtered-clean/LIVE-matched; same known 187 misses as LIVE family"
+  },
+  "cost_notes": [
+    "The Conv initializer is 1x10x8x8 = 640 params, but it reduces the color transport memory by avoiding the full [1,30,30] F32 canvas and full [1,30,30] U8 cast.",
+    "The candidate relies on the task029 generator/official bound that strict interior source pixels fit in rows/cols 1..23; full A/B and full truth gates exercised the official 200266/200000 windows.",
+    "No Kaggle submission was made. Captain ships."
+  ],
+  "next_lever_or_wall": "Second pass should stress the inner23 source-bound assumption on fresh ARC-GEN if desired, then consider whether a smaller fixed Conv window is legal; otherwise v26 is the current strict-below byte-equal candidate."
+}

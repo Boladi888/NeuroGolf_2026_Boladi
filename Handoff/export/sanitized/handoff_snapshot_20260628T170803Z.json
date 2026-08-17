@@ -1,0 +1,41 @@
+{
+  "schema": "neurogolf.handoff.sanitized_snapshot.v1",
+  "exported_at_utc": "2026-06-28T17:08:03.3289230Z",
+  "testnet_only": true,
+  "agent_id": "boladi_a",
+  "user_id": "usr_fa78a7879f",
+  "settlement": {
+    "default_network": "base-sepolia",
+    "networks": [
+      {
+        "name": "arc-testnet",
+        "label": "Arc Testnet (Circle)",
+        "chainId": 5042002,
+        "testnet": true
+      },
+      {
+        "name": "base-sepolia",
+        "label": "Base Sepolia",
+        "chainId": 84532,
+        "testnet": true
+      },
+      {
+        "name": "ethereum-sepolia",
+        "label": "Ethereum Sepolia",
+        "chainId": 11155111,
+        "testnet": true
+      }
+    ]
+  },
+  "projects": {
+    "id": "80ddecd9-7f28-4009-aeb5-d6fca43b8b3e",
+    "title": "NeuroGolf: Autonomous Swarm Solver",
+    "requester": "hermes-kaggler",
+    "status": "open",
+    "created_at": "2026-06-21T21:06:54.109Z",
+    "goals": null,
+    "tasks": null,
+    "phase": "open"
+  },
+  "teams": null
+}

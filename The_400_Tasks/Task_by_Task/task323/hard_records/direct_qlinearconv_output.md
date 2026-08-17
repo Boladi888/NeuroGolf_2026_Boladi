@@ -1,0 +1,10 @@
+# task323 direct QLinearConv output hard record
+
+- Live/promoted bar: 1020 from `<TEAM_REPO>/Team_Submission/Backend/manifest.csv`, sha256 `e68850f364c4b2e265a7dcc6aa26b9faddfccf9da073f7b4a19a21f59628e70a`.
+- Task-local reviewer bar: 1018 from `The_400_Tasks/Task_by_Task/task323/staged_candidates/task323_recenter_zero_reuse_cost1018/manifest.json`, sha256 `cbc8f9235f224c3c95c913be628ab67af8df375de0e18ad98f12c50f425f72b7`.
+- Locked route: collapse `saturating_exact_masks` + `final_exact_decode_and_pad` into one direct 10-channel `QLinearConv` from `code` to graph `output`, with U8 `y_zero_point=0`, pads `[0,0,17,17]`, channels 5/8 carrying the current 2x3 mask filters+bias, and other channels zero.
+- Builder attempt 1: `prototypes/build_worker1_direct_qlinearconv_u8.py` -> `prototypes/task323_direct_qlinearconv_u8.onnx`. `score_network_v2` returned `None None`; visible failed to load with `NotImplemented: Could not find an implementation for QLinearConv(10) node with name 'output'`. This is the mixed INT8 code/weight -> U8 output variant.
+- Builder attempt 2: `prototypes/build_worker1_direct_qlinearconv_all_u8.py` -> `prototypes/task323_direct_qlinearconv_all_u8.onnx`. Converted marker/code/direct filters to an equivalent all-U8 quantized chain. `score_network_v2` returned `None None`; visible loaded but failed `[visible] 0/172 (0.00%)  FAIL`.
+- Decode diagnostic for attempt 2 first visible pair: expected positives by channel `{0: 153, 5: 15, 8: 1}`; candidate positives `{5: 15, 8: 1}`; missing `ch0=153`, extra `ch5=0`, extra `ch8=0`.
+- Why dead: ORT rejects the mixed signed direct U8-output form; the all-U8 direct classifier can preserve gray/cyan but cannot preserve background when "other channels" are zero. NeuroGolf decodes per-channel `>0`, and active-grid background cells require positive channel 0 while out-of-bounds padding must remain 0.
+- One remaining hypothesis: a direct-output Conv family would need a legal channel-0 active-background classifier that suppresses bottom/right padding; that is no longer the reviewer-locked zero-other-channels hypothesis.

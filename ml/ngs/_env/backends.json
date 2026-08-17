@@ -1,0 +1,125 @@
+{
+ "roots": [
+  "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf",
+  "Q:/AIz",
+  "Q:/AIz/Intel_Arc_Stuff",
+  "Q:/AIz/LLM"
+ ],
+ "n_envs": 7,
+ "envs": [
+  {
+   "python": "3.14.4",
+   "exe": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.venv\\Scripts\\python.exe",
+   "onnxruntime": "1.24.4",
+   "ort_providers": [
+    "AzureExecutionProvider",
+    "CPUExecutionProvider"
+   ],
+   "onnx": "1.21.0",
+   "openvino": null,
+   "ov_err": "No module named 'openvino'",
+   "torch": null,
+   "torch_err": "No module named 'torch'",
+   "env_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.venv\\Scripts\\python.exe"
+  },
+  {
+   "python": "3.12.10",
+   "exe": "Q:\\AIz\\CAD_Stuff\\.venv\\Scripts\\python.exe",
+   "ort_providers": [],
+   "ort_err": "No module named 'onnxruntime'",
+   "onnx": null,
+   "openvino": null,
+   "ov_err": "No module named 'openvino'",
+   "torch": null,
+   "torch_err": "No module named 'torch'",
+   "env_path": "Q:\\AIz\\CAD_Stuff\\.venv\\Scripts\\python.exe"
+  },
+  {
+   "python": "3.11.9",
+   "exe": "Q:\\AIz\\ComfyUI\\venv\\Scripts\\python.exe",
+   "ort_providers": [],
+   "ort_err": "No module named 'onnxruntime'",
+   "onnx": null,
+   "openvino": null,
+   "ov_err": "No module named 'openvino'",
+   "torch": "2.11.0+xpu",
+   "torch_xpu": true,
+   "torch_xpu_name": "Intel(R) Arc(TM) Pro B70 Graphics",
+   "env_path": "Q:\\AIz\\ComfyUI\\venv\\Scripts\\python.exe"
+  },
+  {
+   "python": "3.12.10",
+   "exe": "Q:\\AIz\\LLM\\OV\\ovms\\python\\python.exe",
+   "ort_providers": [],
+   "ort_err": "No module named 'onnxruntime'",
+   "onnx": null,
+   "openvino": null,
+   "ov_err": "No module named 'openvino'",
+   "torch": null,
+   "torch_err": "No module named 'torch'",
+   "env_path": "Q:\\AIz\\LLM\\OV\\ovms\\python\\python.exe"
+  },
+  {
+   "python": "3.12.10",
+   "exe": "Q:\\AIz\\LLM\\OV\\venvs\\openvino\\Scripts\\python.exe",
+   "ort_providers": [],
+   "ort_err": "No module named 'onnxruntime'",
+   "onnx": null,
+   "openvino": "2026.2.0-21903-52ddc073857-releases/2026/2",
+   "ov_devices": [
+    "CPU",
+    "GPU.0",
+    "GPU.1"
+   ],
+   "ov_gpu": [
+    "Intel(R) UHD Graphics 770 (iGPU)",
+    "Intel(R) Arc(TM) Pro B70 Graphics (dGPU)"
+   ],
+   "torch": null,
+   "torch_err": "No module named 'torch'",
+   "env_path": "Q:\\AIz\\LLM\\OV\\venvs\\openvino\\Scripts\\python.exe"
+  },
+  {
+   "python": "3.11.9",
+   "exe": "Q:\\AIz\\SD\\venv\\Scripts\\python.exe",
+   "onnxruntime": "1.25.1",
+   "ort_providers": [
+    "AzureExecutionProvider",
+    "CPUExecutionProvider"
+   ],
+   "onnx": "1.21.0",
+   "openvino": null,
+   "ov_err": "No module named 'openvino'",
+   "torch": "2.11.0+xpu",
+   "torch_xpu": true,
+   "torch_xpu_name": "Intel(R) Arc(TM) Pro B70 Graphics",
+   "env_path": "Q:\\AIz\\SD\\venv\\Scripts\\python.exe"
+  },
+  {
+   "python": "3.14.4",
+   "exe": "Q:\\AIz\\intel_arc_b70_pro_setup_benchmarks\\Blog_Backend\\.venv\\Scripts\\python.exe",
+   "ort_providers": [],
+   "ort_err": "No module named 'onnxruntime'",
+   "onnx": null,
+   "openvino": null,
+   "ov_err": "No module named 'openvino'",
+   "torch": null,
+   "torch_err": "No module named 'torch'",
+   "env_path": "Q:\\AIz\\intel_arc_b70_pro_setup_benchmarks\\Blog_Backend\\.venv\\Scripts\\python.exe"
+  }
+ ],
+ "best_ort_gpu": null,
+ "best_torch": {
+  "env_path": "Q:\\AIz\\ComfyUI\\venv\\Scripts\\python.exe",
+  "torch": "2.11.0+xpu",
+  "xpu": true,
+  "device": "Intel(R) Arc(TM) Pro B70 Graphics"
+ },
+ "best_ngs_env": {
+  "env_path": "Q:\\AIz\\SD\\venv\\Scripts\\python.exe",
+  "torch": "2.11.0+xpu",
+  "xpu": true,
+  "device": "Intel(R) Arc(TM) Pro B70 Graphics",
+  "onnxruntime": "1.25.1"
+ }
+}

@@ -1,0 +1,9 @@
+# inline_moment_fusion timeout record
+
+- live bar used: 106, SHA-256 `9b03cb7d6b60847aa58dd706ea6254e16144c1ee80d8f652828e087548c5ab81`, source `python tools/ng_current_bar.py --task 141 --json` / team manifest owner Vamshi.
+- attempted route: fold one or both charged `[2]` marker moment intermediates (`row_feat`, `col_feat`) into the final free-output `Einsum` using the single-non-background-marker contract.
+- v13 full inline: static score `(0, 0, 90)` / cost 90, but failed `python tools/ng_gate.py visible --task 141 --cand The_400_Tasks/Task_by_Task/task141/prototypes/task141_v13_inline_moments.onnx` with `[ng_gate] wall budget 900s exceeded for visible task141; exiting to avoid orphaned gate work`.
+- v14 row inline: static score `(0, 8, 90)` / cost 98 and `profile_real_cost` reported `static=98 profile=98 (memory 8 + params 90; 265 real inputs)`. It passed visible and `truth --n 1000`, but failed `python tools/ng_gate.py ab --task 141 --cand The_400_Tasks/Task_by_Task/task141/prototypes/task141_v14_inline_row.onnx --n 1000` with `[ng_gate] wall budget 900s exceeded for ab task141; exiting to avoid orphaned gate work`.
+- sparse-`nonbg` one-param shave probe: `build_task141_v15_sparse_nonbg.py` failed `onnx.checker.check_model(..., full_check=True)` before saving because sparse `nonbg` is inferred as rank 0 for both marker-moment `Einsum`s: `Rank of input 1 (0) does not match the equation indices (1)`.
+- why dead: the byte savings are real, but raw-input copies inside the final high-arity `Einsum` make official gates too slow. Per worker protocol, do not relaunch these candidates with a larger `ng_gate --max-seconds`; they are not stageable/reviewer-ready.
+- one remaining hypothesis: beat 106 only if a parameter-only rewrite removes or shares `channel_sign`/`nonbg`/`final_poly` without adding raw input copies to the final contraction, or prove the current 90 params + two F32 moment vectors as the robust floor.

@@ -1,0 +1,692 @@
+{
+  "schema": "neurogolf.task379_repair_after_failed_stack.v1",
+  "kanban_task": "t_c8517b8a",
+  "baseline": {
+    "extraction": {
+      "canonical_package": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\submission.zip",
+      "canonical_package_sha256": "99f2ea256c20e0382a78c4566392c89e801ee39aa8b8221d8f4d50017544be14",
+      "entries": 401,
+      "task379_sha256": "ae5e0d30e44c560fc97deedf95e710bdefd28584ada458020921e04e4395090b",
+      "task379_size": 15567
+    },
+    "path": "C:\\Users\\Qx\\.worktrees\\t_c8517b8a\\work\\task379_repair_after_failed_stack\\current_best_task379.onnx",
+    "cost": {
+      "path": "C:\\Users\\Qx\\.worktrees\\t_c8517b8a\\work\\task379_repair_after_failed_stack\\current_best_task379.onnx",
+      "macs": 43124,
+      "memory": 106685,
+      "params": 1729,
+      "cost": 108414,
+      "points": 13.4063,
+      "cascade_risk": false,
+      "ops": {
+        "Add": 3,
+        "Cast": 12,
+        "Concat": 1,
+        "Conv": 3,
+        "CumSum": 4,
+        "Greater": 16,
+        "Less": 4,
+        "MaxPool": 2,
+        "Mul": 17,
+        "Pad": 1,
+        "ReduceMax": 2,
+        "ReduceSum": 9,
+        "Slice": 3,
+        "Sub": 13,
+        "Sum": 6,
+        "Where": 16
+      },
+      "error": null
+    },
+    "ops": {
+      "Slice": 3,
+      "ReduceSum": 9,
+      "ReduceMax": 2,
+      "Sub": 13,
+      "Add": 3,
+      "Greater": 16,
+      "Cast": 12,
+      "CumSum": 4,
+      "Where": 16,
+      "MaxPool": 2,
+      "Conv": 3,
+      "Sum": 6,
+      "Mul": 17,
+      "Less": 4,
+      "Concat": 1,
+      "Pad": 1
+    }
+  },
+  "forensics": {
+    "failed_v6_candidate_dir": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task379_v6_boundary_cast_zero_maskmerge_t_f6977ded",
+    "failed_v6_task379_sha256": "ca1cf1620d41eedcbc922c501cd1d38f7c7c7346b236d73a5cf400b2cec0bfbe",
+    "failed_v6_public_negative_stack": {
+      "schema": "neurogolf.submit_captain.stack_manifest.v1",
+      "created_at": "2026-05-18T05:11:24.467756Z",
+      "kanban_task": "t_b5fd87ce",
+      "stack_id": "stack_task275_task379_on_5755_05_20260518T0510Z",
+      "fallback_for": "stack_task275_task379_task127_on_5755_05_20260518T0506Z",
+      "base_candidate_id": "task013_v_w8a_live_fp16_t_bef1622d_on_5754_88_20260518T0447Z",
+      "base_score": 5755.05,
+      "base_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\submission.zip",
+      "base_package_sha256": "99F2EA256C20E0382A78C4566392C89E801EE39AA8B8221D8F4D50017544BE14",
+      "changed_entries": [
+        "task275.onnx",
+        "task379.onnx"
+      ],
+      "expected_point_gain": 0.9559972305775741,
+      "package_path": "C:\\Users\\Qx\\.worktrees\\t_b5fd87ce\\.hermes\\board\\staged_submits\\stack_task275_task379_on_5755_05_20260518T0510Z\\submission.zip",
+      "package_sha256": "6B53216C7271316C41C5143C8A947E9BBAE5D5A780558D222EFE8A09473F31C9",
+      "entries": [
+        {
+          "candidate_id": "task275_template_stamp_mixed16_t_b8abe4d8_on_5751_13_20260518T015948Z",
+          "queue_id": "submit-20260518T015948Z-task275_template_stamp_mixed16",
+          "task_id": "task275",
+          "member": "task275.onnx",
+          "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task275_template_stamp_mixed16_t_b8abe4d8_on_5751_13_20260518T015948Z\\submission.zip",
+          "source_package_sha256": "FEC33BB44DF84A7A7A8B9B216A3196E4DFDA2B4DD6577FC45EE56B5006B02354",
+          "onnx_sha256": "E2D828A52704772B2AB2A5B6A4C674CA7BFA81DD8D83EDF7B99B811F43A1458A",
+          "onnx_size": 8383,
+          "expected_point_gain": 0.4806972305775741,
+          "risk_flags": [
+            "canonical-rebased-against-current-best-5751.13",
+            "prior task275 hidden-bad history requires reviewer exception",
+            "single-task candidate",
+            "worker-staged zip was stale and not queued directly"
+          ]
+        },
+        {
+          "candidate_id": "task379_v6_boundary_cast_zero_maskmerge_t_f6977ded",
+          "queue_id": "submit-YYYYMMDDTHHMMSSZ-candidate_id",
+          "task_id": "task379",
+          "member": "task379.onnx",
+          "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task379_v6_boundary_cast_zero_maskmerge_t_f6977ded\\submission.zip",
+          "source_package_sha256": "08EC00746DE10DAD7224C4E86034CE8FF71816497909F1F5168C19BB180894C8",
+          "onnx_sha256": "CA1CF1620D41EEDCBC922C501CD1D38F7C7C7346B236D73A5CF400B2CEC0BFBE",
+          "onnx_size": 12914,
+          "expected_point_gain": 0.4753,
+          "risk_flags": [
+            "boundary-cast-sunk",
+            "current-live-single-entry-delta",
+            "fp16-contract-limited",
+            "single-task candidate",
+            "submit-captain-merge-required-onto-current-best",
+            "supersedes-task379-v3",
+            "zero-channel-mask-union"
+          ]
+        }
+      ]
+    },
+    "failed_three_stack": {
+      "schema": "neurogolf.submit_captain.stack_manifest.v1",
+      "created_at": "2026-05-18T05:06:34.632168Z",
+      "kanban_task": "t_b5fd87ce",
+      "stack_id": "stack_task275_task379_task127_on_5755_05_20260518T0506Z",
+      "base_candidate_id": "task013_v_w8a_live_fp16_t_bef1622d_on_5754_88_20260518T0447Z",
+      "base_score": 5755.05,
+      "base_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\submission.zip",
+      "base_package_sha256": "99F2EA256C20E0382A78C4566392C89E801EE39AA8B8221D8F4D50017544BE14",
+      "changed_entries": [
+        "task127.onnx",
+        "task275.onnx",
+        "task379.onnx"
+      ],
+      "expected_point_gain": 1.2191032431319873,
+      "package_path": "C:\\Users\\Qx\\.worktrees\\t_b5fd87ce\\.hermes\\board\\staged_submits\\stack_task275_task379_task127_on_5755_05_20260518T0506Z\\submission.zip",
+      "package_sha256": "769C1EBF7E0A87A879E1868045C9A810642B092633945FD7B4F859C3D22404F2",
+      "entries": [
+        {
+          "candidate_id": "task275_template_stamp_mixed16_t_b8abe4d8_on_5751_13_20260518T015948Z",
+          "queue_id": "submit-20260518T015948Z-task275_template_stamp_mixed16",
+          "task_id": "task275",
+          "member": "task275.onnx",
+          "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task275_template_stamp_mixed16_t_b8abe4d8_on_5751_13_20260518T015948Z\\submission.zip",
+          "source_package_sha256": "FEC33BB44DF84A7A7A8B9B216A3196E4DFDA2B4DD6577FC45EE56B5006B02354",
+          "onnx_sha256": "E2D828A52704772B2AB2A5B6A4C674CA7BFA81DD8D83EDF7B99B811F43A1458A",
+          "onnx_size": 8383,
+          "expected_point_gain": 0.4806972305775741,
+          "risk_flags": [
+            "canonical-rebased-against-current-best-5751.13",
+            "prior task275 hidden-bad history requires reviewer exception",
+            "single-task candidate",
+            "worker-staged zip was stale and not queued directly"
+          ]
+        },
+        {
+          "candidate_id": "task379_v6_boundary_cast_zero_maskmerge_t_f6977ded",
+          "queue_id": "submit-YYYYMMDDTHHMMSSZ-candidate_id",
+          "task_id": "task379",
+          "member": "task379.onnx",
+          "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task379_v6_boundary_cast_zero_maskmerge_t_f6977ded\\submission.zip",
+          "source_package_sha256": "08EC00746DE10DAD7224C4E86034CE8FF71816497909F1F5168C19BB180894C8",
+          "onnx_sha256": "CA1CF1620D41EEDCBC922C501CD1D38F7C7C7346B236D73A5CF400B2CEC0BFBE",
+          "onnx_size": 12914,
+          "expected_point_gain": 0.4753,
+          "risk_flags": [
+            "boundary-cast-sunk",
+            "current-live-single-entry-delta",
+            "fp16-contract-limited",
+            "single-task candidate",
+            "submit-captain-merge-required-onto-current-best",
+            "supersedes-task379-v3",
+            "zero-channel-mask-union"
+          ]
+        },
+        {
+          "candidate_id": "task127_v2_const_sep_pad30_repair_t_40f3fabc_on_5751_79_20260518T024012Z",
+          "queue_id": "submit-20260518T024012Z-task127_pad30_repair",
+          "task_id": "task127",
+          "member": "task127.onnx",
+          "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task127_v2_const_sep_pad30_repair_t_40f3fabc_on_5751_79_20260518T024012Z\\submission.zip",
+          "source_package_sha256": "4785743D4F83383A52E7FF00D9CC6D442A1E8EFDF563A61793440D9F6C228F58",
+          "onnx_sha256": "51E6756A57C1E08037F064E601D0679BF63AB7530CA0820EF8F5A226342559A3",
+          "onnx_size": 1337,
+          "expected_point_gain": 0.2631060125544131,
+          "risk_flags": [
+            "canonical-rebased-against-current-best-5751.79",
+            "pad30 repair restores raw output contract after public-negative no-pad failure",
+            "raw-tensor-padding-caveat-on-valid-3x11-cases",
+            "review-created-against-D461906F-but-live-base-advanced-to-8ECE4069",
+            "single-task candidate",
+            "worker-staged full package was stale and not queued directly"
+          ]
+        }
+      ]
+    },
+    "root_cause_hypothesis": "The 2-stack public-negative result cannot mathematically isolate task379 because task275 was bundled and carries prior hidden-bad risk, but v6's incremental savings came entirely from riskier assumptions absent in v3/v4: FP16 boundary-cast sinking, computed-zero replacement, and binary mask-union rewriting. For hidden-safety remediation, return a candidate that removes those risk surfaces rather than requeueing v6."
+  },
+  "attempts": [
+    {
+      "name": "task379_v7_attempt1_fp16_v3_rollback.onnx",
+      "description": "rollback to prior approved Equal+FP16+simplified candidate; removes v6 boundary/mask changes but keeps FP16 internals",
+      "path": "C:\\Users\\Qx\\.worktrees\\t_c8517b8a\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v7_attempt1_fp16_v3_rollback.onnx",
+      "disposition": "not_selected",
+      "rationale": "safer than v6 but still has fp16-contract-limited risk after public-negative stack",
+      "sha256": "9efea392fba7d9b11bbd304b676ae451341bb4fe7f020d035336be7b0bf663ab",
+      "cost": {
+        "path": "C:\\Users\\Qx\\.worktrees\\t_c8517b8a\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v7_attempt1_fp16_v3_rollback.onnx",
+        "macs": 12296,
+        "memory": 71271,
+        "params": 1729,
+        "cost": 73000,
+        "points": 13.8018,
+        "cascade_risk": false,
+        "ops": {
+          "Add": 3,
+          "Cast": 16,
+          "Concat": 1,
+          "Conv": 3,
+          "CumSum": 1,
+          "Equal": 4,
+          "Greater": 14,
+          "MaxPool": 2,
+          "Mul": 13,
+          "Pad": 1,
+          "ReduceMax": 2,
+          "ReduceSum": 9,
+          "Slice": 3,
+          "Sub": 9,
+          "Sum": 6,
+          "Where": 13
+        },
+        "error": null
+      },
+      "ops": {
+        "Cast": 16,
+        "Slice": 3,
+        "ReduceSum": 9,
+        "ReduceMax": 2,
+        "Sub": 9,
+        "Add": 3,
+        "Greater": 14,
+        "Where": 13,
+        "Equal": 4,
+        "Mul": 13,
+        "CumSum": 1,
+        "MaxPool": 2,
+        "Conv": 3,
+        "Sum": 6,
+        "Concat": 1,
+        "Pad": 1
+      },
+      "standard_parity": {
+        "cases": 266,
+        "mismatches_exact": 0,
+        "max_abs": 0.0,
+        "modes": {
+          "zeros": 1,
+          "sparse-binary": 89,
+          "inner-onehot": 88,
+          "onehot": 88
+        }
+      },
+      "extended_parity": {
+        "cases": 1200,
+        "mismatches_exact": 0,
+        "max_abs": 0.0,
+        "modes": {
+          "zeros": 1,
+          "onehot30": 300,
+          "inner-onehot20": 200,
+          "onehot": 200,
+          "ones": 299,
+          "sparse-binary": 200
+        }
+      }
+    },
+    {
+      "name": "task379_v7_attempt2_fp32_zero_channel_probe.onnx",
+      "description": "FP32 equal rewrite plus zero-channel replacement only",
+      "path": "C:\\Users\\Qx\\.worktrees\\t_c8517b8a\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v7_attempt2_fp32_zero_channel_probe.onnx",
+      "disposition": "not_selected",
+      "rationale": "zero-channel initializer is exact locally but trades memory for params and is not a useful hidden-safety successor",
+      "sha256": "e21f7b15e278e478f65cefcfd72ef1898e4901ec0f33b6cc5cdca07314769da3",
+      "cost": {
+        "path": "C:\\Users\\Qx\\.worktrees\\t_c8517b8a\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v7_attempt2_fp32_zero_channel_probe.onnx",
+        "macs": 42716,
+        "memory": 105053,
+        "params": 2129,
+        "cost": 107182,
+        "points": 13.4177,
+        "cascade_risk": false,
+        "ops": {
+          "Add": 3,
+          "Cast": 12,
+          "Concat": 1,
+          "Conv": 3,
+          "CumSum": 4,
+          "Equal": 4,
+          "Greater": 16,
+          "MaxPool": 2,
+          "Mul": 12,
+          "Pad": 1,
+          "ReduceMax": 2,
+          "ReduceSum": 9,
+          "Slice": 3,
+          "Sub": 9,
+          "Sum": 6,
+          "Where": 16
+        },
+        "error": null
+      },
+      "ops": {
+        "Slice": 3,
+        "ReduceSum": 9,
+        "ReduceMax": 2,
+        "Sub": 9,
+        "Add": 3,
+        "Greater": 16,
+        "Cast": 12,
+        "CumSum": 4,
+        "Where": 16,
+        "MaxPool": 2,
+        "Conv": 3,
+        "Sum": 6,
+        "Equal": 4,
+        "Mul": 12,
+        "Concat": 1,
+        "Pad": 1
+      },
+      "standard_parity": {
+        "cases": 266,
+        "mismatches_exact": 0,
+        "max_abs": 0.0,
+        "modes": {
+          "zeros": 1,
+          "sparse-binary": 89,
+          "inner-onehot": 88,
+          "onehot": 88
+        }
+      },
+      "extended_parity": {
+        "cases": 1200,
+        "mismatches_exact": 0,
+        "max_abs": 0.0,
+        "modes": {
+          "zeros": 1,
+          "onehot30": 300,
+          "inner-onehot20": 200,
+          "onehot": 200,
+          "ones": 299,
+          "sparse-binary": 200
+        }
+      }
+    },
+    {
+      "name": "task379_v7_attempt3_fp32_mask_union_probe.onnx",
+      "description": "FP32 equal rewrite plus final binary mask-union probe",
+      "path": "C:\\Users\\Qx\\.worktrees\\t_c8517b8a\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v7_attempt3_fp32_mask_union_probe.onnx",
+      "disposition": "not_selected",
+      "rationale": "reject for hidden safety because it preserves the v6 mask-union assumption under suspicion",
+      "sha256": "1f222cb103a069c4100fe7c9df82d4f96585b6a99b079a060335f598e598a23a",
+      "cost": {
+        "path": "C:\\Users\\Qx\\.worktrees\\t_c8517b8a\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v7_attempt3_fp32_mask_union_probe.onnx",
+        "macs": 41916,
+        "memory": 103853,
+        "params": 1729,
+        "cost": 105582,
+        "points": 13.4328,
+        "cascade_risk": false,
+        "ops": {
+          "Add": 3,
+          "Cast": 12,
+          "Concat": 1,
+          "Conv": 3,
+          "CumSum": 4,
+          "Equal": 4,
+          "Greater": 17,
+          "MaxPool": 2,
+          "Mul": 11,
+          "Pad": 1,
+          "ReduceMax": 2,
+          "ReduceSum": 9,
+          "Slice": 3,
+          "Sub": 7,
+          "Sum": 7,
+          "Where": 17
+        },
+        "error": null
+      },
+      "ops": {
+        "Slice": 3,
+        "ReduceSum": 9,
+        "ReduceMax": 2,
+        "Sub": 7,
+        "Add": 3,
+        "Greater": 17,
+        "Cast": 12,
+        "CumSum": 4,
+        "Where": 17,
+        "MaxPool": 2,
+        "Conv": 3,
+        "Sum": 7,
+        "Equal": 4,
+        "Mul": 11,
+        "Concat": 1,
+        "Pad": 1
+      },
+      "standard_parity": {
+        "cases": 266,
+        "mismatches_exact": 0,
+        "max_abs": 0.0,
+        "modes": {
+          "zeros": 1,
+          "sparse-binary": 89,
+          "inner-onehot": 88,
+          "onehot": 88
+        }
+      },
+      "extended_parity": {
+        "cases": 1200,
+        "mismatches_exact": 0,
+        "max_abs": 0.0,
+        "modes": {
+          "zeros": 1,
+          "onehot30": 300,
+          "inner-onehot20": 200,
+          "onehot": 200,
+          "ones": 299,
+          "sparse-binary": 200
+        }
+      }
+    },
+    {
+      "name": "task379_v7_repair_fp32_equal_only.onnx",
+      "description": "selected repair: strict FP32 Equal count rewrite only; no FP16, no boundary-cast sinking, no zero-channel replacement, no mask-union rewrite",
+      "path": "C:\\Users\\Qx\\.worktrees\\t_c8517b8a\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v7_repair_fp32_equal_only.onnx",
+      "disposition": "selected_hidden_safety_successor",
+      "rationale": "lowest-risk successor after v6 stack failure; small gain but proof-local and avoids v6 risk flags",
+      "sha256": "f35b8f4fe25c77137b79110c5083f28c3089dc16bab162de9349224cb50d6f1b",
+      "cost": {
+        "path": "C:\\Users\\Qx\\.worktrees\\t_c8517b8a\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v7_repair_fp32_equal_only.onnx",
+        "macs": 43116,
+        "memory": 106653,
+        "params": 1729,
+        "cost": 108382,
+        "points": 13.4066,
+        "cascade_risk": false,
+        "ops": {
+          "Add": 3,
+          "Cast": 12,
+          "Concat": 1,
+          "Conv": 3,
+          "CumSum": 4,
+          "Equal": 4,
+          "Greater": 16,
+          "MaxPool": 2,
+          "Mul": 13,
+          "Pad": 1,
+          "ReduceMax": 2,
+          "ReduceSum": 9,
+          "Slice": 3,
+          "Sub": 9,
+          "Sum": 6,
+          "Where": 16
+        },
+        "error": null
+      },
+      "ops": {
+        "Slice": 3,
+        "ReduceSum": 9,
+        "ReduceMax": 2,
+        "Sub": 9,
+        "Add": 3,
+        "Greater": 16,
+        "Cast": 12,
+        "CumSum": 4,
+        "Where": 16,
+        "MaxPool": 2,
+        "Conv": 3,
+        "Sum": 6,
+        "Equal": 4,
+        "Mul": 13,
+        "Concat": 1,
+        "Pad": 1
+      },
+      "standard_parity": {
+        "cases": 266,
+        "mismatches_exact": 0,
+        "max_abs": 0.0,
+        "modes": {
+          "zeros": 1,
+          "sparse-binary": 89,
+          "inner-onehot": 88,
+          "onehot": 88
+        }
+      },
+      "extended_parity": {
+        "cases": 1200,
+        "mismatches_exact": 0,
+        "max_abs": 0.0,
+        "modes": {
+          "zeros": 1,
+          "onehot30": 300,
+          "inner-onehot20": 200,
+          "onehot": 200,
+          "ones": 299,
+          "sparse-binary": 200
+        }
+      }
+    }
+  ],
+  "selected_candidate": {
+    "name": "task379_v7_repair_fp32_equal_only.onnx",
+    "description": "selected repair: strict FP32 Equal count rewrite only; no FP16, no boundary-cast sinking, no zero-channel replacement, no mask-union rewrite",
+    "path": "C:\\Users\\Qx\\.worktrees\\t_c8517b8a\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v7_repair_fp32_equal_only.onnx",
+    "disposition": "selected_hidden_safety_successor",
+    "rationale": "lowest-risk successor after v6 stack failure; small gain but proof-local and avoids v6 risk flags",
+    "sha256": "f35b8f4fe25c77137b79110c5083f28c3089dc16bab162de9349224cb50d6f1b",
+    "cost": {
+      "path": "C:\\Users\\Qx\\.worktrees\\t_c8517b8a\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v7_repair_fp32_equal_only.onnx",
+      "macs": 43116,
+      "memory": 106653,
+      "params": 1729,
+      "cost": 108382,
+      "points": 13.4066,
+      "cascade_risk": false,
+      "ops": {
+        "Add": 3,
+        "Cast": 12,
+        "Concat": 1,
+        "Conv": 3,
+        "CumSum": 4,
+        "Equal": 4,
+        "Greater": 16,
+        "MaxPool": 2,
+        "Mul": 13,
+        "Pad": 1,
+        "ReduceMax": 2,
+        "ReduceSum": 9,
+        "Slice": 3,
+        "Sub": 9,
+        "Sum": 6,
+        "Where": 16
+      },
+      "error": null
+    },
+    "ops": {
+      "Slice": 3,
+      "ReduceSum": 9,
+      "ReduceMax": 2,
+      "Sub": 9,
+      "Add": 3,
+      "Greater": 16,
+      "Cast": 12,
+      "CumSum": 4,
+      "Where": 16,
+      "MaxPool": 2,
+      "Conv": 3,
+      "Sum": 6,
+      "Equal": 4,
+      "Mul": 13,
+      "Concat": 1,
+      "Pad": 1
+    },
+    "standard_parity": {
+      "cases": 266,
+      "mismatches_exact": 0,
+      "max_abs": 0.0,
+      "modes": {
+        "zeros": 1,
+        "sparse-binary": 89,
+        "inner-onehot": 88,
+        "onehot": 88
+      }
+    },
+    "extended_parity": {
+      "cases": 1200,
+      "mismatches_exact": 0,
+      "max_abs": 0.0,
+      "modes": {
+        "zeros": 1,
+        "onehot30": 300,
+        "inner-onehot20": 200,
+        "onehot": 200,
+        "ones": 299,
+        "sparse-binary": 200
+      }
+    }
+  },
+  "risk_decision": {
+    "do_not_requeue": "task379_v6_boundary_cast_zero_maskmerge_t_f6977ded",
+    "selected_candidate_id": "task379_v7_repair_fp32_equal_only_t_c8517b8a",
+    "removed_risk_flags": [
+      "boundary-cast-sunk",
+      "fp16-contract-limited",
+      "zero-channel-mask-union"
+    ],
+    "remaining_risk_flags": [
+      "current-live-single-entry-delta",
+      "single-task candidate",
+      "submit-captain-merge-required-onto-current-best",
+      "tiny-gain-hidden-safety-repair"
+    ]
+  },
+  "handoff_artifacts": {
+    "delta_packet": "C:\\Users\\Qx\\.worktrees\\t_c8517b8a\\The_400_Tasks\\Task_by_Task\\task379\\evidence\\task379_v7_repair_fp32_equal_only_delta_packet.zip",
+    "delta_packet_sha256": "3667139e5ebc2efcaf90a961ce3fc95759e44fa94d9fab05d66e1cf9e91334fc",
+    "local_submission_zip": "C:\\Users\\Qx\\.worktrees\\t_c8517b8a\\The_400_Tasks\\Task_by_Task\\task379\\evidence\\task379_v7_repair_fp32_equal_only_local_submission.zip",
+    "local_submission_sha256": "0662221dddfa6a2c50565e3ae96dba2e44ab3941979eb8c23e0f8cbbc31127c8",
+    "delta_audit": {
+      "path": "C:\\Users\\Qx\\.worktrees\\t_c8517b8a\\The_400_Tasks\\Task_by_Task\\task379\\evidence\\task379_v7_repair_fp32_equal_only_delta_packet.zip",
+      "entries": 3,
+      "member_sha256": "f35b8f4fe25c77137b79110c5083f28c3089dc16bab162de9349224cb50d6f1b",
+      "member_size": 15175
+    },
+    "local_submission_audit": {
+      "path": "C:\\Users\\Qx\\.worktrees\\t_c8517b8a\\The_400_Tasks\\Task_by_Task\\task379\\evidence\\task379_v7_repair_fp32_equal_only_local_submission.zip",
+      "entries": 401,
+      "member_sha256": "f35b8f4fe25c77137b79110c5083f28c3089dc16bab162de9349224cb50d6f1b",
+      "member_size": 15175
+    },
+    "worktree_bundle_dir": "C:\\Users\\Qx\\.worktrees\\t_c8517b8a\\.hermes\\board\\staged_submits\\task379_v7_repair_fp32_equal_only_t_c8517b8a"
+  },
+  "preflight": {
+    "schema": "neurogolf.worker_preflight.v1",
+    "verdict": "ALLOW",
+    "ok_to_create_worker_card": true,
+    "task_id": "task379",
+    "assignee": "neurogolf-worker-2",
+    "method_family": "failed-stack repair hidden-safety fp32 equal-only rollback",
+    "lineage_base_candidate_id": "task013_v_w8a_live_fp16_t_bef1622d_on_5754_88_20260518T0447Z",
+    "new_evidence": "v6 returned after public-negative stack; v7 removes fp16 boundary-cast zero-maskmerge risk surfaces and keeps only strict fp32 Equal count rewrite",
+    "deny_reasons": [],
+    "warnings": [],
+    "same_task_active_cards": [],
+    "assignee_active_cards": [],
+    "assignee_parked_cards": [],
+    "chain_guard": {
+      "ok": true,
+      "status": "ok",
+      "stage": "worker",
+      "chain_key": "target:task379:neurogolf-worker-2:task013_v_w8a_live_fp16_t_bef1622d_on_5754_88_20260518T0447Z",
+      "chain_keys": {
+        "worker": "target:task379:neurogolf-worker-2:task013_v_w8a_live_fp16_t_bef1622d_on_5754_88_20260518T0447Z",
+        "review": "review:",
+        "worthiness": "worthiness:",
+        "submit": "submit:"
+      },
+      "live_chain_matches": [],
+      "live_target_claim": null,
+      "warnings": [],
+      "result": {
+        "status": "ok",
+        "stage": "worker",
+        "chain_key": "target:task379:neurogolf-worker-2:task013_v_w8a_live_fp16_t_bef1622d_on_5754_88_20260518T0447Z",
+        "warning_count": 0
+      }
+    },
+    "task_outcome": {
+      "status": "clear",
+      "severity": "allow",
+      "record": null,
+      "messages": []
+    },
+    "task_doc": {
+      "path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task_by_Task\\task379.md",
+      "exists": true,
+      "warnings": []
+    },
+    "required_card_footer": [
+      "preflight_verdict: ALLOW",
+      "preflight_task_id: task379",
+      "preflight_assignee: neurogolf-worker-2",
+      "preflight_method_family: failed-stack repair hidden-safety fp32 equal-only rollback",
+      "preflight_lineage_base: task013_v_w8a_live_fp16_t_bef1622d_on_5754_88_20260518T0447Z",
+      "preflight_chain_key: target:task379:neurogolf-worker-2:task013_v_w8a_live_fp16_t_bef1622d_on_5754_88_20260518T0447Z",
+      "preflight_outcome_status: clear",
+      "preflight_sources: hermes kanban list --json, .hermes/board/state.json, .hermes/board/candidate_registry.json, .hermes/board/submit_queue.json, .hermes/board/task_outcome_registry.json, C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task_by_Task\\task379.md",
+      "preflight_new_evidence: v6 returned after public-negative stack; v7 removes fp16 boundary-cast zero-maskmerge risk surfaces and keeps only strict fp32 Equal count rewrite"
+    ]
+  },
+  "tests_run": [
+    "python The_400_Tasks/Task_by_Task/task379/prototypes/task379_repair_after_failed_stack.py",
+    "python tools/cost_predictor.py The_400_Tasks/Task_by_Task/task379/prototypes/task379_v7_repair_fp32_equal_only.onnx --json",
+    "onnx.checker.check_model on selected v7 candidate",
+    "standard ORT parity vs canonical current task379: 266/266 exact",
+    "extended ORT parity vs canonical current task379: 1200/1200 exact (zeros/ones/onehot30/inner-onehot20/sparse-binary)",
+    "zip audit: delta packet 3 entries with task379.onnx SHA matching selected candidate",
+    "zip audit: local submission 401 entries with task379.onnx SHA matching selected candidate",
+    "python tools/neurogolf_preflight.py ... => ALLOW"
+  ]
+}

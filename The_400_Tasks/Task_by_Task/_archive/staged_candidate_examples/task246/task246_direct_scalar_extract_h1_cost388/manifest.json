@@ -1,0 +1,40 @@
+{
+  "task": 246,
+  "version": "direct_scalar_extract_h1",
+  "worker": "bo_ng_worker1",
+  "date": "2026-07-06",
+  "candidate": "The_400_Tasks/Task_by_Task/task246/staged_candidates/task246_direct_scalar_extract_h1_cost388/task246.onnx",
+  "builder": "The_400_Tasks/Task_by_Task/task246/prototypes/build_task246_direct_scalar_extract.py",
+  "scratch_plan": "The_400_Tasks/Task_by_Task/task246/prototypes/bo_ng_worker1_scratch_plan.md",
+  "sha256": "9711D5B1845E7F8DE48960563D9B7EDE1CCAF33D8F3FF3240F47FD16D9F180A2",
+  "static_cost": 388,
+  "profile_cost": 388,
+  "memory": 212,
+  "params": 176,
+  "current_team_best": {
+    "cost": 403,
+    "profile_cost": 403,
+    "sha256": "c2bba3001ae4f789d5b92bffb0ef10fed4859b73892793d05431d235eaa1bd17",
+    "owner": "Vamshi",
+    "source": "python tools/ng_current_bar.py --task 246 --json; authoritative_source=manifest; updated_utc=2026-07-02T02:35:15Z"
+  },
+  "cost_delta_vs_live": -15,
+  "named_cost_delta": "ng_graph_cost_diff: live 403 (memory 228 + params 175) -> candidate 388 (memory 212 + params 176); delta memory -16, params +1, cost -15. Removed charged memory tensors row_pair [1,2] and col_pair [1,2]; replaced coord_map+h1_w with pick2/pick3/h1_pick selectors.",
+  "gates": {
+    "score_v2": "python -c \"from tools._score_v2 import score_network_v2; p=r'The_400_Tasks/Task_by_Task/task246/prototypes/task246_direct_scalar_extract_h1.onnx'; r=score_network_v2(p); print(r, None if r is None else r[1]+r[2])\" -> (0, 212, 176) 388",
+    "profile_real_cost": "python tools/agent_helpers/profile_real_cost.py --task 246 --cand The_400_Tasks/Task_by_Task/task246/prototypes/task246_direct_scalar_extract_h1.onnx --arcgen 266 -> task246 task246_direct_scalar_extract_h1.onnx: static=388 profile=388 (memory 212 + params 176; 266 real inputs)",
+    "visible": "python tools/ng_gate.py visible --task 246 --cand The_400_Tasks/Task_by_Task/task246/prototypes/task246_direct_scalar_extract_h1.onnx -> [visible] 266/266 (100.00%)  PASS",
+    "truth_n5000": "python tools/ng_gate.py truth --task 246 --cand The_400_Tasks/Task_by_Task/task246/prototypes/task246_direct_scalar_extract_h1.onnx --n 5000 -> [truth] vs ARC-GEN ground truth: 5000/5000 (100.000%)",
+    "ab_n5000": "python tools/ng_gate.py ab --task 246 --cand The_400_Tasks/Task_by_Task/task246/prototypes/task246_direct_scalar_extract_h1.onnx --n 5000 -> [ab] vs submission.zip: match 5266/5266 | divergences=0 | byte_equal=True (first_div=None)",
+    "battery_default": "python tools/ng_gate.py battery --task 246 --cand The_400_Tasks/Task_by_Task/task246/prototypes/task246_direct_scalar_extract_h1.onnx -> === battery task246: PASS ===; visible 266/266 PASS; truth 2000/2000; ab match 2266/2266 byte_equal=True; score cost=388 (mem 212+par 176)",
+    "truth_full_attempt": "python tools/ng_gate.py truth --task 246 --cand The_400_Tasks/Task_by_Task/task246/prototypes/task246_direct_scalar_extract_h1.onnx --full -> command timeout after 7204043 ms with no result; task246 process PID 39588 was still alive and was stopped. Shared throttle status immediately after showed heavy slot occupied by t114, so full truth remains reviewer-pending.",
+    "ab_full": "not run because truth --full did not complete under the shared heavy-gate slot"
+  },
+  "graph_cost_diff_command": "python tools/ng_graph_cost_diff.py --task 246 --live Team_Best_Onnx/task246.onnx --candidate The_400_Tasks/Task_by_Task/task246/prototypes/task246_direct_scalar_extract_h1.onnx --top 40",
+  "description": "Live 403 extracts color-2/color-3 row and column pairs as two [1,2] tensors, then splits them. This candidate extracts rr, rg, cr, cg directly as scalar [1,1] Einsum outputs and computes the h1 column linear coefficient directly as a fifth scalar extraction. It deletes row_pair and col_pair from charged memory, removes Split and MatMul, and keeps the same final factored polynomial renderer.",
+  "tried_and_failed": [
+    "task246_direct_scalar_extract.onnx scored 395/profile 395 and passed visible/profile. It was superseded before long gates by direct h1 extraction, which scored 388.",
+    "truth --n 20000 and ab --n 20000 were first launched together and timed out after 304101 ms/304109 ms; both escaped as task246 processes and were stopped. Later one-at-a-time n=5000 gates passed."
+  ],
+  "remaining_hypothesis": "Further savings likely require deleting one of the four [2,3] assembled factor stacks or replacing the constant row in basis/poly_one without adding a charged full-output branch. The packed-U8/arity-3 bitwise route is no longer competitive with this polynomial live graph unless it can beat 388 profile cost, not the stale 1337 bitwise rung."
+}

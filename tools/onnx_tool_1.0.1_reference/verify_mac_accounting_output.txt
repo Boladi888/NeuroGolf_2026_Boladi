@@ -1,0 +1,17 @@
+Identity (baseline)                       macs=         0  params=         0  memory=     36000
+Mul (input * scalar)                      macs=      9000  params=         1  memory=     36004
+Add (input + scalar)                      macs=      9000  params=         1  memory=     36004
+Sub (input - scalar)                      macs=      9000  params=         1  memory=     36004
+Mod fmod=1 (input % scalar)               macs=      9000  params=         1  memory=     36004
+Cast (float32 -> int8)                    macs=         0  params=         0  memory=      9000
+Greater (input > scalar)                  macs=      9000  params=         1  memory=      9004
+Equal (input == scalar)                   macs=      9000  params=         1  memory=      9004
+Greater + Where pipeline                  macs=      9000  params=     18001  memory=    117004
+Where only (with bool init)               macs=         0  params=     18000  memory=     81000
+Hardmax (axis=1)                          macs=      9000  params=         0  memory=     36000
+ArgMax (axis=1, no keepdim)               macs=         0  params=         0  memory=      7200
+ArgMax + OneHot pipeline                  macs=         0  params=         2  memory=     43208
+Gather (color-perm via axis=1)            macs=         0  params=        10  memory=     36080
+TopK (k=3, axis=1)                        macs=         0  params=         1  memory=     32408
+ReduceSum (spatial axes)                  macs=      9000  params=         2  memory=        56
+Conv 1x1 (10->10 channel)                 macs=     99000  params=       110  memory=     36440

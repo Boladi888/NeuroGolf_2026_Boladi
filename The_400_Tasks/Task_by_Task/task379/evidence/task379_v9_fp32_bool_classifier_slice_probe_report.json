@@ -1,0 +1,147 @@
+{
+  "schema": "neurogolf.task379.fp32_bool_classifier_slice_probe.v1",
+  "kanban_task": "t_9eb9c898",
+  "baseline": {
+    "path": "submissions/submission.zip::task379.onnx",
+    "cost": {
+      "path": "submissions/submission.zip::task379.onnx",
+      "macs": 43124,
+      "memory": 106685,
+      "params": 1729,
+      "cost": 108414,
+      "points": 13.4063,
+      "cascade_risk": false,
+      "ops": {
+        "Add": 3,
+        "Cast": 12,
+        "Concat": 1,
+        "Conv": 3,
+        "CumSum": 4,
+        "Greater": 16,
+        "Less": 4,
+        "MaxPool": 2,
+        "Mul": 17,
+        "Pad": 1,
+        "ReduceMax": 2,
+        "ReduceSum": 9,
+        "Slice": 3,
+        "Sub": 13,
+        "Sum": 6,
+        "Where": 16
+      },
+      "error": null
+    },
+    "ops": {
+      "Slice": 3,
+      "ReduceSum": 9,
+      "ReduceMax": 2,
+      "Sub": 13,
+      "Add": 3,
+      "Greater": 16,
+      "Cast": 12,
+      "CumSum": 4,
+      "Where": 16,
+      "MaxPool": 2,
+      "Conv": 3,
+      "Sum": 6,
+      "Mul": 17,
+      "Less": 4,
+      "Concat": 1,
+      "Pad": 1
+    }
+  },
+  "candidate": {
+    "path": "C:\\Users\\Qx\\.worktrees\\t_9eb9c898\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v9_fp32_bool_classifier_slice.onnx",
+    "sha256": "b0cf6c980233377937ddc055735eae43dcefe27222bbcc677c9660a363e7305f",
+    "cost": {
+      "path": "C:\\Users\\Qx\\.worktrees\\t_9eb9c898\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v9_fp32_bool_classifier_slice.onnx",
+      "macs": 43031,
+      "memory": 106271,
+      "params": 1655,
+      "cost": 107926,
+      "points": 13.4108,
+      "cascade_risk": false,
+      "ops": {
+        "Add": 2,
+        "And": 6,
+        "Cast": 6,
+        "Concat": 1,
+        "Conv": 3,
+        "CumSum": 4,
+        "Equal": 4,
+        "Greater": 11,
+        "MaxPool": 2,
+        "Mul": 7,
+        "Or": 1,
+        "Pad": 1,
+        "ReduceMax": 2,
+        "ReduceSum": 5,
+        "Slice": 7,
+        "Sub": 9,
+        "Sum": 6,
+        "Where": 12
+      },
+      "error": null
+    },
+    "ops": {
+      "Slice": 7,
+      "ReduceSum": 5,
+      "ReduceMax": 2,
+      "Sub": 9,
+      "Add": 2,
+      "Greater": 11,
+      "Cast": 6,
+      "CumSum": 4,
+      "Where": 12,
+      "MaxPool": 2,
+      "Conv": 3,
+      "Sum": 6,
+      "Equal": 4,
+      "And": 6,
+      "Or": 1,
+      "Mul": 7,
+      "Concat": 1,
+      "Pad": 1
+    }
+  },
+  "rewrite": "v8 plus boolean classifier combination: keep row/col Equal and marker Slice outputs as bool, combine with And/Or, Cast only final branch masks v125/v128 to FP32; avoids FP16, zero-channel replacement, mask-union, boundary-cast sinking.",
+  "standard_parity": {
+    "cases": 266,
+    "mismatches_exact": 0,
+    "max_abs": 0.0,
+    "modes": {
+      "zeros": 1,
+      "sparse-binary": 89,
+      "dense-fp32": 88,
+      "onehot": 88
+    }
+  },
+  "extended_parity": {
+    "cases": 2000,
+    "mismatches_exact": 0,
+    "max_abs": 0.0,
+    "modes": {
+      "zeros": 1,
+      "onehot30": 400,
+      "inner-onehot20": 400,
+      "onehot": 267,
+      "sparse-binary": 267,
+      "ones": 399,
+      "dense-fp32": 266
+    }
+  },
+  "package_audit": {
+    "package": "C:\\Users\\Qx\\.worktrees\\t_9eb9c898\\The_400_Tasks\\Task_by_Task\\task379\\evidence\\task379_v9_fp32_bool_classifier_slice_local_submission.zip",
+    "package_sha256": "84de59301560ffc6bfdb80a7006d60e76ada0e8a2fbedcb3c4f8f7802304572e",
+    "changed_entries": [
+      {
+        "filename": "task379.onnx",
+        "old_sha256": "ae5e0d30e44c560fc97deedf95e710bdefd28584ada458020921e04e4395090b",
+        "new_sha256": "b0cf6c980233377937ddc055735eae43dcefe27222bbcc677c9660a363e7305f",
+        "old_size": 15567,
+        "new_size": 14442
+      }
+    ],
+    "entries": 401
+  }
+}

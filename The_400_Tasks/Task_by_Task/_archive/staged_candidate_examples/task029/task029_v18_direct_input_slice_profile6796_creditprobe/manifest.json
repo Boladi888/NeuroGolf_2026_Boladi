@@ -1,0 +1,41 @@
+{
+  "task": 29,
+  "candidate": "task029.onnx",
+  "description": "v18 keeps the LIVE-equivalent selector and dummy guard, then slices the original one-hot input directly and uses a final F32 Pad named output; this removes the color-index canvas and final Equal tail",
+  "builder": "The_400_Tasks/Task_by_Task/task029/prototypes/build_task029_v18_direct_input_slice_pad.py",
+  "parent": "The_400_Tasks/Task_by_Task/task029/prototypes/build_task029_v17_slice_then_cast_guard.py",
+  "cost": 3636,
+  "score_v2": {
+    "memory": 3609,
+    "params": 27,
+    "macs": 0
+  },
+  "profile_cost": 6796,
+  "profile": {
+    "memory": 6769,
+    "params": 27,
+    "real_inputs": 4,
+    "result": "static=3636 profile=6796",
+    "warning": "profile exceeds static by >5%; credit-probe class, not exact ship"
+  },
+  "credit_probe": true,
+  "sha256": "34EC1BCFDB92F77D75A9308FFE2E981BE9C83472E8F286FA87C4D7AFEA2D127C",
+  "gates": {
+    "visible": "PASS 266/266 (100.00%)",
+    "ab_full": "PASS byte_equal=True, match 200266/200266, divergences=0",
+    "truth_full": "LIVE-MATCHED LIMIT 199813/200000 (99.9065%), first_fail_idx=1420; v10 baseline has the same count",
+    "profile_real_cost": "CREDIT-PROBE static=3636 profile=6796 (>5% gap)"
+  },
+  "baseline": {
+    "live_v10_cost": 14545,
+    "safe_sibling_v17_score_v2": 8086,
+    "safe_sibling_v17_profile": 8481,
+    "cost_delta_vs_v10_profile": -7749
+  },
+  "notes": [
+    "This is the profile-best rung but must be treated as a credit-probe because dynamic Slice makes score_v2 fiction; use profile_cost=6796 for cost accounting.",
+    "v17 is staged beside this as the safer sibling: score_v2=8086, profile=8481, full A/B byte-equal.",
+    "F32 one-hot output is accepted by visible and full A/B gates.",
+    "Captain ships - do NOT submit."
+  ]
+}

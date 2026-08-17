@@ -1,0 +1,7 @@
+# DEAD ROUTE - Trilu Dynamic Diagonal Price Gate
+
+- Live bar used: 949, SHA `0e3bee2d1bfdfa2bb7bf08155cb86a1df8334b1ecf2dc5bf19e7e27ff6877742`, source `python tools/ng_current_bar.py --task 136 --json` (`authoritative_source=manifest`, owner Sho, updated `2026-07-09T01:09:17Z`).
+- Attempted route: build the prompt's `Trilu(ConstantOfShape(ones), dynamic_k)` triangular mask and combine it into the color-1 NW / color-2 SE diagonal rays.
+- Exact failed gate: price gate before ONNX build. A single `Trilu` gives a half-plane, not the one-cell diagonal ray. Exact dynamic diagonal isolation needs at least two full `BOOL[10,10]` triangle masks per color plus a combine (`And`/difference) before row/block gating: `4*100B + 2*100B` just for diagonal masks/combines, then row gates, block masks, and final color tail. This is already worse than the live packed-byte diagonal family's charged diagonal/render core (`v_t17` 80B + two gather/where byte lanes + BitwiseAnd/Concat) and cannot beat 949.
+- Why dead: task136 needs a dynamic diagonal/ray selected by block coordinates, not a static triangular region. Trilu's generated mask is full-plane and BOOL-only; converting it into the existing packed UINT8 ConvInteger renderer would add casts/unpack planes rather than deleting them.
+- One remaining hypothesis: only a final op that consumes a dynamic `Trilu` half-plane directly as a free output, without materializing a charged 10x10 diagonal or color tail, could revive this family; no such legal ORT/NeuroGolf op is known here.

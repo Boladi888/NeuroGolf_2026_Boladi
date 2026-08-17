@@ -1,0 +1,178 @@
+# Minimal blacklist .gitignore - shared-collaborator pattern.
+# Per .ai_instructions/00_START_HERE_README_AI.md and .ai_instructions/02_GIT.md.
+#
+# This repo is a small private collaboration. Most project artifacts are tracked
+# by default so collaborators see source, instructions, research, scoring logs,
+# and coordination indexes.
+# Only excluded: per-machine environments, secrets, agent-local storage, and
+# heavyweight/regenerable competition data and model payloads.
+#
+# This .gitignore is itself tracked (collaborator clones get the same view).
+
+# --- Python virtual environments + local tool caches (per-machine, large) ---
+.venv*/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+
+# --- IDE / editor / OS junk (per-machine) ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# --- Secrets / credentials (security - never commit) ---
+.env
+.env.*
+!.env.example
+.kaggle/
+kaggle.json
+*.token
+*.key
+*.pem
+credentials.json
+secrets.json
+
+# --- Agent-local storage ---
+.claude/
+MEMORY.md
+memory/
+
+# --- Agenters run transcripts (regenerable/noisy; keep prompts, finals, ledgers) ---
+Agenters/Orchestrator/runs/**/*.jsonl
+Agenters/Orchestrator/runs/**/*.err
+Agenters/Orchestrator/runs/**/*.txt
+Agenters/Orchestrator/runs/**/*.json
+# .csv slipped past this list once and tracked a 402-row per-teammate attribution
+# table (task -> creator -> cost -> points). Run output is scratch; keep it all out.
+Agenters/Orchestrator/runs/**/*.csv
+!Agenters/Orchestrator/runs/_template/*.csv
+!Agenters/Orchestrator/runs/beta_p8c_claude_cli/*.csv
+
+# --- Agenters transient queue state (inboxes/probes/acks; regenerable, keep the dir READMEs) ---
+Agenters/Submit_Captain/Updates_*/*
+!Agenters/Submit_Captain/Updates_*/README.md
+Agenters/Submit_Captain/_probe/*
+!Agenters/Submit_Captain/_probe/README.md
+Agenters/Librarian/Updates_*/*
+!Agenters/Librarian/Updates_*/README.md
+
+# --- Hermes/Codex board scratch (local runtime state, never shared) ---
+.hermes/
+_hermes_archive/
+# Never commit ad-hoc *.bak_t_* snapshots; rely on git history instead.
+*.bak_t_*
+*.bak
+
+# --- staged_submits/ retired inbox; active candidates are task-local ---
+staged_submits/**
+!staged_submits/
+!staged_submits/README.md
+
+# --- Large/regenerable Kaggle source data ---
+data/
+
+# --- GUI duplicated task payloads (regenerate from data/competitions/neurogolf-2026) ---
+GUI/client/public/tasks/task*.json
+!GUI/client/public/tasks/README.md
+
+# --- Regenerable runtime/profiler output ---
+local_profiler/
+onnxruntime_profile*.json
+
+# --- Archived pilot artifacts (large, reference-only) ---
+# Historical root scratch; no current root junction. If recreated locally, keep
+# it out of git (see WHERE_DATA_LIVES.md).
+BatchPilotArchive/
+
+# --- Generated model payloads ---
+# submissions/ is a real in-repo directory. Keep generated per-task ONNXs out of
+# git while preserving the shared upload payloads and breadcrumb docs.
+*.onnx
+submissions/**
+!submissions/
+# Live upload payloads are small (~1 MB each) and shared with collaborators:
+!submissions/submission.zip
+!submissions/blend.zip
+!submissions/current_best_manifest.json
+# Breadcrumb README for the junctioned submissions/ dir:
+!submissions/README.md
+
+# --- Vendored skills (per-machine, never committed) ---
+# Handoff/skills/handoff-workflows/ was a Windows directory junction to the sibling
+# Boladi_Skillz HandOffz skill (see WHERE_DATA_LIVES.md); the 2026-07 archive pass
+# materialized it into real files. Either way it stays out of git — a vendored copy
+# would drift from the skills library.
+Handoff/skills/handoff-workflows/
+# Breadcrumb README for the vendored skills/ dir:
+!Handoff/skills/README.md
+
+# --- Session scratch ---
+git_updates.md
+work/
+tmp/
+repo/
+# Local-only heavyweight payload (venv, Kaggle data, submission archives, orchestrator
+# state) lives at .notongit/NeuroGolf_nogit/ inside the repo — 3.4 GB, never committed.
+.notongit/
+handoff_request.json
+Logs/*.out.log
+# Ad-hoc mining/probe scratch — promote analytical CSV/MD summaries to tracked Logs/ at session end.
+Logs/scratch/
+
+# --- Regenerable prototype scratch (large binary caches + per-seed verification dumps) ---
+# Synth-context / oracle caches (.npz up to ~19 MB each) and pickled arrays — regenerable from build scripts.
+*.npz
+*.pkl
+# Per-seed synthetic-gate / verification result dumps under prototypes/ (hundreds of files, regenerable).
+**/prototypes/*_synthetic_gate_*.json
+**/prototypes/*_gate_results.json
+**/prototypes/*_adversarial*.json
+# Debug visualizations + console result dumps under prototypes/ (regenerable scratch).
+**/prototypes/*.html
+**/prototypes/*.png
+**/prototypes/*_result.txt
+
+# --- Local Hermes / Codex worktrees ---
+.worktrees/
+
+# --- runs.jsonl archives ---
+*.archive
+# Python cache
+__pycache__/
+*.py[cod]
+
+# --- ARC-GEN ground-truth generator (independent oracle; 61MB vendored, not tracked) ---
+/external/ARC-GEN/
+
+# worker scratch dumps in prototype dirs
+**/prototypes/*.out
+**/prototypes/bd_*
+
+# --- HandOff local workspace ---
+# Keep shareable docs/exports under Handoff/, but never commit secrets,
+# runtime logs, raw API captures, or private scratch.
+Handoff/private/
+Handoff/tmp/
+Handoff/logs/
+Handoff/export/private/
+Handoff/Research/*_Packet_*.zip
+Handoff/Research/*_Packet_*_Manifest.csv
+Handoff/Research/*_Packet_*_Build_Report.md
+Handoff/Research/*_Packet_README_*.md
+Handoff/**/*.secret.*
+Handoff/**/*token*
+Handoff/**/*key*
+
+# --- Team-local handoff/package artifacts ---
+# The public archive keeps the canonical upload payload under submissions/.
+Team/
+
+# Generated by tools/repo_lint.py on every run (was tracked; dropped 2026-07-15 as a generated artifact)
+Logs/lint_last.md

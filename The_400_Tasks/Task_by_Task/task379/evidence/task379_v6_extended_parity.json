@@ -1,0 +1,21 @@
+{
+  "candidate": "The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v6_boundary_cast_zero_maskmerge.onnx",
+  "baseline": "work\\task379_extract\\submission_task379.onnx",
+  "cases": 1200,
+  "mismatches_exact_total": 0,
+  "mismatches_by_mode": {},
+  "max_abs_by_mode": {
+    "zeros": 0.0,
+    "inner-onehot20": 0.0,
+    "sparse-binary": 0.0,
+    "ones": 0.0,
+    "onehot30": 0.0
+  },
+  "modes": {
+    "zeros": 1,
+    "inner-onehot20": 300,
+    "sparse-binary": 300,
+    "ones": 300,
+    "onehot30": 299
+  }
+}

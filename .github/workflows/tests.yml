@@ -1,0 +1,81 @@
+name: tests
+
+# Runs the data-free portion of the suite on a bare checkout: 615 tests across 30
+# of the 37 modules. The other seven import `neurogolf_utils`, which ships inside
+# the Kaggle competition dataset and is not vendored here; tests/conftest.py detects
+# its absence and skips exactly those modules. With the dataset present all 37 run,
+# for 1247 tests.
+#
+# Two tests that deliberately kill a process tree are opt-in behind
+# NEUROGOLF_TEST_KILLJOB=1 and stay off here - a kill-on-job-close JobObject inside
+# a runner reaps the test process itself.
+#
+# Windows because that is the environment the toolchain was built and verified on.
+
+on:
+  push:
+    branches: [master, public-release, main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  pytest:
+    runs-on: windows-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+          cache: pip
+
+      - name: Install pinned dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      # bash, not the pwsh default: GitHub's pwsh wrapper sets $ErrorActionPreference
+      # to 'stop', and PowerShell 7.4 turns a native command's stderr output into a
+      # terminating error. pytest exits 0 and writes a warning to stderr, which was
+      # enough to fail the step while the summary read "612 passed, 0 failed".
+      - name: Run test suite (data-free modules)
+        shell: bash
+        run: python -m pytest tests -q
+
+  gui:
+    runs-on: windows-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+          cache: pip
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: GUI/client/package-lock.json
+
+      - name: Install GUI backend dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r GUI/requirements.txt
+          pip install pytest httpx
+
+      - name: Run GUI backend tests
+        shell: bash
+        run: python -m pytest GUI/tests -q
+
+      - name: Build GUI frontend
+        working-directory: GUI/client
+        run: |
+          npm ci
+          npm run build

@@ -1,0 +1,20 @@
+# Transferable insight — on code-plane "relative-marker/coordinate-algebra" graphs, the dihedral-transform coordinate stack is often left in FLOAT16 but only ever holds small integers; narrow it F16→INT8 (+ Div/Mod indices INT64→INT32) for a free byte-equal shave
+
+**Source**: task076 (`bo_ng_cld_worker3`, 2026-07-11). Audited LIVE **12,539** (Sho,
+`task076_relative_marker_copy`, sha `ec95ba95…`, ambiguous class: LIVE truth 1961/2000=98.05% → byte-equal-to-LIVE is the gold gate). This is a **WIN** (staged 12,030, −509, byte-equal 2266/2266), not a drop. Same graph family as `DONE_...task076 u8_board_patch` (which narrowed the *carriers* F16→U8 but explicitly "left coordinate arithmetic unchanged") — this packet closes that gap.
+
+## The pattern (where the free bytes hide)
+Sho-style graphs encode the board as ONE UINT8 color-code plane and do all logic on it, but the **dihedral-transform coordinate algebra** — the `row/col = Div/Mod(topk_idx,15)` extraction, the per-transform `dr,dc,-dr,-dc` Concat stacks `[T, K]`, the `+64` U8-shift, and the selected-stamp `Clip/×15/Add` chain — is frequently written in **FLOAT16**. But every one of those tensors carries only **integers in [-14, 28]** (grid indices, their pairwise differences, negations, and clamped stamp coords). F16 represents every integer up to 2048 exactly, so **INT8 gives byte-identical results** for Add/Sub/Neg/Clip/Concat/Gather. Narrowing halves each: `[7,6]` stack 84→42, `[7,5]` 70→35, `[3,5]` selected 30→15, etc.
+
+Two independent layers, both byte-equal, verified by AB (`match 2266/2266 divergences=0`):
+1. **F16→INT8 coords**: flip the 6 `Cast(INT64→F16)` `*_abs` casts to `→INT8`; swap the F16 consts `zero_f/fourteen_f/geom_b(=64)` for INT8 equivalents; the Sub/Concat/Clip/Gather/Unsqueeze chain then runs INT8 (ORT has INT8 kernels for all of these at opset 14+, incl. **Clip INT8** — verified `[-14,30]→[0,14]`). Where a boundary casts INT8→U8 (`+64` shift) or INT8→INT32 (Gather index), leave the cast — it stays value-exact.
+2. **INT64→INT32 Div/Mod indices**: the `row=Div(idx,15)`, `col=Mod(idx,15)` outputs are INT64 but indices are 0..224; cast each TopK index INT64→INT32 once and Div/Mod in INT32 (need an INT32 `15` const). Halves each `[K]` index tensor.
+
+## The gotcha that bites (INT8 ×N overflow)
+The flat stamp index is `row_clip × 15 + col_clip`. `row_clip ∈ [0,14]`, so `×15 = up to 210 > INT8 max 127` → **INT8 Mul silently wraps** (verified: `30×14 → -92`). The candidate-match side already used U8 for this; the *selected* side was F16. Fix: insert `Cast(INT8→UINT8)` on `row_clip`/`col_clip` **before** the `×15` Mul, do the mul + final add in U8 ([0,224] fits U8), then `Cast(U8→INT32)` for the Scatter/Gather index. Do NOT try to keep the ×15 in INT8.
+
+## Method (black-box graph, no builder)
+LIVE was a compiled ONNX with no builder. Did it by **onnx graph surgery**: change `Cast` `to` attrs, repoint constant inputs to new INT8/INT32 initializers, insert the 2 U8 casts, delete orphaned F16 consts, clear `value_info`, `onnx.checker`. Verified with `mem_breakdown` (shape-infer per-tensor bytes) + `profile_real_cost --arcgen 266` + `ng_gate ab --n 2000` byte-equal. All non-coord tensors (F32 encoder Conv=900, 3× F16 TopK feeds=1350, QLinearConv parabola decoder, geodesic MaxPool masks) are dtype-FLOORED for their ops and were untouched — that's why AB stays byte-equal.
+
+## Rule of thumb
+On any relative-marker / coordinate-algebra / transform-selection graph: `trace_dtypes` the graph and look for **F16 tensors that only carry integer grid coords** (Div/Mod outputs, dr/dc stacks, clamped stamp coords). They almost always narrow to INT8 byte-equal, and their Div/Mod index feeders narrow INT64→INT32. It's a pure dtype shave — safe on **ambiguous-class byte-equal-locked** tasks where algorithmic changes are forbidden. Only watch the `×W` flat-index Mul: cast up to U8 before it (INT8 overflows at row×15). Cheap, mechanical, ~4% on task076; check it before declaring a coordinate-heavy graph at floor.

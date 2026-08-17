@@ -1,0 +1,98 @@
+{
+  "task": "task176",
+  "candidate": "task176_shared_spatial_basis84_cost84",
+  "onnx": "task176.onnx",
+  "builder": "The_400_Tasks/Task_by_Task/task176/prototypes/build_shared_spatial_basis84_fast.py",
+  "prototype": "The_400_Tasks/Task_by_Task/task176/prototypes/v_shared_spatial_basis84_fast.onnx",
+  "sha256": "96c22521d7b20c19767e0c6b4347b68a34219a8502fa6a49d57584f038c1d5cc",
+  "cost": 84,
+  "profile_cost": 84,
+  "static_score": {
+    "macs": 0,
+    "memory": 0,
+    "params": 84
+  },
+  "current_team_best_bar": {
+    "cost": 140,
+    "profile_cost": 140,
+    "sha256": "36dcb4901656db6303a277633faae8d4cfb63bbe189781b2f2d6851b4477a5ce",
+    "owner": "Vamshi",
+    "updated_utc": "2026-07-02T02:35:15Z",
+    "source": "python tools/ng_current_bar.py --task 176 --json",
+    "live_path": "Team_Best_Onnx/task176.onnx"
+  },
+  "cost_delta_vs_live": -56,
+  "summary": "Folds the invertible row selector from the 88-param shared-basis rung into basis[2,30], leaving one csel[2,2] and one terminal free-output Einsum.",
+  "gates": [
+    {
+      "name": "visible",
+      "command": "python tools/ng_gate.py visible --task 176 --cand The_400_Tasks/Task_by_Task/task176/prototypes/v_shared_spatial_basis84_fast.onnx",
+      "result": "[visible] 25/25 (100.00%)  PASS"
+    },
+    {
+      "name": "score_v2",
+      "command": "score_network_v2('The_400_Tasks/Task_by_Task/task176/prototypes/v_shared_spatial_basis84_fast.onnx')",
+      "result": "(0, 0, 84)"
+    },
+    {
+      "name": "profile_real_cost",
+      "command": "python tools/agent_helpers/profile_real_cost.py --task 176 --cand The_400_Tasks/Task_by_Task/task176/prototypes/v_shared_spatial_basis84_fast.onnx --arcgen 266",
+      "result": "task176 v_shared_spatial_basis84_fast.onnx: static=84 profile=84 (memory 0 + params 84; 25 real inputs)"
+    },
+    {
+      "name": "truth_n1000",
+      "command": "python tools/ng_gate.py truth --task 176 --cand The_400_Tasks/Task_by_Task/task176/prototypes/v_shared_spatial_basis84_fast.onnx --n 1000",
+      "result": "[truth] vs ARC-GEN ground truth: 1000/1000 (100.000%)"
+    },
+    {
+      "name": "ab_n1000",
+      "command": "python tools/ng_gate.py ab --task 176 --cand The_400_Tasks/Task_by_Task/task176/prototypes/v_shared_spatial_basis84_fast.onnx --n 1000",
+      "result": "[ab] vs submission.zip: match 1025/1025 | divergences=0 | byte_equal=True (first_div=None)"
+    },
+    {
+      "name": "truth_full",
+      "command": "python tools/ng_gate.py truth --task 176 --cand The_400_Tasks/Task_by_Task/task176/prototypes/v_shared_spatial_basis84_fast.onnx --full",
+      "result": "[truth] vs ARC-GEN ground truth: 200000/200000 (100.000%)"
+    },
+    {
+      "name": "ab_full",
+      "command": "python tools/ng_gate.py ab --task 176 --cand The_400_Tasks/Task_by_Task/task176/prototypes/v_shared_spatial_basis84_fast.onnx --full",
+      "result": "[ab] vs submission.zip: match 200025/200025 | divergences=0 | byte_equal=True (first_div=None)"
+    },
+    {
+      "name": "staged_score_v2",
+      "command": "score_network_v2('The_400_Tasks/Task_by_Task/task176/staged_candidates/task176_shared_spatial_basis84_cost84/task176.onnx')",
+      "result": "(0, 0, 84)"
+    },
+    {
+      "name": "staged_profile_real_cost",
+      "command": "python tools/agent_helpers/profile_real_cost.py --task 176 --cand The_400_Tasks/Task_by_Task/task176/staged_candidates/task176_shared_spatial_basis84_cost84/task176.onnx --arcgen 266",
+      "result": "task176 task176.onnx: static=84 profile=84 (memory 0 + params 84; 25 real inputs)"
+    },
+    {
+      "name": "graph_cost_diff",
+      "command": "python tools/ng_graph_cost_diff.py --task 176 --live Team_Best_Onnx/task176.onnx --candidate The_400_Tasks/Task_by_Task/task176/staged_candidates/task176_shared_spatial_basis84_cost84/task176.onnx",
+      "result": "live cost 140, candidate cost 84, delta -56; charged deltas: +basis[2,30] +60 params, -row[2,30] -60, -col[2,30] -60, +csel[2,2] +4"
+    }
+  ],
+  "probes": [
+    {
+      "route": "sparse_initializers",
+      "result": "score_network_v2 returned None; checker shape inference rejected sparse Einsum operands as rank 0."
+    },
+    {
+      "route": "tied_color_spatial_basis122",
+      "result": "visible 0/25 because color rank and spatial rank were tied; abandoned."
+    },
+    {
+      "route": "shared_spatial_basis88",
+      "result": "visible/profile/truth/ab full clean at cost 88; superseded by folding invertible rsel into basis for cost 84."
+    },
+    {
+      "route": "q1_or_rank1_spatial",
+      "result": "not built: desired 3x25 spatial sign field has five distinct column sign patterns, so a single rank-1 spatial outer product cannot express it."
+    }
+  ],
+  "heavy_gate_note": "The first full A/B command used a 1-hour foreground timeout and expired before result; rerun with a longer foreground timeout completed byte-equal.",
+  "staging_note": "Do not submit to Kaggle from worker session; captain/reviewer owns shipping."
+}

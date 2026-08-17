@@ -1,0 +1,212 @@
+# task004 - archived superseded history (moved by worker-3 2026-06-11)
+
+Pre-2662-floor session sections (v6..v13 canvas-family attempts, older LIVE-derived rule phrasings, algorithm sketches). The CURRENT rule + the proven 2,662 Einsum floor live in `Task_by_Task/task004.md`.
+
+## (historical sections below — superseded by the v13 rewrite above)
+
+## Rule
+
+For each non-bg color `c`:
+  1. Find the cell `(r*, c*)` of color `c` with the maximum `r + c` (Manhattan
+     distance from the upper-left corner) — the bottom-right tip of the
+     parallelogram for color `c`.
+     distance from the upper-left corner). This is the "anchor" cell — the
+     bottom-right tip of the parallelogram for color `c`.
+  2. Cells of color `c` in the same row as the anchor (`r == r*`) OR the same
+     column (`c_col == c*`) stay put.
+  3. All other cells of color `c` shift right by 1 column.
+
+Older "parallelogram-lean" prototypes (v2/v3) encoded a simpler "stays if in
+bot_row OR col >= max_col_bot" rule — hidden-bad on Kaggle (v3: -13.39 LB)
+because they diverge from the live algorithm on hidden inputs.
+The live ONNX (in the competition's current alpha_b_t287v4_5653_67 submission)
+implements exactly this rule. Older "parallelogram-lean" prototypes (v2/v3)
+encoded a simpler "stays if in bot_row OR col >= max_col_bot" rule — those were
+hidden-bad on Kaggle (task004 v3: -13.39 LB) because they diverge from the live
+algorithm on hidden inputs. Recipe verified 265/265 on visible + arc-gen
+against LIVE.
+
+## Algorithm sketch
+
+```python
+def task004(inp):
+def task004(inp):  # inp: (H, W) int grid
+    out = inp.copy()
+    for c in range(1, 10):
+        cells = [(r, k) for r in range(H) for k in range(W) if inp[r, k] == c]
+        if not cells: continue
+        r_anchor, c_anchor = max(cells, key=lambda rk: rk[0] + rk[1])
+        out[inp == c] = 0
+        for r, k in cells:
+            if r == r_anchor or k == c_anchor:
+                out[r, k] = c
+            else:
+                out[r, k + 1] = c
+        out[inp == c] = 0  # clear color c
+        for r, k in cells:
+            if r == r_anchor or k == c_anchor:
+                out[r, k] = c           # stay
+            else:
+                out[r, k + 1] = c       # shift right
+    return out
+```
+
+## Attempts
+
+| Date | Approach | Result | Cost | Notes |
+|------|----------|--------|------|-------|
+| 2026-05-16 | v6 sub_slicetrim (canonical baseline) | shipped | 62086 | -48k vs LIVE 110306; passes official encoder 265/265. Inner-region Slice + fp16 + Conv 1x3 right-shift, Sub/Concat re-adds bg ch0 |
+| 2026-05-17 | v9 droppedbgconcat | REJECTED 0/265 official | 43221 | Dropped final Concat re-add of bg channel; saves cost but `np.array_equal` against official encoder fails — encoder requires ch0=1 at every cell where input was bg. Confirms memory: dropping ch0 via Pad-prepend-zero is the trap |
+| 2026-05-17 | v10 is_inside via all-10ch ReduceMax | passes 265/265 | 56542 | Restores bg-encoding by computing is_inside_inner=ReduceMax(input_inner,axis=1). Correct but [1,10,16,16] fp16 intermediate is heavier than v12's ch0-slice path |
+| 2026-05-17 | v11 v20 = ch0_inner*(1-max(v18)) | REJECTED 0/265 | 51422 | Wrong: cells that were colored and shift away decode as bg in output, but ch0_inner=0 there |
+| 2026-05-17 | v12 isinside_gate | passes 265/265 + adv 5631/5631 | 52446 | is_inside_inner = Max(ReduceMax(v5,axis=1), ch0_inner) — gates bg-reconstruction by union of "had any color" and "was bg in input". Hands off via t_4f31f857 |
+
+## Cost analysis
+
+Canonical v6 (62086) dominated by:
+- 16×16 fp16 active-region tensors after Slice + Cast (1 kB each, ~10 alive)
+- Conv group=9 kernel [1,3] pads [0,1,0,1] = right-shift with zero LHS — the parallelogram-lean rule
+- Sub/Concat to reconstruct ch0=v4-v19 (bg presence) and concat with 9-channel colors → [1,10,16,16]
+- Pad [0,0,0,0,0,0,14,14] constant-zero to [1,10,30,30]
+
+v12 (52446) saves ~9.6k by replacing the `Sub(v4, ReduceMax(v18,axis=1))` bg-reconstruction with a smaller `Max(ReduceMax(v5,axis=1), ch0_inner)` gate.
+
+## Don't-do log
+
+- **Do not drop the bg channel concat at the output (v9).** Official encoder (`neurogolf_utils.convert_to_numpy`) sets ch0=1 at every bg cell; if your output is only 9 channels (or 10 channels with ch0=0 at bg cells), `np.array_equal` against expected fails on 100% of pairs. Local cropped-decoder can hide this because it maps "no channel == 1" to color 0; the official decoder does not.
+- **Do not Cast input fp32→fp16 before the first Slice.** Full [1,10,30,30] fp16 = 18k bytes vs the current 9k+1k fp32-Slice intermediates. Strictly worse.
+- **Do not compute v20 = ch0_inner * (1 - max(v18)) (v11).** Loses bg cells that get a color after the shift (cells that were colored in input, ch0_inner=0 there, but the cell now sits bg in output because its color shifted away).
+- **Avoid the Conv-spread family** for any future shrink — this is task013's failed_public_negative trap mirrored.
+
+<!-- SPREAD:BEGIN -->
+<!-- generated by tools/spread_annotate_notes.py from 20260518 scan; manual edits OUTSIDE this block -->
+
+## Spread-knowledge scan (20260518)
+
+Current canonical cost: **62086** (memory=61778, params=308, points≈13.963724).
+
+Pattern sweep verdicts (each pattern measured INDEPENDENTLY vs the original — patterns overlap, so the sum overstates the real cumulative savings):
+
+| Pattern | Verdict | Δ cost (vs original) | Notes |
+|---|---|---:|---|
+| `clip_mul_to_min` | — | — | no Clip[0,1] + Mul(mask) pairs detected |
+| `const_to_init` | — | — | no Constant nodes with a 'value' attribute to convert |
+| `crop_to_size_advisory` | ? | -25760 | max active grid is 16×16 but graph has 1 [...,30,30] intermediate(s). Crop-pr... |
+| `fp16_selective` | ERR | — | fp16_convert raised ValueError: The model is already converted to float16, if... |
+| `onnxsim` | ✓ SAVES | -4 | onnxsim found additional simplifications |
+| `safe_opt` | ✓ SAVES | -4 | safe={'dedupe': 1} |
+| `scalar_broadcast_ones` | — | — | no uniform-valued float initializers consumed only by broadcasting ops |
+| `slice_axis_collapse` | — | — | no Slice nodes with redundant axis-0 entries to drop |
+
+**Free LB available (sequential pipeline truth)**: running `tools/polish_candidate.py` on the current ONNX applies `onnxsim` and saves **4 bytes** (byte-exact verified on 3 inputs). Note: the per-pattern Δ above was measured against the ORIGINAL, so the per-pattern numbers do not sum to this — patterns subsume each other when applied sequentially.
+
+**Advisory** (crop_to_size_advisory): max active grid is 16×16 but graph has 1 [...,30,30] intermediate(s). Crop-process-pad could save ~25760 bytes (rough est). — estimated savings if applied manually: ~25760 bytes.
+
+_Re-run: `.venv/Scripts/python.exe tools/spread_scan.py` (updates JSON in `Logs/spread_scan_results/`); then `.venv/Scripts/python.exe tools/spread_annotate_notes.py`.
+<!-- SPREAD:END -->
+| Date       | Worker | Approach | Result | Cost | Notes |
+|------------|--------|----------|--------|------|-------|
+| 2026-05-10 | alpha-a | v3 parallelogram-lean rule | 265/265 visible | 103,059 | Shipped → -13.39 LB → reverted |
+| 2026-05-12 | alpha-a | v4 reverse-engineered LIVE rule | 265/265 + 265/265 LIVE | 122,083 | Correct algorithm, heavy intermediates |
+| 2026-05-16 | worker-1 | v6 algebraic shrink of LIVE graph: tail Sub, Slice channel-trim | 265/265 + 265/265 LIVE | **62,086** | Currently in production submission (sha 1d7e0c61) |
+| 2026-05-17 | worker-8 | v7 fuse crop+channel Slice; drop v4 (constant 1); axis-wise ReduceMax + Equal for the row/col stay mask | 265/265 + 265/265 LIVE | 49,375 | -12,711 vs v6 |
+| 2026-05-17 | worker-8 | v8 v7 + shrink shift Conv kernel from [9,1,1,3] to [9,1,1,2] | 265/265 + 265/265 LIVE under local decode; 2/265 official | 49,366 | -9 params vs v7. Locally clean, but the local decode passes because the local encoder pads outside-grid with ch0=1 — both the model output AND the local-encoded expected output have v20=1 there, so they agree. Under official encoder (`convert_to_numpy` zeros outside-grid), expected has all-zero outside but v8's v20 still =1 there. Fails 2/265 (only the H=W=16 cases pass) |
+| 2026-05-17 | worker-8 | v9 v8 + drop explicit bg channel (decode falls back to 0); fuse output_inner Concat into the final Pad | 265/265 + 265/265 LIVE (local); 5631/5631 adversarial; **0/265 official** | 43,221 | **HIDDEN-BAD under competition encoder**. The repo's local `decode()` maps "no channel = 1" → bg=0 but the official `run_network` thresholds `>0.0` and compares the full 30x30x10 tensor via `np.array_equal`; dropping ch0 leaves bg cells with all-zero output where expected has ch0=1. Returned from review t_fa217ea5 |
+| 2026-05-17 | worker-8 | v10 v8 + ReduceMax over the full 10-channel inner crop for `is_inside_grid_inner`; `v20 = is_inside_inner * (1 - max(v18))` | 265/265 official | 56,542 | Correct under both encoders but the 10-channel fp16 slice adds ~5k bytes vs v8. Superseded by v12 |
+| 2026-05-17 | worker-8 | v11 attempted `v20 = ch0_inner * (1 - max(v18))` to avoid the 10-channel slice | 0/265 official | 51,422 | **WRONG**: cells that were colored in the input and shift away need ch0=1 in the output (became bg) but ch0_inner=0 there. Documented in the don't-do log |
+| 2026-05-17 | worker-8 | v12 split-slice: `is_inside_inner = Max(ReduceMax(v5, axis=1), ch0_inner)`; `v20 = is_inside_inner * (1 - max(v18))` | 265/265 official + 265/265 LIVE + 5631/5631 adversarial | **52,446** | -9,640 vs canonical v6 (62,086), expected +0.169 pts. Competition-encoder-gated before handoff |
+
+## Cost analysis
+
+v12 memory split (memory=52,146; params=300):
+  - v5_f32 [1,9,16,16] fp32 from channel-1-9 inner Slice: 9,216 bytes.
+  - ch0_inner_f32 [1,1,16,16] fp32 from channel-0 inner Slice: 1,024 bytes.
+  - 7 × [1,9,16,16] fp16 intermediates: ~32,256 bytes.
+  - is_inside / v_row_eq / v_col_eq / other small fp16 tensors and bool buffers: ~9,650 bytes.
+
+Remaining levers:
+  - The two fp32 Slice intermediates (10,240 bytes combined) are the single
+    biggest contributor. Casting input to fp16 first would create an
+    [1,10,30,30] fp16 intermediate of 18,000 bytes — strictly worse.
+  - Replacing the Conv [9,1,1,2] shift with Slice+Concat adds memory (the
+    Slice-of-fp16 intermediate is bigger than the depthwise Conv's output).
+
+## Don't-do log
+
+- **Do NOT** ship v3-style "parallelogram-lean" (stays if `r == bot_row` OR
+  `col >= max_col_bot`). It diverges from the LIVE rule on hidden inputs and
+  scored -13.39 LB on Kaggle in May 2026.
+- **Do NOT** drop the explicit bg output channel (output channel 0) under
+  the assumption that the local `decode()`'s "no channel = 1 ⇒ bg" fallback
+  carries over to the competition. It does not — the official
+  `neurogolf_utils.run_network` thresholds at `>0.0` and `np.array_equal`s
+  the full output tensor against the one-hot expected tensor (which has
+  ch0=1 at bg cells inside the grid). v9 made this mistake and scored
+  0/265 under the official encoder despite 265/265 under the local decode.
+- **Do NOT** use `v20 = ch0_inner * (1 - max(v18))` as a tightening of v10.
+  `ch0_inner` only marks the INPUT's bg cells, not the OUTPUT's bg cells.
+  Cells that were colored in the input but shift away become bg in the
+  output (expected ch0=1), and ch0_inner=0 there makes v20=0 wrong. v11
+  hit this and scored 0/265 official. Use the full `is_inside_grid_inner`
+  mask (any input channel = 1) instead, e.g.
+  `Max(ReduceMax(v5, axis=1), ch0_inner)`.
+- **Do NOT** Cast the full [1,10,30,30] input to fp16 before slicing.
+  The fp16 intermediate at full input shape is 18k bytes vs ~10k bytes
+  for fp32-Slice-then-Cast — strictly worse.
+
+## Required gate before handoff
+
+Any task004 candidate must pass:
+  1. `neurogolf_utils.convert_to_numpy(example)` → `run_network(session, input)`
+     → `np.array_equal(output, expected)` on every visible+arc-gen pair.
+  2. The same gate run against the LIVE ONNX must yield identical predictions.
+  3. Adversarial perturbations ≥95% match-vs-LIVE.
+
+The local `verify_against_live.py` softens the decode and CAN MASK
+bg-channel bugs. Always run the official encoder gate explicitly.
+| Date       | Worker | Approach | Result | Cost | Notes |
+|------------|--------|----------|--------|------|-------|
+| 2026-05-10 | alpha-a | v2 ArgMax+color-index, parallelogram-lean rule | 265/265 visible | 342,231 | Wrong rule (stays if in bot_row OR col≥max_col_bot) |
+| 2026-05-10 | alpha-a | v3 same wrong rule, tighter ops | 265/265 visible | 103,059 | Shipped → hidden-bad -13.39 LB → reverted |
+| 2026-05-12 | alpha-a | v4 reverse-engineered LIVE rule (row/col-of-max-diag) | 265/265 + 265/265 LIVE | 122,083 | Correct algorithm but heavy intermediates |
+| 2026-05-16 | worker-1 | v6 algebraic shrink of LIVE graph: tail Sub, Slice channel-trim | 265/265 + 265/265 LIVE | 62,086 | Currently in production submission (sha 1d7e0c61) |
+| 2026-05-17 | worker-8 | v7 fuse crop+channel Slice; drop v4 (constant 1); replace Equal/Where path with axis-wise ReduceMax + Equal | 265/265 + 265/265 LIVE | 49,375 | -12,711 vs v6 |
+| 2026-05-17 | worker-8 | v8 v7 + shrink shift Conv kernel from [9,1,1,3] to [9,1,1,2] | 265/265 + 265/265 LIVE | 49,366 | -9 params vs v7 |
+| 2026-05-17 | worker-8 | v9 v8 + drop explicit bg channel (decode falls back to 0); fuse output_inner Concat into the final Pad | 265/265 + 265/265 LIVE + 5631/5631 adversarial | 43,221 | -18,865 vs v6, expected +0.362 pts |
+
+## Cost analysis
+
+Memory breakdown for v9 (memory=42,930; params=291):
+  - v5_f32 Slice intermediate [1,9,16,16] fp32: 9,216 bytes — unavoidable
+    (input is fp32; Slice can't change dtype).
+  - 7 × [1,9,16,16] fp16 intermediates (v5, v6, v13, v14, v16, v17, v18):
+    7 × 4,608 = 32,256 bytes. These dominate.
+  - Smaller intermediates (v7, v_row_max, v_col_max, v_row_eq, v_col_eq,
+    bool buffers): ~1,400 bytes.
+
+The remaining levers to shrink below 43k would have to either:
+  - drop one of the 7 [1,9,16,16] intermediates (each ≈4.6k bytes), or
+  - drop the [1,9,16,16] fp32 Slice intermediate (≈9.2k bytes).
+
+Both seem to require a different algorithmic shape — e.g. color-index
+encoding via ArgMax (v3 line), which has historically been hidden-bad
+when it diverges from the LIVE row-OR-col rule. Any further shrink needs
+to preserve raw-output equivalence with LIVE.
+
+## Don't-do log
+
+- **Do NOT** ship v3-style "parallelogram-lean" (stays if `r == bot_row` OR
+  `col >= max_col_bot`). It diverges from the LIVE rule on hidden inputs and
+  scored -13.39 LB on Kaggle in May 2026.
+- **Do NOT** assume the live algorithm and the visible-train algorithm agree.
+  Always run `verify_against_live --tid 4` before shipping; visible-only
+  verification (265/265) is necessary but not sufficient.
+- **Do NOT** swap `Or` for `Max(cast, cast)` on the row/col stay-mask combine:
+  Or → Cast adds a [1,9,16,16] bool intermediate (2,304 bytes) and a
+  [1,9,16,16] fp16 cast (4,608 bytes) for a net +1,728 vs Cast-then-Max
+  (which keeps the smaller [1,9,16,1] + [1,9,1,16] tensors before broadcasting).
+
+### 2026-05-20 - SG_ALL worker (no candidate)
+- Tried: f16 conversion (robust + direct + opset bump); drop-cast-before-Pad scan; bool-throughout rebuild scan
+- Result: NO CANDIDATE
+- Reason: F16 output, opset 12 - already optimized.

@@ -1,0 +1,8 @@
+# task296 hard record: sub-90 depthwise free-output Conv support
+
+- live bar: cost 90, SHA256 `693013dcc574bbb81a7f85bba6da0389decacd5544f12162ba4c6858bc5a703e`, source `python tools/ng_current_bar.py --task 296 --json` / team manifest, owner Vamshi, updated 2026-07-12T15:15:54Z.
+- attempted route: delete the live 3x3 depthwise Conv threshold support and use a cheaper final free-output depthwise Conv with smaller dense support. Representative probe: `prototypes/task296_depthwise_2x2_delete_threshold_taps.onnx`, SHA256 `e4b9ab80a70b811088523d5306b21e186fc852daeabf3a553a0c8d60ac7a1100`.
+- static cost: `(0, 0, 40)`; `ng_graph_cost_diff` names the saving as initializer `W` shape `[10,1,3,3] -> [10,1,2,2]`, params delta `-50`, net cost delta `-50`.
+- exact failed gate: `python tools/ng_gate.py visible --task 296 --cand The_400_Tasks/Task_by_Task/task296/prototypes/task296_depthwise_2x2_delete_threshold_taps.onnx` -> `[visible] 2/268 (0.75%)  FAIL`.
+- why dead: color channels only need the four true corner taps, but ch0 must distinguish corner, edge, and center bucket sizes. A 2x2 support cannot implement "positive iff all selected bucket cells are background" with one spatially shared linear threshold; any constant bias conflicts between singleton and two-cell buckets. The reproducible audit `prototypes/audit_sub90_depthwise_conv_support.py` reports `tested 30 color-covering sub-90 geometry combinations; none feasible`.
+- remaining hypothesis: a sub-90 result would need a different final op family or accepted sparse/structured parameter accounting, not a smaller dense depthwise Conv support. Sparse Conv weights are documented as scorer-rejected in `Onnx_Advanced/core.md`, so test through `score_network_v2` before spending gates.

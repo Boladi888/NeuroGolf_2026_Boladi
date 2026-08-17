@@ -1,0 +1,102 @@
+{
+  "task": 168,
+  "verdict": "VISIBLE_FAIL",
+  "candidate_class": "PATH_B_DIRECT_SCATTER_PROBE",
+  "candidate_paths": [
+    "The_400_Tasks/Task_by_Task/task168/prototypes/task168_direct_scatter_probe.onnx"
+  ],
+  "staged": false,
+  "cost": 1431,
+  "memory": 1192,
+  "params": 239,
+  "profile_cost": null,
+  "profile_result": "NOT_RUN_VISIBLE_FAIL",
+  "live_cost": 1508,
+  "delta_vs_live": -77,
+  "current_bar": {
+    "source": "manifest via tools/ng_current_bar.py",
+    "cost": 1508,
+    "memory": 1268,
+    "params": 240,
+    "sha256": "d5af2d4f19d87dbb694e4d08482cfd2d44f55e518f6206990b1b43a58f2ec5cd",
+    "owner": "Aditya",
+    "updated_utc": "2026-06-22T06:32:53Z"
+  },
+  "parent_source": "Team_Best_Onnx/task168.onnx",
+  "parent_sha256": "d5af2d4f19d87dbb694e4d08482cfd2d44f55e518f6206990b1b43a58f2ec5cd",
+  "candidate_sha256": "dbfef50122a6029263791ee76f0420d501e7210563b5bab3bed712244c705cce",
+  "proof_commands_run": [
+    "python tools/ng_current_bar.py --task 168 --json",
+    "python tools/agent_helpers/profile_real_cost.py --task 168 --cand Team_Best_Onnx/task168.onnx --arcgen 266",
+    "python The_400_Tasks/Task_by_Task/task168/prototypes/build_task168_direct_scatter_probe.py",
+    "python tools/ng_gate.py visible --task 168 --cand The_400_Tasks/Task_by_Task/task168/prototypes/task168_direct_scatter_probe.onnx",
+    "python -c \"from tools._score_v2 import score_network_v2; print(score_network_v2(candidate))\"",
+    "python tools/ng_graph_cost_diff.py --task 168 --live Team_Best_Onnx/task168.onnx --candidate The_400_Tasks/Task_by_Task/task168/prototypes/task168_direct_scatter_probe.onnx",
+    "python tools/ng_safety.py model --task 168 --cand The_400_Tasks/Task_by_Task/task168/prototypes/task168_direct_scatter_probe.onnx --json"
+  ],
+  "proof_results": {
+    "score_v2": "(0, 1192, 239) cost=1431",
+    "visible": "[visible] 0/265 (0.00%)  FAIL",
+    "graph_cost_diff_named_delta": "removed scatter_updates_nd (-40 B), bg_rows16 (-20 B), scatter_nd_idx (-16 B), zero_idx1 (-1 param); net -77",
+    "failure_diagnostic": "foreground channels match excluding ch0, but candidate emits 0 background-channel cells where expected has channel-0 ones; first bundled example cand_bg_ones=0 expected_bg_ones=88 bad_cells_ch0=88",
+    "truth": "NOT_RUN_VISIBLE_FAIL",
+    "ab": "NOT_RUN_VISIBLE_FAIL",
+    "profile_real_cost": "NOT_RUN_VISIBLE_FAIL"
+  },
+  "safety": {
+    "kind": "model",
+    "source": "The_400_Tasks/Task_by_Task/task168/prototypes/task168_direct_scatter_probe.onnx",
+    "verdict": "PASS",
+    "summary": {
+      "n_failures": 0,
+      "n_warnings": 0,
+      "runtime_integer_denominator_count": 0
+    },
+    "model": {
+      "task": "task168",
+      "name": "task168_direct_scatter_probe.onnx",
+      "source": "The_400_Tasks/Task_by_Task/task168/prototypes/task168_direct_scatter_probe.onnx",
+      "sha256": "dbfef50122a6029263791ee76f0420d501e7210563b5bab3bed712244c705cce",
+      "size_bytes": 1983,
+      "failures": [],
+      "warnings": [],
+      "op_inventory": {
+        "ArgMax": 1,
+        "BitwiseAnd": 7,
+        "Cast": 3,
+        "Concat": 2,
+        "ConvTranspose": 1,
+        "Div": 2,
+        "Einsum": 1,
+        "GlobalMaxPool": 1,
+        "ScatterND": 1,
+        "Slice": 2
+      },
+      "risk_op_flags": [
+        "Cast",
+        "Div"
+      ],
+      "runtime_integer_denominators": [],
+      "runtime_denominators_unknown_dtype": [],
+      "official_io_contract": {
+        "data_inputs": [
+          "input"
+        ],
+        "outputs": [
+          "output"
+        ],
+        "ok": true
+      },
+      "load_after_sanitize": "ok",
+      "verdict": "PASS"
+    }
+  },
+  "x86_required": false,
+  "kaggle_probe_required": false,
+  "status": "REJECT_LOCAL",
+  "failed_gate": "VISIBLE",
+  "what_tried": "Materialized the direct ScatterND foreground-only tail that removes bg_rows16, scatter update concat, scatter index concat, and zero_idx1.",
+  "what_failed": "The probe is foreground-correct but omits raw channel-0 background, producing 0/265 visible.",
+  "remaining_floor_rewrite_hypothesis": "A different final-op fusion must preserve channel-0 background while eliminating chan_rows30; no static route was found that avoids materializing an equivalent carrier.",
+  "lesson_packet_path": null
+}

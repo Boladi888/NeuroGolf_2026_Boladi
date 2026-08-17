@@ -1,0 +1,9 @@
+# task284 hard record: 28-row U8 color-index ScatterND + Equal-tail is over bar
+
+- Live bar: manifest/team-best cost `2501`, sha256 `f56d4cd53f0e4dc9ef579a1917b0855a1e50164583152c1718980e46b6f26a19`, source `python tools/ng_current_bar.py --task 284 --json` (`authoritative_source=manifest`, owner Vamshi, updated `2026-07-12T15:15:54Z`).
+- Attempted route: reviewer-locked hypothesis, replacing the current 56-row F32 one-hot `ScatterND` renderer with a 28-row U8 color-index `ScatterND` plus final free-output `Equal(value_canvas, channel_ids)`.
+- Probe artifact: `The_400_Tasks/Task_by_Task/task284/prototypes/task284_coloridx_equaltail_probe.onnx`, sha256 `290e576703f8df4fed8c7e5b622d6db8e79e8876fc2fe39f4ee1b058af38c023`.
+- Exact failed gate: static pricing/proof pass after build. Shape-inference price is `memory=6672`, `params=94`, `cost=6766` (delta `+4265` vs live `2501`), so it trips the reviewer stop condition before visible/truth/profile.
+- Charged culprit: preserving outside-active all-zero semantics without a dense active mask still needs a base value canvas. The only non-sentinel-collision base available from the official input is `ch0`, but extracting it materializes `ch0_f` F32 `[1,1,30,30] = 3600 B`, then `base_u8` `[1,1,30,30] = 900 B`, then the color-index `ScatterND` canvas `[1,1,30,30] = 900 B`; these three tensors alone exceed the live bar.
+- Why dead: a constant U8 base cannot distinguish active background from outside padding, and an input-derived base requires a charged dense 30x30 carrier. The final `Equal` is free, but it only removes the 10-channel one-hot explosion; it does not remove the required color-index canvas/base.
+- Remaining hypothesis: only revisit if a view-like single-channel read from `input[:,0]` is scorer-free, or if a sparse op can update both one-hot color and background channels in one scalar write. Under current scorer rules, the 56-row one-hot `ScatterND` avoids the dense base and remains cheaper.

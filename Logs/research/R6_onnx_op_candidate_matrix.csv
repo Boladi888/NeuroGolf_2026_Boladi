@@ -1,0 +1,74 @@
+op,domain,since_version,latest_schema_version,ort_cpu_kernel,ort_kernel_version_range,dtype_constraints,output_kind,scorer_risk,candidate_family,verdict,notes
+Attention,ai.onnx,23,24,yes,23-23,T1=float|float16;T2=float|float16;U=bool|same_float,tensor,scorer_ok_if_single_tensor_output,opset23_26_delta,task_specific,Local registry has CPU kernel but ARC payoff requires a real attention replacement
+Attention,ai.onnx,24,24,yes,24-inf,T1=float|float16;T2=float|float16;U=bool|same_float,tensor,scorer_ok_if_single_tensor_output,opset23_26_delta,task_specific,Kernel exists; multi-head shape and float params make it task-specific
+RMSNormalization,ai.onnx,23,23,yes,23-inf,T=float|float16|double;V=same_float,tensor,scorer_ok_probe,opset23_26_delta,task_specific,Probe p1 scored memory=0 params=4; useful only for true RMS norm chains
+RotaryEmbedding,ai.onnx,23,23,yes,23-inf,T=float|float16;M=int64,tensor,high_param_cache,opset23_26_delta,dead,LLM positional helper with cos and sin cache params; no ARC-grid mechanism
+Swish,ai.onnx,24,24,no_registered_kernel,function_exec,T=float|float16|double|bfloat16,tensor,scorer_ok_probe,opset23_26_delta,task_specific,Probe p7 ran and scored through ORT function expansion; only fuses x*sigmoid
+TensorScatter,ai.onnx,24,24,no,none,broad_tensor_types,tensor,no_kernel,opset23_26_delta,dead,No CPU kernel in local registry
+BitCast,ai.onnx,26,26,no,none,same_width_numeric,tensor,ort_rejects_opset26,opset23_26_delta,dead,Probe p6 check_model ok but ORT only guarantees ai.onnx through opset25 and registry has no kernel
+CumProd,ai.onnx,26,26,no,none,numeric,tensor,ort_rejects_opset26,opset23_26_delta,dead,No CPU kernel in local registry and opset26 is not officially loadable
+CastLike,ai.onnx,23,25,no,none,broad_tensor_types,tensor,no_kernel,opset23_26_delta,dead,No CPU kernel in local registry
+CastLike,ai.onnx,24,25,no,none,broad_tensor_types,tensor,no_kernel,opset23_26_delta,dead,No CPU kernel in local registry
+CastLike,ai.onnx,25,25,no,none,broad_tensor_types,tensor,no_kernel,opset23_26_delta,dead,No CPU kernel in local registry
+QuantizeLinear,ai.onnx,25,25,yes,25-inf,float|float16_to_int2|uint2|int4|uint4|int8|uint8|int16|uint16,tensor,dtype_blind_params,opset23_26_delta,task_specific,Kernel exists but dtype-blind params limit payoff unless activation bytes dominate
+DequantizeLinear,ai.onnx,25,25,yes,25-inf,quantized_to_float|float16,tensor,dtype_cast_memory,opset23_26_delta,task_specific,Kernel exists; useful only when downstream float chain is already required
+TopK,ai.onnx,24,24,yes,24-inf,float|double|int32|int64,values_plus_indices,indices_int64_tax,opset23_26_delta,covered,Covered by TopK marker shelf; cast indices down immediately when retained
+SequenceEmpty,ai.onnx,11,11,not_probed,not_probed,sequence_tensor_types,sequence,non_tensor_output,sequence_container,dead,Sequence output cannot be final NeuroGolf tensor without a bridge
+SequenceInsert,ai.onnx,11,11,not_probed,not_probed,sequence_tensor_types,sequence,non_tensor_output,sequence_container,dead,Only mutates sequence containers; bridge later rematerializes tensor
+SequenceErase,ai.onnx,11,11,not_probed,not_probed,sequence_tensor_types,sequence,non_tensor_output,sequence_container,dead,Only mutates sequence containers; bridge later rematerializes tensor
+SequenceLength,ai.onnx,11,11,not_probed,not_probed,sequence_to_int64,tensor_int64,needs_sequence_input,sequence_container,dead,Requires sequence producer first; length scalar rarely replaces a charged tensor
+SplitToSequence,ai.onnx,11,24,yes,11-23,float|float16|double|int32|int64|bool|string,sequence,scorer_rejects,sequence_container,dead,Same bridge risk as p2; scorer rejects SplitToSequence
+SplitToSequence,ai.onnx,24,24,yes,24-inf,float|float16|double|int32|int64|bool|string,sequence,scorer_rejects_probe,sequence_container,dead,Probe p2 ORT ran but scorer returned None and printed op not permitted
+ConcatFromSequence,ai.onnx,11,11,yes,11-inf,seq_tensor_broad,tensor,bridge_materializes_tensor,sequence_container,dead,Tensor bridge costs full output bytes unless it is the graph output
+SequenceAt,ai.onnx,11,11,not_probed,not_probed,sequence_tensor_types,tensor,needs_sequence_input,sequence_container,dead,Requires sequence producer and exposes only one element tensor
+Optional,ai.onnx,15,15,not_probed,not_probed,optional_tensor_or_sequence,optional,non_tensor_output,sequence_container,dead,Optional graph values are outside tensor-centric scorer path
+OptionalGetElement,ai.onnx,15,18,not_probed,not_probed,optional_tensor_or_sequence,tensor_or_sequence,needs_optional_input,sequence_container,dead,Needs optional producer and gives no cost reducer by itself
+OptionalGetElement,ai.onnx,18,18,not_probed,not_probed,optional_or_direct,tensor_or_sequence,needs_optional_input,sequence_container,dead,Later schema does not create a cheaper tensor bridge
+OptionalHasElement,ai.onnx,15,18,yes,15-17,optional_tensor_or_sequence,tensor_bool,needs_optional_input,sequence_container,dead,Local registry has kernel but optional producer is fatal for normal grids
+OptionalHasElement,ai.onnx,18,18,yes,18-inf,optional_or_direct,tensor_bool,needs_optional_input,sequence_container,dead,Kernel exists but no useful tensor-cost mechanism
+StringNormalizer,ai.onnx,10,10,not_probed,not_probed,string,tensor_string,string_irrelevant,sequence_container,dead,String tensors are irrelevant to numeric ARC grids
+RegexFullMatch,ai.onnx,20,20,yes,20-inf,string_to_bool,tensor_bool,string_irrelevant,sequence_container,dead,Kernel exists but requires string input
+StringConcat,ai.onnx,20,20,not_probed,not_probed,string,tensor_string,string_irrelevant,sequence_container,dead,String tensors are irrelevant to numeric ARC grids
+StringSplit,ai.onnx,20,20,not_probed,not_probed,string,sequence_or_string,string_irrelevant,sequence_container,dead,String tensors are irrelevant and bridge would be fatal
+TfIdfVectorizer,ai.onnx,9,9,not_probed,not_probed,string_or_int,tensor_float,string_irrelevant,sequence_container,dead,Text feature op has no numeric-grid cost mechanism
+ConstantOfShape,ai.onnx,23,25,yes,23-23,broad_scalar_value_attr,tensor,scorer_ok,shape_constant_generator,covered,Generator shelf already exists; value attr is not a Constant-node tensor
+ConstantOfShape,ai.onnx,24,25,yes,24-24,broad_scalar_value_attr,tensor,scorer_ok,shape_constant_generator,covered,Same generator mechanics as opset25
+ConstantOfShape,ai.onnx,25,25,yes,25-inf,broad_scalar_value_attr,tensor,scorer_ok_probe,shape_constant_generator,covered,Probe p3 scored params=4 for shape init; dense Constant reference scored params=16
+Shape,ai.onnx,25,25,yes,25-inf,input_tensor_to_int64,tensor_int64,dynamic_shape_risk,shape_constant_generator,covered,Known shape helper; static shape only
+Size,ai.onnx,25,25,yes,25-inf,input_tensor_to_int64_scalar,tensor_int64,dynamic_shape_risk,shape_constant_generator,covered,Known scalar shape helper; static use only
+Range,ai.onnx,11,11,yes,11-inf,float|double|int16|int32|int64,tensor,intermediate_bytes,shape_constant_generator,covered,Existing docs say Range loses against small arange init unless output is free or required
+EyeLike,ai.onnx,22,22,not_probed,not_probed,broad_tensor_with_dtype_attr,tensor,intermediate_bytes,shape_constant_generator,task_specific,Identity masks are useful only when generated tensor replaces a large stored constant or final output
+Trilu,ai.onnx,14,14,not_probed,not_probed,broad_numeric_bool,tensor,intermediate_bytes,shape_constant_generator,task_specific,Triangular masks are promising but should be scored on exact task shapes
+Expand,ai.onnx,13,13,yes,13-inf,broad_tensor_types,tensor,intermediate_bytes,shape_constant_generator,covered,Known broadcast generator; output bytes charged if intermediate
+Tile,ai.onnx,13,13,yes,13-inf,broad_tensor_types,tensor,intermediate_bytes,shape_constant_generator,covered,Known periodic generator; repeats input pattern and charges output if intermediate
+OneHot,ai.onnx,11,11,yes,11-inf,indices_int64_or_int32;values_numeric_bool,tensor,output_bytes_and_depth_param,shape_constant_generator,covered,Known category-plane generator with depth and values caveats
+CumSum,ai.onnx,14,14,yes,14-inf,numeric,tensor,intermediate_bytes,shape_constant_generator,task_specific,Can build prefix masks but only wins when it replaces larger exact chain
+Pad,ai.onnx,19,25,yes,19-20,broad_numeric_bool,tensor,already_covered_wrap,shape_constant_generator,covered,Wrap mode and negative pads already documented; still task-shape dependent
+LpPool,ai.onnx,22,22,yes,22-inf,float,tensor,scorer_ok_probe,obscure_spatial,probe_now,Probe p4 p=1 works as zero-param nonnegative window sum; float-only
+GlobalLpPool,ai.onnx,22,22,yes,22-inf,float,tensor,float_only,obscure_spatial,task_specific,Global norm can replace reductions only when p-norm semantics match
+Col2Im,ai.onnx,18,18,yes,18-inf,float,tensor,float_only,obscure_spatial,task_specific,Kernel exists but needs im2col-shaped input and exact overlap semantics
+DepthToSpace,ai.onnx,13,13,yes,13-inf,broad_tensor_types,tensor,layout_only,obscure_spatial,covered,Known layout transform; no new scorer behavior
+SpaceToDepth,ai.onnx,13,13,yes,13-inf,broad_tensor_types,tensor,layout_only,obscure_spatial,covered,Known layout transform; no new scorer behavior
+Resize,ai.onnx,19,19,yes,19-inf,float|int8|uint8|bool_subset,tensor,interpolation_risk,obscure_spatial,covered,Nearest exact cases already mined; interpolation remains risky
+GridSample,ai.onnx,22,22,yes,22-inf,float|double,tensor,float_grid_params,obscure_spatial,covered,Already grader-validated in local docs; grid params dominate many cases
+RoiAlign,ai.onnx,22,22,yes,16-inf,float|double,tensor,roi_param_and_float_only,obscure_spatial,task_specific,Kernel exists but static ROI tensors and interpolation must be priced
+MaxRoiPool,ai.onnx,22,22,not_probed,not_probed,float,tensor,roi_param_and_float_only,obscure_spatial,task_specific,Only plausible for exact ROI pooling with small ROI constants
+MaxUnpool,ai.onnx,22,22,yes,22-inf,float_with_int64_indices,tensor,index_param_tax,obscure_spatial,task_specific,Kernel exists but int64 indices usually erase savings
+ReverseSequence,ai.onnx,10,10,yes,10-inf,broad_tensor_types,tensor,scorer_rejects_probe,obscure_spatial,dead,Probe p5b ORT legal-axis run succeeded but scorer rejected op; p5 axis3 also fails ORT
+DFT,ai.onnx,20,20,not_probed,not_probed,float_complex,tensor,float_transform_irrelevant,obscure_spatial,dead,Transform semantics are not exact for small color grids without heavy casts
+CenterCropPad,ai.onnx,18,18,no,none,broad_tensor_schema,tensor,no_kernel,obscure_spatial,dead,No CPU kernel in local registry
+NonMaxSuppression,ai.onnx,11,11,not_probed,not_probed,float_boxes_scores,tensor_dynamic,dynamic_output,obscure_spatial,dead,Dynamic detection output is unsuitable even if kernel exists
+AveragePool,ai.onnx,22,22,yes,22-inf,float,tensor,already_covered,obscure_spatial,covered,Known pooling op; float-only for average
+MaxPool,ai.onnx,22,22,yes,22-inf,broad_numeric_subset,tensor,already_covered,obscure_spatial,covered,Known pooling op including negative-pad shelf
+Cast,ai.onnx,25,25,yes,25-inf,broad_tensor_types,tensor,already_covered,already_covered,covered,Dtype conversion behavior already documented
+Constant,ai.onnx,25,25,n/a,n/a,constant_tensor_attr,tensor,params_charged,already_covered,covered,Dense Constant tensors are charged by element count
+Flatten,ai.onnx,25,25,yes,25-inf,broad_tensor_types,tensor,layout_only,already_covered,covered,Routine reshape-family op
+Identity,ai.onnx,25,25,yes,25-inf,broad_tensor_types,tensor,no_cost_reducer,already_covered,covered,Routine pass-through op
+Pad,ai.onnx,25,25,yes,25-inf,int32|int64|float|double|uint32|uint64|int8|uint8|bool,tensor,already_covered,already_covered,covered,Pad dtype and mode behavior already documented
+Reshape,ai.onnx,25,25,yes,25-inf,broad_tensor_types,tensor,shape_static_required,already_covered,covered,Routine shape op; dynamic shapes remain scorer risk
+Squeeze,ai.onnx,25,25,yes,25-inf,broad_tensor_types,tensor,layout_only,already_covered,covered,Routine shape op
+Transpose,ai.onnx,25,25,yes,25-inf,broad_tensor_types,tensor,layout_only,already_covered,covered,Routine layout op
+Unsqueeze,ai.onnx,25,25,yes,25-inf,broad_tensor_types,tensor,layout_only,already_covered,covered,Routine shape op
+If,ai.onnx,25,25,subgraph_control_flow,n/a,tensor_or_sequence,tensor_or_sequence,prompt_banned_adjacent,banned_or_fatal,dead,Subgraph/control-flow surface is validator-fatal
+Loop,ai.onnx,25,25,subgraph_control_flow,n/a,variadic,tensor_or_sequence,prompt_banned,banned_or_fatal,dead,Explicitly banned by card
+Scan,ai.onnx,25,25,subgraph_control_flow,n/a,variadic,tensor_or_sequence,prompt_banned,banned_or_fatal,dead,Explicitly banned by card

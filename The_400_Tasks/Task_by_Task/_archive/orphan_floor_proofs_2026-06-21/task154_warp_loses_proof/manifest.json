@@ -1,0 +1,60 @@
+{
+  "task": "task154",
+  "verdict": "SKIP-CONFIRMED",
+  "result_type": "CONFIRM (floor-challenge: shift/warp family cannot beat the 3857 scatter floor)",
+  "candidate": null,
+  "candidate_onnx_present": false,
+  "best_exact_onnx_present": "task154_warp_bestexact_cost6179.onnx (warp-family reference, NOT a winning candidate; named with family suffix, NOT task154.onnx, because it does not beat the floor)",
+
+  "baseline": 3857,
+  "baseline_family": "Aditya sparse-ScatterND (output = ScatterND(input, final_indices[270,4], delta_updates[270], reduction='add')); mem 2184 + par 1673 = 3857; verified static==profile==3857 on 266 real inputs by prior rework-worker-154b; Plan-agent cross-checked. The OnnxlyFans Team_Best graph is NOT mounted in this sandbox, so 3857 is taken from the task154.md floor proof, not re-measured here.",
+
+  "achieved_best_exact_cost": 6179,
+  "achieved_best_exact_family": "reflection-matrix warp (the radical shift/warp family this prompt asked to test): R_mat[15,15]F16 @ c5_f16[1,1,15,15] @ C_mat[15,15]F16 Einsum reflection, U8 color-index canvas, sentinel-10 Pad, Equal(channel_ids) free BOOL output. This IS the v6 lineage; the prompt's 'WRONG/stale family' label refers to it being compared against a stale 29015 LIVE, but as a graph it is exactly the shift/warp family and it is correct.",
+  "achieved_best_exact_breakdown": {
+    "by_real_scorer_v6_reference": "mem 6124 + par 55 = 6179 (documented for byte-identical v6)",
+    "by_cost_predictor_on_this_probe": "mem 6060 + par 50 = 6110 (cost_predictor undercounts scalar inits + 1-2 intermediates vs the real score_network; same ~1% gap it shows on LIVE 29010-vs-29015 and v3 6560-vs-6631)",
+    "memory_dominant_tensors": "c2_f32[1,1,15,15]=900 + c5_f32[1,1,15,15]=900 + color30_u8[1,1,30,30]=900 (canvas) + R_mat=450 + C_mat=450 + c5_f16=450 + c5_out_f16=450 (reflection machinery 1800) + bbox/red plumbing ~660"
+  },
+
+  "sha256_best_exact_onnx": "1733901d68e390ec5f0cb3a7a9cd1c095d23fe8534994855ca17d30709c5c55f",
+  "best_exact_onnx_bytes": 2436,
+  "best_exact_opset": 13,
+  "best_exact_output_dtype": "BOOL [1,10,30,30] (matches LIVE family decode)",
+
+  "subset_gates": {
+    "rule_simulation_truth": "task154.md reflection rule (reflect each color-5 across nearest color-2 bbox side per axis, independently) reproduces corpus Y EXACTLY 3000/3000 (rule-rebuild, PRIMARY) -> the decoded rule in task154.md and the prompt is CORRECT.",
+    "warp_graph_truth_vs_corpusY": "600/600 EXACT (per-sample ORT, batch dim fixed at 1) -> the measured 6179 warp candidate is a CORRECT graph, so its cost is a legitimate floor measurement, not a broken artifact.",
+    "N_truth": 3000,
+    "ab_vs_live": "NOT byte-equal: extract_task.py 154 returns the 29015 OneHot/MatMul/Conv graph (opset10), NOT the 3857 scatter graph; AB-byte-equal is therefore not applicable to the 3857 floor in this sandbox. AB skipped per protocol (only run if byte-equal)."
+  },
+
+  "cost_method": "PRIMARY = tools/cost_predictor.predict() (re-implements neurogolf_utils.calculate_params/calculate_memory: params=Sum initializer element-count dtype-agnostic, scalars=0; memory=Sum intermediate value_info bytes via onnx.shape_inference strict_mode=True, EXCLUDING tensors named input/output; cost=memory+params). Cross-checked against the prompt's ORT-expose measure() (expose every node output, ORT_DISABLE_ALL run, sum intermediate nbytes excl input/output/initializers).",
+  "calibration": "cost_predictor on LIVE (extract_task 154) = mem 28954 + par 56 = 29010 vs documented 29015 (delta 5, scalar-init rounding). On staged v3 = 6560 vs documented 6631; on staged v6 = 6110 vs documented 6179. The ~1% undercount is consistent and conservative; the real score_network (score_network_v2) is authoritative and gives the documented 6179 for the byte-identical v6. The 3857 baseline could not be re-measured (OnnxlyFans graph not mounted) and is taken from the cross-checked task154.md proof.",
+
+  "what_was_tried": [
+    "1. SEPARABLE DEST-PULL GATHER (the prompt-implied cheap shift): out[i,j]=c5[refl_row[i],refl_col[j]] via two Gathers. RESULT: 0/3000 truth. Reason: 48.7% of pairs have gray on BOTH row-sides of the bbox (matches the don't-do log's 43.5%/0-266). A separable rank-1 dest-pull selects one source per destination and also injects spurious cross-terms; the true rule is a source-scatter where outside cells above AND below land inside.",
+    "2. FIXED PAD/SLICE TRANSLATION SHIFT (the prompt's central radical lever): RULED OUT analytically. The prompt assumed brow=3 makes the vertical reflection a near-constant offset (<=2 cases). MEASURED: because the 50% xpose flag swaps rows<->cols, the ROW bbox sees both the tall-span (brow-anchored) AND the wide-span (bcol-anchored, bcol in [2,5], wide in [5,7]). Result: rmin in {2,3,4,5}, rmax in {6,7,8,9,10,11} -> 14 DISTINCT (rmin,rmax) pairs and 14 distinct row reflection vectors (identical 14 for columns). A static Pad/Slice translation cannot encode a data-dependent reflection that varies 14 ways and reflects about a variable edge. This is the key prompt-staleness finding.",
+    "3. GRIDSAMPLE single-grid reflection (collapse R_mat+C_mat to one 450-param grid): RULED OUT. GridSample grid would have to be BUILT from the data-dependent rmin/rmax (not a constant), re-materialising a >=450 F32 grid intermediate plus the build arithmetic, and GridSample is float-only -> no net win over the two F16 matrices.",
+    "4. AGGRESSIVE BOOL-collapsed reflection-matrix warp (best-exact, BUILT + measured + truth-verified): cost 6110 (predictor) / 6179 (real). 600/600 truth. This is the warp family's measured floor."
+  ],
+
+  "warp_family_floor_proof": {
+    "irreducible_warp_memory": "Any data-dependent-reflection-via-canvas needs 5 unavoidable dense tensors: R_mat[15,15]F16=450 + C_mat[15,15]F16=450 (row & col reflections differ; Einsum/MatMul are float-only so no BOOL) + c5_in F16=450 + c5_out F16=450 + color30_u8 canvas[1,1,30,30]=900 = 2700B, before the red plane + bbox arithmetic (~660B). Floor ~3360B memory + params >= ~6100 total (matches measured).",
+    "why_scatter_wins": "Aditya's 3857 sets output = ScatterND(input, ...) so BOTH input and output are FREE (uncounted). It writes ONLY the 270 changed cells: delta_updates[270]F32=1080B mem + final_indices[270,4]=1080 par. It never materialises the 900B canvas, the two 450B reflection matrices, or the 450B reflected-gray plane. The warp family is forced to build a full canvas (Equal-tail) or full matrices (Einsum) that the sparse scatter structurally avoids.",
+    "no_third_option": "A data-dependent reflection must either (a) enumerate moved cells as an index list -> that IS the 3857 scatter, or (b) apply a dense permutation matrix -> the 6179 warp, or (c) a separable Gather -> proven 0/3000. There is no fourth primitive that is both a data-dependent bbox-edge reflection AND avoids materialising a canvas/matrix/index-table.",
+    "free_output_dodge_checked": "Trying output=Where/ScatterND directly onto the free input (to skip the 900B canvas) just relocates the gray to data-dependent destinations -> collapses back to the 270-cell scatter (3857) or needs the matrices. v1's BOOL-Concat 10-channel assembly already measured 8319 (worse). The U8 canvas + Equal is the cheapest output assembly for the warp family.",
+    "competitor_corroboration": "32 public competitor task154.onnx scanned: correct graphs are 74346+, only cost-0/63 stubs go lower (zero-weight memorization lookups, score 0 hidden, traps section 14e). No public correct graph beats 3857."
+  },
+
+  "prompt_staleness_findings": [
+    "FINDING 1 (baseline source): extract_task.py 154 returns the 29015 OneHot/MatMul/Conv graph (opset 10, 46 nodes), NOT the 3857 Aditya scatter. The prompt says 'Baseline: extract_task.py 154 ... (cost 3857)' -- the extracted graph is NOT the 3857 floor. The 3857 floor lives only in the (un-mounted) OnnxlyFans Team_Best and the task154.md proof. AB-vs-live in this sandbox would compare against 29015, not 3857.",
+    "FINDING 2 (the radical lever's premise is stale): the prompt/lever claim 'brow=3 FIXED -> reflection is a vertical mirror about a near-constant box mid-line, tall in {8,9} gives <=2 cases, branch <=2 vertical offsets by box-side flags' is WRONG once the 50% xpose is accounted for. xpose swaps rows<->cols, so the row axis also carries the bcol/wide-driven span. Measured: 14 distinct row reflection vectors AND 14 distinct col reflection vectors -- not <=2. A <=2-offset Pad/Slice shift cannot implement this.",
+    "FINDING 3 (decoded rule IS correct): the task154.md reflect-across-nearest-bbox-side rule is exactly right (3000/3000 sim). The prompt's rule decode is accurate; only its cost-lever premise is stale.",
+    "FINDING 4 (not the 'wrong family' the reviewer feared): the prompt warns the v6 6179 lineage is the WRONG family. That label is formulation-relative (it golfs the stale 29015 LIVE). As a GRAPH, the v6/Einsum reflection IS the shift/warp family the prompt asked to test, it is CORRECT (600/600 truth), and 6179 is its genuine floor -- which is exactly what proves the warp family loses to 3857."
+  ],
+
+  "captain_own_stack_probe_note": "FLOOR-FRAGILE. This is a CONFIRM, not a beat -- no submission. The 3857 floor was NOT re-measured here (OnnxlyFans Team_Best not mounted); it is trusted from the cross-checked task154.md proof. If the captain wants to re-verify 3857 before relying on this CONFIRM, re-run score_network_v2 on the actual Team_Best task154.onnx in the Windows env. No own-stack probe needed for a CONFIRM (nothing to submit), but the captain should NOT stage any warp candidate -- the warp family provably cannot beat 3857.",
+  "gate_note": "NOT 200k-gated in sandbox (onnx 1.22 / onnxruntime 1.23, numpy unpinned -> LOCAL EVIDENCE ONLY) -- pending Claude Code Windows env; captain ships. Per instructions, did NOT run ng_gate --full and did NOT submit.",
+  "do_not_submit": true
+}

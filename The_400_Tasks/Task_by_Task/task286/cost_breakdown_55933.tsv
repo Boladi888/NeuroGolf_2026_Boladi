@@ -1,0 +1,454 @@
+kind	name	producer_idx	producer_op	dtype	shape	cost_units	class	note
+memory	lo_open_1	0	Conv	FLOAT	1x1x30x1	120	shared/duplicated	row-pack setup for open/seed; overlapping kernels but current direct two-pack is cheaper than deriving seed from open
+memory	hi_open_2	1	Conv	FLOAT	1x1x30x1	120	shared/duplicated	row-pack setup for open/seed; overlapping kernels but current direct two-pack is cheaper than deriving seed from open
+memory	los_open_3	2	Slice	FLOAT	1x1x25x1	100	shared/duplicated	row-pack setup for open/seed; overlapping kernels but current direct two-pack is cheaper than deriving seed from open
+memory	his_open_4	3	Slice	FLOAT	1x1x25x1	100	shared/duplicated	row-pack setup for open/seed; overlapping kernels but current direct two-pack is cheaper than deriving seed from open
+memory	lou_open_5	4	Cast	UINT32	1x1x25x1	100	shared/duplicated	row-pack setup for open/seed; overlapping kernels but current direct two-pack is cheaper than deriving seed from open
+memory	hiu_open_6	5	Cast	UINT32	1x1x25x1	100	shared/duplicated	row-pack setup for open/seed; overlapping kernels but current direct two-pack is cheaper than deriving seed from open
+memory	hish_open_7	6	BitShift	UINT32	1x1x25x1	100	shared/duplicated	row-pack setup for open/seed; overlapping kernels but current direct two-pack is cheaper than deriving seed from open
+memory	pk_open_8	7	BitwiseOr	UINT32	1x1x25x1	100	shared/duplicated	row-pack setup for open/seed; overlapping kernels but current direct two-pack is cheaper than deriving seed from open
+memory	lo_seed_9	8	Conv	FLOAT	1x1x30x1	120	shared/duplicated	row-pack setup for open/seed; overlapping kernels but current direct two-pack is cheaper than deriving seed from open
+memory	hi_seed_10	9	Conv	FLOAT	1x1x30x1	120	shared/duplicated	row-pack setup for open/seed; overlapping kernels but current direct two-pack is cheaper than deriving seed from open
+memory	los_seed_11	10	Slice	FLOAT	1x1x25x1	100	shared/duplicated	row-pack setup for open/seed; overlapping kernels but current direct two-pack is cheaper than deriving seed from open
+memory	his_seed_12	11	Slice	FLOAT	1x1x25x1	100	shared/duplicated	row-pack setup for open/seed; overlapping kernels but current direct two-pack is cheaper than deriving seed from open
+memory	lou_seed_13	12	Cast	UINT32	1x1x25x1	100	shared/duplicated	row-pack setup for open/seed; overlapping kernels but current direct two-pack is cheaper than deriving seed from open
+memory	hiu_seed_14	13	Cast	UINT32	1x1x25x1	100	shared/duplicated	row-pack setup for open/seed; overlapping kernels but current direct two-pack is cheaper than deriving seed from open
+memory	hish_seed_15	14	BitShift	UINT32	1x1x25x1	100	shared/duplicated	row-pack setup for open/seed; overlapping kernels but current direct two-pack is cheaper than deriving seed from open
+memory	pk_seed_16	15	BitwiseOr	UINT32	1x1x25x1	100	shared/duplicated	row-pack setup for open/seed; overlapping kernels but current direct two-pack is cheaper than deriving seed from open
+memory	left_17	16	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_18	17	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_19	18	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_20	19	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_21	20	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_22	21	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_23	22	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_24	23	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_25	24	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_26	25	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_27	26	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_28	27	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_29	28	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_30	29	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_31	30	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_32	31	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_33	32	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_34	33	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_35	34	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_36	35	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_37	36	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_38	37	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_39	38	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_40	39	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_41	40	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_42	41	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_43	42	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_44	43	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_45	44	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_46	45	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_47	46	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_48	47	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_49	48	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_50	49	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_51	50	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_52	51	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_53	52	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_54	53	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_55	54	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_56	55	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_57	56	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_58	57	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_59	58	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_60	59	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_61	60	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_62	61	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_63	62	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_64	63	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_65	64	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_66	65	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_67	66	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_68	67	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_69	68	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_70	69	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_71	70	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_72	71	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_73	72	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_74	73	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_75	74	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_76	75	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_77	76	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_78	77	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_79	78	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_80	79	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_81	80	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_82	81	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_83	82	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_84	83	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_85	84	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_86	85	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_87	86	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_88	87	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_89	88	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_90	89	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_91	90	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_92	91	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_93	92	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_94	93	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_95	94	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_96	95	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_97	96	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_98	97	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_99	98	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_100	99	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_101	100	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_102	101	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_103	102	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_104	103	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_105	104	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_106	105	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_107	106	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_108	107	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_109	108	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_110	109	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_111	110	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_112	111	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_113	112	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_114	113	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_115	114	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_116	115	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_117	116	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_118	117	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_119	118	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_120	119	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_121	120	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_122	121	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_123	122	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_124	123	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_125	124	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_126	125	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_127	126	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_128	127	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_129	128	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_130	129	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_131	130	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_132	131	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_133	132	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_134	133	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_135	134	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_136	135	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_137	136	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_138	137	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_139	138	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_140	139	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_141	140	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_142	141	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_143	142	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_144	143	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_145	144	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_146	145	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_147	146	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_148	147	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_149	148	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_150	149	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_151	150	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_152	151	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_153	152	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_154	153	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_155	154	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_156	155	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_157	156	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_158	157	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_159	158	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_160	159	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_161	160	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_162	161	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_163	162	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_164	163	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_165	164	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_166	165	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_167	166	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_168	167	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_169	168	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_170	169	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_171	170	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_172	171	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_173	172	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_174	173	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_175	174	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_176	175	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_177	176	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_178	177	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_179	178	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_180	179	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_181	180	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_182	181	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_183	182	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_184	183	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_185	184	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_186	185	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_187	186	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_188	187	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_189	188	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_190	189	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_191	190	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_192	191	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_193	192	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_194	193	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_195	194	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_196	195	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_197	196	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_198	197	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_199	198	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_200	199	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_201	200	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_202	201	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_203	202	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_204	203	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_205	204	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_206	205	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_207	206	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_208	207	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_209	208	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_210	209	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_211	210	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_212	211	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_213	212	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_214	213	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_215	214	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_216	215	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_217	216	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_218	217	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_219	218	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_220	219	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_221	220	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_222	221	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_223	222	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_224	223	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_225	224	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_226	225	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_227	226	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_228	227	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_229	228	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_230	229	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_231	230	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_232	231	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_233	232	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_234	233	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_235	234	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_236	235	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_237	236	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_238	237	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_239	238	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_240	239	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_241	240	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_242	241	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_243	242	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_244	243	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_245	244	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_246	245	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_247	246	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_248	247	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_249	248	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_250	249	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_251	250	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_252	251	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_253	252	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_254	253	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_255	254	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_256	255	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_257	256	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_258	257	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_259	258	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_260	259	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_261	260	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_262	261	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_263	262	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_264	263	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_265	264	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_266	265	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_267	266	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_268	267	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_269	268	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_270	269	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_271	270	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_272	271	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_273	272	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_274	273	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_275	274	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_276	275	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_277	276	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_278	277	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_279	278	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_280	279	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_281	280	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_282	281	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_283	282	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_284	283	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_285	284	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_286	285	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_287	286	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_288	287	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_289	288	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_290	289	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_291	290	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_292	291	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_293	292	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_294	293	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_295	294	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_296	295	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_297	296	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_298	297	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_299	298	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_300	299	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_301	300	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_302	301	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_303	302	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_304	303	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_305	304	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_306	305	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_307	306	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_308	307	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_309	308	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_310	309	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_311	310	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_312	311	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_313	312	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_314	313	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_315	314	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_316	315	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_317	316	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_318	317	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_319	318	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_320	319	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_321	320	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_322	321	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_323	322	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_324	323	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_325	324	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_326	325	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_327	326	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_328	327	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_329	328	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_330	329	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_331	330	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_332	331	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_333	332	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_334	333	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_335	334	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_336	335	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_337	336	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_338	337	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_339	338	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_340	339	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_341	340	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_342	341	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_343	342	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_344	343	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_345	344	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_346	345	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_347	346	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_348	347	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_349	348	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_350	349	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_351	350	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_352	351	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_353	352	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_354	353	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_355	354	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_356	355	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_357	356	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_358	357	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_359	358	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_360	359	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_361	360	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_362	361	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_363	362	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_364	363	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_365	364	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_366	365	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_367	366	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_368	367	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_369	368	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_370	369	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_371	370	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_372	371	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_373	372	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_374	373	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_375	374	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_376	375	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_377	376	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_378	377	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_379	378	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_380	379	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_381	380	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_382	381	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_383	382	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_384	383	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_385	384	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_386	385	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_387	386	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_388	387	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_389	388	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_390	389	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_391	390	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_392	391	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_393	392	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_394	393	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_395	394	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_396	395	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_397	396	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_398	397	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_399	398	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_400	399	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_401	400	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	left_402	401	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	right_403	402	BitShift	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	lr_404	403	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	horizontal_405	404	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_h_406	405	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_407	406	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_408	407	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_409	408	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_410	409	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_411	410	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	prev_412	411	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	next_413	412	Gather	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v0_414	413	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	v1_415	414	BitwiseOr	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_v_416	415	BitwiseAnd	UINT32	1x1x25x1	100	mandatory	reach/flood stack: 100-byte U32 row-bit state; removable only by replacing reach encoding
+memory	reach_bits_417	416	BitwiseAnd	UINT32	1x1x25x25	2500	mandatory	full 25x25 unpack from U32 rows for final per-cell mask
+memory	reach_b_418	417	Greater	BOOL	1x1x25x25	625	mandatory	BOOL reach mask consumed by UINT8 tail
+memory	lab_f_419	418	Conv	FLOAT	1x1x25x25	2500	mandatory	Conv output for cropped 25x25 label plane; already paid params to remove 30x30 label runtime crop
+memory	lab_u8_420	419	Cast	UINT8	1x1x25x25	625	removable by dtype	casted UINT8 label plane; dtype-optimized, but tied to label output path
+memory	gt_one_421	420	Greater	BOOL	1x1x25x25	625	removable by reordering	UINT8 color-tail plane; candidate direct-output/tail reorder target
+memory	is_wall_422	421	Equal	BOOL	1x1x25x25	625	removable by reordering	UINT8 color-tail plane; candidate direct-output/tail reorder target
+memory	non_bg_423	422	Where	UINT8	1x1x25x25	625	removable by reordering	UINT8 color-tail plane; candidate direct-output/tail reorder target
+memory	seed_label_424	423	Where	UINT8	1x1x25x25	625	removable by reordering	UINT8 color-tail plane; candidate direct-output/tail reorder target
+memory	seed_even_425	424	Where	UINT8	1x1x25x25	625	removable by reordering	UINT8 color-tail plane; candidate direct-output/tail reorder target
+memory	seed_odd_426	425	Where	UINT8	1x1x25x25	625	removable by reordering	UINT8 color-tail plane; candidate direct-output/tail reorder target
+memory	even_color_427	426	ReduceMax	UINT8	1x1x1x1	1	mandatory	small scalar or glue tensor
+memory	odd_color_428	427	ReduceMax	UINT8	1x1x1x1	1	mandatory	small scalar or glue tensor
+memory	painted_u8_429	428	Where	UINT8	1x1x25x25	625	removable by reordering	UINT8 color-tail plane; candidate direct-output/tail reorder target
+memory	outlab_u8_430	429	Where	UINT8	1x1x25x25	625	removable by reordering	UINT8 color-tail plane; candidate direct-output/tail reorder target
+memory	padded_u8_431	430	Pad	UINT8	1x1x30x30	900	removable by reordering	single-channel 30x30 canvas before free Equal; direct one-hot output likely costs more but this is a tail target
+param	s0		initializer	INT64	4	4	mandatory	shape/output glue initializer
+param	s25		initializer	INT64	4	4	mandatory	shape/output glue initializer
+param	sax		initializer	INT64	4	4	mandatory	shape/output glue initializer
+param	sh13		initializer	UINT32	scalar	1	mandatory	scalar glue initializer
+param	one_u32		initializer	UINT32	scalar	1	mandatory	scalar glue initializer
+param	prev_idx		initializer	INT64	25	25	mandatory	shared reach unpack/vertical-shift table
+param	next_idx		initializer	INT64	25	25	mandatory	shared reach unpack/vertical-shift table
+param	bit2pow		initializer	UINT32	1x1x1x25	25	mandatory	shared reach unpack/vertical-shift table
+param	zero_u32		initializer	UINT32	scalar	1	mandatory	scalar glue initializer
+param	zero_u8		initializer	UINT8	scalar	1	mandatory	scalar glue initializer
+param	one_u8		initializer	UINT8	scalar	1	mandatory	scalar glue initializer
+param	nine_u8		initializer	UINT8	scalar	1	mandatory	scalar glue initializer
+param	label_w_crop6		initializer	FLOAT	1x10x6x6	360	removable by crop	crop-label trade: +350 params vs 1x1 label to remove 2000 runtime bytes
+param	even_b		initializer	BOOL	1x1x25x25	625	mandatory	checkerboard parity table for even/odd seed color split
+param	s25lab		initializer	INT64	4	4	mandatory	shape/output glue initializer
+param	padp		initializer	INT64	8	8	mandatory	shape/output glue initializer
+param	pv0		initializer	UINT8	1	1	mandatory	scalar glue initializer
+param	rg		initializer	UINT8	1x10x1x1	10	mandatory	shape/output glue initializer
+param	klo_open		initializer	FLOAT	1x10x1x25	250	shared/duplicated	row-pack kernel table; open/seed duplicate most channel weights but direct pack avoids extra runtime masks
+param	khi_open		initializer	FLOAT	1x10x1x25	250	shared/duplicated	row-pack kernel table; open/seed duplicate most channel weights but direct pack avoids extra runtime masks
+param	klo_seed		initializer	FLOAT	1x10x1x25	250	shared/duplicated	row-pack kernel table; open/seed duplicate most channel weights but direct pack avoids extra runtime masks
+param	khi_seed		initializer	FLOAT	1x10x1x25	250	shared/duplicated	row-pack kernel table; open/seed duplicate most channel weights but direct pack avoids extra runtime masks

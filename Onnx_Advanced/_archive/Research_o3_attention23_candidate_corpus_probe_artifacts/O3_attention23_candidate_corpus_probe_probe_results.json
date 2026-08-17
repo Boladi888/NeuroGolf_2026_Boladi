@@ -1,0 +1,57 @@
+{
+  "attention23_self_4d": {
+    "path": "Logs\\research\\O3_attention23_candidate_corpus_probe_attention23.onnx",
+    "opset": 23,
+    "inputs": "single NeuroGolf input [1,10,30,30] F32 named input",
+    "checker": "PASS",
+    "shape_inference": "PASS",
+    "value_info": [],
+    "ort_load_run": "PASS shape=[1, 10, 30, 30] dtype=float32",
+    "scorer": "macs=0 memory=0 params=0 cost=0"
+  },
+  "explicit_matmul_softmax_matmul": {
+    "path": "Logs\\research\\O3_attention23_candidate_corpus_probe_explicit_matmul_softmax.onnx",
+    "opset": 23,
+    "inputs": "single NeuroGolf input [1,10,30,30] F32 named input",
+    "checker": "PASS",
+    "shape_inference": "PASS",
+    "value_info": [
+      {
+        "name": "k_t",
+        "elem_type": 1,
+        "shape": [
+          1,
+          10,
+          30,
+          30
+        ]
+      },
+      {
+        "name": "scores",
+        "elem_type": 1,
+        "shape": [
+          1,
+          10,
+          30,
+          30
+        ]
+      },
+      {
+        "name": "weights",
+        "elem_type": 1,
+        "shape": [
+          1,
+          10,
+          30,
+          30
+        ]
+      }
+    ],
+    "ort_load_run": "PASS shape=[1, 10, 30, 30] dtype=float32",
+    "scorer": "macs=0 memory=108000 params=0 cost=108000"
+  },
+  "numeric_compare": {
+    "attention_vs_explicit_max_abs": 0.0,
+    "attention_vs_explicit_allclose_rtol1e_4_atol1e_5": true
+  }
+}

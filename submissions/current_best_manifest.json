@@ -1,0 +1,1619 @@
+{
+  "current_best": {
+    "candidate_id": "task383_rule_rewrite_v1_t_c43ebb68_on_6455_23",
+    "score": 6455.99,
+    "previous_global_score": 6455.23,
+    "delta_vs_previous_global": 0.76,
+    "task_id": "task383",
+    "package_sha256": "C1C42D55ECD0FAF5F285BA1AEEADB696CD2975EE04A2067D776B3DF80DE53719",
+    "changed_entries": [
+      "task383.onnx"
+    ],
+    "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\_requested_submits\\task383_rule_rewrite_v1_on_6455_23\\submission.zip",
+    "sync_status": "synced",
+    "synced_at": "2026-06-02T02:04:23Z",
+    "last_submit_result": {
+      "submitted_at": "2026-06-02T01:56:40.220000Z",
+      "observed_complete_at": "2026-06-02T02:03:00Z",
+      "result_status": "complete",
+      "public_score": 6455.99,
+      "delta_vs_lineage_base": 0.76,
+      "package_sha256": "C1C42D55ECD0FAF5F285BA1AEEADB696CD2975EE04A2067D776B3DF80DE53719",
+      "stack_composition": [],
+      "attempt_kind": "task383-rule-rewrite-v1",
+      "synced_at": "2026-06-02T02:04:23Z",
+      "sync_status": "synced"
+    },
+    "worker_owner": "neurogolf-submit-captain",
+    "followup_worker": "neurogolf-sync-manager",
+    "reviewer_disposition": "approved-for-submit-captain",
+    "approval_mode": "auto-rate-limited",
+    "predicted_delta": 0.7689,
+    "expected_point_gain": 0.7689,
+    "tests_run": [
+      "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\_requested_submits\\task383_rule_rewrite_v1_on_6455_23\\submission.zip) == C1C42D55ECD0FAF5F285BA1AEEADB696CD2975EE04A2067D776B3DF80DE53719",
+      "Kaggle COMPLETE public score 6455.99"
+    ],
+    "gates": {
+      "package_hash": "pass",
+      "kaggle_public_validation": "pass"
+    },
+    "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\_requested_submits\\task383_rule_rewrite_v1_on_6455_23\\submission.zip",
+    "lineage_base_score": 6455.23,
+    "changed_task_ids": [
+      "task383"
+    ],
+    "risk_summary": "",
+    "submit_ready": false,
+    "submit_queue_status": "submitted-complete-promote-synced",
+    "notes": "Deterministic exact-package current-best sync.",
+    "sync_task_id": "",
+    "updated_at": "2026-06-02T02:04:23Z"
+  },
+  "score": 6455.99,
+  "candidate_id": "task383_rule_rewrite_v1_t_c43ebb68_on_6455_23",
+  "task_id": "task383",
+  "lineage_base_score": 6455.23,
+  "previous_global_score": 6455.23,
+  "delta_vs_lineage": 0.76,
+  "delta_vs_previous_global": 0.76,
+  "expected_point_gain": 1.58,
+  "submitted_at": "2026-05-20T03:34:37.340000Z",
+  "promoted_at": "2026-05-20T15:56:56Z",
+  "package_path": "submissions/submission.zip",
+  "package_sha256": "5D9AABE0608498765CBD39CB606FF916D3003A5BC9271DD8B228722927A9588F",
+  "changed_members": [
+    "megastack93-spread-scan-93-tasks"
+  ],
+  "stack_composition": [
+    "megastack93"
+  ],
+  "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\_canonical_5835_30_backup.zip",
+  "submitted_package_description": "megastack93: full spread_scan apply on 5833.74, 93/93 verify PASS, -59339 bytes, expected +1.58 LB (separable_mask_collapse hits 18, onnxsim+safe_opt residuals)",
+  "sync_note": "Kaggle public-positive deterministic sync by submit-captain t_09dbb846.",
+  "completed_at": "2026-05-20T15:56:56Z",
+  "entries": [
+    {
+      "candidate_id": "task383_rule_rewrite_v1_t_c43ebb68_on_6455_23",
+      "score": 6455.99,
+      "previous_global_score": 6455.23,
+      "delta_vs_previous_global": 0.76,
+      "task_id": "task383",
+      "package_sha256": "C1C42D55ECD0FAF5F285BA1AEEADB696CD2975EE04A2067D776B3DF80DE53719",
+      "changed_entries": [
+        "task383.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\_requested_submits\\task383_rule_rewrite_v1_on_6455_23\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-06-02T02:04:23Z",
+      "last_submit_result": {
+        "submitted_at": "2026-06-02T01:56:40.220000Z",
+        "observed_complete_at": "2026-06-02T02:03:00Z",
+        "result_status": "complete",
+        "public_score": 6455.99,
+        "delta_vs_lineage_base": 0.76,
+        "package_sha256": "C1C42D55ECD0FAF5F285BA1AEEADB696CD2975EE04A2067D776B3DF80DE53719",
+        "stack_composition": [],
+        "attempt_kind": "task383-rule-rewrite-v1",
+        "synced_at": "2026-06-02T02:04:23Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 0.7689,
+      "expected_point_gain": 0.7689,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\_requested_submits\\task383_rule_rewrite_v1_on_6455_23\\submission.zip) == C1C42D55ECD0FAF5F285BA1AEEADB696CD2975EE04A2067D776B3DF80DE53719",
+        "Kaggle COMPLETE public score 6455.99"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\_requested_submits\\task383_rule_rewrite_v1_on_6455_23\\submission.zip",
+      "lineage_base_score": 6455.23,
+      "changed_task_ids": [
+        "task383"
+      ],
+      "risk_summary": "",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "Deterministic exact-package current-best sync.",
+      "sync_task_id": "",
+      "updated_at": "2026-06-02T02:04:23Z"
+    },
+    {
+      "candidate_id": "task191_opset20_hashmatch_v6_t_24807_on_6454_94",
+      "score": 6455.23,
+      "previous_global_score": 6454.94,
+      "delta_vs_previous_global": 0.29,
+      "task_id": "task191",
+      "package_sha256": "E5E64F062C4F13F60165946C43C08165FDB060EBD81565A3E564D9C92029E3A6",
+      "changed_entries": [
+        "task191.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\_requested_submits\\task191_opset20_hashmatch_v6_on_6454_94\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-06-02T01:32:22Z",
+      "last_submit_result": {
+        "submitted_at": "2026-06-02T01:25:42.397000Z",
+        "observed_complete_at": "2026-06-02T01:31:55Z",
+        "result_status": "complete",
+        "public_score": 6455.23,
+        "delta_vs_lineage_base": 0.29,
+        "package_sha256": "E5E64F062C4F13F60165946C43C08165FDB060EBD81565A3E564D9C92029E3A6",
+        "stack_composition": [],
+        "attempt_kind": "task191-v6-opset20-hashmatch",
+        "synced_at": "2026-06-02T01:32:22Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 0.2806,
+      "expected_point_gain": 0.2806,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\_requested_submits\\task191_opset20_hashmatch_v6_on_6454_94\\submission.zip) == E5E64F062C4F13F60165946C43C08165FDB060EBD81565A3E564D9C92029E3A6",
+        "Kaggle COMPLETE public score 6455.23"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\_requested_submits\\task191_opset20_hashmatch_v6_on_6454_94\\submission.zip",
+      "lineage_base_score": 6454.94,
+      "changed_task_ids": [
+        "task191"
+      ],
+      "risk_summary": "",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "Deterministic exact-package current-best sync.",
+      "sync_task_id": "",
+      "updated_at": "2026-06-02T01:32:22Z"
+    },
+    {
+      "candidate_id": "task213_v8_t_2193_on_6451_71",
+      "score": 6454.94,
+      "previous_global_score": 6451.71,
+      "delta_vs_previous_global": 3.23,
+      "task_id": "task213",
+      "package_sha256": "7B18F5757A1E52C93E489738D5BDBBC2EC73AE4AE5E9E6E13E83E431809FA47F",
+      "changed_entries": [
+        "task213.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\_requested_submits\\task213_v8_on_6451_71\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-06-02T01:13:18Z",
+      "last_submit_result": {
+        "submitted_at": "2026-06-02T01:07:35.400000Z",
+        "observed_complete_at": "2026-06-02T01:11:00Z",
+        "result_status": "complete",
+        "public_score": 6454.94,
+        "delta_vs_lineage_base": 3.23,
+        "package_sha256": "7B18F5757A1E52C93E489738D5BDBBC2EC73AE4AE5E9E6E13E83E431809FA47F",
+        "stack_composition": [],
+        "attempt_kind": "task213-v8-floor-rewrite",
+        "synced_at": "2026-06-02T01:13:18Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 3.234,
+      "expected_point_gain": 3.234,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\_requested_submits\\task213_v8_on_6451_71\\submission.zip) == 7B18F5757A1E52C93E489738D5BDBBC2EC73AE4AE5E9E6E13E83E431809FA47F",
+        "Kaggle COMPLETE public score 6454.94"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\_requested_submits\\task213_v8_on_6451_71\\submission.zip",
+      "lineage_base_score": 6451.71,
+      "changed_task_ids": [
+        "task213"
+      ],
+      "risk_summary": "",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "Deterministic exact-package current-best sync.",
+      "sync_task_id": "",
+      "updated_at": "2026-06-02T01:13:18Z"
+    },
+    {
+      "candidate_id": "megastack153_on_5835_30_20260520T1700Z",
+      "score": 5861.43,
+      "previous_global_score": 5835.3,
+      "delta_vs_previous_global": 26.13,
+      "task_id": "megastack153",
+      "package_sha256": "CB7779655379A7293F0E63FE22346499FADC1E8CA279B5937A232E76AAA1A7E0",
+      "changed_entries": [
+        "megastack153-153-task-stack.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-20T16:06:57Z",
+      "last_submit_result": {
+        "submitted_at": "",
+        "observed_complete_at": "",
+        "result_status": "complete",
+        "public_score": 5861.43,
+        "delta_vs_lineage_base": 26.13,
+        "package_sha256": "CB7779655379A7293F0E63FE22346499FADC1E8CA279B5937A232E76AAA1A7E0",
+        "stack_composition": [],
+        "attempt_kind": "stack",
+        "synced_at": "2026-05-20T16:06:57Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": null,
+      "expected_point_gain": null,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\submission.zip) == CB7779655379A7293F0E63FE22346499FADC1E8CA279B5937A232E76AAA1A7E0",
+        "Kaggle COMPLETE public score 5861.43"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\submission.zip",
+      "lineage_base_score": 5835.3,
+      "changed_task_ids": [
+        "megastack153-153-task-stack"
+      ],
+      "risk_summary": "",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "Deterministic exact-package current-best sync.",
+      "sync_task_id": "",
+      "updated_at": "2026-05-20T16:06:57Z"
+    },
+    {
+      "candidate_id": "megastack93_on_5833_74_20260520T033437Z",
+      "score": 5835.3,
+      "previous_global_score": 5833.74,
+      "delta_vs_previous_global": 1.56,
+      "task_id": "task228",
+      "package_sha256": "5D9AABE0608498765CBD39CB606FF916D3003A5BC9271DD8B228722927A9588F",
+      "changed_entries": [
+        "megastack93-spread-scan-93-tasks.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\_canonical_5835_30_backup.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-20T15:57:45Z",
+      "last_submit_result": {
+        "submitted_at": "",
+        "observed_complete_at": "2026-05-20T15:56:56Z",
+        "result_status": "complete",
+        "public_score": 5835.3,
+        "delta_vs_lineage_base": 1.56,
+        "package_sha256": "5D9AABE0608498765CBD39CB606FF916D3003A5BC9271DD8B228722927A9588F",
+        "stack_composition": [
+          "megastack93_on_5833_74_20260520T033437Z"
+        ],
+        "attempt_kind": "no-submit-superseded-by-megastack93",
+        "synced_at": "2026-05-20T15:57:45Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 0.097024,
+      "expected_point_gain": 0.097024,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\_canonical_5835_30_backup.zip) == 5D9AABE0608498765CBD39CB606FF916D3003A5BC9271DD8B228722927A9588F",
+        "Kaggle COMPLETE public score 5835.3"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\_canonical_5835_30_backup.zip",
+      "lineage_base_score": 5833.74,
+      "changed_task_ids": [
+        "megastack93-spread-scan-93-tasks"
+      ],
+      "risk_summary": "Reviewer independently reproduced the task228 where-paint current-live delta against the exact current canonical package. The candidate replaces Cast(v96)+Max(v46,v97) with Where(v96,1.0,v46), shrinking local cost from 41194 to 37594 (+0.097024 expected points). Official verify_against_live shows prototype-vs-LIVE 266/266 and the built-in adversarial suite matched LIVE 8512/8512. Important nuance: task228 LIVE itself is 0/266 versus expected on the official pairs, so approval is based on exact LIVE parity, not expected-output parity. The prior task228 public-negative candidate was a different no-pad crop/output family; this review package preserves entry order and changes only task228.onnx.",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "Deterministic auto-sync from .hermes/board/submit_queue.json current_best_manifest; package path and SHA were read from the matched submit_execution.",
+      "sync_task_id": "auto-python-sync",
+      "updated_at": "2026-05-20T15:57:45Z"
+    },
+    {
+      "candidate_id": "alternates31_on_5800_80",
+      "score": 5805.19,
+      "previous_global_score": 5800.8,
+      "delta_vs_previous_global": 4.39,
+      "task_id": "stack",
+      "package_sha256": "8526E8DAB6AF3573316ECD04C80F01587F12ED5EDE15F0B8B364D6421DF1A1A2",
+      "changed_entries": [
+        "31-task-multi-stack.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\alternates31_on_5800_80_20260519T1345Z\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-20T15:53:53Z",
+      "last_submit_result": {
+        "submitted_at": "",
+        "observed_complete_at": "",
+        "result_status": "complete",
+        "public_score": 5805.19,
+        "delta_vs_lineage_base": 4.39,
+        "package_sha256": "8526E8DAB6AF3573316ECD04C80F01587F12ED5EDE15F0B8B364D6421DF1A1A2",
+        "stack_composition": [
+          "alternates31_on_5800_80"
+        ],
+        "attempt_kind": "stack",
+        "synced_at": "2026-05-20T15:53:53Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 5.31,
+      "expected_point_gain": 5.31,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\alternates31_on_5800_80_20260519T1345Z\\submission.zip) == 8526E8DAB6AF3573316ECD04C80F01587F12ED5EDE15F0B8B364D6421DF1A1A2",
+        "Kaggle COMPLETE public score 5805.19"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\alternates31_on_5800_80_20260519T1345Z\\submission.zip",
+      "lineage_base_score": 5800.8,
+      "changed_task_ids": [
+        "31-task-multi-stack"
+      ],
+      "risk_summary": "",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "Deterministic auto-sync from .hermes/board/submit_queue.json current_best_manifest; package path and SHA were read from the matched submit_execution.",
+      "sync_task_id": "manual-backfill-20260519",
+      "updated_at": "2026-05-20T15:53:53Z"
+    },
+    {
+      "candidate_id": "alternates12_on_5790_28",
+      "score": 5800.8,
+      "previous_global_score": 5790.28,
+      "delta_vs_previous_global": 10.52,
+      "task_id": "task399",
+      "package_sha256": "A65626A99234E69FF99594B77E6666B49C4FD593E7612A5BF06227E5E7466160",
+      "changed_entries": [
+        "task399.onnx",
+        "task271.onnx",
+        "task316.onnx",
+        "task274.onnx",
+        "task130.onnx",
+        "task327.onnx",
+        "task255.onnx",
+        "task359.onnx",
+        "task011.onnx",
+        "task242.onnx",
+        "task285.onnx",
+        "task338.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\alternates12_on_5790_28_20260519T1325Z\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-19T17:31:18Z",
+      "last_submit_result": {
+        "submitted_at": "2026-05-19T13:25:00Z",
+        "observed_complete_at": "2026-05-19T13:28:00Z",
+        "result_status": "complete",
+        "public_score": 5800.8,
+        "delta_vs_lineage_base": 10.52,
+        "package_sha256": "A65626A99234E69FF99594B77E6666B49C4FD593E7612A5BF06227E5E7466160",
+        "stack_composition": [
+          "task399_crop7",
+          "task271_crop9x9",
+          "task316_crop10",
+          "task274_crop14x12",
+          "task130_crop9x9",
+          "task327_fp16_nz_sum",
+          "task255_split_reuse_where",
+          "task359_onehot_masked",
+          "task011_v_w8a",
+          "task242_crop16",
+          "task285_v9_fullflat",
+          "task338_fp16_bfs"
+        ],
+        "attempt_kind": "12-stack-rediscovered-alternates",
+        "synced_at": "2026-05-19T17:31:18Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 11.85,
+      "expected_point_gain": 11.85,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\alternates12_on_5790_28_20260519T1325Z\\submission.zip) == A65626A99234E69FF99594B77E6666B49C4FD593E7612A5BF06227E5E7466160",
+        "Kaggle COMPLETE public score 5800.8"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\alternates12_on_5790_28_20260519T1325Z\\submission.zip",
+      "lineage_base_score": 5790.28,
+      "changed_task_ids": [
+        "task399",
+        "task271",
+        "task316",
+        "task274",
+        "task130",
+        "task327",
+        "task255",
+        "task359",
+        "task011",
+        "task242",
+        "task285",
+        "task338"
+      ],
+      "risk_summary": "",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "alternates12 stack: rediscovered candidates beating canonical via score-sweep + verify-against-live. Landed +10.52 LB (88% of +11.85 expected).",
+      "sync_task_id": "",
+      "updated_at": "2026-05-19T17:31:18Z"
+    },
+    {
+      "candidate_id": "new9_on_5784_96_20260519T1940Z",
+      "score": 5790.28,
+      "previous_global_score": 5784.96,
+      "delta_vs_previous_global": 5.32,
+      "task_id": "task077",
+      "package_sha256": "B2A3266EF757D3CC85746B132A756055C8324DAF9F89627F008E92CF561CB325",
+      "changed_entries": [
+        "task077.onnx",
+        "task128.onnx",
+        "task197.onnx",
+        "task091.onnx",
+        "task109.onnx",
+        "task204.onnx",
+        "task157.onnx",
+        "task146.onnx",
+        "task270.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\new9_on_5784_96_20260519T1940Z\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-19T16:20:41Z",
+      "last_submit_result": {
+        "submitted_at": "2026-05-19T19:40:00Z",
+        "observed_complete_at": "2026-05-19T19:45:00Z",
+        "result_status": "complete",
+        "public_score": 5790.28,
+        "delta_vs_lineage_base": 5.32,
+        "package_sha256": "B2A3266EF757D3CC85746B132A756055C8324DAF9F89627F008E92CF561CB325",
+        "stack_composition": [
+          "task077_crop20x21",
+          "task128_crop15",
+          "task197_crop14x10",
+          "task091_crop15",
+          "task109_crop13",
+          "task204_crop20",
+          "task157_crop10x15",
+          "task146_crop9x3",
+          "task270_crop15"
+        ],
+        "attempt_kind": "9-stack-new-only",
+        "synced_at": "2026-05-19T16:20:41Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 5.32,
+      "expected_point_gain": 5.32,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\new9_on_5784_96_20260519T1940Z\\submission.zip) == B2A3266EF757D3CC85746B132A756055C8324DAF9F89627F008E92CF561CB325",
+        "Kaggle COMPLETE public score 5790.28"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\new9_on_5784_96_20260519T1940Z\\submission.zip",
+      "lineage_base_score": 5784.96,
+      "changed_task_ids": [
+        "task077",
+        "task128",
+        "task197",
+        "task091",
+        "task109",
+        "task204",
+        "task157",
+        "task146",
+        "task270"
+      ],
+      "risk_summary": "",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "9-stack new-only: never-shipped candidates with measured cost_delta, all landed positive = +5.32 LB",
+      "sync_task_id": "",
+      "updated_at": "2026-05-19T16:20:41Z"
+    },
+    {
+      "candidate_id": "megastack46_on_5776_87_20260519T1920Z",
+      "score": 5784.96,
+      "previous_global_score": 5776.87,
+      "delta_vs_previous_global": 8.09,
+      "task_id": "task217",
+      "package_sha256": "978576290B6D1EF5032D93CC150053CF228BBF007F32CBB2A3730CE12F611AAD",
+      "changed_entries": [
+        "task217.onnx",
+        "task297.onnx",
+        "task245.onnx",
+        "task057.onnx",
+        "task331.onnx",
+        "task301.onnx",
+        "task258.onnx",
+        "task396.onnx",
+        "task290.onnx",
+        "task300.onnx",
+        "task234.onnx",
+        "task097.onnx",
+        "task216.onnx",
+        "task145.onnx",
+        "task343.onnx",
+        "task165.onnx",
+        "task330.onnx",
+        "task313.onnx",
+        "task127.onnx",
+        "task215.onnx",
+        "task153.onnx",
+        "task264.onnx",
+        "task383.onnx",
+        "task390.onnx",
+        "task275.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\megastack46_on_5776_87_20260519T1920Z\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-19T16:15:58Z",
+      "last_submit_result": {
+        "submitted_at": "2026-05-19T19:20:00Z",
+        "observed_complete_at": "2026-05-19T19:25:00Z",
+        "result_status": "complete",
+        "public_score": 5784.96,
+        "delta_vs_lineage_base": 8.09,
+        "package_sha256": "978576290B6D1EF5032D93CC150053CF228BBF007F32CBB2A3730CE12F611AAD",
+        "stack_composition": [
+          "multi_worker_crop_and_f16_candidates_combined"
+        ],
+        "attempt_kind": "46-task-megastack-multi-worker",
+        "synced_at": "2026-05-19T16:15:58Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 18.46,
+      "expected_point_gain": 18.46,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\megastack46_on_5776_87_20260519T1920Z\\submission.zip) == 978576290B6D1EF5032D93CC150053CF228BBF007F32CBB2A3730CE12F611AAD",
+        "Kaggle COMPLETE public score 5784.96"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\megastack46_on_5776_87_20260519T1920Z\\submission.zip",
+      "lineage_base_score": 5776.87,
+      "changed_task_ids": [
+        "task217",
+        "task297",
+        "task245",
+        "task057",
+        "task331",
+        "task301",
+        "task258",
+        "task396",
+        "task290",
+        "task300",
+        "task234",
+        "task097",
+        "task216",
+        "task145",
+        "task343",
+        "task165",
+        "task330",
+        "task313",
+        "task127",
+        "task215",
+        "task153",
+        "task264",
+        "task383",
+        "task390",
+        "task275"
+      ],
+      "risk_summary": "",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "megastack 46 tasks from all worker groups: +8.09 LB confirmed (vs +18.46 conservative or +26.97 raw-sum)",
+      "sync_task_id": "",
+      "updated_at": "2026-05-19T16:15:58Z"
+    },
+    {
+      "candidate_id": "groupP_stack6_on_5773_41",
+      "score": 5776.87,
+      "previous_global_score": 5773.41,
+      "delta_vs_previous_global": 3.46,
+      "task_id": "task090",
+      "package_sha256": "24CC63B189FA23ADC50B93788EADA8EC5BBC1AE8A5FEF8D85A48B5FE0C4E03F9",
+      "changed_entries": [
+        "task090.onnx",
+        "task011.onnx",
+        "task114.onnx",
+        "task200.onnx",
+        "task206.onnx",
+        "task374.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\groupP_stack6_on_5773_41_20260519T1900Z\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-19T16:09:59Z",
+      "last_submit_result": {
+        "submitted_at": "2026-05-19T19:00:00Z",
+        "observed_complete_at": "2026-05-19T19:03:00Z",
+        "result_status": "complete",
+        "public_score": 5776.87,
+        "delta_vs_lineage_base": 3.46,
+        "package_sha256": "24CC63B189FA23ADC50B93788EADA8EC5BBC1AE8A5FEF8D85A48B5FE0C4E03F9",
+        "stack_composition": [
+          "task090_crop5xfull",
+          "task011_crop11_f16out",
+          "task114_crop5",
+          "task200_crop10",
+          "task206_crop12_f16out",
+          "task374_crop10_f16out"
+        ],
+        "attempt_kind": "6-stack-group-P",
+        "synced_at": "2026-05-19T16:09:59Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 3.18,
+      "expected_point_gain": 3.18,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\groupP_stack6_on_5773_41_20260519T1900Z\\submission.zip) == 24CC63B189FA23ADC50B93788EADA8EC5BBC1AE8A5FEF8D85A48B5FE0C4E03F9",
+        "Kaggle COMPLETE public score 5776.87"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\groupP_stack6_on_5773_41_20260519T1900Z\\submission.zip",
+      "lineage_base_score": 5773.41,
+      "changed_task_ids": [
+        "task090",
+        "task011",
+        "task114",
+        "task200",
+        "task206",
+        "task374"
+      ],
+      "risk_summary": "",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "Group P 6-stack: H-crop, crop+f16out, crop5/10/12 = +3.46 LB confirmed (vs +3.18 expected, overshoot +0.28)",
+      "sync_task_id": "",
+      "updated_at": "2026-05-19T16:09:59Z"
+    },
+    {
+      "candidate_id": "task249_crop5x10_t_1d792f13_on_5773_07",
+      "score": 5773.41,
+      "previous_global_score": 5773.07,
+      "delta_vs_previous_global": 0.34,
+      "task_id": "task249",
+      "package_sha256": "4A4B7322CC6A187C389A8A448009569A5770BFC0ABC75A3B08D0C5A0F28214E6",
+      "changed_entries": [
+        "task249.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task249_on_5773_07_20260519T1830Z\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-19T15:53:08Z",
+      "last_submit_result": {
+        "submitted_at": "2026-05-19T18:30:00Z",
+        "observed_complete_at": "2026-05-19T18:31:30Z",
+        "result_status": "complete",
+        "public_score": 5773.41,
+        "delta_vs_lineage_base": 0.34,
+        "package_sha256": "4A4B7322CC6A187C389A8A448009569A5770BFC0ABC75A3B08D0C5A0F28214E6",
+        "stack_composition": [
+          "task249_crop5x10_t_1d792f13"
+        ],
+        "attempt_kind": "single-task-crop-stack",
+        "synced_at": "2026-05-19T15:53:08Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 0.34,
+      "expected_point_gain": 0.34,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task249_on_5773_07_20260519T1830Z\\submission.zip) == 4A4B7322CC6A187C389A8A448009569A5770BFC0ABC75A3B08D0C5A0F28214E6",
+        "Kaggle COMPLETE public score 5773.41"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task249_on_5773_07_20260519T1830Z\\submission.zip",
+      "lineage_base_score": 5773.07,
+      "changed_task_ids": [
+        "task249"
+      ],
+      "risk_summary": "",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "task249 crop5x10 + ht2 lookup trim: +0.34 LB confirmed",
+      "sync_task_id": "",
+      "updated_at": "2026-05-19T15:53:08Z"
+    },
+    {
+      "candidate_id": "stack2_325_387_t_374a58fb_6230f9b2_on_5771_47",
+      "score": 5773.07,
+      "previous_global_score": 5771.47,
+      "delta_vs_previous_global": 1.6,
+      "task_id": "task325",
+      "package_sha256": "034063B6B61C5E63BD9AF17EBDEBD4D6E3123E5970E83AF144B95DCD0EB3E253",
+      "changed_entries": [
+        "task325.onnx",
+        "task387.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\stack2_325_387_on_5771_47_20260519T1810Z\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-19T15:48:38Z",
+      "last_submit_result": {
+        "submitted_at": "2026-05-19T18:10:00Z",
+        "observed_complete_at": "2026-05-19T18:12:00Z",
+        "result_status": "complete",
+        "public_score": 5773.07,
+        "delta_vs_lineage_base": 1.6,
+        "package_sha256": "034063B6B61C5E63BD9AF17EBDEBD4D6E3123E5970E83AF144B95DCD0EB3E253",
+        "stack_composition": [
+          "task325_crop16",
+          "task387_crop18"
+        ],
+        "attempt_kind": "2-stack-crop",
+        "synced_at": "2026-05-19T15:48:38Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 1.6,
+      "expected_point_gain": 1.6,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\stack2_325_387_on_5771_47_20260519T1810Z\\submission.zip) == 034063B6B61C5E63BD9AF17EBDEBD4D6E3123E5970E83AF144B95DCD0EB3E253",
+        "Kaggle COMPLETE public score 5773.07"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\stack2_325_387_on_5771_47_20260519T1810Z\\submission.zip",
+      "lineage_base_score": 5771.47,
+      "changed_task_ids": [
+        "task325",
+        "task387"
+      ],
+      "risk_summary": "",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "crop2 task325 + task387: +1.60 LB confirmed clean on Kaggle",
+      "sync_task_id": "",
+      "updated_at": "2026-05-19T15:48:38Z"
+    },
+    {
+      "candidate_id": "groupM_crop2_t_3719214d_d1310809_on_5770_81",
+      "score": 5771.47,
+      "previous_global_score": 5770.81,
+      "delta_vs_previous_global": 0.66,
+      "task_id": "task105",
+      "package_sha256": "82422216357649AA09974174D0524ED5474A1BA2E0C60AC7215F3D12692D870B",
+      "changed_entries": [
+        "task105.onnx",
+        "task181.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\groupM_crop2_on_5770_81_20260519T1745Z\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-19T15:42:37Z",
+      "last_submit_result": {
+        "submitted_at": "2026-05-19T17:45:00Z",
+        "observed_complete_at": "2026-05-19T17:47:00Z",
+        "result_status": "complete",
+        "public_score": 5771.47,
+        "delta_vs_lineage_base": 0.66,
+        "package_sha256": "82422216357649AA09974174D0524ED5474A1BA2E0C60AC7215F3D12692D870B",
+        "stack_composition": [
+          "task105_crop14_t_3719214d",
+          "task181_v2narrow_t_d1310809"
+        ],
+        "attempt_kind": "2-stack-group-M",
+        "synced_at": "2026-05-19T15:42:37Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 0.658,
+      "expected_point_gain": 0.658,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\groupM_crop2_on_5770_81_20260519T1745Z\\submission.zip) == 82422216357649AA09974174D0524ED5474A1BA2E0C60AC7215F3D12692D870B",
+        "Kaggle COMPLETE public score 5771.47"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\groupM_crop2_on_5770_81_20260519T1745Z\\submission.zip",
+      "lineage_base_score": 5770.81,
+      "changed_task_ids": [
+        "task105",
+        "task181"
+      ],
+      "risk_summary": "",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "Group M crop2: task105 crop14 (+0.533) + task181 v2 narrow (+0.125) = +0.66 LB confirmed",
+      "sync_task_id": "",
+      "updated_at": "2026-05-19T15:42:37Z"
+    },
+    {
+      "candidate_id": "task400_crop24_t_0b9a67ff_on_5770_74",
+      "score": 5770.81,
+      "previous_global_score": 5770.74,
+      "delta_vs_previous_global": 0.07,
+      "task_id": "task400",
+      "package_sha256": "A4068404780DE439437586AE6FE2D3B80CF738D78B94C7FA3127C8F5D541596F",
+      "changed_entries": [
+        "task400.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task400_promoted_on_5770_74_20260519T1526Z\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-19T15:30:32Z",
+      "last_submit_result": {
+        "submitted_at": "2026-05-19T15:26:15Z",
+        "observed_complete_at": "2026-05-19T15:27:00Z",
+        "result_status": "complete",
+        "public_score": 5770.81,
+        "delta_vs_lineage_base": 0.07,
+        "package_sha256": "A4068404780DE439437586AE6FE2D3B80CF738D78B94C7FA3127C8F5D541596F",
+        "stack_composition": [
+          "task400_crop24_t_0b9a67ff"
+        ],
+        "attempt_kind": "single-current-best-merge-canonical-rebuild",
+        "synced_at": "2026-05-19T15:30:32Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 0.075797,
+      "expected_point_gain": 0.075797,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task400_promoted_on_5770_74_20260519T1526Z\\submission.zip) == A4068404780DE439437586AE6FE2D3B80CF738D78B94C7FA3127C8F5D541596F",
+        "Kaggle COMPLETE public score 5770.81"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task400_promoted_on_5770_74_20260519T1526Z\\submission.zip",
+      "lineage_base_score": 5770.74,
+      "changed_task_ids": [
+        "task400"
+      ],
+      "risk_summary": "",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "task400 crop24 worker-7: +0.07 LB confirmed clean",
+      "sync_task_id": "",
+      "updated_at": "2026-05-19T15:30:32Z"
+    },
+    {
+      "candidate_id": "crop8_worker7_on_5762_84_20260519T0250Z",
+      "score": 5770.74,
+      "previous_global_score": 5762.84,
+      "delta_vs_previous_global": 7.9,
+      "task_id": "task030",
+      "package_sha256": "838334C90B8D26FAE6CED38C106AA3C66CCE9863226A33BFE548FCB1D27302C3",
+      "changed_entries": [
+        "task030.onnx",
+        "task345.onnx",
+        "task381.onnx",
+        "task281.onnx",
+        "task131.onnx",
+        "task156.onnx",
+        "task154.onnx",
+        "task162.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\crop8_worker7_on_5762_84_20260519T0250Z\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-19T04:03:17Z",
+      "last_submit_result": {
+        "submitted_at": "2026-05-19T02:50:00Z",
+        "observed_complete_at": "2026-05-19T02:52:00Z",
+        "result_status": "complete",
+        "public_score": 5770.74,
+        "delta_vs_lineage_base": 7.9,
+        "package_sha256": "838334C90B8D26FAE6CED38C106AA3C66CCE9863226A33BFE548FCB1D27302C3",
+        "stack_composition": [
+          "task030_crop10",
+          "task345_crop10",
+          "task381_crop10",
+          "task281_crop13",
+          "task131_crop18",
+          "task156_crop10",
+          "task154_crop15",
+          "task162_crop20"
+        ],
+        "attempt_kind": "8-stack-crop-to-active-grid-worker7",
+        "synced_at": "2026-05-19T04:03:17Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 7.896,
+      "expected_point_gain": 7.896,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\crop8_worker7_on_5762_84_20260519T0250Z\\submission.zip) == 838334C90B8D26FAE6CED38C106AA3C66CCE9863226A33BFE548FCB1D27302C3",
+        "Kaggle COMPLETE public score 5770.74"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\crop8_worker7_on_5762_84_20260519T0250Z\\submission.zip",
+      "lineage_base_score": 5762.84,
+      "changed_task_ids": [
+        "task030",
+        "task345",
+        "task381",
+        "task281",
+        "task131",
+        "task156",
+        "task154",
+        "task162"
+      ],
+      "risk_summary": "",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "crop-sweep worker-7 8-stack: task030/345/381/281/131/156/154/162 = +7.90 LB confirmed clean on Kaggle",
+      "sync_task_id": "",
+      "updated_at": "2026-05-19T04:03:17Z"
+    },
+    {
+      "candidate_id": "crop2_034_283_t_523e0515_9a40bb27_on_5759_23_20260519T0240Z",
+      "score": 5762.84,
+      "previous_global_score": 5759.23,
+      "delta_vs_previous_global": 3.61,
+      "task_id": "task034",
+      "package_sha256": "CFCCD6F7D34935547E285D11185F70090F83C2733F484E8F5BB532D62F451E83",
+      "changed_entries": [
+        "task034.onnx",
+        "task283.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\crop2_034_283_on_5759_23_20260519T0240Z\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-19T02:41:35Z",
+      "last_submit_result": {
+        "submitted_at": "2026-05-19T02:40:00Z",
+        "observed_complete_at": "2026-05-19T02:42:00Z",
+        "result_status": "complete",
+        "public_score": 5762.84,
+        "delta_vs_lineage_base": 3.61,
+        "package_sha256": "CFCCD6F7D34935547E285D11185F70090F83C2733F484E8F5BB532D62F451E83",
+        "stack_composition": [
+          "task034_crop9_t_9a40bb27",
+          "task283_crop10_t_523e0515"
+        ],
+        "attempt_kind": "2-stack-crop-to-active-grid",
+        "synced_at": "2026-05-19T02:41:35Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 3.609912,
+      "expected_point_gain": 3.609912,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\crop2_034_283_on_5759_23_20260519T0240Z\\submission.zip) == CFCCD6F7D34935547E285D11185F70090F83C2733F484E8F5BB532D62F451E83",
+        "Kaggle COMPLETE public score 5762.84"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\crop2_034_283_on_5759_23_20260519T0240Z\\submission.zip",
+      "lineage_base_score": 5759.23,
+      "changed_task_ids": [
+        "task034",
+        "task283"
+      ],
+      "risk_summary": "",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "crop-sweep 2-stack: task034 crop9 (+1.93) + task283 crop10 (+1.68) = +3.61 LB confirmed clean",
+      "sync_task_id": "",
+      "updated_at": "2026-05-19T02:41:35Z"
+    },
+    {
+      "candidate_id": "stack8_autoapply_t_6a0bc_on_5759_16_20260519T0229Z",
+      "score": 5759.23,
+      "previous_global_score": 5759.16,
+      "delta_vs_previous_global": 0.07,
+      "task_id": "task370",
+      "package_sha256": "0BB3EFA73D9503A0230A1B2AD9D0C4ED40798C9D52B4171FC09A902B42E51820",
+      "changed_entries": [
+        "task370.onnx",
+        "task378.onnx",
+        "task397.onnx",
+        "task391.onnx",
+        "task389.onnx",
+        "task398.onnx",
+        "task379.onnx",
+        "task371.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\stack8_autoapply_on_5759_16_20260519T0229Z\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-19T02:31:56Z",
+      "last_submit_result": {
+        "submitted_at": "2026-05-19T02:29:45Z",
+        "observed_complete_at": "2026-05-19T02:31:00Z",
+        "result_status": "complete",
+        "public_score": 5759.23,
+        "delta_vs_lineage_base": 0.07,
+        "package_sha256": "0BB3EFA73D9503A0230A1B2AD9D0C4ED40798C9D52B4171FC09A902B42E51820",
+        "stack_composition": [
+          "task370_autoapply",
+          "task378_autoapply",
+          "task397_autoapply",
+          "task391_autoapply",
+          "task389_autoapply",
+          "task398_autoapply",
+          "task379_autoapply",
+          "task371_autoapply"
+        ],
+        "attempt_kind": "8-stack-autoapply-polish",
+        "synced_at": "2026-05-19T02:31:56Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 0.069,
+      "expected_point_gain": 0.069,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\stack8_autoapply_on_5759_16_20260519T0229Z\\submission.zip) == 0BB3EFA73D9503A0230A1B2AD9D0C4ED40798C9D52B4171FC09A902B42E51820",
+        "Kaggle COMPLETE public score 5759.23"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\stack8_autoapply_on_5759_16_20260519T0229Z\\submission.zip",
+      "lineage_base_score": 5759.16,
+      "changed_task_ids": [
+        "task370",
+        "task378",
+        "task397",
+        "task391",
+        "task389",
+        "task398",
+        "task379",
+        "task371"
+      ],
+      "risk_summary": "",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "8-stack autoapply polish landed cleanly; +0.07 LB above task117 baseline",
+      "sync_task_id": "",
+      "updated_at": "2026-05-19T02:31:56Z"
+    },
+    {
+      "candidate_id": "task117_crop15_f16out_t_f7689940_20260518T2212Z_on_5758_04",
+      "score": 5759.16,
+      "previous_global_score": 5758.04,
+      "delta_vs_previous_global": 1.12,
+      "task_id": "task117",
+      "package_sha256": "EE90DD572BA365529171FDFBF11A2ADBECF8F6A416021BFD58BBB25F520641CD",
+      "changed_entries": [
+        "task117.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task117_crop15_f16out_t_f7689940\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-19T01:24:20Z",
+      "last_submit_result": {
+        "submitted_at": "2026-05-19T01:09:46Z",
+        "observed_complete_at": "2026-05-19T01:10:30Z",
+        "result_status": "complete",
+        "public_score": 5759.16,
+        "delta_vs_lineage_base": 1.12,
+        "package_sha256": "EE90DD572BA365529171FDFBF11A2ADBECF8F6A416021BFD58BBB25F520641CD",
+        "stack_composition": [
+          "task117_crop15_f16out_t_f7689940"
+        ],
+        "attempt_kind": "single-current-best-merge-canonical-rebuild",
+        "synced_at": "2026-05-19T01:24:20Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 1.1249,
+      "expected_point_gain": 1.1249,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task117_crop15_f16out_t_f7689940\\submission.zip) == EE90DD572BA365529171FDFBF11A2ADBECF8F6A416021BFD58BBB25F520641CD",
+        "Kaggle COMPLETE public score 5759.16"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task117_crop15_f16out_t_f7689940\\submission.zip",
+      "lineage_base_score": 5758.04,
+      "changed_task_ids": [
+        "task117"
+      ],
+      "risk_summary": "",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "task117 worker-7 crop15+F16 promoted to canonical after confirmed 5759.16 (twice: 22:12 + 01:09 UTC)",
+      "sync_task_id": "",
+      "updated_at": "2026-05-19T01:24:20Z"
+    },
+    {
+      "candidate_id": "task284_v5_f16_t_d7182876_20260518T181232Z_on_5757_70",
+      "score": 5758.04,
+      "previous_global_score": 5757.7,
+      "delta_vs_previous_global": 0.34,
+      "task_id": "task284",
+      "package_sha256": "09D6AD89150328679F8313DC59043DE3ADDB9D40FFF8F94CAD56148BCD06CF59",
+      "changed_entries": [
+        "task284.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task284_v5_f16_t_d7182876_20260518T181232Z_on_5757_70\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-19T01:14:33Z",
+      "last_submit_result": {
+        "submitted_at": "2026-05-18T19:42:03.577000Z",
+        "observed_complete_at": "",
+        "result_status": "complete",
+        "public_score": 5758.04,
+        "delta_vs_lineage_base": 0.34,
+        "package_sha256": "09D6AD89150328679F8313DC59043DE3ADDB9D40FFF8F94CAD56148BCD06CF59",
+        "stack_composition": [
+          "task284_v5_f16_t_d7182876_20260518T181232Z_on_5757_70"
+        ],
+        "attempt_kind": "single-current-best-merge-canonical-rebuild",
+        "synced_at": "2026-05-19T01:14:33Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 0.34365434241093323,
+      "expected_point_gain": 0.34365434241093323,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task284_v5_f16_t_d7182876_20260518T181232Z_on_5757_70\\submission.zip) == 09D6AD89150328679F8313DC59043DE3ADDB9D40FFF8F94CAD56148BCD06CF59",
+        "Kaggle COMPLETE public score 5758.04"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task284_v5_f16_t_d7182876_20260518T181232Z_on_5757_70\\submission.zip",
+      "lineage_base_score": 5757.7,
+      "changed_task_ids": [
+        "task284"
+      ],
+      "risk_summary": "Reviewer verified the staged worker-8 package against the worker original valid 5757.42 task033_where_t_568dd001 base and confirmed it changes only task284.onnx there. Since current-best has since advanced to 5757.45 on task216 only, the staged ZIP now differs from the latest canonical package at task216.onnx plus task284.onnx; submit-captain should therefore merge only task284.onnx onto the current-best package before any Kaggle attempt. The task284 payload itself is still byte-identical between the worker base and current-best, official convert_to_numpy checks pass 266/266 vs expected and LIVE, and cost drops from 196021 to 139013 (+0.343654 expected points), materially stronger than both the returned safeopt micro-shrink and the broken historical v3 tail.",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "Deterministic auto-sync from .hermes/board/submit_queue.json current_best_manifest; package path and SHA were read from the matched submit_execution.",
+      "sync_task_id": "t_e108f07c",
+      "updated_at": "2026-05-19T01:14:33Z"
+    },
+    {
+      "candidate_id": "task017_v14_matmul4d_clip_worker5_1c8d14b_on_5757_59",
+      "score": 5757.7,
+      "previous_global_score": 5757.59,
+      "delta_vs_previous_global": 0.11,
+      "task_id": "task017",
+      "package_sha256": "301FB69593C3540B84019D5A91EB08708D259A7048A1CAAACB3C051D917AFE72",
+      "changed_entries": [
+        "task017.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task017_v14_matmul4d_clip_worker5_1c8d14b_on_5757_59\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-18T19:29:57Z",
+      "last_submit_result": {
+        "submitted_at": "2026-05-18T19:22:14.137000Z",
+        "observed_complete_at": "2026-05-18T19:22:14.137000Z",
+        "result_status": "complete",
+        "public_score": 5757.7,
+        "delta_vs_lineage_base": 0.11,
+        "package_sha256": "301FB69593C3540B84019D5A91EB08708D259A7048A1CAAACB3C051D917AFE72",
+        "stack_composition": [
+          "task017_v14_matmul4d_clip_worker5_1c8d14b_on_5757_59"
+        ],
+        "attempt_kind": "single-current-best-merge-canonical-rebuild",
+        "synced_at": "2026-05-18T19:29:57Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 0.10376222922437783,
+      "expected_point_gain": 0.10376222922437783,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task017_v14_matmul4d_clip_worker5_1c8d14b_on_5757_59\\submission.zip) == 301FB69593C3540B84019D5A91EB08708D259A7048A1CAAACB3C051D917AFE72",
+        "Kaggle COMPLETE public score 5757.7"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task017_v14_matmul4d_clip_worker5_1c8d14b_on_5757_59\\submission.zip",
+      "lineage_base_score": 5757.59,
+      "changed_task_ids": [
+        "task017"
+      ],
+      "risk_summary": "Reviewer independently confirmed the task017 MatMul+Clip current-live shrink is exact against the synced current-best task017 payload on all 266 visible+arc-gen pairs and on a targeted 28-case perturbation suite, while reducing cost from 117532 to 105948 (+0.103762 expected points). The staged artifact is a clean single-entry delta containing only task017.onnx, so submit-captain should merge just that entry onto the synced 5757.42 canonical package before any Kaggle submit.",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "Deterministic auto-sync from .hermes/board/submit_queue.json current_best_manifest; package path and SHA were read from the matched submit_execution.",
+      "sync_task_id": "t_7ba874e2",
+      "updated_at": "2026-05-18T19:29:57Z"
+    },
+    {
+      "candidate_id": "task034_v6_fix_outside_bg_9b31876_20260518T165627Z_on_5757_45",
+      "score": 5757.59,
+      "previous_global_score": 5757.45,
+      "delta_vs_previous_global": 0.14,
+      "task_id": "task034",
+      "package_sha256": "973940519D851C3531054CB04C8B67E6F0F4EFD5A8DAE37D65502C8EBE7A9A8C",
+      "changed_entries": [
+        "task034.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task034_v6_fix_outside_bg_9b31876_20260518T165627Z_on_5757_45\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-18T19:20:08Z",
+      "last_submit_result": {
+        "submitted_at": "2026-05-18T19:11:27.907000Z",
+        "observed_complete_at": "2026-05-18T19:11:27.907000Z",
+        "result_status": "complete",
+        "public_score": 5757.59,
+        "delta_vs_lineage_base": 0.14,
+        "package_sha256": "973940519D851C3531054CB04C8B67E6F0F4EFD5A8DAE37D65502C8EBE7A9A8C",
+        "stack_composition": [],
+        "attempt_kind": "single-current-best-merge-canonical-rebuild",
+        "synced_at": "2026-05-18T19:20:08Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 0.14492045207633564,
+      "expected_point_gain": 0.14492045207633564,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task034_v6_fix_outside_bg_9b31876_20260518T165627Z_on_5757_45\\submission.zip) == 973940519D851C3531054CB04C8B67E6F0F4EFD5A8DAE37D65502C8EBE7A9A8C",
+        "Kaggle COMPLETE public score 5757.59"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task034_v6_fix_outside_bg_9b31876_20260518T165627Z_on_5757_45\\submission.zip",
+      "lineage_base_score": 5757.45,
+      "changed_task_ids": [
+        "task034"
+      ],
+      "risk_summary": "reviewer-approved v6 outside-bg/inside-grid fix; public-positive on Kaggle",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "Deterministic exact-package current-best sync.",
+      "sync_task_id": "t_17627c56",
+      "updated_at": "2026-05-18T19:20:08Z"
+    },
+    {
+      "candidate_id": "task216_winner_where_chain_t_35fe2eb3",
+      "score": 5757.45,
+      "previous_global_score": 5757.42,
+      "delta_vs_previous_global": 0.03,
+      "task_id": "task216",
+      "package_sha256": "E9D4AAD24DBF6AF10E34567CF5839715C4E00D1F1CDF8D8AAF8CAD2FCEF53DCB",
+      "changed_entries": [
+        "task216.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task216_winner_where_chain_t_35fe2eb3\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-18T19:08:59Z",
+      "last_submit_result": {
+        "submitted_at": "2026-05-18T17:12:04.403000Z",
+        "observed_complete_at": "2026-05-18T19:08:10Z",
+        "result_status": "complete",
+        "public_score": 5757.45,
+        "delta_vs_lineage_base": 0.03,
+        "package_sha256": "E9D4AAD24DBF6AF10E34567CF5839715C4E00D1F1CDF8D8AAF8CAD2FCEF53DCB",
+        "stack_composition": [
+          "task216_winner_where_chain_t_35fe2eb3"
+        ],
+        "attempt_kind": "single-current-best-merge-canonical-rebuild",
+        "synced_at": "2026-05-18T19:08:59Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 0.1472085251855102,
+      "expected_point_gain": 0.1472085251855102,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task216_winner_where_chain_t_35fe2eb3\\submission.zip) == E9D4AAD24DBF6AF10E34567CF5839715C4E00D1F1CDF8D8AAF8CAD2FCEF53DCB",
+        "Kaggle COMPLETE public score 5757.45"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task216_winner_where_chain_t_35fe2eb3\\submission.zip",
+      "lineage_base_score": 5757.42,
+      "changed_task_ids": [
+        "task216"
+      ],
+      "risk_summary": "Positive public result for reviewer-approved unique-winner task216 delta; residual tie-stress risk accepted by public score.",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "Deterministic sync after Kaggle completed prior submit-captain task216 at 5757.45 public.",
+      "sync_task_id": "t_17627c56",
+      "updated_at": "2026-05-18T19:08:59Z"
+    },
+    {
+      "candidate_id": "task033_where_t_568dd001",
+      "score": 5757.42,
+      "previous_global_score": 5756.2,
+      "delta_vs_previous_global": 1.22,
+      "task_id": "task033",
+      "package_sha256": "DE694F04E9A74BC0DCEC4F852FDCAD346A03B4DBB7D09290DE7493CCC3507F5E",
+      "changed_entries": [
+        "task033.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task033_where_t_568dd001\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-18T15:53:18Z",
+      "last_submit_result": {
+        "submitted_at": "2026-05-18T15:50:16.640000Z",
+        "observed_complete_at": "2026-05-18T15:53:18Z",
+        "result_status": "complete",
+        "public_score": 5757.42,
+        "delta_vs_lineage_base": 1.22,
+        "package_sha256": "DE694F04E9A74BC0DCEC4F852FDCAD346A03B4DBB7D09290DE7493CCC3507F5E",
+        "stack_composition": [
+          "task033_where_t_568dd001"
+        ],
+        "attempt_kind": "single-current-best-package",
+        "synced_at": "2026-05-18T15:53:18Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 1.2244384084120767,
+      "expected_point_gain": 1.2244384084120767,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task033_where_t_568dd001\\submission.zip) == DE694F04E9A74BC0DCEC4F852FDCAD346A03B4DBB7D09290DE7493CCC3507F5E",
+        "Kaggle COMPLETE public score 5757.42"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task033_where_t_568dd001\\submission.zip",
+      "lineage_base_score": 5756.2,
+      "changed_task_ids": [
+        "task033"
+      ],
+      "risk_summary": "",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "Deterministic sync after submit-captain Kaggle COMPLETE public-positive result for task033_where_t_568dd001.",
+      "sync_task_id": "t_8a3f1d76",
+      "updated_at": "2026-05-18T15:53:18Z"
+    },
+    {
+      "candidate_id": "task264_v5_complement_gather05_scalar_drop_slice_axes_steps_t_2b787a03_on_5756_12",
+      "score": 5756.2,
+      "previous_global_score": 5756.12,
+      "delta_vs_previous_global": 0.08,
+      "task_id": "task264",
+      "package_sha256": "B7A5CEE1A999DFADDB2DB418B319E7C1DCE21127387BC4F9478A3415F5D9834B",
+      "changed_entries": [
+        "task264.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task264_v5_complement_gather05_scalar_drop_slice_axes_steps_t_2b787a03_on_5756_12\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-18T14:45:31Z",
+      "last_submit_result": {
+        "submitted_at": "2026-05-18T14:41:50.420000Z",
+        "observed_complete_at": "2026-05-18T14:45:31Z",
+        "result_status": "complete",
+        "public_score": 5756.2,
+        "delta_vs_lineage_base": 0.08,
+        "package_sha256": "B7A5CEE1A999DFADDB2DB418B319E7C1DCE21127387BC4F9478A3415F5D9834B",
+        "stack_composition": [
+          "task264_v5_complement_gather05_scalar_drop_slice_axes_steps_t_2b787a03_on_5756_12"
+        ],
+        "attempt_kind": "single-current-best-merge-canonical-rebuild",
+        "synced_at": "2026-05-18T14:45:31Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 0.07770026148662623,
+      "expected_point_gain": 0.07770026148662623,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task264_v5_complement_gather05_scalar_drop_slice_axes_steps_t_2b787a03_on_5756_12\\submission.zip) == B7A5CEE1A999DFADDB2DB418B319E7C1DCE21127387BC4F9478A3415F5D9834B",
+        "Kaggle COMPLETE public score 5756.2"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task264_v5_complement_gather05_scalar_drop_slice_axes_steps_t_2b787a03_on_5756_12\\submission.zip",
+      "lineage_base_score": 5756.12,
+      "changed_task_ids": [
+        "task264"
+      ],
+      "risk_summary": "canonical current-best rebuild changed only task264.onnx on top of 5756.12; reviewer-approved complement gather05 scalar drop slice axes steps public-positive at 5756.20",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "task264 v5 complement gather05 scalar drop slice axes steps public-positive; promoted exact repo-local canonical package only; no legacy .notongit mirror sync.",
+      "sync_task_id": "t_51b1eb0f",
+      "updated_at": "2026-05-18T14:45:31Z"
+    },
+    {
+      "candidate_id": "task265_v2_slice_crop_t_48e67c3e_on_5755_80",
+      "score": 5756.12,
+      "previous_global_score": 5755.8,
+      "delta_vs_previous_global": 0.32,
+      "task_id": "task265",
+      "package_sha256": "4EB9B73936BB651F44C25A9ABBFE60D348D77069BAF94F4D53837DB0CFEACEF7",
+      "changed_entries": [
+        "task265.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task265_v2_slice_crop_t_48e67c3e_on_5755_80\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-18T11:01:35Z",
+      "last_submit_result": {
+        "submitted_at": "2026-05-18T10:59:33.807000Z",
+        "observed_complete_at": "2026-05-18T11:01:35Z",
+        "result_status": "complete",
+        "public_score": 5756.12,
+        "delta_vs_lineage_base": 0.32,
+        "package_sha256": "4EB9B73936BB651F44C25A9ABBFE60D348D77069BAF94F4D53837DB0CFEACEF7",
+        "stack_composition": [],
+        "attempt_kind": "canonical-current-best",
+        "synced_at": "2026-05-18T11:01:35Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 0.3219158357370073,
+      "expected_point_gain": 0.3219158357370073,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task265_v2_slice_crop_t_48e67c3e_on_5755_80\\submission.zip) == 4EB9B73936BB651F44C25A9ABBFE60D348D77069BAF94F4D53837DB0CFEACEF7",
+        "Kaggle COMPLETE public score 5756.12"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task265_v2_slice_crop_t_48e67c3e_on_5755_80\\submission.zip",
+      "lineage_base_score": 5755.8,
+      "changed_task_ids": [
+        "task265"
+      ],
+      "risk_summary": "Reviewer-approved strict-clean task265 slice-crop current-live delta; single-entry package on canonical 5755.80.",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "Kaggle public-positive submit-captain sync for kanban t_df1b63d4.",
+      "sync_task_id": "t_df1b63d4",
+      "updated_at": "2026-05-18T11:01:35Z"
+    },
+    {
+      "candidate_id": "task280_final_cast_elim_f16_output_t_407c63d5",
+      "score": 5755.8,
+      "previous_global_score": 5755.72,
+      "delta_vs_previous_global": 0.08,
+      "task_id": "task280",
+      "package_sha256": "426E0F60AA43F5B11BB0D550D207A1A62EBDB262237260167012BEEFD06F9251",
+      "changed_entries": [
+        "task280.onnx"
+      ],
+      "source_package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task280_final_cast_elim_f16_output_t_407c63d5\\submission.zip",
+      "sync_status": "synced",
+      "synced_at": "2026-05-18T08:46:46Z",
+      "last_submit_result": {
+        "submitted_at": "2026-05-18T08:45:08.117000Z",
+        "observed_complete_at": "2026-05-18T08:46:46Z",
+        "result_status": "complete",
+        "public_score": 5755.8,
+        "delta_vs_lineage_base": 0.08,
+        "package_sha256": "426E0F60AA43F5B11BB0D550D207A1A62EBDB262237260167012BEEFD06F9251",
+        "stack_composition": [
+          "task280_final_cast_elim_f16_output_t_407c63d5"
+        ],
+        "attempt_kind": "single-current-best-merge",
+        "synced_at": "2026-05-18T08:46:46Z",
+        "sync_status": "synced"
+      },
+      "worker_owner": "neurogolf-submit-captain",
+      "followup_worker": "neurogolf-sync-manager",
+      "reviewer_disposition": "approved-for-submit-captain",
+      "approval_mode": "auto-rate-limited",
+      "predicted_delta": 0.08303752827760746,
+      "expected_point_gain": 0.08303752827760746,
+      "tests_run": [
+        "sha256(C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task280_final_cast_elim_f16_output_t_407c63d5\\submission.zip) == 426E0F60AA43F5B11BB0D550D207A1A62EBDB262237260167012BEEFD06F9251",
+        "Kaggle COMPLETE public score 5755.8"
+      ],
+      "gates": {
+        "package_hash": "pass",
+        "kaggle_public_validation": "pass"
+      },
+      "package_path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task280_final_cast_elim_f16_output_t_407c63d5\\submission.zip",
+      "lineage_base_score": 5755.72,
+      "changed_task_ids": [
+        "task280"
+      ],
+      "risk_summary": "Output-ABI-sensitive FLOAT16 graph output candidate; reviewer confirmed current-best merge changed only task280.onnx and official verify_against_live passed 267/267.",
+      "submit_ready": false,
+      "submit_queue_status": "submitted-complete-promote-synced",
+      "notes": "Submit-captain promoted exact Kaggle public-positive task280 package; repo-local canonical artifacts only.",
+      "sync_task_id": "auto-python-sync",
+      "updated_at": "2026-05-18T08:46:46Z"
+    }
+  ],
+  "updated_at": "2026-06-02T02:04:23Z",
+  "source_manifest": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\submissions\\current_best_manifest.json",
+  "schema": "neurogolf.candidate_registry.v2-draft",
+  "sync_status": "synced",
+  "synced_at": "2026-05-18T11:01:35Z"
+}

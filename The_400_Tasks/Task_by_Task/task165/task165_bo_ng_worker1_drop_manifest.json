@@ -1,0 +1,99 @@
+{
+  "task": 165,
+  "worker": "bo_ng_worker1",
+  "route": "TemplateParamCompress_microprobe_pass",
+  "verdict": "DROP",
+  "status": "REJECT_LOCAL",
+  "bar": {
+    "live_cost": 1641,
+    "live_memory": 1538,
+    "live_params": 103,
+    "live_sha256": "6faf9093ffe11c0fbe8583054205b9ee4ddc36b6f7c4d6c31222055a8d5b43a9",
+    "source": "tools/ng_current_bar.py --task 165 --json; authoritative_source=manifest",
+    "note": "Workbook agrees at 1641. The task-local 8920 and library 76537 records are stale. The 1634 team_best cost is stale accounting drift on the same live SHA, not a lower candidate."
+  },
+  "parent_source": "Team_Best_Onnx/task165.onnx",
+  "parent_sha256": "6faf9093ffe11c0fbe8583054205b9ee4ddc36b6f7c4d6c31222055a8d5b43a9",
+  "candidate_class": "NO_VALID_CANDIDATE",
+  "candidate_paths": [
+    {
+      "path": "The_400_Tasks/Task_by_Task/task165/prototypes/task165_argmax_u16.onnx",
+      "sha256": "6b941cf7bbbc6c6ed4e8ae8b50d29dcfa62a474d2440060f4a464ed6909140ce",
+      "static_if_loadable": {
+        "memory": 1520,
+        "params": 103,
+        "cost": 1623
+      },
+      "score_v2": null,
+      "failed_gate": "[visible] ERROR: NotImplemented: Could not find an implementation for ArgMax(13)"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task165/prototypes/task165_bitthreshold_castshift.onnx",
+      "sha256": "e66c849583c994b775d6699c0a850d2b4ed10f9de99a06ffc43ff0c8c6d076cd",
+      "static_if_loadable": {
+        "memory": 1530,
+        "params": 104,
+        "cost": 1634
+      },
+      "score_v2": null,
+      "failed_gate": "[visible] ERROR: NotImplemented: Could not find an implementation for BitShift(11)"
+    },
+    {
+      "path": "The_400_Tasks/Task_by_Task/task165/prototypes/task165_sparse_main_tables.onnx",
+      "sha256": "1e1a3915a06587b6c7d3c33201fd64c58e85ff442d184a5c81de7c824eb80346",
+      "static_if_loadable": null,
+      "score_v2": null,
+      "failed_gate": "[visible] ERROR: Invalid model after sparse initializer sanitization"
+    }
+  ],
+  "staged": false,
+  "staged_candidate_path": null,
+  "cost_delta_vs_live": null,
+  "profile_cost": null,
+  "graph_cost_diff": {
+    "command": null,
+    "result": "Not run because no valid candidate beat the team-best bar and no win is claimed."
+  },
+  "proof_commands_run": [
+    "python tools/ng_current_bar.py --task 165 --json",
+    "python Onnx_Advanced/library_db/lib_query.py status",
+    "python Onnx_Advanced/library_db/lib_query.py context task165 --limit 8",
+    "python Onnx_Advanced/library_db/lib_query.py search TemplateParamCompress task165 --limit 8",
+    "python -B -m neurogolf_provider.cli context task165",
+    "python -B -m neurogolf_provider.cli consistency task165",
+    "python -B -m neurogolf_provider.cli search \"task165 TemplateParamCompress\"",
+    "python tools/agent_helpers/inspect_graph.py Team_Best_Onnx/task165.onnx",
+    "python tools/agent_helpers/largest_intermediate.py --top 30 Team_Best_Onnx/task165.onnx",
+    "python -c \"from tools._score_v2 import score_network_v2; print(score_network_v2(r'Team_Best_Onnx/task165.onnx'))\"",
+    "python tools/agent_helpers/profile_real_cost.py --task 165 --cand Team_Best_Onnx/task165.onnx --arcgen 266",
+    "python tools/ng_gate.py visible --task 165 --cand Team_Best_Onnx/task165.onnx --json",
+    "python tools/polish_candidate.py The_400_Tasks/Task_by_Task/task165/prototypes/task165_live_1641_parent.onnx",
+    "python -m onnxsim The_400_Tasks/Task_by_Task/task165/prototypes/task165_live_1641_parent.onnx The_400_Tasks/Task_by_Task/task165/prototypes/task165_onnxsim_probe.onnx",
+    "python The_400_Tasks/Task_by_Task/task165/prototypes/build_task165_bitthreshold_probe.py",
+    "python The_400_Tasks/Task_by_Task/task165/prototypes/build_task165_argmax_u16_probe.py",
+    "python tools/ng_gate.py visible --task 165 --cand The_400_Tasks/Task_by_Task/task165/prototypes/task165_argmax_u16.onnx",
+    "python tools/ng_gate.py visible --task 165 --cand The_400_Tasks/Task_by_Task/task165/prototypes/task165_bitthreshold_castshift.onnx",
+    "python tools/ng_gate.py visible --task 165 --cand The_400_Tasks/Task_by_Task/task165/prototypes/task165_sparse_main_tables.onnx"
+  ],
+  "proof_results": {
+    "current_bar": "live_cost=1641, authoritative_source=manifest, live_sha256=6faf9093ffe11c0fbe8583054205b9ee4ddc36b6f7c4d6c31222055a8d5b43a9",
+    "live_score_v2": "(0, 1538, 103)",
+    "live_profile_real_cost": "task165 task165.onnx: static=1641 profile=1641 (memory 1538 + params 103; 265 real inputs)",
+    "live_visible": "{\"correct\":265,\"total\":265,\"pct\":100.0,\"pass\":true}",
+    "polish": "original cost: 1641; polished cost: 1641 (-0 bytes)",
+    "onnxsim": "no cost change; score_v2 remained (0,1538,103)",
+    "argmax_u16": "static value_info 1520 + params 103 = 1623, but score_v2=None and visible gate load fails: ArgMax(13) NotImplemented",
+    "bitthreshold": "static value_info 1530 + params 104 = 1634, but score_v2=None and visible gate load fails: BitShift(11) NotImplemented",
+    "sparse_tables": "row_powers/rowcap/nonbg sparse conversion theoretically saves params but checker/visible fail on sparse op inputs"
+  },
+  "safety": null,
+  "safety_reason": "ng_safety.py was not run because no valid candidate beat the team-best bar.",
+  "x86_required": false,
+  "kaggle_probe_required": false,
+  "hard_records": [
+    "The_400_Tasks/Task_by_Task/task165/hard_records/argmax_narrow_dtype.md",
+    "The_400_Tasks/Task_by_Task/task165/hard_records/bitthreshold_active_col.md",
+    "The_400_Tasks/Task_by_Task/task165/hard_records/sparse_literal_tables.md"
+  ],
+  "remaining_hypothesis": "Only a legal ORT-supported narrow selector/power-threshold op, or a single terminal op that fuses fill comparison, dynamic marker recolor, and raw input passthrough, looks capable of moving below 1641. Current F16 ArgMax, F16 lowest-row log, GridSample marker vector, and final BOOL fill canvas appear load-bearing under pinned ORT."
+}

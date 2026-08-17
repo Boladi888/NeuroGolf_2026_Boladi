@@ -1,0 +1,7 @@
+# rank3_channel_core_atoms_probe route
+
+- Live/team-best bar used: cost/profile 136, sha256 c2d0c80df4932d3b3c782185af15b9d2749d2f6caee9c1fbfe9a5e74895873b7, source `python tools/ng_current_bar.py --task 85 --json` on 2026-07-04.
+- Attempted route: keep the current shared 4-row color basis and replace dense `channel_core[2,4,4]` (32 params) with three shared rank-1 color atoms, expressed inside the terminal free-output `Einsum` as factors `U[2,3]`, `A[4,3]`, `D[4,3]`. Estimated cost would be `136 - 32 + (6 + 12 + 12) = 134`.
+- Exact failed gate: algebraic fixed-atom LP feasibility screen before ONNX build. For fixed `A,D`, the two `U` rows are linear variables. SVD atoms from the current `C0` matrix were infeasible; randomized screens over 5,000 SVD-jitter atom sets, 5,000 structured polynomial-biased random atom sets, and 5,000 fully random atom sets all returned infeasible. A looser 10,000-trial screen without the background-stability equality also found no feasible atom set.
+- Why dead for this worker pass: exact CP-rank compression of the current `channel_core` is already blocked by the output-mode unfolding rank 4, and the sign-equivalent rank-3 atom search did not produce a priced candidate. Since the best possible saving is only 2 params, building blind variants would be burn.
+- One remaining hypothesis: a formal CP/sign-rank optimization might prove or refute a 134-cost atomization; any successful result should be built as a one-node `Einsum` and gated visible -> profile before any truth/A-B run.

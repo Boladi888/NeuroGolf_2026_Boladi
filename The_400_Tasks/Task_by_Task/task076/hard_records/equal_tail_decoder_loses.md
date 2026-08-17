@@ -1,0 +1,11 @@
+# task076 — Equal-tail decoder loses to QLinearConv tail
+
+- **Live bar**: 12,539 profile cost, owner Sho, SHA `ec95ba95e46eeb94984d1a20b525eaf4f94851b8fd63b04f53a9618ddabdd773`, from `python tools/ng_current_bar.py --task 76 --json`.
+- **Effective task-local bar**: 12,030 profile cost, staged `task076_int8coords_i32idx_cost12030`, SHA `aa5292e62462b76d974cb8b9527b16c475307f03836bd21b0d4659944846df32`.
+- **Attempted route**: replace the final `cm16 -> cm16_sq -> cm2ch -> QLinearConv(output)` parabola decoder with `cm16 -> Pad([1,1,30,30]) -> Equal(eqtail_ids) == output`. Correct ids are `[1,2,3,4,5,255,7,8,9,10]` because code `6` is the no-color/padding sentinel and channel 5 is unused.
+- **Prototype**: `The_400_Tasks/Task_by_Task/task076/prototypes/eqtail_decoder_probe/task076_eqtail_decoder_probe.onnx`, built by `prototypes/build_task076_eqtail_probe.py`, SHA `0c12180587d96443f64e47a98d2035ca51cecb99e2a33b72d5eed38d76595445`.
+- **Failed gate**: cost/profile after visible pass. `python tools/ng_gate.py visible --task 76 --cand ...` -> `[visible] 266/266 (100.00%)  PASS`; `python tools/agent_helpers/profile_real_cost.py --task 76 --cand ... --arcgen 266` -> `static=12196 profile=12196 (memory 12108 + params 88; 266 real inputs)`.
+- **Named cost delta vs 12,030 parent**: `python tools/ng_graph_cost_diff.py --task 76 --live staged_candidates/task076_int8coords_i32idx_cost12030/task076.onnx --candidate prototypes/eqtail_decoder_probe/task076_eqtail_decoder_probe.onnx` -> `NET COST DELTA +168 -> candidate is MORE EXPENSIVE`. Main terms: adds charged `cm16_pad30` U8 `[1,1,30,30]` +900B; removes `cm2ch` -480B and `cm16_sq` -240B; params net -12.
+- **Safety**: `python tools/ng_safety.py model --task 76 --cand ... --json` -> `PASS`, 0 warnings/failures. This removes inherited `QLinearConv`, but the cost regression means it is not a task076 win.
+- **Why dead**: a terminal `Equal` cannot also perform the 16x15-to-30x30 padding invisibly. The required padded code plane is charged and costs more than the current output-exempt QLinearConv parabola decoder.
+- **One remaining hypothesis**: only revisit if a legal final op can combine sentinel padding and channel equality without materializing a `[1,1,30,30]` intermediate; otherwise the current QLinearConv tail is the cheaper decoder.

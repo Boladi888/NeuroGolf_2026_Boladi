@@ -1,0 +1,24 @@
+{
+  "active_terms_bound": 13,
+  "alphabet": [
+    -1,
+    0,
+    1
+  ],
+  "dictionary": false,
+  "elapsed_s": 300.786967754364,
+  "model": {
+    "dictionary_sizes": null,
+    "factor_vars": 390,
+    "pair_vars": 1300,
+    "prefix_guard": 16777216,
+    "prefix_vars": 13000,
+    "term_vars": 13000,
+    "zero_term_padding": true
+  },
+  "rank": 13,
+  "solver_response_stats": "CpSolverResponse summary:\nstatus: UNKNOWN\nobjective: 0\nbest_bound: 0\nintegers: 141296\nbooleans: 128285\nconflicts: 424\nbranches: 403422\npropagations: 66103470\ninteger_propagations: 73112170\nrestarts: 6\nlp_iterations: 40699\nwalltime: 300.729\nusertime: 300.729\ndeterministic_time: 1416.73\ngap_integral: 0\n",
+  "status": "UNKNOWN",
+  "time_limit_s": 300.0,
+  "workers": 8
+}

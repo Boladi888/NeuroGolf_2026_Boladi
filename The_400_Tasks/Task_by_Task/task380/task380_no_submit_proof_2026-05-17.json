@@ -1,0 +1,37 @@
+{
+  "task_id": "task380",
+  "kanban_task_id": "t_7c2adc6c",
+  "conclusion": "durable_no_submit_for_current_negative_step_slice_route",
+  "candidate_family": "negative_step_slice_rot90ccw",
+  "base_model": {
+    "path": ".hermes/task380_t_7c2adc6c/current_task380.onnx",
+    "sha256": "B346128CDC5F82AE2AF895F046073168E70F4E59288C98B337AA7F3A715D6FC9",
+    "ops": {"Slice": 1, "Gather": 1, "Transpose": 1, "Pad": 1},
+    "cost": 1089,
+    "memory": 1080,
+    "params": 9,
+    "cascade_risk": false
+  },
+  "candidate_model": {
+    "path": ".hermes/task380_t_7c2adc6c/task380_neg_slice_recheck.onnx",
+    "sha256": "F71452A359335B17F437A66C225C14AC5A358D32F3B0696BAD0FD788067D5429",
+    "ops": {"Slice": 1, "Transpose": 1, "Pad": 1},
+    "cost": 728,
+    "memory": 720,
+    "params": 8,
+    "points": 18.4097,
+    "cascade_risk": true
+  },
+  "local_equivalence": {
+    "verify_against_live": "267/267 prototype-vs-LIVE exact on visible+arc-gen pairs",
+    "deterministic_ort_recheck": "197/197 exact cases: constants, arange, 100 seeded random tensors, complete 10x3x3 active-crop basis, inactive sentinel case"
+  },
+  "no_submit_basis": [
+    "task_state.csv marks task380 avoid_or_retest with note: Legal-source task380 is public-hidden bad; keep excluded unless freshly isolated.",
+    "Logs/scans/2026-05-07/old_negative_retest_digest_2026-05-07.md says task380 remains avoid_or_retest because the score-push log records legal-source task380 as bad and broad scans show Yash/Yash-v1 equal to base with several sources negative.",
+    "The reviewed 728-cost candidate and this recheck are the same negative-step Slice family; local visible/random/deterministic exactness confirms current-live equivalence only, not hidden safety.",
+    "cost_predictor flags cascade_risk=true for the 728-cost model because cost is below 1000.",
+    "The cost saving depends on replacing Gather with a negative-step Slice; non-negative Slice/Gather forms preserve the current 1089-cost family and are not a materially different positive candidate."
+  ],
+  "kaggle_submitted": false
+}

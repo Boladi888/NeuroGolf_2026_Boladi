@@ -1,0 +1,143 @@
+{
+  "task": 102,
+  "worker": "bo_ng_cdx_worker2",
+  "created_utc": "2026-07-10T18:09:28Z",
+  "verdict": "DROP",
+  "status": "REJECT_LOCAL",
+  "candidate_class": "PATH_A_INHERITED",
+  "new_candidate_created": false,
+  "candidate_path": "Team_Best_Onnx/task102.onnx",
+  "candidate_role": "refreshed live baseline only; not a new candidate and not reviewer-ready",
+  "cost": 1751,
+  "profile_cost": 1751,
+  "candidate_sha256": "5bf47a937a2707dfd0e6d1a6ad772a36be4e8d997e1a7447698b5c2f6e84998a",
+  "manifest_path": null,
+  "staged_candidate_path": null,
+  "live_cost": 1751,
+  "live_memory": 1552,
+  "live_params": 199,
+  "live_sha256": "5bf47a937a2707dfd0e6d1a6ad772a36be4e8d997e1a7447698b5c2f6e84998a",
+  "bar_source": {
+    "authoritative_source": "manifest",
+    "path": "<TEAM_REPO>/Team_Submission/Backend/manifest.csv",
+    "owner": "Sho",
+    "updated_utc": "2026-07-09T01:09:17Z",
+    "workbook_cost": 1751,
+    "workbook_sha_prefix": "5bf47a937a27",
+    "staged_boladi_task102_json": "absent"
+  },
+  "parent_source": "Team_Best_Onnx/task102.onnx",
+  "parent_sha256": "5bf47a937a2707dfd0e6d1a6ad772a36be4e8d997e1a7447698b5c2f6e84998a",
+  "delta_vs_live": 0,
+  "named_charged_structure_delta": "none: no new candidate and no win claimed; the prompt's FLOAT16 [1,10,12,12] 2880-byte carrier is absent from live",
+  "prompt_target_cost": 420,
+  "prompt_target_delta_vs_live": -1331,
+  "charged_component_check": {
+    "result": "ABSENT",
+    "live_ops": [
+      "Slice",
+      "QuantizeLinear",
+      "QLinearConv",
+      "QLinearConv",
+      "Concat",
+      "ConvInteger"
+    ],
+    "has_float16_tensor": false,
+    "has_2880_byte_prepad": false,
+    "has_pad": false,
+    "has_where": false,
+    "has_equal": false,
+    "terminal_output_op": "ConvInteger"
+  },
+  "proof_commands_run": [
+    "python tools/ng_current_bar.py --task 102 --json",
+    "python -c \"from tools._score_v2 import score_network_v2; p=r'Team_Best_Onnx/task102.onnx'; s=score_network_v2(p); print(f'score_v2={s}; cost={s[1]+s[2]}')\"",
+    "python tools/ng_gate.py visible --task 102 --cand Team_Best_Onnx/task102.onnx --json --out The_400_Tasks/Task_by_Task/task102/prototypes/task102_currentbest_visible.json",
+    "python tools/agent_helpers/profile_real_cost.py --task 102 --cand Team_Best_Onnx/task102.onnx --arcgen 266",
+    "python tools/ng_safety.py model --task 102 --cand Team_Best_Onnx/task102.onnx --json --out The_400_Tasks/Task_by_Task/task102/prototypes/task102_currentbest_safety.json",
+    "python tools/ng_graph_cost_diff.py --live The_400_Tasks/Task_by_Task/task102/staged_candidates/task102_4x4spread_cost1810/task102.onnx --candidate Team_Best_Onnx/task102.onnx --top 30"
+  ],
+  "proof_results": [
+    "ng_current_bar: live_cost=1751 live_sha256=5bf47a937a2707dfd0e6d1a6ad772a36be4e8d997e1a7447698b5c2f6e84998a authoritative_source=manifest",
+    "score_v2=(0, 1552, 199); cost=1751",
+    "visible: correct=267 total=267 pct=100.0 pass=true first_fail=null",
+    "task102 task102.onnx: static=1751 profile=1751 (memory 1552 + params 199; 267 real inputs)",
+    "ng_safety: verdict=WARN failures=0 warnings=1 warning=WARN_X86_QUANTIZED_OP_FAMILY ops=[ConvInteger,QLinearConv]",
+    "task-local staged 4x4spread: score_v2=(0, 1552, 258); cost=1810; SHA=eb1aff00b5a78b5a99f3b61523b1b4452cc9c1a79ca74f673184b0d3a3701270; delta_vs_live=+59"
+  ],
+  "gates": {
+    "visible": "267/267 PASS on refreshed live baseline",
+    "score_v2": "cost=1751 (memory=1552 params=199)",
+    "profile_real_cost_arcgen_266": "static=1751 profile=1751 over 267 real inputs",
+    "truth": "NOT RUN: no new candidate and no strict profile-cost win",
+    "ab": "NOT RUN: no new candidate and no strict profile-cost win",
+    "full": "NOT RUN: prohibited for a no-gain stale-premise route"
+  },
+  "safety_target": "refreshed live baseline only",
+  "safety": {
+    "kind": "model",
+    "source": "Team_Best_Onnx\\task102.onnx",
+    "verdict": "WARN",
+    "summary": {
+      "n_failures": 0,
+      "n_warnings": 1,
+      "runtime_integer_denominator_count": 0
+    },
+    "model": {
+      "task": "task102",
+      "name": "task102.onnx",
+      "source": "Team_Best_Onnx\\task102.onnx",
+      "sha256": "5bf47a937a2707dfd0e6d1a6ad772a36be4e8d997e1a7447698b5c2f6e84998a",
+      "size_bytes": 1029,
+      "failures": [],
+      "warnings": [
+        {
+          "code": "WARN_X86_QUANTIZED_OP_FAMILY",
+          "ops": [
+            "ConvInteger",
+            "QLinearConv"
+          ]
+        }
+      ],
+      "op_inventory": {
+        "Concat": 1,
+        "ConvInteger": 1,
+        "QLinearConv": 2,
+        "QuantizeLinear": 1,
+        "Slice": 1
+      },
+      "risk_op_flags": [
+        "ConvInteger",
+        "QLinearConv"
+      ],
+      "runtime_integer_denominators": [],
+      "runtime_denominators_unknown_dtype": [],
+      "official_io_contract": {
+        "data_inputs": [
+          "input"
+        ],
+        "outputs": [
+          "output"
+        ],
+        "ok": true
+      },
+      "load_after_sanitize": "ok",
+      "verdict": "WARN"
+    }
+  },
+  "x86_required": true,
+  "kaggle_probe_required": false,
+  "what_tried": [
+    "Refreshed manifest, workbook-facing bar, leaderboard note, Team_Best artifact, task-local staged history, and Staged_Boladi presence before building.",
+    "Inspected the refreshed live graph for the prompt's named 2880-byte FLOAT16 prepad/carrier.",
+    "Re-scored and real-profiled the refreshed live artifact; verified the task-local 1810 rung is stale and worse."
+  ],
+  "what_failed": [
+    "The FreeOutputPadTail formulation failed the prompt's pre-build charged-component presence check: the live graph already deleted the target carrier and already writes the output with a free ConvInteger tail.",
+    "The prompt's claimed saving is therefore 0 bytes against the authoritative live graph; no prototype was justified.",
+    "ng_current_bar's non-authoritative team_best sub-entry and ng_graph_cost_diff headline undercount three scalar initializers (1748 instead of official 1751); exact _score_v2/profile are authoritative."
+  ],
+  "remaining_floor_rewrite_hypothesis": "A genuinely new one-node output-writing formulation would have to fuse all four square-size predicates and interior painting while eliminating the 576 B F32 crop, 400 B hit stack, 288 B feature stack, and both 144 B U8 planes. The simple linear centered-stencil and one-channel coded-hit/LP families are already locally disproven.",
+  "hard_record_path": "The_400_Tasks/Task_by_Task/task102/hard_records/freeoutput_padtail_stale_live_1751.md",
+  "lesson_packet_path": null
+}

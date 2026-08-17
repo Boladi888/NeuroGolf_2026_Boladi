@@ -1,0 +1,22 @@
+{
+  "task": 21,
+  "worker": "w9",
+  "run": "beta_p7s_codex_cli",
+  "verdict": "no-candidate",
+  "candidate_path": null,
+  "anchor_path": "Team_Best_Onnx/task021.onnx",
+  "anchor_sha256": "973e1edb62ba96f50e4db8d2224032e019ff98c9d85ed565f39666ae67e3cac9",
+  "team_best_cost": 171,
+  "static_cost": 171,
+  "profile_cost": 171,
+  "expected_delta_vs_team_best": 0,
+  "gates": {
+    "visible": "77/77, 100%, pass true",
+    "truth_full": "200000/200000, 100%",
+    "ab_full": "byte_equal true, 200077/200077, divergences 0",
+    "score_v2": "(0, 156, 15)",
+    "profile_real_cost_generic": "failed: IndexError index 30 is out of bounds on oversize task021 arc-gen grid",
+    "profile_task021_official_arcgen": "inputs_total=266, inputs_profiled=77, oversize_skipped=189, static_cost=171, profile_cost=171"
+  },
+  "notes": "No fresh strict improvement below team-best 171. Single-projection and active-size/global-count shortcuts were falsified on encodable ARC-GEN samples."
+}

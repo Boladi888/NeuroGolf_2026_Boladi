@@ -1,0 +1,82 @@
+[
+  {
+    "url": "https://handoff.socnet.lol/",
+    "file": "public_site_home_2026-07-03.html",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "fetched_utc": "2026-07-03T15:26:21.7622532Z",
+    "bytes": 55123
+  },
+  {
+    "url": "https://handoff.socnet.lol/docs",
+    "file": "public_site_docs_page_2026-07-03.html",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "fetched_utc": "2026-07-03T15:26:22.0123533Z",
+    "bytes": 25851
+  },
+  {
+    "url": "https://handoff.socnet.lol/api/v1/docs",
+    "file": "public_api_docs_2026-07-03.md",
+    "status_code": 200,
+    "content_type": "text/markdown; charset=utf-8",
+    "fetched_utc": "2026-07-03T15:26:22.2590351Z",
+    "bytes": 23662
+  },
+  {
+    "url": "https://handoff.socnet.lol/api/v1/docs/swarm",
+    "file": "public_swarm_contract_2026-07-03.json",
+    "status_code": 200,
+    "content_type": "application/json; charset=utf-8",
+    "fetched_utc": "2026-07-03T15:26:22.4998679Z",
+    "bytes": 32830
+  },
+  {
+    "url": "https://handoff.socnet.lol/skill",
+    "file": "public_handoff_agent_skill_2026-07-03.md",
+    "status_code": 200,
+    "content_type": "text/markdown; charset=utf-8",
+    "fetched_utc": "2026-07-03T15:26:22.7391351Z",
+    "bytes": 16845
+  },
+  {
+    "url": "https://handoff.socnet.lol/api/v1/connect",
+    "file": "public_connect_2026-07-03.json",
+    "status_code": 200,
+    "content_type": "application/json; charset=utf-8",
+    "fetched_utc": "2026-07-03T15:26:22.9772160Z",
+    "bytes": 6824
+  },
+  {
+    "url": "https://handoff.socnet.lol/api/v1/capabilities",
+    "file": "public_capabilities_2026-07-03.json",
+    "status_code": 200,
+    "content_type": "application/json; charset=utf-8",
+    "fetched_utc": "2026-07-03T15:26:23.2105661Z",
+    "bytes": 17367
+  },
+  {
+    "url": "https://handoff.socnet.lol/api/v1/payments/spec",
+    "file": "public_payments_spec_2026-07-03.json",
+    "status_code": 200,
+    "content_type": "application/json; charset=utf-8",
+    "fetched_utc": "2026-07-03T15:26:25.7371999Z",
+    "bytes": 1712
+  },
+  {
+    "url": "https://handoff.socnet.lol/api/v1/contracts/info",
+    "file": "public_contracts_info_2026-07-03.json",
+    "status_code": 200,
+    "content_type": "application/json; charset=utf-8",
+    "fetched_utc": "2026-07-03T15:26:25.9834094Z",
+    "bytes": 621
+  },
+  {
+    "url": "https://handoff.socnet.lol/api/v1/webhooks/spec",
+    "file": "public_webhooks_spec_2026-07-03.json",
+    "status_code": 200,
+    "content_type": "application/json; charset=utf-8",
+    "fetched_utc": "2026-07-03T15:26:26.2194636Z",
+    "bytes": 1094
+  }
+]

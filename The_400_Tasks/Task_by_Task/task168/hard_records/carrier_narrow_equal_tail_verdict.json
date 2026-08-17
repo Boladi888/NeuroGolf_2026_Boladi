@@ -1,0 +1,101 @@
+{
+  "task": 168,
+  "verdict": "DROP",
+  "candidate_class": "NO_CANDIDATE_STALE_ROUTE",
+  "cost": null,
+  "profile_cost": null,
+  "live_cost": 1508,
+  "status": "REJECT_LOCAL",
+  "candidate_paths": [],
+  "manifest_path": "The_400_Tasks/Task_by_Task/task168/hard_records/carrier_narrow_equal_tail_verdict.json",
+  "staged": false,
+  "delta_vs_live": null,
+  "current_bar": {
+    "source": "manifest via tools/ng_current_bar.py",
+    "cost": 1508,
+    "memory": 1268,
+    "params": 240,
+    "sha256": "d5af2d4f19d87dbb694e4d08482cfd2d44f55e518f6206990b1b43a58f2ec5cd",
+    "owner": "Aditya",
+    "updated_utc": "2026-06-22T06:32:53Z"
+  },
+  "parent_source": "Team_Best_Onnx/task168.onnx",
+  "parent_sha256": "d5af2d4f19d87dbb694e4d08482cfd2d44f55e518f6206990b1b43a58f2ec5cd",
+  "candidate_sha256": null,
+  "proof_commands_run": [
+    "python tools/ng_current_bar.py --task 168 --json",
+    "python -c \"from tools._score_v2 import score_network_v2; r=score_network_v2(r'Team_Best_Onnx/task168.onnx'); print(r, sum(r[1:]))\"",
+    "python tools/agent_helpers/profile_real_cost.py --task 168 --cand Team_Best_Onnx/task168.onnx --arcgen 266",
+    "python tools/agent_helpers/inspect_graph.py Team_Best_Onnx/task168.onnx",
+    "python tools/agent_helpers/largest_intermediate.py Team_Best_Onnx/task168.onnx --top 20",
+    "python tools/ng_safety.py model --task 168 --cand Team_Best_Onnx/task168.onnx --json",
+    "python -B -m neurogolf_provider.cli context task168",
+    "python -B -m neurogolf_provider.cli consistency task168"
+  ],
+  "proof_results": {
+    "score_v2": "(0, 1268, 240) cost=1508",
+    "profile_real_cost": "task168 task168.onnx: static=1508 profile=1508 (memory 1268 + params 240; 265 real inputs)",
+    "route_precondition": "FAIL: live first op is Einsum and the graph has no repeated Conv bank, 10-channel spatial F32 carrier, Where, Equal, or charged full canvas/template",
+    "fast_price_gate": "FAIL: Equal-tail charged U8 30x30 canvas floor is 900 B, greater than the requested 720 total before detector/color/parameter costs",
+    "visible": "NOT_RUN_NO_CANDIDATE",
+    "truth": "NOT_RUN_PREBUILD_PRICE_KILL",
+    "ab": "NOT_RUN_PREBUILD_PRICE_KILL",
+    "graph_cost_diff": "NOT_RUN_NO_WIN_CLAIM"
+  },
+  "safety": {
+    "kind": "model",
+    "source": "Team_Best_Onnx\\task168.onnx",
+    "verdict": "PASS",
+    "summary": {
+      "n_failures": 0,
+      "n_warnings": 0,
+      "runtime_integer_denominator_count": 0
+    },
+    "model": {
+      "task": "task168",
+      "name": "task168.onnx",
+      "source": "Team_Best_Onnx\\task168.onnx",
+      "sha256": "d5af2d4f19d87dbb694e4d08482cfd2d44f55e518f6206990b1b43a58f2ec5cd",
+      "size_bytes": 2240,
+      "failures": [],
+      "warnings": [],
+      "op_inventory": {
+        "ArgMax": 1,
+        "BitwiseAnd": 7,
+        "BitwiseNot": 1,
+        "Cast": 3,
+        "Concat": 4,
+        "ConvTranspose": 1,
+        "Div": 2,
+        "Einsum": 1,
+        "GlobalMaxPool": 1,
+        "ScatterND": 1,
+        "Slice": 2
+      },
+      "risk_op_flags": [
+        "Cast",
+        "Div"
+      ],
+      "runtime_integer_denominators": [],
+      "runtime_denominators_unknown_dtype": [],
+      "official_io_contract": {
+        "data_inputs": [
+          "input"
+        ],
+        "outputs": [
+          "output"
+        ],
+        "ok": true
+      },
+      "load_after_sanitize": "ok",
+      "verdict": "PASS"
+    }
+  },
+  "x86_required": false,
+  "kaggle_probe_required": false,
+  "failed_gate": "PREBUILD_ROUTE_PRECONDITION_AND_FAST_PRICE_GATE",
+  "what_tried": "Refreshed authoritative sources, decoded ARC-GEN 6e19193c, audited live structure/cost/profile/safety, and priced the requested one-channel plus Equal-tail family before construction.",
+  "what_failed": "The target carrier family is already absent, and Equal-tail has a 900 B minimum canvas cost above the 720 full-model target.",
+  "remaining_floor_rewrite_hypothesis": "A distinct direct-output fusion must remove chan_rows30 and the runtime-color Scatter tail together; an implicit-background direct-Scatter micro-shave projected at 1431 is only an unmaterialized Path-B breadcrumb, not a candidate from this route.",
+  "lesson_packet_path": null
+}

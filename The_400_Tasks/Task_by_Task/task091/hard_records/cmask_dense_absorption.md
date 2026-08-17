@@ -1,0 +1,11 @@
+# cmask_dense_absorption
+
+- live bar: 837 profile cost, sha256 `12a877bf1f3ce4e023155663a1a7fc05447fa132135b8344097d220b8a8d0f29` (`ng_current_bar.py --task 91 --json`, manifest source, Sho, 2026-07-10T09:55:00Z).
+- locked route: delete the separate F32 `[30]` `cmask` tensor by folding width masking into Sho's final dense output Einsum; no sparse tensors, no U8 bridge.
+- build attempts:
+  - `task091_cmask_attempt1_zero_carry_merge_F98A918B.onnx`: merged final-Einsum zero carry labels `N -> M`, removed duplicate `oh0` operand. Visible 266/266; profile 837. This frees one Einsum label but saves no scored bytes.
+  - `task091_cmask_attempt2_dense_le_absorb_02395875.onnx`: removed `cmask` node and added dense `LEw[2,2,2,2,2,2,2,2]` comparator over output-column bits and `Wm1` bits. Visible 266/266; profile 973.
+- exact charged trade for attempt 2 (`ng_graph_cost_diff`): removed `cmask` memory tensor `-120 B`; added `LEw` initializer `+256 params`; net static delta `+136`, matching real profile regression `837 -> 973`.
+- label-limit proof: live final Einsum uses 49/52 legal labels (`XYZ` free). The only sound relabel found is merging zero-carry labels `N -> M`, leaving four free labels (`NXYZ`). A zero-param bit-serial inline of `cmask` can reuse the existing output-column bit labels, but still needs four `Wm1` bit labels plus seven independent comparator carry labels: 11 fresh labels. That violates the ONNX Einsum label limit. Collapsing those carries into a dense no-hidden-state comparator fits the four-label budget but costs the 8-bit truth table (`2^8 = 256` params), which is already more than the 120-B `cmask` it deletes.
+- QLinear/placer/narrow-carrier check: #84/#85/#120/#137 do not apply profitably here because the final contraction is F32-locked by the graph input; `QLinearConv` would need an INT8/UINT8 feed, and `Cast(input->U8)` / named U8 bridge is the documented non-paying trap (§8g, §15c, §INPUT-DTYPE-LOCK).
+- verdict: dense `cmask` absorption is non-paying under the live Sho factorization. Remaining hypothesis would require a fundamentally different final transducer that frees at least seven labels without adding >=120 scored params; the two allowed build attempts did not find one.

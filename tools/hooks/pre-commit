@@ -1,0 +1,38 @@
+#!/bin/sh
+set -eu
+
+blocked_paths="$(git diff --cached --name-only --diff-filter=d -- .hermes .notongit .worktrees repo artifacts 2>/dev/null || true)"
+
+if [ -n "$blocked_paths" ]; then
+  printf '%s\n' \
+    "Blocked commit: runtime/nested-worktree paths are staged." \
+    "" \
+    "Do not commit these from the main local dir:" \
+    "  .hermes/" \
+    "  .notongit/" \
+    "  .worktrees/" \
+    "  repo/" \
+    "  artifacts/" \
+    "" \
+    "Unstage with:" \
+    "  git restore --staged <path>" >&2
+  printf '%s\n' "$blocked_paths" >&2
+  exit 1
+fi
+
+
+
+# --- auto-sync xlsx when task_state.csv is committed (added 2026-06-07) -------
+# The CSV is the live truth (captain reconciles per ship); this keeps the
+# owner's spreadsheet view current without manual passes. FAIL-OPEN: a sync
+# problem warns loudly but never blocks the commit.
+if git diff --cached --name-only | grep -q "The_400_Tasks/task_state.csv"; then
+  if python -X utf8 tools/sync_task_xlsx.py >/dev/null 2>&1; then
+    git add "The_400_Tasks/NeuroGolf_Task_Status.xlsx" 2>/dev/null || true
+    echo "pre-commit: task_state.csv staged -> xlsx auto-synced + staged" >&2
+  else
+    echo "pre-commit WARNING: xlsx auto-sync FAILED - commit proceeds, run 'python tools/sync_task_xlsx.py' manually" >&2
+  fi
+fi
+
+exit 0

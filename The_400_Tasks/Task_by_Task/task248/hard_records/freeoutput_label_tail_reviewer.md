@@ -1,0 +1,8 @@
+# task248 freeoutput_label_tail_reviewer hard record
+
+- Live bar: cost 151, SHA-256 `6a001ce01217f4e505777fb369eb36ec242ffdc413030285fdb28dc76479d892`, source `python tools/ng_current_bar.py --task 248 --json` / team manifest.
+- Locked hypothesis: non-`ScatterElements` free-output label tail only; delete the live `Concat`/`Cast`/`ScatterElements`/`updates` tail, preserve real channel-0 background, and use #67/#81 output-free tails.
+- Probe 1: `probe_freeout_label_pad_equal.onnx`, one-channel U8 label source -> `Pad(sentinel=10)` -> `Equal(channel_ids)` as graph output. Visible passed `13/13`, but `score_v2=profile=1201`; forced charged tensors are `padded_value` UINT8 `[1,1,30,30]` = 900 B, `path_mask` BOOL `[1,1,10,10]` = 100 B, and `value10` UINT8 `[1,1,10,10]` = 100 B.
+- Probe 2: `probe_freeout_small_onehot_pad.onnx`, #81 small-grid inversion `Equal(value10, channel_ids)` at `[1,10,10,10]` then `Pad` as graph output. Visible passed `13/13`, but `score_v2=profile=1302`; forced charged tensors are `small_onehot` BOOL `[1,10,10,10]` = 1000 B, `path_mask` BOOL `[1,1,10,10]` = 100 B, and `value10` UINT8 `[1,1,10,10]` = 100 B.
+- Why dead: preserving ch0/background without `ScatterElements` forces either a full padded one-channel value canvas before the output `Equal` (900 B) or the active 10-channel one-hot before the output `Pad` (1000 B). Both exceed the reviewer stop threshold of 60 and the current team-best 151 by a wide margin.
+- One remaining hypothesis: only a single final comparison/Einsum-style expression that emits the full one-hot without materializing a one-channel canvas or small one-hot could beat 151; the requested #67/#81 label-tail forms cannot.

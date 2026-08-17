@@ -1,0 +1,7 @@
+# task361 dead-route record - symmetry primitive without scalar-pad canvas
+
+- Live bar used: manifest/current bar **4839**, sha256 `4cb2923eff16f8fe64eabf818f7f3a34e2dabb94c534b77d69cffd1318d38524`, owner Vamshi (`python tools/ng_current_bar.py --task 361 --json`).
+- Attempted route: replace sparse rotate/scatter with a 10x10 scalar-map symmetry primitive using Transpose/Gather-style rotations, aiming to delete `sampled_colors` (600 B) or `completed_scalar30` (900 B).
+- Failed gate: pre-build score/floor gate. The required `[1,1,10,10]` U8 scalar map is not free from NeuroGolf one-hot input: direct collapse needs either a `[1,10,10,10]` F32 channel Slice (4000 B) or a full `[1,1,30,30]` F32 color canvas (3600 B) before any rotation. A dynamic full-permutation version keeps GridSample and adds three 100-cell U8 maps plus INT32 index maps, so it does not delete a dominant charge.
+- Why dead: fixed Transpose/Slice rotates around the 10x10 frame center, but task361 rotates around a runtime object center that can be integer or half-cell. Dynamic-center map rotation reintroduces large gather/index tensors and loses to the live graph's 15-cell sparse index math.
+- One remaining hypothesis: a color-read primitive that gathers only selected one-hot vectors from `input` without materializing either `[1,10,10,10]` or a transposed full input could revisit `sampled_colors`; known ONNX GatherND/GatherElements layouts appear to require a full transpose/reshape or expanded channel indices, so this needs an ORT-level trick, not another scalar-map canvas.

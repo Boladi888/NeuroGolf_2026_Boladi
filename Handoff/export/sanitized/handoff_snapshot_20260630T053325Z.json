@@ -1,0 +1,1280 @@
+﻿{
+    "schema":  "neurogolf.handoff.sanitized_snapshot.v1",
+    "exported_at_utc":  "2026-06-30T05:33:25.6279901Z",
+    "testnet_only":  true,
+    "agent_id":  "boladi_a",
+    "user_id":  "usr_fa78a7879f",
+    "settlement":  {
+                       "default_network":  "base-sepolia",
+                       "networks":  [
+                                        {
+                                            "name":  "arc-testnet",
+                                            "label":  "Arc Testnet (Circle)",
+                                            "chainId":  5042002,
+                                            "testnet":  true
+                                        },
+                                        {
+                                            "name":  "base-sepolia",
+                                            "label":  "Base Sepolia",
+                                            "chainId":  84532,
+                                            "testnet":  true
+                                        },
+                                        {
+                                            "name":  "ethereum-sepolia",
+                                            "label":  "Ethereum Sepolia",
+                                            "chainId":  11155111,
+                                            "testnet":  true
+                                        }
+                                    ]
+                   },
+    "projects":  [
+                     {
+                         "id":  "80ddecd9-7f28-4009-aeb5-d6fca43b8b3e",
+                         "title":  "NeuroGolf: Autonomous Swarm Solver",
+                         "requester":  "hermes-kaggler",
+                         "status":  "open",
+                         "created_at":  "2026-06-21T21:06:54.109Z",
+                         "goals":  {
+
+                                   },
+                         "tasks":  {
+
+                                   },
+                         "phase":  "open"
+                     },
+                     {
+                         "id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                         "title":  "NeuroGolf_HO",
+                         "requester":  "boladi_a",
+                         "status":  "open",
+                         "created_at":  "2026-06-28T17:13:01.463Z",
+                         "goals":  [
+                                       {
+                                           "id":  "feed9571-bb5e-4c2e-852e-def2beeff20c",
+                                           "title":  "Track NeuroGolf workflow and kanban tasks",
+                                           "created_at":  "2026-06-28T17:13:01.463Z",
+                                           "referenced_by":  {
+
+                                                             }
+                                       },
+                                       {
+                                           "id":  "df4eb966-4fd9-4167-9a1d-fb81a2422016",
+                                           "title":  "Capture sanitized operational logs for end-of-project handoff",
+                                           "created_at":  "2026-06-28T17:13:01.463Z",
+                                           "referenced_by":  {
+
+                                                             }
+                                       },
+                                       {
+                                           "id":  "7df4a008-bc22-4bf5-8cef-7de219c25593",
+                                           "title":  "Keep all activity on testnet-only rails",
+                                           "created_at":  "2026-06-28T17:13:01.463Z",
+                                           "referenced_by":  {
+
+                                                             }
+                                       },
+                                       {
+                                           "id":  "4e7b1992-e06f-4b12-942f-32f5925a806f",
+                                           "title":  "Batch 30 rewrite prompts",
+                                           "created_at":  "2026-06-28T17:24:14.399Z",
+                                           "referenced_by":  [
+                                                                 "210bed68-6bea-49c7-a6c4-80670936b09a",
+                                                                 "92a71cda-a3c1-430c-8ed7-825d13dffc68",
+                                                                 "7bacb545-4004-44ae-9fc8-c2f4c1f4b975",
+                                                                 "21af6b96-08e3-4765-931a-1f0765785c26"
+                                                             ]
+                                       },
+                                       {
+                                           "id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "title":  "Batch 31 rewrite prompts",
+                                           "description":  "Run 20 prompts from C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31 through bo_ng_worker1 -\u003e bo_ng_reviewer1 -\u003e bo_ng_submit_captain. Testnet-only HandOff coordination; no Kaggle submit unless explicitly enabled.",
+                                           "budget":  {
+                                                          "currency":  "USDC",
+                                                          "amount":  "0"
+                                                      },
+                                           "created_at":  "2026-06-28T21:51:09.202Z",
+                                           "referenced_by":  [
+                                                                 "52ba262b-8ae9-4485-89d7-0e50a77876d2",
+                                                                 "2ce50341-e771-4b61-9c2a-b2b349111ee9",
+                                                                 "9275f730-5a09-4b5a-8904-412865f6c02b",
+                                                                 "8d6bc574-1fbe-43a0-897a-ab2f18047f33",
+                                                                 "093b68d0-7231-4fcf-a40f-90aa9006aca3",
+                                                                 "6b3e1988-a7cf-41d2-961b-da296701c4e3",
+                                                                 "c829b581-a3af-410a-a968-bc0ca0db328e",
+                                                                 "060864e7-3387-4807-acd8-a533f78ed162",
+                                                                 "10a941c1-4c4a-47e0-b3ba-43fc0f79fa90",
+                                                                 "41ed07e0-4db6-466f-9fce-a909376c18a4",
+                                                                 "3ea044d3-b41f-406d-95fe-b82279ebceca",
+                                                                 "2d18d321-c311-4b94-b111-2a1a07f24c21",
+                                                                 "edcaa287-e807-48f5-b452-841362ff4cd6",
+                                                                 "dbe5cb46-dd5d-4e35-94b2-81880c281a01",
+                                                                 "009b3316-29ab-4f1b-a535-65874c0c4bf2",
+                                                                 "eae912e1-3701-4a88-beb3-eede6ae58ee2",
+                                                                 "200cda56-99f3-4644-806d-fb4a70f8acde",
+                                                                 "3f21f659-4c30-43f4-b18e-ca66dc140bae",
+                                                                 "472230ce-1bd5-4080-92b5-d900a853e2dc",
+                                                                 "eb784f4c-bf90-40e7-b0cb-fd68d08a7398"
+                                                             ],
+                                           "task_order":  [
+                                                              "52ba262b-8ae9-4485-89d7-0e50a77876d2",
+                                                              "2ce50341-e771-4b61-9c2a-b2b349111ee9",
+                                                              "9275f730-5a09-4b5a-8904-412865f6c02b",
+                                                              "8d6bc574-1fbe-43a0-897a-ab2f18047f33",
+                                                              "093b68d0-7231-4fcf-a40f-90aa9006aca3",
+                                                              "6b3e1988-a7cf-41d2-961b-da296701c4e3",
+                                                              "c829b581-a3af-410a-a968-bc0ca0db328e",
+                                                              "060864e7-3387-4807-acd8-a533f78ed162",
+                                                              "10a941c1-4c4a-47e0-b3ba-43fc0f79fa90",
+                                                              "41ed07e0-4db6-466f-9fce-a909376c18a4",
+                                                              "3ea044d3-b41f-406d-95fe-b82279ebceca",
+                                                              "2d18d321-c311-4b94-b111-2a1a07f24c21",
+                                                              "edcaa287-e807-48f5-b452-841362ff4cd6",
+                                                              "dbe5cb46-dd5d-4e35-94b2-81880c281a01",
+                                                              "009b3316-29ab-4f1b-a535-65874c0c4bf2",
+                                                              "eae912e1-3701-4a88-beb3-eede6ae58ee2",
+                                                              "200cda56-99f3-4644-806d-fb4a70f8acde",
+                                                              "3f21f659-4c30-43f4-b18e-ca66dc140bae",
+                                                              "472230ce-1bd5-4080-92b5-d900a853e2dc",
+                                                              "eb784f4c-bf90-40e7-b0cb-fd68d08a7398"
+                                                          ]
+                                       },
+                                       {
+                                           "id":  "fc65b713-3084-4fb6-8e55-5d8784653b19",
+                                           "title":  "Batch 33 rewrite prompts",
+                                           "description":  "Run non-colliding prompts from C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\33 through Codex lane workers/reviewers into Submit Captain Updates_Codex. Testnet-only; no Kaggle submit and no staging.",
+                                           "budget":  {
+                                                          "amount":  "0",
+                                                          "currency":  "USDC"
+                                                      },
+                                           "created_at":  "2026-06-30T05:23:10.862Z",
+                                           "referenced_by":  [
+                                                                 "1024051e-2290-4a9b-840e-04aecb35fcb5",
+                                                                 "ecdcc97c-dd80-4538-a6a0-cc38e0b2a091",
+                                                                 "5c6d71c0-cee1-4e96-a5e7-8bc22c169ac9",
+                                                                 "94521672-8433-48cc-95db-ff44931ccd1d",
+                                                                 "8983c90d-694f-4bb6-942d-ce139cd0a4cb",
+                                                                 "9fa9546d-43c7-4a2c-a816-dca312c14340",
+                                                                 "059a64a7-3363-4e6e-bcdf-6e0a0297b866",
+                                                                 "55c29a62-e21e-4b45-93c9-9702a29ef9f1",
+                                                                 "85fd7f3b-c18f-4aba-8a7d-c4b4ab71831b"
+                                                             ]
+                                       }
+                                   ],
+                         "tasks":  [
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task324] PlaidDiagonalRewrite",
+                                           "assignee":  "bo_ng_orchestrator",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "goal_id":  "4e7b1992-e06f-4b12-942f-32f5925a806f",
+                                           "id":  "210bed68-6bea-49c7-a6c4-80670936b09a",
+                                           "status":  "rejected",
+                                           "created_at":  "2026-06-28T17:24:14.899Z",
+                                           "updated_at":  "2026-06-29T01:44:44.761Z",
+                                           "status_history":  [
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-28T17:24:14.899Z"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-28T18:38:59.132Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  },
+                                                                  {
+                                                                      "status":  "pending_verification",
+                                                                      "at":  "2026-06-28T19:12:19.324Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  },
+                                                                  {
+                                                                      "status":  "rejected",
+                                                                      "at":  "2026-06-28T19:17:20.705Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  }
+                                                              ],
+                                           "result":  "Batch 30 closed/archived; cleared stale worker assignment at 2026-06-29T01:44:47.0202071Z. Prior result: Reviewer DROP.",
+                                           "references":  "4e7b1992-e06f-4b12-942f-32f5925a806f",
+                                           "conditions_locked":  true,
+                                           "unpayable":  false
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task187] ExteriorReachabilityRewrite",
+                                           "assignee":  "bo_ng_orchestrator",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "goal_id":  "4e7b1992-e06f-4b12-942f-32f5925a806f",
+                                           "id":  "92a71cda-a3c1-430c-8ed7-825d13dffc68",
+                                           "status":  "verified",
+                                           "created_at":  "2026-06-28T17:24:16.543Z",
+                                           "updated_at":  "2026-06-29T01:44:44.440Z",
+                                           "status_history":  [
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-28T17:24:16.543Z"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-28T19:20:49.561Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  },
+                                                                  {
+                                                                      "status":  "pending_verification",
+                                                                      "at":  "2026-06-28T19:39:33.078Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-28T19:45:49.485Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  },
+                                                                  {
+                                                                      "status":  "pending_verification",
+                                                                      "at":  "2026-06-28T19:59:59.681Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  },
+                                                                  {
+                                                                      "status":  "verified",
+                                                                      "at":  "2026-06-28T20:04:32.498Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  }
+                                                              ],
+                                           "result":  "Batch 30 closed/archived; cleared stale worker assignment at 2026-06-29T01:44:47.0202071Z. Prior result: Reviewer SHIP; captain packeted.",
+                                           "references":  "4e7b1992-e06f-4b12-942f-32f5925a806f",
+                                           "conditions_locked":  true,
+                                           "unpayable":  false
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task029] ZoomBoxCropRewrite",
+                                           "assignee":  "bo_ng_orchestrator",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "goal_id":  "4e7b1992-e06f-4b12-942f-32f5925a806f",
+                                           "id":  "7bacb545-4004-44ae-9fc8-c2f4c1f4b975",
+                                           "status":  "verified",
+                                           "created_at":  "2026-06-28T17:24:17.012Z",
+                                           "updated_at":  "2026-06-29T01:44:43.938Z",
+                                           "status_history":  [
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-28T17:24:17.012Z"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-28T18:17:21.960Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  },
+                                                                  {
+                                                                      "status":  "verified",
+                                                                      "at":  "2026-06-28T18:34:18.806Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  }
+                                                              ],
+                                           "result":  "Batch 30 closed/archived; cleared stale worker assignment at 2026-06-29T01:44:47.0202071Z. Prior result: Runner sync verified/packeted.",
+                                           "references":  "4e7b1992-e06f-4b12-942f-32f5925a806f",
+                                           "conditions_locked":  true,
+                                           "unpayable":  false
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task110] PeriodicInpaintRewrite",
+                                           "assignee":  "bo_ng_orchestrator",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "goal_id":  "4e7b1992-e06f-4b12-942f-32f5925a806f",
+                                           "id":  "21af6b96-08e3-4765-931a-1f0765785c26",
+                                           "status":  "verified",
+                                           "created_at":  "2026-06-28T17:24:32.530Z",
+                                           "updated_at":  "2026-06-29T01:44:44.130Z",
+                                           "status_history":  [
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-28T17:24:32.530Z"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-28T20:06:09.980Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  },
+                                                                  {
+                                                                      "status":  "pending_verification",
+                                                                      "at":  "2026-06-28T20:21:47.803Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  },
+                                                                  {
+                                                                      "status":  "verified",
+                                                                      "at":  "2026-06-28T20:28:02.517Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  }
+                                                              ],
+                                           "result":  "Batch 30 closed/archived; cleared stale worker assignment at 2026-06-29T01:44:47.0202071Z. Prior result: Reviewer SHIP; later local captain no-gain archive noted.",
+                                           "references":  "4e7b1992-e06f-4b12-942f-32f5925a806f",
+                                           "conditions_locked":  true,
+                                           "unpayable":  false
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task286] FloodFillComponentRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31\\Prompt_2026-06-28T3101Z_Task286_FloodFillComponentRewrite.md\nFlow: worker bo_ng_worker1 -\u003e reviewer bo_ng_reviewer1 -\u003e submit captain bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "assignee":  "bo_ng_reviewer1",
+                                           "goal_id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "id":  "52ba262b-8ae9-4485-89d7-0e50a77876d2",
+                                           "status":  "verified",
+                                           "created_at":  "2026-06-28T21:51:31.906Z",
+                                           "updated_at":  "2026-06-28T22:36:41.459Z",
+                                           "status_history":  [
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-28T21:51:31.906Z"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-28T21:52:44.560Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  },
+                                                                  {
+                                                                      "status":  "pending_verification",
+                                                                      "at":  "2026-06-28T22:17:22.826Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  },
+                                                                  {
+                                                                      "status":  "verified",
+                                                                      "at":  "2026-06-28T22:36:41.459Z",
+                                                                      "by":  "bo_ng_reviewer1"
+                                                                  }
+                                                              ],
+                                           "references":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "result":  "reviewer SHIP; captain packet Agenters/Submit_Captain/Updates_Codex/20260628T223644Z-task286.json",
+                                           "conditions_locked":  true,
+                                           "unpayable":  false
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task366] SceneLibraryColorRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31\\Prompt_2026-06-28T3102Z_Task366_SceneLibraryColorRewrite.md\nFlow: worker bo_ng_worker1 -\u003e reviewer bo_ng_reviewer1 -\u003e submit captain bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "assignee":  "bo_ng_reviewer1",
+                                           "goal_id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "id":  "2ce50341-e771-4b61-9c2a-b2b349111ee9",
+                                           "status":  "verified",
+                                           "created_at":  "2026-06-28T21:51:32.174Z",
+                                           "updated_at":  "2026-06-28T23:02:16.099Z",
+                                           "status_history":  [
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-28T21:51:32.174Z"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-28T22:07:52.686Z",
+                                                                      "by":  "bo_ng_cdx_worker2"
+                                                                  },
+                                                                  {
+                                                                      "status":  "pending_verification",
+                                                                      "at":  "2026-06-28T22:39:20.190Z",
+                                                                      "by":  "bo_ng_cdx_worker2"
+                                                                  },
+                                                                  {
+                                                                      "status":  "verified",
+                                                                      "at":  "2026-06-28T23:02:16.099Z",
+                                                                      "by":  "bo_ng_reviewer1"
+                                                                  }
+                                                              ],
+                                           "references":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "result":  "reviewer SHIP; captain packet Agenters/Submit_Captain/Updates_Codex/20260628T230219Z-task366.json",
+                                           "conditions_locked":  true,
+                                           "unpayable":  false
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task233] DecorationRegionRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31\\Prompt_2026-06-28T3103Z_Task233_DecorationRegionRewrite.md\nFlow: worker bo_ng_worker1 -\u003e reviewer bo_ng_reviewer1 -\u003e submit captain bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "assignee":  "bo_ng_cdx_reviewer2",
+                                           "goal_id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "id":  "9275f730-5a09-4b5a-8904-412865f6c02b",
+                                           "status":  "verified",
+                                           "created_at":  "2026-06-28T21:51:32.429Z",
+                                           "updated_at":  "2026-06-28T23:02:49.090Z",
+                                           "status_history":  [
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-28T21:51:32.429Z"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-28T22:07:52.748Z",
+                                                                      "by":  "bo_ng_cdx_worker3"
+                                                                  },
+                                                                  {
+                                                                      "status":  "pending_verification",
+                                                                      "at":  "2026-06-28T22:42:14.535Z",
+                                                                      "by":  "bo_ng_cdx_worker3"
+                                                                  },
+                                                                  {
+                                                                      "status":  "verified",
+                                                                      "at":  "2026-06-28T23:02:49.090Z",
+                                                                      "by":  "bo_ng_cdx_reviewer2"
+                                                                  }
+                                                              ],
+                                           "references":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "result":  "reviewer SHIP; captain packet Agenters/Submit_Captain/Updates_Codex/20260628T230252Z-task233.json",
+                                           "conditions_locked":  true,
+                                           "unpayable":  false
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task158] RoleColorScalarRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31\\Prompt_2026-06-28T3104Z_Task158_RoleColorScalarRewrite.md\nFlow: worker bo_ng_worker1 -\u003e reviewer bo_ng_reviewer1 -\u003e submit captain bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "assignee":  "bo_ng_reviewer1",
+                                           "goal_id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "id":  "8d6bc574-1fbe-43a0-897a-ab2f18047f33",
+                                           "status":  "verified",
+                                           "created_at":  "2026-06-28T21:51:32.689Z",
+                                           "updated_at":  "2026-06-28T23:28:14.011Z",
+                                           "status_history":  [
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-28T21:51:32.689Z"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-28T22:36:41.766Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  },
+                                                                  {
+                                                                      "status":  "pending_verification",
+                                                                      "at":  "2026-06-28T23:07:05.390Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  },
+                                                                  {
+                                                                      "status":  "verified",
+                                                                      "at":  "2026-06-28T23:28:14.011Z",
+                                                                      "by":  "bo_ng_reviewer1"
+                                                                  }
+                                                              ],
+                                           "references":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "result":  "reviewer SHIP; captain packet Agenters/Submit_Captain/Updates_Codex/20260628T232817Z-task158.json",
+                                           "conditions_locked":  true,
+                                           "unpayable":  false
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task054] PaletteRemapFloorRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31\\Prompt_2026-06-28T3105Z_Task054_PaletteRemapFloorRewrite.md\nFlow: worker bo_ng_worker1 -\u003e reviewer bo_ng_reviewer1 -\u003e submit captain bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "assignee":  "bo_ng_reviewer1",
+                                           "goal_id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "id":  "093b68d0-7231-4fcf-a40f-90aa9006aca3",
+                                           "status":  "verified",
+                                           "created_at":  "2026-06-28T21:51:32.940Z",
+                                           "updated_at":  "2026-06-28T23:55:46.743Z",
+                                           "status_history":  [
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-28T21:51:32.940Z"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-28T23:02:49.284Z",
+                                                                      "by":  "bo_ng_cdx_worker2"
+                                                                  },
+                                                                  {
+                                                                      "status":  "pending_verification",
+                                                                      "at":  "2026-06-28T23:45:30.251Z",
+                                                                      "by":  "bo_ng_cdx_worker2"
+                                                                  },
+                                                                  {
+                                                                      "status":  "verified",
+                                                                      "at":  "2026-06-28T23:55:46.743Z",
+                                                                      "by":  "bo_ng_reviewer1"
+                                                                  }
+                                                              ],
+                                           "references":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "result":  "reviewer SHIP; captain packet Agenters/Submit_Captain/Updates_Codex/20260628T235549Z-task054.json",
+                                           "conditions_locked":  true,
+                                           "unpayable":  false
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task133] FillRegionRuleRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31\\Prompt_2026-06-28T3106Z_Task133_FillRegionRuleRewrite.md\nFlow: worker bo_ng_worker1 -\u003e reviewer bo_ng_reviewer1 -\u003e submit captain bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "assignee":  "bo_ng_cdx_reviewer2",
+                                           "goal_id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "id":  "6b3e1988-a7cf-41d2-961b-da296701c4e3",
+                                           "status":  "verified",
+                                           "created_at":  "2026-06-28T21:51:33.350Z",
+                                           "updated_at":  "2026-06-28T23:53:13.614Z",
+                                           "status_history":  [
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-28T21:51:33.350Z"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-28T23:02:49.409Z",
+                                                                      "by":  "bo_ng_cdx_worker3"
+                                                                  },
+                                                                  {
+                                                                      "status":  "pending_verification",
+                                                                      "at":  "2026-06-28T23:38:44.659Z",
+                                                                      "by":  "bo_ng_cdx_worker3"
+                                                                  },
+                                                                  {
+                                                                      "status":  "verified",
+                                                                      "at":  "2026-06-28T23:53:13.614Z",
+                                                                      "by":  "bo_ng_cdx_reviewer2"
+                                                                  }
+                                                              ],
+                                           "references":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "result":  "reviewer SHIP; captain packet Agenters/Submit_Captain/Updates_Codex/20260628T235316Z-task133.json",
+                                           "conditions_locked":  true,
+                                           "unpayable":  false
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task076] HoleFillTopologyRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31\\Prompt_2026-06-28T3107Z_Task076_HoleFillTopologyRewrite.md\nFlow: worker bo_ng_worker1 -\u003e reviewer bo_ng_reviewer1 -\u003e submit captain bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "goal_id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "id":  "c829b581-a3af-410a-a968-bc0ca0db328e",
+                                           "status":  "todo",
+                                           "created_at":  "2026-06-28T21:51:33.604Z",
+                                           "updated_at":  "2026-06-30T05:15:29.563Z",
+                                           "status_history":  [
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-28T21:51:33.604Z"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-28T23:28:14.444Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  },
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-30T05:15:29.563Z",
+                                                                      "by":  "self-healing"
+                                                                  }
+                                                              ],
+                                           "references":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "result":  "forced worker retry started by runner",
+                                           "conditions_locked":  true
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task367] RowPocketLabelRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31\\Prompt_2026-06-28T3108Z_Task367_RowPocketLabelRewrite.md\nFlow: worker bo_ng_worker1 -\u003e reviewer bo_ng_reviewer1 -\u003e submit captain bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "assignee":  "bo_ng_reviewer1",
+                                           "goal_id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "id":  "060864e7-3387-4807-acd8-a533f78ed162",
+                                           "status":  "verified",
+                                           "created_at":  "2026-06-28T21:51:34.865Z",
+                                           "updated_at":  "2026-06-29T01:42:16.735Z",
+                                           "status_history":  [
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-28T21:51:34.865Z"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-28T23:55:47.118Z",
+                                                                      "by":  "bo_ng_cdx_worker2"
+                                                                  },
+                                                                  {
+                                                                      "status":  "pending_verification",
+                                                                      "at":  "2026-06-29T01:26:30.563Z",
+                                                                      "by":  "bo_ng_cdx_worker2"
+                                                                  },
+                                                                  {
+                                                                      "status":  "verified",
+                                                                      "at":  "2026-06-29T01:42:16.735Z",
+                                                                      "by":  "bo_ng_reviewer1"
+                                                                  }
+                                                              ],
+                                           "references":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "result":  "reviewer SHIP; captain packet Agenters/Submit_Captain/Updates_Codex/20260629T014219Z-task367.json",
+                                           "conditions_locked":  true,
+                                           "unpayable":  false
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task018] GravityObjectCopyRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31\\Prompt_2026-06-28T3109Z_Task018_GravityObjectCopyRewrite.md\nFlow: worker bo_ng_worker1 -\u003e reviewer bo_ng_reviewer1 -\u003e submit captain bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "assignee":  "bo_ng_cdx_reviewer2",
+                                           "goal_id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "id":  "10a941c1-4c4a-47e0-b3ba-43fc0f79fa90",
+                                           "status":  "verified",
+                                           "created_at":  "2026-06-28T21:51:50.291Z",
+                                           "updated_at":  "2026-06-29T01:45:26.878Z",
+                                           "status_history":  [
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-28T21:51:50.291Z"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-28T23:55:47.200Z",
+                                                                      "by":  "bo_ng_cdx_worker3"
+                                                                  },
+                                                                  {
+                                                                      "status":  "pending_verification",
+                                                                      "at":  "2026-06-29T01:26:58.980Z",
+                                                                      "by":  "bo_ng_cdx_worker3"
+                                                                  },
+                                                                  {
+                                                                      "status":  "verified",
+                                                                      "at":  "2026-06-29T01:45:26.878Z",
+                                                                      "by":  "bo_ng_cdx_reviewer2"
+                                                                  }
+                                                              ],
+                                           "references":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "result":  "reviewer SHIP; captain packet Agenters/Submit_Captain/Updates_Codex/20260629T014530Z-task018.json",
+                                           "conditions_locked":  true,
+                                           "unpayable":  false
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task173] FloodFillShapeRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31\\Prompt_2026-06-28T3110Z_Task173_FloodFillShapeRewrite.md\nFlow: worker bo_ng_worker1 -\u003e reviewer bo_ng_reviewer1 -\u003e submit captain bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "assignee":  "bo_ng_reviewer1",
+                                           "goal_id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "id":  "41ed07e0-4db6-466f-9fce-a909376c18a4",
+                                           "status":  "verified",
+                                           "created_at":  "2026-06-28T21:51:51.536Z",
+                                           "updated_at":  "2026-06-29T02:57:49.817Z",
+                                           "status_history":  [
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-28T21:51:51.536Z"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-29T01:19:42.138Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  },
+                                                                  {
+                                                                      "status":  "pending_verification",
+                                                                      "at":  "2026-06-29T01:54:58.926Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  },
+                                                                  {
+                                                                      "status":  "verified",
+                                                                      "at":  "2026-06-29T02:57:49.817Z",
+                                                                      "by":  "bo_ng_reviewer1"
+                                                                  }
+                                                              ],
+                                           "references":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "result":  "reviewer SHIP; captain packet Agenters/Submit_Captain/Updates_Codex/20260629T025752Z-task173.json",
+                                           "conditions_locked":  true,
+                                           "unpayable":  false
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task285] WildcardGridRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31\\Prompt_2026-06-28T3111Z_Task285_WildcardGridRewrite.md\nFlow: worker bo_ng_worker1 -\u003e reviewer bo_ng_reviewer1 -\u003e submit captain bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "assignee":  "bo_ng_cdx_worker2",
+                                           "goal_id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "id":  "3ea044d3-b41f-406d-95fe-b82279ebceca",
+                                           "status":  "pending_verification",
+                                           "created_at":  "2026-06-28T21:51:51.783Z",
+                                           "updated_at":  "2026-06-29T03:01:05.473Z",
+                                           "status_history":  [
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-28T21:51:51.783Z"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-29T01:45:27.238Z",
+                                                                      "by":  "bo_ng_cdx_worker2"
+                                                                  },
+                                                                  {
+                                                                      "status":  "pending_verification",
+                                                                      "at":  "2026-06-29T03:01:05.473Z",
+                                                                      "by":  "bo_ng_cdx_worker2"
+                                                                  }
+                                                              ],
+                                           "references":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "result":  "attempt 2 complete; reviewer queued",
+                                           "conditions_locked":  true,
+                                           "unpayable":  false
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task349] WideRegionMergeRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31\\Prompt_2026-06-28T3112Z_Task349_WideRegionMergeRewrite.md\nFlow: worker bo_ng_worker1 -\u003e reviewer bo_ng_reviewer1 -\u003e submit captain bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "assignee":  "bo_ng_cdx_worker3",
+                                           "goal_id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "id":  "2d18d321-c311-4b94-b111-2a1a07f24c21",
+                                           "status":  "pending_verification",
+                                           "created_at":  "2026-06-28T21:51:52.019Z",
+                                           "updated_at":  "2026-06-29T03:02:28.302Z",
+                                           "status_history":  [
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-28T21:51:52.019Z"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-29T01:45:27.178Z",
+                                                                      "by":  "bo_ng_cdx_worker3"
+                                                                  },
+                                                                  {
+                                                                      "status":  "pending_verification",
+                                                                      "at":  "2026-06-29T03:02:28.302Z",
+                                                                      "by":  "bo_ng_cdx_worker3"
+                                                                  }
+                                                              ],
+                                           "references":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "result":  "attempt 2 complete; reviewer queued",
+                                           "conditions_locked":  true,
+                                           "unpayable":  false
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task025] LineProjectionRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31\\Prompt_2026-06-28T3113Z_Task025_LineProjectionRewrite.md\nFlow: worker bo_ng_worker1 -\u003e reviewer bo_ng_reviewer1 -\u003e submit captain bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "goal_id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "id":  "edcaa287-e807-48f5-b452-841362ff4cd6",
+                                           "status":  "todo",
+                                           "created_at":  "2026-06-28T21:51:52.271Z",
+                                           "updated_at":  "2026-06-30T05:15:29.591Z",
+                                           "status_history":  [
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-28T21:51:52.271Z"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-29T02:57:50.256Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  },
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-30T05:15:29.591Z",
+                                                                      "by":  "self-healing"
+                                                                  }
+                                                              ],
+                                           "references":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "result":  "initial worker pass started by runner",
+                                           "conditions_locked":  true
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task364] PaletteDecisionRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31\\Prompt_2026-06-28T3114Z_Task364_PaletteDecisionRewrite.md\nFlow: worker bo_ng_worker1 -\u003e reviewer bo_ng_reviewer1 -\u003e submit captain bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "assignee":  "bo_ng_worker1",
+                                           "goal_id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "id":  "dbe5cb46-dd5d-4e35-94b2-81880c281a01",
+                                           "status":  "todo",
+                                           "created_at":  "2026-06-28T21:51:53.526Z",
+                                           "updated_at":  "2026-06-28T21:51:53.526Z",
+                                           "status_history":  {
+                                                                  "status":  "todo",
+                                                                  "at":  "2026-06-28T21:51:53.526Z"
+                                                              },
+                                           "references":  "0c807520-7810-4a0b-8119-86e7ba445594"
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task255] CorridorFillAmbiguityRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31\\Prompt_2026-06-28T3115Z_Task255_CorridorFillAmbiguityRewrite.md\nFlow: worker bo_ng_worker1 -\u003e reviewer bo_ng_reviewer1 -\u003e submit captain bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "assignee":  "bo_ng_worker1",
+                                           "goal_id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "id":  "009b3316-29ab-4f1b-a535-65874c0c4bf2",
+                                           "status":  "todo",
+                                           "created_at":  "2026-06-28T21:51:53.786Z",
+                                           "updated_at":  "2026-06-28T21:51:53.786Z",
+                                           "status_history":  {
+                                                                  "status":  "todo",
+                                                                  "at":  "2026-06-28T21:51:53.786Z"
+                                                              },
+                                           "references":  "0c807520-7810-4a0b-8119-86e7ba445594"
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task319] CropObjectSelectorRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31\\Prompt_2026-06-28T3116Z_Task319_CropObjectSelectorRewrite.md\nFlow: worker bo_ng_worker1 -\u003e reviewer bo_ng_reviewer1 -\u003e submit captain bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "assignee":  "bo_ng_worker1",
+                                           "goal_id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "id":  "eae912e1-3701-4a88-beb3-eede6ae58ee2",
+                                           "status":  "todo",
+                                           "created_at":  "2026-06-28T21:51:54.065Z",
+                                           "updated_at":  "2026-06-28T21:51:54.065Z",
+                                           "status_history":  {
+                                                                  "status":  "todo",
+                                                                  "at":  "2026-06-28T21:51:54.065Z"
+                                                              },
+                                           "references":  "0c807520-7810-4a0b-8119-86e7ba445594"
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task118] ColorLogicRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31\\Prompt_2026-06-28T3117Z_Task118_ColorLogicRewrite.md\nFlow: worker bo_ng_worker1 -\u003e reviewer bo_ng_reviewer1 -\u003e submit captain bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "assignee":  "bo_ng_worker1",
+                                           "goal_id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "id":  "200cda56-99f3-4644-806d-fb4a70f8acde",
+                                           "status":  "todo",
+                                           "created_at":  "2026-06-28T21:51:54.347Z",
+                                           "updated_at":  "2026-06-28T21:51:54.347Z",
+                                           "status_history":  {
+                                                                  "status":  "todo",
+                                                                  "at":  "2026-06-28T21:51:54.347Z"
+                                                              },
+                                           "references":  "0c807520-7810-4a0b-8119-86e7ba445594"
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task145] HiddenAlignedRuleRecon",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31\\Prompt_2026-06-28T3118Z_Task145_HiddenAlignedRuleRecon.md\nFlow: worker bo_ng_worker1 -\u003e reviewer bo_ng_reviewer1 -\u003e submit captain bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "assignee":  "bo_ng_worker1",
+                                           "goal_id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "id":  "3f21f659-4c30-43f4-b18e-ca66dc140bae",
+                                           "status":  "todo",
+                                           "created_at":  "2026-06-28T21:51:55.623Z",
+                                           "updated_at":  "2026-06-28T21:51:55.623Z",
+                                           "status_history":  {
+                                                                  "status":  "todo",
+                                                                  "at":  "2026-06-28T21:51:55.623Z"
+                                                              },
+                                           "references":  "0c807520-7810-4a0b-8119-86e7ba445594"
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task101] RegionFillRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31\\Prompt_2026-06-28T3119Z_Task101_RegionFillRewrite.md\nFlow: worker bo_ng_worker1 -\u003e reviewer bo_ng_reviewer1 -\u003e submit captain bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "assignee":  "bo_ng_worker1",
+                                           "goal_id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "id":  "472230ce-1bd5-4080-92b5-d900a853e2dc",
+                                           "status":  "todo",
+                                           "created_at":  "2026-06-28T21:51:55.879Z",
+                                           "updated_at":  "2026-06-28T21:51:55.879Z",
+                                           "status_history":  {
+                                                                  "status":  "todo",
+                                                                  "at":  "2026-06-28T21:51:55.879Z"
+                                                              },
+                                           "references":  "0c807520-7810-4a0b-8119-86e7ba445594"
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task243] BitpackFloodFillRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\31\\Prompt_2026-06-28T3120Z_Task243_BitpackFloodFillRewrite.md\nFlow: worker bo_ng_worker1 -\u003e reviewer bo_ng_reviewer1 -\u003e submit captain bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "assignee":  "bo_ng_worker1",
+                                           "goal_id":  "0c807520-7810-4a0b-8119-86e7ba445594",
+                                           "id":  "eb784f4c-bf90-40e7-b0cb-fd68d08a7398",
+                                           "status":  "todo",
+                                           "created_at":  "2026-06-28T21:51:56.126Z",
+                                           "updated_at":  "2026-06-28T21:51:56.126Z",
+                                           "status_history":  {
+                                                                  "status":  "todo",
+                                                                  "at":  "2026-06-28T21:51:56.126Z"
+                                                              },
+                                           "references":  "0c807520-7810-4a0b-8119-86e7ba445594"
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task333] FillRegionsRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\33\\Prompt_2026-06-29T3301Z_Task333_FillRegionsRewrite.md\nFlow: Codex lane workers -\u003e Codex lane reviewers -\u003e bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "goal_id":  "fc65b713-3084-4fb6-8e55-5d8784653b19",
+                                           "id":  "1024051e-2290-4a9b-840e-04aecb35fcb5",
+                                           "status":  "todo",
+                                           "created_at":  "2026-06-30T05:23:44.045Z",
+                                           "updated_at":  "2026-06-30T05:24:49.421Z",
+                                           "status_history":  [
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-30T05:23:44.045Z"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-30T05:24:48.236Z",
+                                                                      "by":  "bo_ng_worker1"
+                                                                  },
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-30T05:24:49.421Z",
+                                                                      "by":  "self-healing"
+                                                                  }
+                                                              ],
+                                           "references":  "fc65b713-3084-4fb6-8e55-5d8784653b19",
+                                           "result":  "initial worker pass started by runner",
+                                           "conditions_locked":  true
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task368] ConvColorDecodeRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\33\\Prompt_2026-06-29T3303Z_Task368_ConvColorDecodeRewrite.md\nFlow: Codex lane workers -\u003e Codex lane reviewers -\u003e bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "goal_id":  "fc65b713-3084-4fb6-8e55-5d8784653b19",
+                                           "id":  "ecdcc97c-dd80-4538-a6a0-cc38e0b2a091",
+                                           "status":  "todo",
+                                           "created_at":  "2026-06-30T05:23:44.298Z",
+                                           "updated_at":  "2026-06-30T05:24:49.451Z",
+                                           "status_history":  [
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-30T05:23:44.298Z"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-30T05:24:48.366Z",
+                                                                      "by":  "bo_ng_cdx_worker2"
+                                                                  },
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-30T05:24:49.451Z",
+                                                                      "by":  "self-healing"
+                                                                  }
+                                                              ],
+                                           "references":  "fc65b713-3084-4fb6-8e55-5d8784653b19",
+                                           "result":  "initial worker pass started by runner",
+                                           "conditions_locked":  true
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task280] MarkerDepthFillRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\33\\Prompt_2026-06-29T3304Z_Task280_MarkerDepthFillRewrite.md\nFlow: Codex lane workers -\u003e Codex lane reviewers -\u003e bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "goal_id":  "fc65b713-3084-4fb6-8e55-5d8784653b19",
+                                           "id":  "5c6d71c0-cee1-4e96-a5e7-8bc22c169ac9",
+                                           "status":  "todo",
+                                           "created_at":  "2026-06-30T05:23:44.524Z",
+                                           "updated_at":  "2026-06-30T05:24:49.478Z",
+                                           "status_history":  [
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-30T05:23:44.524Z"
+                                                                  },
+                                                                  {
+                                                                      "status":  "in_progress",
+                                                                      "at":  "2026-06-30T05:24:48.422Z",
+                                                                      "by":  "bo_ng_cdx_worker3"
+                                                                  },
+                                                                  {
+                                                                      "status":  "todo",
+                                                                      "at":  "2026-06-30T05:24:49.478Z",
+                                                                      "by":  "self-healing"
+                                                                  }
+                                                              ],
+                                           "references":  "fc65b713-3084-4fb6-8e55-5d8784653b19",
+                                           "result":  "initial worker pass started by runner",
+                                           "conditions_locked":  true
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task361] RegionFillRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\33\\Prompt_2026-06-29T3308Z_Task361_RegionFillRewrite.md\nFlow: Codex lane workers -\u003e Codex lane reviewers -\u003e bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "assignee":  "bo_ng_worker1",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "goal_id":  "fc65b713-3084-4fb6-8e55-5d8784653b19",
+                                           "id":  "94521672-8433-48cc-95db-ff44931ccd1d",
+                                           "status":  "todo",
+                                           "created_at":  "2026-06-30T05:23:44.763Z",
+                                           "updated_at":  "2026-06-30T05:23:44.763Z",
+                                           "status_history":  {
+                                                                  "status":  "todo",
+                                                                  "at":  "2026-06-30T05:23:44.763Z"
+                                                              },
+                                           "references":  "fc65b713-3084-4fb6-8e55-5d8784653b19"
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task251] EnclosedRegionFillRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\33\\Prompt_2026-06-29T3311Z_Task251_EnclosedRegionFillRewrite.md\nFlow: Codex lane workers -\u003e Codex lane reviewers -\u003e bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "assignee":  "bo_ng_worker1",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "goal_id":  "fc65b713-3084-4fb6-8e55-5d8784653b19",
+                                           "id":  "8983c90d-694f-4bb6-942d-ce139cd0a4cb",
+                                           "status":  "todo",
+                                           "created_at":  "2026-06-30T05:23:44.993Z",
+                                           "updated_at":  "2026-06-30T05:23:44.993Z",
+                                           "status_history":  {
+                                                                  "status":  "todo",
+                                                                  "at":  "2026-06-30T05:23:44.993Z"
+                                                              },
+                                           "references":  "fc65b713-3084-4fb6-8e55-5d8784653b19"
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task358] CrossFillRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\33\\Prompt_2026-06-29T3313Z_Task358_CrossFillRewrite.md\nFlow: Codex lane workers -\u003e Codex lane reviewers -\u003e bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "assignee":  "bo_ng_worker1",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "goal_id":  "fc65b713-3084-4fb6-8e55-5d8784653b19",
+                                           "id":  "9fa9546d-43c7-4a2c-a816-dca312c14340",
+                                           "status":  "todo",
+                                           "created_at":  "2026-06-30T05:23:45.231Z",
+                                           "updated_at":  "2026-06-30T05:23:45.231Z",
+                                           "status_history":  {
+                                                                  "status":  "todo",
+                                                                  "at":  "2026-06-30T05:23:45.231Z"
+                                                              },
+                                           "references":  "fc65b713-3084-4fb6-8e55-5d8784653b19"
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task206] ObjectTranslateRecolorRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\33\\Prompt_2026-06-29T3315Z_Task206_ObjectTranslateRecolorRewrite.md\nFlow: Codex lane workers -\u003e Codex lane reviewers -\u003e bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "assignee":  "bo_ng_worker1",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "goal_id":  "fc65b713-3084-4fb6-8e55-5d8784653b19",
+                                           "id":  "059a64a7-3363-4e6e-bcdf-6e0a0297b866",
+                                           "status":  "todo",
+                                           "created_at":  "2026-06-30T05:23:45.462Z",
+                                           "updated_at":  "2026-06-30T05:23:45.462Z",
+                                           "status_history":  {
+                                                                  "status":  "todo",
+                                                                  "at":  "2026-06-30T05:23:45.462Z"
+                                                              },
+                                           "references":  "fc65b713-3084-4fb6-8e55-5d8784653b19"
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task089] MarkerShapeCopyRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\33\\Prompt_2026-06-29T3317Z_Task089_MarkerShapeCopyRewrite.md\nFlow: Codex lane workers -\u003e Codex lane reviewers -\u003e bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "assignee":  "bo_ng_worker1",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "goal_id":  "fc65b713-3084-4fb6-8e55-5d8784653b19",
+                                           "id":  "55c29a62-e21e-4b45-93c9-9702a29ef9f1",
+                                           "status":  "todo",
+                                           "created_at":  "2026-06-30T05:23:45.768Z",
+                                           "updated_at":  "2026-06-30T05:23:45.768Z",
+                                           "status_history":  {
+                                                                  "status":  "todo",
+                                                                  "at":  "2026-06-30T05:23:45.768Z"
+                                                              },
+                                           "references":  "fc65b713-3084-4fb6-8e55-5d8784653b19"
+                                       },
+                                       {
+                                           "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                                           "title":  "[worker task131] MarkerShiftSeparatorRewrite",
+                                           "description":  "Prompt file: C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\The_400_Tasks\\Task Prompts\\33\\Prompt_2026-06-29T3319Z_Task131_MarkerShiftSeparatorRewrite.md\nFlow: Codex lane workers -\u003e Codex lane reviewers -\u003e bo_ng_submit_captain. Do not submit directly. Testnet-only HandOff coordination.",
+                                           "assignee":  "bo_ng_worker1",
+                                           "payment":  {
+                                                           "currency":  "USDC",
+                                                           "amount":  "0"
+                                                       },
+                                           "goal_id":  "fc65b713-3084-4fb6-8e55-5d8784653b19",
+                                           "id":  "85fd7f3b-c18f-4aba-8a7d-c4b4ab71831b",
+                                           "status":  "todo",
+                                           "created_at":  "2026-06-30T05:23:46.006Z",
+                                           "updated_at":  "2026-06-30T05:23:46.006Z",
+                                           "status_history":  {
+                                                                  "status":  "todo",
+                                                                  "at":  "2026-06-30T05:23:46.006Z"
+                                                              },
+                                           "references":  "fc65b713-3084-4fb6-8e55-5d8784653b19"
+                                       }
+                                   ],
+                         "phase":  "in_progress"
+                     }
+                 ],
+    "teams":  {
+                  "id":  "team_644ac577",
+                  "goal":  "NeuroGolf_HO no-supervisor workflow",
+                  "created_by":  "boladi_a",
+                  "request_id":  "82513bd2-0f60-434a-91b2-538d71010fa8",
+                  "security":  {
+                                   "sign":  false,
+                                   "encrypt":  false,
+                                   "gate":  true
+                               },
+                  "protocol":  "handoff-e2e/1",
+                  "members":  [
+                                  {
+                                      "agent_id":  "bo_ng_orchestrator",
+                                      "role":  "orchestrator",
+                                      "strengths":  [
+                                                        "coordination",
+                                                        "batch-routing",
+                                                        "handoff"
+                                                    ],
+                                      "status":  "accepted"
+                                  },
+                                  {
+                                      "agent_id":  "bo_ng_worker1",
+                                      "role":  "worker",
+                                      "strengths":  [
+                                                        "codex",
+                                                        "onnx",
+                                                        "neurogolf-worker"
+                                                    ],
+                                      "status":  "accepted"
+                                  },
+                                  {
+                                      "agent_id":  "bo_ng_cdx_worker2",
+                                      "role":  "worker",
+                                      "strengths":  [
+                                                        "codex",
+                                                        "onnx",
+                                                        "neurogolf-worker"
+                                                    ],
+                                      "status":  "accepted"
+                                  },
+                                  {
+                                      "agent_id":  "bo_ng_cdx_worker3",
+                                      "role":  "worker",
+                                      "strengths":  [
+                                                        "codex",
+                                                        "onnx",
+                                                        "neurogolf-worker"
+                                                    ],
+                                      "status":  "accepted"
+                                  },
+                                  {
+                                      "agent_id":  "bo_ng_reviewer1",
+                                      "role":  "reviewer",
+                                      "strengths":  [
+                                                        "codex",
+                                                        "tough-review",
+                                                        "gating"
+                                                    ],
+                                      "status":  "accepted"
+                                  },
+                                  {
+                                      "agent_id":  "bo_ng_cdx_reviewer2",
+                                      "role":  "reviewer",
+                                      "strengths":  [
+                                                        "codex",
+                                                        "tough-review",
+                                                        "gating"
+                                                    ],
+                                      "status":  "accepted"
+                                  },
+                                  {
+                                      "agent_id":  "bo_ng_submit_captain",
+                                      "role":  "submit_captain",
+                                      "strengths":  [
+                                                        "captain",
+                                                        "kaggle-probe",
+                                                        "staging"
+                                                    ],
+                                      "status":  "accepted"
+                                  },
+                                  {
+                                      "agent_id":  "boladi_a",
+                                      "role":  "owner_admin",
+                                      "strengths":  [
+                                                        "owner",
+                                                        "admin"
+                                                    ],
+                                      "status":  "accepted"
+                                  }
+                              ],
+                  "status":  "forming",
+                  "created_at":  "2026-06-28T17:25:09.122Z",
+                  "updated_at":  "2026-06-28T22:00:46.533Z"
+              }
+}

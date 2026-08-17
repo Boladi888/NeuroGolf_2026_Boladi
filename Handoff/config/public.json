@@ -1,0 +1,24 @@
+{
+  "schema": "neurogolf.handoff.public_config.v1",
+  "purpose": "Project-local HandOff workflow and kanban coordination for K-NeuroGolf.",
+  "mcp_url": "https://handoff.socnet.lol/mcp",
+  "agent_id": "boladi_a",
+  "testnet_only": true,
+  "preferred_settlement_network": "base-sepolia",
+  "allowed_settlement_networks": [
+    "arc-testnet",
+    "base-sepolia",
+    "ethereum-sepolia"
+  ],
+  "shareable_outputs": [
+    "Handoff/docs/public_*_2026-07-03.*",
+    "Handoff/export/sanitized/*.json"
+  ],
+  "private_outputs": [
+    "Handoff/private/",
+    "Handoff/tmp/",
+    "Handoff/logs/",
+    "Handoff/export/private/",
+    ".env.handoff"
+  ]
+}

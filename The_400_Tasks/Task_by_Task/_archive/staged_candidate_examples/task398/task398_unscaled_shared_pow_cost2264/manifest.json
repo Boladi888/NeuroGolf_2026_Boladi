@@ -1,0 +1,83 @@
+{
+  "task": 398,
+  "candidate": "task398.onnx",
+  "builder": "The_400_Tasks/Task_by_Task/task398/prototypes/build_task398_v26_unscaled_shared_pow.py",
+  "prototype": "The_400_Tasks/Task_by_Task/task398/prototypes/task398_v26_unscaled_shared_pow.onnx",
+  "sha256": "D461EEE31DFF3EEEAF12A00693093612AD738037881BE23A3A53F49F888BA854",
+  "static_score": {
+    "macs": 0,
+    "memory": 1262,
+    "params": 1002,
+    "cost": 2264
+  },
+  "profile_real_cost": {
+    "arcgen": 266,
+    "official_plus_arcgen_inputs": 268,
+    "static": 2264,
+    "profile": 2264,
+    "result_line": "task398 task398_v26_unscaled_shared_pow.onnx: static=2264 profile=2264 (memory 1262 + params 1002; 268 real inputs)"
+  },
+  "authoritative_bar": {
+    "source_command": "python tools/ng_current_bar.py --task 398 --json",
+    "source": "manifest",
+    "live_cost": 2488,
+    "live_sha256": "97ad37ce26a9d8c1268970d0482bbdb3917a72c7599e8faa1cb503b833b19485",
+    "owner": "Boladi",
+    "updated_utc": "2026-06-22T16:50:27Z",
+    "candidate_delta_vs_live": -224
+  },
+  "graph_cost_diff": {
+    "command": "python tools/ng_graph_cost_diff.py --task 398 --live Team_Best_Onnx/task398.onnx --candidate The_400_Tasks/Task_by_Task/task398/prototypes/task398_v26_unscaled_shared_pow.onnx",
+    "named_delta": "removed duplicate row/column power basis by replacing rpow/cpow with one shared pow_basis input used twice in the final Einsum",
+    "reported_net_delta": -210,
+    "reported_named_lines": [
+      "removed initializer cpow [float64 [7, 30]] (-210 params)",
+      "added initializer pow_basis [float64 [7, 30]] (+210 params)",
+      "removed initializer rpow [float64 [7, 30]] (-210 params)",
+      "removed scalar initializers five_f and inv30_f"
+    ],
+    "stale_predictor_note": "ng_graph_cost_diff reports live 2457 and candidate 2247 because Team_Best_Onnx local static accounting is stale and scalar runtime accounting differs; authoritative manifest/profile accounting is 2488 -> 2264. The main named charged-structure delta is still the shared pow-basis -210 params."
+  },
+  "gates": [
+    {
+      "command": "python tools/ng_gate.py visible --task 398 --cand The_400_Tasks/Task_by_Task/task398/prototypes/task398_v26_unscaled_shared_pow.onnx --json --out The_400_Tasks/Task_by_Task/task398/prototypes/task398_v26_visible.json",
+      "result": "PASS 268/268"
+    },
+    {
+      "command": "python tools/agent_helpers/profile_real_cost.py --task 398 --cand The_400_Tasks/Task_by_Task/task398/prototypes/task398_v26_unscaled_shared_pow.onnx --arcgen 266",
+      "result": "PASS static=2264 profile=2264 (memory 1262 + params 1002; 268 real inputs)"
+    },
+    {
+      "command": "python tools/ng_gate.py truth --task 398 --cand The_400_Tasks/Task_by_Task/task398/prototypes/task398_v26_unscaled_shared_pow.onnx --n 1000 --json --out The_400_Tasks/Task_by_Task/task398/prototypes/task398_v26_truth_n1000.json",
+      "result": "PASS 1000/1000"
+    },
+    {
+      "command": "python tools/ng_gate.py ab --task 398 --cand The_400_Tasks/Task_by_Task/task398/prototypes/task398_v26_unscaled_shared_pow.onnx --n 1000 --json --out The_400_Tasks/Task_by_Task/task398/prototypes/task398_v26_ab_n1000.json",
+      "result": "PASS byte-equal 1268/1268"
+    },
+    {
+      "command": "python tools/ng_gate.py truth --task 398 --cand The_400_Tasks/Task_by_Task/task398/prototypes/task398_v26_unscaled_shared_pow.onnx --full --json --out The_400_Tasks/Task_by_Task/task398/prototypes/task398_v26_truth_full.json",
+      "result": "PASS 200000/200000"
+    },
+    {
+      "command": "python tools/ng_gate.py ab --task 398 --cand The_400_Tasks/Task_by_Task/task398/prototypes/task398_v26_unscaled_shared_pow.onnx --full --json --out The_400_Tasks/Task_by_Task/task398/prototypes/task398_v26_ab_full.json",
+      "result": "PASS byte-equal 200268/200268"
+    }
+  ],
+  "dominant_charged_tensors": [
+    "kmat_d F64 [1,10,1,6] = 480 bytes",
+    "valid_d F64 [30] = 240 bytes",
+    "kmat4 F32 [1,10,1,6] = 240 bytes",
+    "code4 F32 [1,10,1,5] = 200 bytes",
+    "shift F64 [7,7,7] = 343 params",
+    "binom F64 [7,7,7] = 343 params",
+    "pow_basis F64 [7,30] = 210 params, reused as both row and column power basis"
+  ],
+  "changes_vs_v20": [
+    "Use one shared pow_basis initializer twice in final Einsum instead of duplicate rpow/cpow (-210 params).",
+    "Fold the factor 5 into nonzero_ch5 so the count Einsum emits N directly, deleting n_f and five_f.",
+    "Drop the dummy-only Max(N, 1) guard; Pow remains finite for scorer dummy N=0 and real inputs are unchanged.",
+    "Use unscaled integer F64 powers, deleting inv30_f and the left_s scalar Mul."
+  ],
+  "notes": "Same signed free-output polynomial family as v20, with an unscaled but sign-equivalent F64 basis. Final output remains F64 and output-exempt; profile equals static."
+}

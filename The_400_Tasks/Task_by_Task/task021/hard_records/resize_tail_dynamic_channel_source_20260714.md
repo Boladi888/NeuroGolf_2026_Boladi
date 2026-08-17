@@ -1,0 +1,8 @@
+# task021 hard record: dynamic channel source / 2-axis Resize ROI
+
+- Live bar used: manifest current bar cost 171, owner Aditya, sha256 `973e1edb62ba96f50e4db8d2224032e019ff98c9d85ed565f39666ae67e3cac9` (`python tools/ng_current_bar.py --task 21 --json`).
+- Attempted route: remove channel coordinates from the final `Resize` ROI, use a spatial-only ROI, and build a dynamic one-hot/channel source tensor for `Resize` instead of the current static `source_const[1,2,2,2]` plus channel ROI.
+- Exact failed gate: pre-gate price gate. Minimum legal source path needs `ArgMax` plus a `[1,10,1,1]` dynamic one-hot and a `[1,10,2,2]` Resize source carrier before the final `Resize`; that adds at least 10 B + 40 B of intermediates and 10 id params, while saving only the channel-ROI scalars/source params. Projected profile cost is strictly above 171, so no ONNX was emitted and no visible/truth gate was run for this family.
+- Why dead: the existing tail already makes `Resize` the free output. Moving channel selection out of the ROI turns a 2-scalar channel interval and 8-param source into a charged dynamic 10-channel source carrier, which loses before correctness gates.
+- Anchor proof refreshed: `ng_gate visible` on `Team_Best_Onnx/task021.onnx` = 77/77; `ng_gate truth --n 8000` = 8000/8000; `ng_gate ab --n 8000` = byte_equal true, 8077/8077, divergences 0; task-local real profile = static/profile cost 171.
+- One remaining hypothesis: only a new primitive that emits a dynamic single-channel 2x2 Resize source without materializing a 10-channel carrier could reopen this route; ordinary `Equal`/`Cast`/`Expand`/`Tile` source construction is too expensive.

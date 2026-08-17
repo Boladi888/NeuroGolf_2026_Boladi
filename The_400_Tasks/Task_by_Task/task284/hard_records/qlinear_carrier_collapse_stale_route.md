@@ -1,0 +1,7 @@
+# task284 hard record: QLinear carrier-collapse prompt is stale for the 2501 bar
+
+- Live bar: manifest/team-best cost `2501`, sha256 `f56d4cd53f0e4dc9ef579a1917b0855a1e50164583152c1718980e46b6f26a19`, source `python tools/ng_current_bar.py --task 284 --json` (`authoritative_source=manifest`, owner Vamshi, updated `2026-07-12T15:15:54Z`).
+- Attempted route: follow the `QLinearCarrierCollapse` prompt by looking for Conv/QLinearConv weights, a dominant F32 carrier plane, or duplicated zero-point/scale structures to narrow to U8.
+- Exact failed gate: graph audit of `Team_Best_Onnx/task284.onnx` before building: op inventory is `Where:60, Sub:17, Add:15, Cast:11, Einsum:6, Concat:4, Mul:3, BitShift:3, Min:3, Div:2, Sqrt:1, ScatterND:1`; there is no `Conv`, `QLinearConv`, Q-scale/zp initializer, or F32 mask carrier to collapse.
+- Why dead: the current bar is already a sparse-coordinate `ScatterND` renderer. Introducing QLinearConv from the official F32 input would require an F32->U8 input bridge, which traps §8g/§INPUT-DTYPE-LOCK price at a full one-hot frame before any win, while the existing sparse renderer's dominant cost is the required INT64 `[56,4]` ScatterND index tensor.
+- Remaining hypothesis: work only on the sparse-renderer floor: reduce the number of scalar writes, avoid multi-axis INT64 indexing, or fuse channel-0 clearing with color writes without materializing a dense carrier.

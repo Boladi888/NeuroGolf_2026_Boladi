@@ -1,0 +1,80 @@
+{
+  "task": "task094",
+  "worker": "bo_ng_worker1",
+  "verdict": "DROP",
+  "candidate_class": "PRICED_PROBE_EQUAL_TAIL",
+  "cost": 3806,
+  "profile_cost": 3806,
+  "live_cost": 1141,
+  "candidate_minus_live": 2665,
+  "status": "REJECT_LOCAL",
+  "reviewer_ready": false,
+  "staged": false,
+  "candidate_paths": [
+    "The_400_Tasks/Task_by_Task/task094/prototypes/task094_v1.onnx"
+  ],
+  "manifest_path": null,
+  "hard_record_path": "The_400_Tasks/Task_by_Task/task094/hard_records/carrier_narrow_equal_tail.md",
+  "lesson_packet_path": null,
+  "bar": {
+    "source": "python tools/ng_current_bar.py --task 94 --json; authoritative_source=manifest",
+    "owner": "Sho",
+    "updated_utc": "2026-07-09T01:09:17Z",
+    "cost": 1141,
+    "profile_cost": 1141,
+    "sha256": "cc3ff9e00af763b89c9c4ba1dc5a5be7fd5290d5b64b243f7591ac9516e6eaa9",
+    "artifact": "Team_Best_Onnx/task094.onnx",
+    "score_v2": {
+      "macs": 0,
+      "memory": 558,
+      "params": 583,
+      "cost": 1141
+    },
+    "profile_result": "task094 task094.onnx: static=1141 profile=1141 (memory 558 + params 583; 265 real inputs)",
+    "stale_source_note": "The non-authoritative team_best cost 1140 is a predictor bug that omits scalar initializer theta; the workbook and manifest agree on 1141 for the same SHA.",
+    "staged_boladi_task094_json": "missing"
+  },
+  "parent_source": "Team_Best_Onnx/task094.onnx (authoritative manifest live artifact)",
+  "parent_sha256": "cc3ff9e00af763b89c9c4ba1dc5a5be7fd5290d5b64b243f7591ac9516e6eaa9",
+  "candidate_sha256": "ba8eb63a5f1982ae4e2da3642d493b74b4de615062843e64045d26e35f60dbfe",
+  "score_v2": {
+    "macs": 0,
+    "memory": 3750,
+    "params": 56,
+    "cost": 3806
+  },
+  "named_charged_structure_delta": {
+    "net_cost_delta": 2665,
+    "dominant_additions": [
+      "ch1 F32 [1,1,15,15]: +900 B",
+      "corner_score F32 [1,1,15,15]: +900 B",
+      "canvas30 UINT8 [1,1,30,30]: +900 B"
+    ],
+    "command": "python tools/ng_graph_cost_diff.py --task 94 --live Team_Best_Onnx/task094.onnx --candidate The_400_Tasks/Task_by_Task/task094/prototypes/task094_v1.onnx",
+    "note": "The diff tool reports predictor totals 1140/3805 because it omits one scalar parameter from each graph; its net delta +2665 agrees with canonical score_v2."
+  },
+  "proof_commands_run": [
+    "python tools/ng_current_bar.py --task 94 --json",
+    "python tools/agent_helpers/profile_real_cost.py --task 94 --cand Team_Best_Onnx/task094.onnx --arcgen 266",
+    "python tools/ng_gate.py visible --task 94 --cand The_400_Tasks/Task_by_Task/task094/prototypes/task094_v1.onnx",
+    "python -c from tools._score_v2 import score_network_v2; score task094_v1.onnx",
+    "python tools/agent_helpers/profile_real_cost.py --task 94 --cand The_400_Tasks/Task_by_Task/task094/prototypes/task094_v1.onnx --arcgen 266",
+    "python tools/ng_graph_cost_diff.py --task 94 --live Team_Best_Onnx/task094.onnx --candidate The_400_Tasks/Task_by_Task/task094/prototypes/task094_v1.onnx"
+  ],
+  "proof_results": {
+    "visible": "[visible] 265/265 (100.00%)  PASS",
+    "score": "macs=0 memory=3750 params=56 cost=3806",
+    "profile": "task094 task094_v1.onnx: static=3806 profile=3806 (memory 3750 + params 56; 265 real inputs)",
+    "truth": "NOT RUN: priced probe loses to live and target",
+    "ab": "NOT RUN: priced probe loses to live and target",
+    "full": "NOT RUN: prohibited for a losing candidate"
+  },
+  "safety": null,
+  "safety_not_run_reason": "Candidate did not beat the team-best bar, so ng_safety was not eligible or necessary.",
+  "x86_required": false,
+  "kaggle_probe_required": false,
+  "what_tried": "Refreshed the manifest/workbook/leaderboard bar, inspected and profiled the exact live SHA, confirmed the live graph already lacks the prompt's charged carrier/canvas/final-Equal structures, then ran the existing one-channel U8 canvas plus Equal-tail prototype through visible, score, and full real-input profile.",
+  "what_failed": "The representation is profile-exact but costs 3806, which is 2665 above live and 3086 above the ~720 target. Carrier narrowing cannot start because the graph input is F32 and no narrow feed exists.",
+  "remaining_floor_rewrite_hypothesis": "Outside this stale route, investigate a new factorization that eliminates or axis-splits live det F32 [1,9,9] and its ReduceMax/selectors, or compresses A7/B7f. Do not rebuild the Equal-tail family.",
+  "gate_policy_note": "Stopped after the first priced wall; no truth, AB, battery, full, staging, Kaggle submission, or shared-file edit was performed."
+}

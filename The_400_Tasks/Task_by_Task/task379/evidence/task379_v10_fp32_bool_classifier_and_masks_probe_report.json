@@ -1,0 +1,149 @@
+{
+  "schema": "neurogolf.task379.fp32_bool_classifier_and_masks_probe.v1",
+  "kanban_task": "t_9eb9c898",
+  "baseline": {
+    "path": "C:\\Users\\Qx\\.worktrees\\t_9eb9c898\\work\\task379_v8_fp32_classifier_slice_probe\\current_best_task379.onnx",
+    "cost": {
+      "path": "C:\\Users\\Qx\\.worktrees\\t_9eb9c898\\work\\task379_v8_fp32_classifier_slice_probe\\current_best_task379.onnx",
+      "macs": 43124,
+      "memory": 106685,
+      "params": 1729,
+      "cost": 108414,
+      "points": 13.4063,
+      "cascade_risk": false,
+      "ops": {
+        "Add": 3,
+        "Cast": 12,
+        "Concat": 1,
+        "Conv": 3,
+        "CumSum": 4,
+        "Greater": 16,
+        "Less": 4,
+        "MaxPool": 2,
+        "Mul": 17,
+        "Pad": 1,
+        "ReduceMax": 2,
+        "ReduceSum": 9,
+        "Slice": 3,
+        "Sub": 13,
+        "Sum": 6,
+        "Where": 16
+      },
+      "error": null
+    },
+    "ops": {
+      "Slice": 3,
+      "ReduceSum": 9,
+      "ReduceMax": 2,
+      "Sub": 13,
+      "Add": 3,
+      "Greater": 16,
+      "Cast": 12,
+      "CumSum": 4,
+      "Where": 16,
+      "MaxPool": 2,
+      "Conv": 3,
+      "Sum": 6,
+      "Mul": 17,
+      "Less": 4,
+      "Concat": 1,
+      "Pad": 1
+    }
+  },
+  "candidate": {
+    "path": "C:\\Users\\Qx\\.worktrees\\t_9eb9c898\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v10_fp32_bool_classifier_and_masks.onnx",
+    "sha256": "88f22971627e624a1de9fdd9e5a3c4131738e56b9eb7cd37bfbb398fc4276c8f",
+    "cost": {
+      "path": "C:\\Users\\Qx\\.worktrees\\t_9eb9c898\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v10_fp32_bool_classifier_and_masks.onnx",
+      "macs": 45432,
+      "memory": 103012,
+      "params": 1655,
+      "cost": 104667,
+      "points": 13.4415,
+      "cascade_risk": false,
+      "ops": {
+        "Add": 2,
+        "And": 12,
+        "Cast": 10,
+        "Concat": 1,
+        "Conv": 3,
+        "CumSum": 4,
+        "Equal": 4,
+        "Greater": 11,
+        "MaxPool": 2,
+        "Mul": 7,
+        "Not": 4,
+        "Or": 1,
+        "Pad": 1,
+        "ReduceMax": 2,
+        "ReduceSum": 5,
+        "Slice": 7,
+        "Sub": 6,
+        "Sum": 6,
+        "Where": 6
+      },
+      "error": null
+    },
+    "ops": {
+      "Slice": 7,
+      "ReduceSum": 5,
+      "ReduceMax": 2,
+      "Sub": 6,
+      "Add": 2,
+      "Greater": 11,
+      "Cast": 10,
+      "CumSum": 4,
+      "Where": 6,
+      "MaxPool": 2,
+      "Not": 4,
+      "And": 12,
+      "Conv": 3,
+      "Sum": 6,
+      "Equal": 4,
+      "Or": 1,
+      "Mul": 7,
+      "Concat": 1,
+      "Pad": 1
+    }
+  },
+  "rewrite": "v9 plus proof-local boolean mask identities for inverse/guarded masks (v57/v64/v82/v87/v133/v134); no FP16, zero-channel replacement, final mask-union, or boundary-cast sinking.",
+  "standard_parity": {
+    "cases": 266,
+    "mismatches_exact": 0,
+    "max_abs": 0.0,
+    "modes": {
+      "zeros": 1,
+      "sparse-binary": 89,
+      "dense-fp32": 88,
+      "onehot": 88
+    }
+  },
+  "extended_parity": {
+    "cases": 2400,
+    "mismatches_exact": 0,
+    "max_abs": 0.0,
+    "modes": {
+      "zeros": 1,
+      "onehot30": 480,
+      "inner-onehot20": 480,
+      "onehot": 320,
+      "sparse-binary": 320,
+      "ones": 479,
+      "dense-fp32": 320
+    }
+  },
+  "package_audit": {
+    "package": "C:\\Users\\Qx\\.worktrees\\t_9eb9c898\\The_400_Tasks\\Task_by_Task\\task379\\evidence\\task379_v10_fp32_bool_classifier_and_masks_local_submission.zip",
+    "package_sha256": "c3a50bb2f9ad08102ade75bdaf8a6bfbcf527b046a243e7e0ce1460a0e6bd3ee",
+    "changed_entries": [
+      {
+        "filename": "task379.onnx",
+        "old_sha256": "ae5e0d30e44c560fc97deedf95e710bdefd28584ada458020921e04e4395090b",
+        "new_sha256": "88f22971627e624a1de9fdd9e5a3c4131738e56b9eb7cd37bfbb398fc4276c8f",
+        "old_size": 15567,
+        "new_size": 14914
+      }
+    ],
+    "entries": 401
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "task_id": "task382",
+  "kanban_task": "t_bb4ce62e",
+  "candidate_id": "task382_fp16_current_live_t_bb4ce62e",
+  "method": "lossless structural shrink of inherited current-live ONNX: cast input to fp16, convert all internal float tensors/initializers/Cast outputs to fp16, cast final output back to float32; no rule rewrite or Kaggle submission",
+  "attempts": [
+    {
+      "name": "attempt1_current_live_baseline",
+      "result": "valid baseline",
+      "macs": 0,
+      "memory": 319580,
+      "params": 10937,
+      "cost": 330517,
+      "points": 12.29158662583263
+    },
+    {
+      "name": "attempt2_onnxsim_current_live",
+      "result": "no cost change",
+      "macs": 0,
+      "memory": 319580,
+      "params": 10937,
+      "cost": 330517,
+      "points": 12.29158662583263
+    },
+    {
+      "name": "attempt3_fp16_internal_current_live",
+      "result": "valid positive local delta",
+      "macs": 0,
+      "memory": 196424,
+      "params": 10937,
+      "cost": 207361,
+      "points": 12.757783485334718
+    }
+  ],
+  "base": {
+    "macs": 0,
+    "memory": 319580,
+    "params": 10937,
+    "cost": 330517,
+    "points": 12.29158662583263
+  },
+  "candidate": {
+    "macs": 0,
+    "memory": 196424,
+    "params": 10937,
+    "cost": 207361,
+    "points": 12.757783485334718
+  },
+  "delta_cost": -123156,
+  "delta_points": 0.46619685950208734,
+  "verification": {
+    "onnx_checker": "ok",
+    "train": [
+      {
+        "example": 0,
+        "candidate_matches_truth": true,
+        "candidate_matches_current_argmax": true,
+        "max_abs_diff_vs_current": 0.0
+      },
+      {
+        "example": 1,
+        "candidate_matches_truth": true,
+        "candidate_matches_current_argmax": true,
+        "max_abs_diff_vs_current": 0.0
+      },
+      {
+        "example": 2,
+        "candidate_matches_truth": true,
+        "candidate_matches_current_argmax": true,
+        "max_abs_diff_vs_current": 0.0
+      }
+    ],
+    "random_one_hot_parity_cases": 100,
+    "random_max_abs_diff_max": 0.0,
+    "random_max_abs_diff_nonzero_cases": 0
+  },
+  "artifacts": {
+    "onnx": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.worktrees\\t_bb4ce62e\\The_400_Tasks\\Task_by_Task\\task382\\evidence\\t_bb4ce62e\\task382_fp16_current_live.onnx",
+    "submission_zip": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.worktrees\\t_bb4ce62e\\The_400_Tasks\\Task_by_Task\\task382\\evidence\\t_bb4ce62e\\submission_task382_fp16_current_live.zip"
+  },
+  "sha256": {
+    "onnx": "cf21f7e7c631dbd0d08efaa819271b08861bddb9afdd569d48b101a6f597d180",
+    "submission_zip": "8a61b772ce29c4ef29de9de05622fe7a94c444204e56e6aaa3acf642ab4f7250"
+  },
+  "do_not_submit_without_approval": true
+}

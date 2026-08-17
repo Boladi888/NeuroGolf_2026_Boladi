@@ -1,0 +1,7 @@
+# task363 gather3 special-anchor reduction — DEAD
+
+- **Live bar at record time:** cost **1882** from `ng_current_bar` manifest source, owner Aditya, sha `6af5050c28ba7fc7261133c64a03f2e54f28a77610b78871e99aa9b7fa637855`, updated 2026-06-15T19:08:38Z. Existing task-local staged incumbent before this probe: `task363_regionfillrewrite_safe_cost1881`.
+- **Attempted route:** replace the four-cell `special_anchor_idx_i64` GatherND + separate `case1_same_u8` Slice with a three-cell GatherND containing only `case1_off`, `case0_a`, and `case1_same`.
+- **Failed gate:** builder/checker, before score: `onnx.checker.check_model(..., full_check=True)` failed with `ShapeInferenceError (op_type:Where): Incompatible dimensions`.
+- **Why dead:** the two apparent unused Split tails are not semantically unused. They remain inside `special_anchor_current_updates_u8`, pass through the two guard `Where` nodes, and feed `ScatterND` as the four sparse update slots. Dropping them changes the update vector shape from 4 to 3 while `special_anchor_flags` / original-guard logic and the sparse anchor table still require four slots.
+- **One remaining hypothesis:** replacing the Split with two scalar Gathers could remove the two charged tail outputs, but it needs two new Gather index initializers, so the expected score delta is a tie at best (`-2` memory, `+2` params) unless those indices can be reused from an existing initializer.

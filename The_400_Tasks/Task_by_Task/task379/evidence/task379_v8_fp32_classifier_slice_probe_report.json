@@ -1,0 +1,149 @@
+{
+  "schema": "neurogolf.task379.fp32_classifier_slice_probe.v1",
+  "kanban_task": "t_9eb9c898",
+  "baseline": {
+    "extraction": {
+      "package": "C:\\Users\\Qx\\.worktrees\\t_9eb9c898\\submissions\\submission.zip",
+      "package_sha256": "5ecc4a4be545e9bc6665dfba6f716afa73096362efc46dad70703af953e539fa",
+      "task379_sha256": "ae5e0d30e44c560fc97deedf95e710bdefd28584ada458020921e04e4395090b",
+      "task379_size": 15567
+    },
+    "path": "submissions/submission.zip::task379.onnx",
+    "cost": {
+      "path": "submissions/submission.zip::task379.onnx",
+      "macs": 43124,
+      "memory": 106685,
+      "params": 1729,
+      "cost": 108414,
+      "points": 13.4063,
+      "cascade_risk": false,
+      "ops": {
+        "Add": 3,
+        "Cast": 12,
+        "Concat": 1,
+        "Conv": 3,
+        "CumSum": 4,
+        "Greater": 16,
+        "Less": 4,
+        "MaxPool": 2,
+        "Mul": 17,
+        "Pad": 1,
+        "ReduceMax": 2,
+        "ReduceSum": 9,
+        "Slice": 3,
+        "Sub": 13,
+        "Sum": 6,
+        "Where": 16
+      },
+      "error": null
+    },
+    "ops": {
+      "Slice": 3,
+      "ReduceSum": 9,
+      "ReduceMax": 2,
+      "Sub": 13,
+      "Add": 3,
+      "Greater": 16,
+      "Cast": 12,
+      "CumSum": 4,
+      "Where": 16,
+      "MaxPool": 2,
+      "Conv": 3,
+      "Sum": 6,
+      "Mul": 17,
+      "Less": 4,
+      "Concat": 1,
+      "Pad": 1
+    }
+  },
+  "candidate": {
+    "path": "C:\\Users\\Qx\\.worktrees\\t_9eb9c898\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v8_fp32_equal_marker_slice.onnx",
+    "sha256": "0cc0ba0fdcdb218a866dacb0aa9e66441e8691edb11284f4720a4e7ddd78cc32",
+    "cost": {
+      "path": "C:\\Users\\Qx\\.worktrees\\t_9eb9c898\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v8_fp32_equal_marker_slice.onnx",
+      "macs": 43032,
+      "memory": 106317,
+      "params": 1655,
+      "cost": 107972,
+      "points": 13.4104,
+      "cascade_risk": false,
+      "ops": {
+        "Add": 3,
+        "Cast": 12,
+        "Concat": 1,
+        "Conv": 3,
+        "CumSum": 4,
+        "Equal": 4,
+        "Greater": 12,
+        "MaxPool": 2,
+        "Mul": 13,
+        "Pad": 1,
+        "ReduceMax": 2,
+        "ReduceSum": 5,
+        "Slice": 7,
+        "Sub": 9,
+        "Sum": 6,
+        "Where": 12
+      },
+      "error": null
+    },
+    "ops": {
+      "Slice": 7,
+      "ReduceSum": 5,
+      "ReduceMax": 2,
+      "Sub": 9,
+      "Add": 3,
+      "Greater": 12,
+      "Cast": 12,
+      "CumSum": 4,
+      "Where": 12,
+      "MaxPool": 2,
+      "Conv": 3,
+      "Sum": 6,
+      "Equal": 4,
+      "Mul": 13,
+      "Concat": 1,
+      "Pad": 1
+    }
+  },
+  "rewrite": "FP32 Equal row/col count rewrite plus direct Slice replacement for four v39 one-hot marker classifier probes; no FP16, no zero-channel replacement, no mask-union rewrite, no boundary-cast sinking.",
+  "standard_parity": {
+    "cases": 266,
+    "mismatches_exact": 0,
+    "max_abs": 0.0,
+    "modes": {
+      "zeros": 1,
+      "sparse-binary": 89,
+      "dense-fp32": 88,
+      "onehot": 88
+    }
+  },
+  "extended_parity": {
+    "cases": 1600,
+    "mismatches_exact": 0,
+    "max_abs": 0.0,
+    "modes": {
+      "zeros": 1,
+      "onehot30": 320,
+      "inner-onehot20": 320,
+      "onehot": 214,
+      "sparse-binary": 213,
+      "ones": 319,
+      "dense-fp32": 213
+    }
+  },
+  "package_audit": {
+    "package": "C:\\Users\\Qx\\.worktrees\\t_9eb9c898\\The_400_Tasks\\Task_by_Task\\task379\\evidence\\task379_v8_fp32_classifier_slice_probe_local_submission.zip",
+    "package_sha256": "c31e9f9483a7a3dca0eb9fff8e1c502355033856092b0659d067f8f621511d85",
+    "changed_entries": [
+      {
+        "filename": "task379.onnx",
+        "old_sha256": "ae5e0d30e44c560fc97deedf95e710bdefd28584ada458020921e04e4395090b",
+        "new_sha256": "0cc0ba0fdcdb218a866dacb0aa9e66441e8691edb11284f4720a4e7ddd78cc32",
+        "old_size": 15567,
+        "new_size": 14556
+      }
+    ],
+    "entries": 401
+  }
+}

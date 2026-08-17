@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neurogolf.local/schemas/worker_handoff.v1.json",
+  "title": "NeuroGolf worker review-required handoff",
+  "description": "Structure the worker posts as a JSON comment alongside `hermes kanban block --reason \"review-required: ...\"`. tools/submit_gate.py parses this to decide submit / retry / give-up. tools/auto_triage_blocked.py::parse_handoff already accepts many legacy shapes (schema-agnostic walker); this schema documents the CANONICAL post-submit-gate shape that workers should produce going forward. It is intentionally permissive (most fields optional) so legacy handoffs continue to validate.",
+  "type": "object",
+  "required": ["task_id"],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "pattern": "^task\\d{3}$",
+      "description": "Canonical three-digit task ID, e.g. 'task127'."
+    },
+    "candidate_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Unique candidate identifier, typically '<task>_<variant>_<session_short_sha>'. Required for any handoff that produced an ONNX. Omit (or null) for no-fix / iteration-budget handoffs — submit_gate will treat as 'worker produced no candidate' and consume an attempt without submitting."
+    },
+    "worker_owner": {
+      "type": "string",
+      "pattern": "^neurogolf-worker-[1-8]$",
+      "description": "Profile that produced the candidate. Used by route_repair_cards.py to send repairs back to the original worker."
+    },
+    "package_sha256": {
+      "type": "string",
+      "pattern": "^[A-Fa-f0-9]{64}$",
+      "description": "SHA-256 of the submission .zip the worker produced. submit_gate verifies this matches the on-disk file before submitting."
+    },
+    "lineage_base": {
+      "type": "string",
+      "description": "Free-form identifier of the candidate this builds on, e.g. 'current-best task141_v4_fp16_pos_t_6856eb96_on_5743_97_20260517T2202Z'. submit_gate.py reads this to check the candidate is still lineage-compatible with the current-best before submitting."
+    },
+    "changed_package_entries": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^task\\d{3}\\.onnx$"},
+      "minItems": 1,
+      "description": "Entries in the submission .zip that differ from the lineage_base. submit_gate audits the zip against this list to catch the task275 'bundled 401 entries when only one should differ' trap."
+    },
+    "scores": {
+      "type": "object",
+      "properties": {
+        "current_cost": {"type": "number"},
+        "candidate_cost": {"type": "number"},
+        "cost_delta": {"type": "number"},
+        "point_delta": {"type": "number"}
+      },
+      "description": "Score block with current vs candidate cost and the delta. extract_point_delta walks this and several alternative shapes."
+    },
+    "expected_point_gain": {
+      "type": "number",
+      "description": "The worker's predicted LB point gain. submit_gate gates submit at >=0.2. May also appear nested as 'selected_repair.expected_point_gain_vs_<task>_<context>' — the schema-agnostic walker handles either."
+    },
+    "algorithm_family": {
+      "type": "string",
+      "maxLength": 40,
+      "pattern": "^[a-z0-9-]*$",
+      "description": "Short string ID for the algorithm family used. Empty / missing gets normalized to 'unspecified' by tools/algorithm_family_directive.py. submit_gate appends this to task_outcome_registry.attempted_families and uses the accumulated set to forbid repeats on retry."
+    },
+    "retry_attempt_index": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3,
+      "description": "Which attempt this pass: 1, 2, or 3. Set by the autoforeman / submit_gate in the card body; worker copies it into the handoff for audit. After index==3 the task is marked tested_non_improving_this_pass and deferred."
+    },
+    "tests_run": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Human-readable test descriptions the worker ran to validate the candidate. Surfaced in the audit log."
+    },
+    "risk_notes": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Worker's self-disclosed risk concerns. submit_gate scans these for known hazard markers (raw-shape change, novel-family-no-prior-data, etc.) when deciding whether to escalate beyond the routine path."
+    },
+    "rejected_attempts": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Approaches the worker tried and ruled out. Helps the next-pass worker avoid repeating."
+    }
+  },
+  "additionalProperties": true
+}

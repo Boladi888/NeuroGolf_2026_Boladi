@@ -1,0 +1,7 @@
+# task258 hard record: marginal/separable render price probe
+
+- live bar: 150, sha256 `66f01abc7c629250bbfcdec2238603f4e6fa651d9cc9bfd06b9930e692b326ba` (`python tools/ng_current_bar.py --task 258 --json`, source `manifest`, owner Vamshi, updated 2026-07-12T15:15:54Z).
+- attempted route: row/column moment or separable output render replacing the local three-tap Conv. Probe script `../prototypes/task258_marginal_probe.py` generated 64 fresh ARC-GEN pairs and checked fill-mask ranks and row marker-count ambiguity.
+- exact failed pre-build probe: `python The_400_Tasks/Task_by_Task/task258/prototypes/task258_marginal_probe.py` -> `fresh_pairs=64`, `max_fill_mask_rank=5`, `marker_count=2 distinct_fill_patterns=27`, `marker_count=3 distinct_fill_patterns=18`; price floor lines: shifted-column selector render needs at least two `30x30` shift bases = 1800 params; any materialized full-cell mask/render plane is at least 900 bytes.
+- why dead: row-count-only or compact marginal state does not determine fill columns; rendering row-dependent alternating spans needs per-row column state. The first legal non-Conv render tail already exceeds the 150 team-best bar before the output assembly is complete.
+- remaining hypothesis: a sub-150 win would need a single-node primitive with Conv-like free spatial offsets but fewer than `W[10,5,1,3]` counted elements; no row/column moment skeleton reaches that price.

@@ -1,0 +1,124 @@
+{
+  "schema": "neurogolf.delta_packet.v1",
+  "task_id": "task383",
+  "kanban_task_id": "t_ecca039f",
+  "candidate_id": "task383_v5_scalar_broadcast_cursor_t_ecca039f",
+  "method_family": "current-live scalar-broadcast cursor sweep",
+  "lineage_base": "current-best package from submissions/current_best_manifest.json",
+  "base_package": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.hermes\\board\\staged_submits\\task106_v2_repaired_compact6_gate_on_5740_87_20260517T1737Z\\submission.zip",
+  "base_task383_cost": {
+    "macs": 0,
+    "memory": 183870,
+    "params": 1020,
+    "cost": 184890,
+    "points": 12.872483667375601
+  },
+  "selected_variant": "v2_v3_zero_shared_scalar",
+  "candidate_task383_cost": {
+    "macs": 0,
+    "memory": 183870,
+    "params": 111,
+    "cost": 183981,
+    "points": 12.877412229610213,
+    "visible_raw_equal": "266/266",
+    "max_abs_visible": 0.0,
+    "random_raw_equal": "64/64",
+    "max_abs_random": 0.0,
+    "onnx_size_bytes": 6358
+  },
+  "cost_delta_vs_base": -909,
+  "predicted_point_delta_vs_base": 0.004928562234611751,
+  "sweep_results": {
+    "v2_scalar_one": {
+      "macs": 0,
+      "memory": 183870,
+      "params": 121,
+      "cost": 183991,
+      "points": 12.877357877648638,
+      "visible_raw_equal": "266/266",
+      "max_abs_visible": 0.0,
+      "random_raw_equal": "64/64",
+      "max_abs_random": 0.0,
+      "onnx_size_bytes": 6311
+    },
+    "v3_scalar_one": {
+      "macs": 0,
+      "memory": 183870,
+      "params": 1012,
+      "cost": 184882,
+      "points": 12.872526937282469,
+      "visible_raw_equal": "266/266",
+      "max_abs_visible": 0.0,
+      "random_raw_equal": "64/64",
+      "max_abs_random": 0.0,
+      "onnx_size_bytes": 8083
+    },
+    "v2_v3_shared_scalar_one": {
+      "macs": 0,
+      "memory": 183870,
+      "params": 112,
+      "cost": 183982,
+      "points": 12.877406794281118,
+      "visible_raw_equal": "266/266",
+      "max_abs_visible": 0.0,
+      "random_raw_equal": "64/64",
+      "max_abs_random": 0.0,
+      "onnx_size_bytes": 6297
+    },
+    "v2_v3_zero_shared_scalar": {
+      "macs": 0,
+      "memory": 183870,
+      "params": 111,
+      "cost": 183981,
+      "points": 12.877412229610213,
+      "visible_raw_equal": "266/266",
+      "max_abs_visible": 0.0,
+      "random_raw_equal": "64/64",
+      "max_abs_random": 0.0,
+      "onnx_size_bytes": 6358
+    },
+    "binary_sum_to_add_on_best": {
+      "macs": 0,
+      "memory": 183870,
+      "params": 111,
+      "cost": 183981,
+      "points": 12.877412229610213,
+      "visible_raw_equal": "266/266",
+      "max_abs_visible": 0.0,
+      "random_raw_equal": "64/64",
+      "max_abs_random": 0.0,
+      "onnx_size_bytes": 6323
+    },
+    "convless_weighted_sum_on_best": {
+      "macs": 0,
+      "memory": 201870,
+      "params": 111,
+      "cost": 201981,
+      "points": 12.784071087446462,
+      "visible_raw_equal": "266/266",
+      "max_abs_visible": 0.0,
+      "random_raw_equal": "64/64",
+      "max_abs_random": 0.0,
+      "onnx_size_bytes": 6406
+    }
+  },
+  "artifacts": {
+    "base_onnx": "C:\\Users\\Qx\\.worktrees\\t_ecca039f\\submissions\\task383_v5_scalar_broadcast_cursor_t_ecca039f\\task383_base.onnx",
+    "candidate_onnx": "C:\\Users\\Qx\\.worktrees\\t_ecca039f\\submissions\\task383_v5_scalar_broadcast_cursor_t_ecca039f\\task383.onnx",
+    "submission_zip": "C:\\Users\\Qx\\.worktrees\\t_ecca039f\\submissions\\task383_v5_scalar_broadcast_cursor_t_ecca039f\\submission.zip",
+    "cursor_sweep_results": "C:\\Users\\Qx\\.worktrees\\t_ecca039f\\submissions\\task383_v5_scalar_broadcast_cursor_t_ecca039f\\cursor_sweep_results.json"
+  },
+  "package_evidence": {
+    "entry_count": 401,
+    "entry_names_match_base": true,
+    "changed_entries": [
+      "task383.onnx"
+    ],
+    "sha256": "BD8109A98705ACF0A53AE05EC6D710244EFBD5FC3625F9A9C92CEB08A3CED3A4"
+  },
+  "safety_notes": [
+    "No Kaggle submission was made.",
+    "Only math-equivalent initializer/graph rewrites were tested against live task383.onnx.",
+    "Do not retry task383_v2 visible-derived organic axis-cross-out; it was hidden-bad despite 266/266 visible."
+  ]
+}

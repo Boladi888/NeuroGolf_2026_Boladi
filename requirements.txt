@@ -1,0 +1,8 @@
+numpy==2.4.4
+onnx==1.21.0
+onnxruntime==1.24.4
+onnx-tool==1.0.1
+# FP16 conversion path: tools/fp16_convert.py and tools/spread_patterns/pass_fp16_*.py
+onnxconverter-common==1.16.0
+# xlsx task-status sync: tools/neurogolf_sync_task_state.py and its tests
+openpyxl==3.1.5

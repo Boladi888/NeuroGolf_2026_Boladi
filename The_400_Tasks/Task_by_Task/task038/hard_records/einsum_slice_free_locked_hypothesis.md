@@ -1,0 +1,9 @@
+# task038 hard record — locked slice-free Einsum hypothesis
+
+- live bar: cost 190, sha256 `5a590f3b88143fbb8eecd7ff55b95689a097fc11e58f0e42961ead25981436d5`, source `python tools/ng_current_bar.py --task 38 --json` / manifest.
+- locked hypothesis: replace live charged `X = Slice(input, ch1, rows 1:9:2, cols 0:9)` `[1,1,4,9]` F32 = 144 B with a direct separable/moment Einsum over the free `[1,10,30,30]` input.
+- build 1: `prototypes/task038_v8_einsum_direct_dense.onnx` uses `Einsum("bchw,bchv,c,wv,o,i,j->boij")` with a dense `[30,30]` adjacency selector, counts both horizontal rows of each blue box, and thresholds `[0,2,4,6,8]`.
+- gate/profile: visible `266/266 PASS`; `profile_real_cost --arcgen 266` -> `static=945 profile=945 (memory 19 + params 926; 266 real inputs)`.
+- graph-cost diff vs 190 live: memory `-144`, params `+899`, net `+755`; named dominant trade: removed `X` `-144 B`, added `adj` `[30,30]` `+900 params`, added `ch1` `[10]` `+10 params`, removed live Slice index params `-12`.
+- fallback not built because build 1 was ORT-valid. Priced lower bound for the row/column-factorized selector variant: channel selector `10` + left/right column selectors `2*30*8 = 480` + shared singleton `1` + tail params `thr/cm/pd = 15` = `506` params; charged intermediates remain at least `cnt2/blue/packed = 4+5+10 = 19` B, so best-case cost is `>=525`, still `+335` above live 190. Adding an odd-row selector instead of doubled thresholds adds at least 30 more params.
+- why dead: deleting the 144 B F32 Slice requires encoding the adjacent-column relation against the free full-width input. Dense form costs 900 params; minimal factorized active adjacency still needs rank-8 column-pair selectors costing 480 params. Both overwhelm the 144 B slice saving, so the live materialized slice is cheaper than a scorer-invisible selector bank.

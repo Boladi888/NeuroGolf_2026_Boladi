@@ -1,0 +1,123 @@
+{
+  "task": "task055",
+  "verdict": "DROP",
+  "candidate_class": "NO_CANDIDATE_ROUTE_ALREADY_HARVESTED",
+  "status": "REJECT_LOCAL",
+  "cost": 1113,
+  "candidate_cost": null,
+  "profile_cost": 1113,
+  "live_cost": 1113,
+  "candidate_minus_live": null,
+  "authoritative_bar": {
+    "source": "manifest",
+    "path": "<TEAM_REPO>/Team_Submission/Backend/manifest.csv",
+    "owner": "Boladi",
+    "updated_utc": "2026-06-23T03:12:14Z",
+    "cost": 1113,
+    "profile_cost": 1113,
+    "sha256": "b7bab0c46528aece35efdce0ae4db78dfad986e2eb685b3103fba98a07cb7853",
+    "workbook_agrees": true,
+    "stale_sources": [
+      "Team_Best metadata cost 1106 (ONNX bytes have the authoritative SHA and score 1113)",
+      "local task_state cost 1115"
+    ],
+    "staged_boladi_task055_json": "missing"
+  },
+  "candidate_path": null,
+  "parent_source": "Team_Best_Onnx/task055.onnx",
+  "parent_sha256": "b7bab0c46528aece35efdce0ae4db78dfad986e2eb685b3103fba98a07cb7853",
+  "candidate_sha256": null,
+  "score_v2": {
+    "macs": 0,
+    "memory": 1054,
+    "params": 59,
+    "cost": 1113
+  },
+  "named_charged_structure_delta": null,
+  "route_audit": {
+    "attempted_route": "one-channel carrier plus Equal-tail fast probe",
+    "failed_gate": "charged-component existence / fast-price gate",
+    "result": "FAIL",
+    "reason": "The live graph already has narrow U8 axis carriers and a free BitwiseAnd tail; it has no Conv, Reduce, Equal, repeated masks, full spatial carrier, canvas, or template. A conventional 30x30 U8 Equal-tail has a 900-byte canvas floor, exceeding the 720 kill threshold before producer and parameter costs.",
+    "current_graph_ops": {
+      "ArgMax": 4,
+      "BitwiseAnd": 2,
+      "Cast": 2,
+      "Concat": 2,
+      "Einsum": 2,
+      "Less": 4,
+      "ScatterElements": 2,
+      "Transpose": 1,
+      "Where": 6
+    },
+    "residual_charged_tensor": "xk UINT8 [1,10,30,1] = 300 bytes"
+  },
+  "proof_commands_run": [
+    "python tools/ng_current_bar.py --task 55 --json",
+    "python -c \"from tools._score_v2 import score_network_v2; print(score_network_v2(r'Team_Best_Onnx/task055.onnx'))\"",
+    "python tools/agent_helpers/inspect_graph.py The_400_Tasks/Task_by_Task/task055/staged_candidates/task055_axis_share_cost1113/task055.onnx",
+    "python tools/ng_gate.py visible --task 55 --cand Team_Best_Onnx/task055.onnx --json",
+    "python tools/agent_helpers/profile_real_cost.py --task 55 --cand Team_Best_Onnx/task055.onnx --arcgen 266",
+    "python The_400_Tasks/Task_by_Task/task055/prototypes/profile_task055_encodable.py --task 55 --cand Team_Best_Onnx/task055.onnx --arcgen 266",
+    "python tools/ng_safety.py model --task 55 --cand Team_Best_Onnx/task055.onnx --json"
+  ],
+  "proof_results": {
+    "score_v2": "(0, 1054, 59) => cost 1113",
+    "visible": "correct=263 total=263 pct=100.0 pass=true",
+    "profile_real_cost_arcgen_266": "FAIL: IndexError: index 30 is out of bounds for axis 0 with size 30; task055 contains two ARC-GEN inputs taller than the fixed ABI",
+    "profile_all_encodable": "requested_arcgen=266 available_arcgen=262 profiled_inputs=263 skipped_unencodable=2 static_cost=1113 profile_memory=1054 params=59 profile_cost=1113",
+    "truth": "not run: no strict-cost candidate; full/capped truth would violate the cheapest-first kill rule",
+    "ab": "not run: no candidate",
+    "graph_cost_diff": "not run: there is no candidate and no win claim"
+  },
+  "safety": {
+    "kind": "model",
+    "source": "Team_Best_Onnx\\task055.onnx",
+    "verdict": "PASS",
+    "summary": {
+      "n_failures": 0,
+      "n_warnings": 0,
+      "runtime_integer_denominator_count": 0
+    },
+    "model": {
+      "task": "task055",
+      "name": "task055.onnx",
+      "source": "Team_Best_Onnx\\task055.onnx",
+      "sha256": "b7bab0c46528aece35efdce0ae4db78dfad986e2eb685b3103fba98a07cb7853",
+      "size_bytes": 2148,
+      "failures": [],
+      "warnings": [],
+      "op_inventory": {
+        "ArgMax": 4,
+        "BitwiseAnd": 2,
+        "Cast": 2,
+        "Concat": 2,
+        "Einsum": 2,
+        "Less": 4,
+        "ScatterElements": 2,
+        "Transpose": 1,
+        "Where": 6
+      },
+      "risk_op_flags": [
+        "Cast"
+      ],
+      "runtime_integer_denominators": [],
+      "runtime_denominators_unknown_dtype": [],
+      "official_io_contract": {
+        "data_inputs": [
+          "input"
+        ],
+        "outputs": [
+          "output"
+        ],
+        "ok": true
+      },
+      "load_after_sanitize": "ok",
+      "verdict": "PASS"
+    }
+  },
+  "safety_applies_to": "audited live parent; no candidate was produced",
+  "x86_required": false,
+  "kaggle_probe_required": false,
+  "remaining_floor_hypothesis": "A genuinely new source-read/free-output fusion could try to eliminate xk UINT8 [1,10,30,1] (300 bytes) while retaining the ch8 rank-2 union and active-padding semantics. It must avoid both a full 30x30 Equal-tail canvas and a full-input cast."
+}

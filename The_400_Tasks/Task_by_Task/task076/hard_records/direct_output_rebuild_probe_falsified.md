@@ -1,0 +1,10 @@
+# task076 — direct-output rebuild probe falsified
+
+- **Live bar**: 12,539 profile cost, owner Sho, SHA `ec95ba95e46eeb94984d1a20b525eaf4f94851b8fd63b04f53a9618ddabdd773`, from `python tools/ng_current_bar.py --task 76 --json`.
+- **Effective task-local bar**: 12,030 profile cost, staged `task076_int8coords_i32idx_cost12030`, SHA `aa5292e62462b76d974cb8b9527b16c475307f03836bd21b0d4659944846df32`.
+- **Reviewer-locked route tested**: source-component/direct-output rebuild whose rule state is source marker offsets/colors plus target C2-selected transform, with the first dense final representation intended to be a terminal #67 writer.
+- **Required probe command**: `python The_400_Tasks/Task_by_Task/task076/prototypes/probe_task076_direct_output_rebuild.py --n 3000`.
+- **Fresh ARC-GEN result**: `2967/3000 (98.900%)`; first failures at corpus indices `16, 42, 168, 289, 399`. The full object-copy reference gives the same `2967/3000`, so fresh ARC-GEN falsifies the decoded sparse-marker rule used by this direct-output route.
+- **Priced writer obstruction**: observed max source markers `6`, max targets `3`, max generated writes `15`; tiny state floor is only `27` scalar elements, and #89 point factors would be about `1050` U8 bytes. The blocker is the terminal merge: preserving the input while stamping generated markers and clearing ch0 requires a dense per-cell merge mask/code table (`900` U8/BOOL bytes) or a charged dense marker one-hot/condition (`9000` bytes) before the terminal writer. A single #89 final can synthesize points, but it cannot also add an independent input passthrough term without materializing a dense intermediate.
+- **Why dead**: the route hits both reviewer stop conditions: fresh ARC-GEN falsifies the decoded rule, and the direct output writer needs a dense per-cell table/mask stack to merge generated markers with the original input.
+- **One remaining hypothesis**: only a different decoded rule that covers the 33/3000 fresh misses and admits a true one-op final merge with input could revive this. Do not build ONNX for this locked sparse-marker writer as specified.

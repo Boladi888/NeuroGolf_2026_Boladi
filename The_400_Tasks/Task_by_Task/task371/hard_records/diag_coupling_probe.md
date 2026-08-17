@@ -1,0 +1,8 @@
+# task371 diagonal-coupling probe dead route
+
+- Live/team-best bar used: cost 92, sha256 `68c1e60f4e58f9865b497cb32f70f61e08d17fd8da8ff8f7ef4089722c357aea`, owner Sho, source `python tools/ng_current_bar.py --task 371 --json` (`authoritative_source=manifest`).
+- Attempted route: replace the dense `v_w3[2,2]` rs coefficient coupling in the one-node free-output `Einsum` with a signed diagonal `v_w3[2]`, refitting the shared `v_w2[2,2,2]` coefficient bank. Candidate path: `The_400_Tasks/Task_by_Task/task371/prototypes/task371_diag_coupling_probe.onnx`.
+- Static cost proof: `python tools/ng_graph_cost_diff.py --task 371 --live Team_Best_Onnx/task371.onnx --candidate The_400_Tasks/Task_by_Task/task371/prototypes/task371_diag_coupling_probe.onnx` => memory `+0`, params `-2`, cost `-2` (`v_w3 [2,2] -> [2]`).
+- Exact failed gate: `python tools/ng_gate.py visible --task 371 --cand The_400_Tasks/Task_by_Task/task371/prototypes/task371_diag_coupling_probe.onnx --json --out The_400_Tasks/Task_by_Task/task371/prototypes/task371_diag_coupling_probe_visible.json` => `0/266`, `pct=0.0`, `pass=false`.
+- Why dead: one visible miss is a certain hidden 0; this route missed every visible case. The dense 2x2 `rs` coupling is load-bearing for the current tensor-network renderer. Do not run truth/ab/battery variants of this diagonal-coupling family.
+- One remaining hypothesis: a genuinely different renderer would need to remove or generate part of `v_w0[2,30]` or `v_w1[2,10]`; local algebra suggests generated basis vectors cost more as charged memory than the current 60/20 params, so this is likely near a params-only floor unless a new free-output equation avoids the coordinate basis entirely.

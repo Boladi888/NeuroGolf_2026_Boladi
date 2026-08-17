@@ -1,0 +1,68 @@
+{
+  "task": 165,
+  "route": "CarrierNarrowEqualTail",
+  "verdict": "DROP",
+  "candidate_class": "NO_CANDIDATE_PRICED_WALL",
+  "cost": null,
+  "profile_cost": null,
+  "live_cost": 1641,
+  "live_static_cost": 1641,
+  "live_profile_cost": 1641,
+  "live_memory": 1538,
+  "live_params": 103,
+  "bar_source": "K-NeuroGolf-OnnxlyFans/Team_Submission/Backend/manifest.csv via tools/ng_current_bar.py",
+  "bar_note": "Workbook agrees at 1641. The 1634 team_best entry is stale seven-parameter accounting drift on the identical SHA, not a lower candidate.",
+  "live_sha256": "6faf9093ffe11c0fbe8583054205b9ee4ddc36b6f7c4d6c31222055a8d5b43a9",
+  "candidate_paths": [],
+  "candidate_sha256": null,
+  "cost_delta_vs_live": null,
+  "parent_source": "Team_Best_Onnx/task165.onnx",
+  "parent_sha256": "6faf9093ffe11c0fbe8583054205b9ee4ddc36b6f7c4d6c31222055a8d5b43a9",
+  "named_charged_structure": {
+    "legacy_target": "10-channel/F32 spatial carrier and repeated Conv masks",
+    "legacy_target_present_in_live": false,
+    "current_dominant_tensor": "fill30",
+    "current_dominant_tensor_dtype_shape": "BOOL [1,1,30,30]",
+    "current_dominant_tensor_cost": 900,
+    "other_intermediate_cost": 638,
+    "params": 103
+  },
+  "failed_gate": {
+    "gate": "fast_probe_price_structure",
+    "result": "FAIL: current live already applies carrier narrowing; any legal full-grid Equal-tail carrier costs 900 bytes before detection, which exceeds the advertised approximately 720 total target",
+    "action": "Stopped before candidate construction and truth/AB gates under the prompt kill rule"
+  },
+  "proof_commands_run": [
+    "python tools/ng_current_bar.py --task 165 --json",
+    "python -c \"from tools._score_v2 import score_network_v2; print(score_network_v2(r'Team_Best_Onnx/task165.onnx'))\"",
+    "python tools/agent_helpers/inspect_graph.py Team_Best_Onnx/task165.onnx",
+    "python tools/agent_helpers/largest_intermediate.py Team_Best_Onnx/task165.onnx --top 20",
+    "python tools/agent_helpers/profile_real_cost.py --task 165 --cand Team_Best_Onnx/task165.onnx --arcgen 266",
+    "python tools/ng_gate.py visible --task 165 --cand Team_Best_Onnx/task165.onnx --json"
+  ],
+  "proof_results": {
+    "current_bar": "live_cost=1641, authoritative_source=manifest, live_sha256=6faf9093ffe11c0fbe8583054205b9ee4ddc36b6f7c4d6c31222055a8d5b43a9",
+    "score_v2": "(0, 1538, 103)",
+    "profile_real_cost": "task165 task165.onnx: static=1641 profile=1641 (memory 1538 + params 103; 265 real inputs)",
+    "visible": "correct=265 total=265 pct=100.0 pass=true",
+    "graph": "34 nodes; first op Einsum; no 10-channel/F32 spatial carrier; fill30 BOOL [1,1,30,30] is the sole 900-byte full spatial intermediate"
+  },
+  "graph_cost_diff": {
+    "command": null,
+    "result": "Not run because no candidate was built and no win is claimed"
+  },
+  "safety": null,
+  "safety_reason": "ng_safety was not run because no candidate beat the team-best bar and nothing is reviewer-ready",
+  "x86_required": false,
+  "kaggle_probe_required": false,
+  "status": "REJECT_LOCAL",
+  "staged": false,
+  "what_failed": [
+    "The prompt's named F32/10-channel carrier is already absent from the authoritative live graph.",
+    "Equal-tail replaces the existing 900-byte predicate with another 900-byte canvas and loses arbitrary-input passthrough.",
+    "A 20x20 crop cannot feed the 30x30 identity-substitution output without a charged full-grid expansion."
+  ],
+  "remaining_hypothesis": "Fuse threshold comparison, dynamic marker recolor, and arbitrary raw-input passthrough in one legal graph-output op, or cheaply regenerate the arbitrary sparse input from packed bitsets; neither is an Equal-tail rewrite.",
+  "hard_record": "The_400_Tasks/Task_by_Task/task165/hard_records/carrier_narrow_equal_tail.md",
+  "lesson_packet": null
+}

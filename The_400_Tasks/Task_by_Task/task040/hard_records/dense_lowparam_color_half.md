@@ -1,0 +1,10 @@
+# task040 dense low-param color/half route dead
+
+- Live bar: cost 80, SHA256 `01ba84e2bca7236e35b1b674ebe44e86b809ffb65de9c8e29e2f3c6d39f44127`, source `python tools/ng_current_bar.py --task 40 --json` / manifest owner Vamshi.
+- Attempted route: reduce dense params below 80 by sharing the `gate` and `sign` color vectors, or replacing the 2-row half basis with one signed half vector. Prototype builder: `The_400_Tasks/Task_by_Task/task040/prototypes/build_task040_dense_lowparam_probes.py`.
+- Exact failed gates:
+  - `python tools/ng_gate.py visible --task 40 --cand The_400_Tasks/Task_by_Task/task040/prototypes/task040_gate_as_sign.onnx --no-watch-queue --json --out The_400_Tasks/Task_by_Task/task040/prototypes/gate_visible_gate_as_sign.json` -> `correct: 0`, `total: 266`, `pass: false`.
+  - `python tools/ng_gate.py visible --task 40 --cand The_400_Tasks/Task_by_Task/task040/prototypes/task040_sign_as_gate.onnx --no-watch-queue --json --out The_400_Tasks/Task_by_Task/task040/prototypes/gate_visible_sign_as_gate.json` -> `correct: 0`, `total: 266`, `pass: false`.
+  - `python tools/ng_gate.py visible --task 40 --cand The_400_Tasks/Task_by_Task/task040/prototypes/task040_signed_half_product.onnx --no-watch-queue --json --out The_400_Tasks/Task_by_Task/task040/prototypes/gate_visible_signed_half_product.json` -> `correct: 0`, `total: 266`, `pass: false`.
+- Why dead: the two color vectors carry different semantics (`gate`: background vs active/green cell; `sign`: background vs non-green output channel with green suppressed). A single vector either kills green-probe recolor or emits green as an extra channel. The half selector is rank-2 over the active 10 positions; a single signed vector loses the same-half projector and visible-fails immediately.
+- One remaining hypothesis: a one-node algebraic rewrite that makes the all-ones half-basis row implicit inside the terminal `Einsum` could save 30 params, but doing that without an extra full-output merge node or a stored second basis row remains unresolved.

@@ -1,0 +1,2 @@
+[truth] vs ARC-GEN ground truth: 200000/200000 (100.000%)
+DONE exit=0 

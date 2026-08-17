@@ -1,0 +1,165 @@
+{
+  "task": 185,
+  "candidate": "task185_u8_step_chain_cost1093",
+  "description": "v5 U8 step scalar chain: keep 3/4/5 spacing arithmetic in UINT8, cast to F16 only for GridSample coordinates",
+  "builder": "The_400_Tasks/Task_by_Task/task185/prototypes/build_task185_v5_u8_step_chain.py",
+  "onnx": "The_400_Tasks/Task_by_Task/task185/staged_candidates/task185_u8_step_chain_cost1093/task185.onnx",
+  "prototype_onnx": "The_400_Tasks/Task_by_Task/task185/prototypes/task185_v5_u8_step_chain.onnx",
+  "candidate_class": "PATH_A_BYTE_EQUAL_PENDING_FULL_AB",
+  "status": "PROBE_READY",
+  "status_reason": "Cost/profile beats the 1096 team-best bar and capped AB is byte-equal, but ab --full timed out while the shared heavy gate slot was occupied by another task. Do not call LOCAL_GOLD until ab --full completes.",
+  "current_team_best_bar": {
+    "cost": 1096,
+    "sha256": "855b6183dbfe556915d22b23d48a6c58e7d00e64d22c2d77fb71645228d1edf5",
+    "owner": "Boladi",
+    "updated_utc": "2026-06-12T15:38:55Z",
+    "source": "python tools/ng_current_bar.py --task 185 --json; authoritative_source=manifest",
+    "notes": [
+      "Team_Best_Onnx/task185.onnx has the same SHA but ng_current_bar flags its stored cost label 1054 as stale.",
+      "Legacy live_costs.json/library values are stale for this task."
+    ]
+  },
+  "parent_source": "Team_Best_Onnx/task185.onnx",
+  "parent_sha256": "855b6183dbfe556915d22b23d48a6c58e7d00e64d22c2d77fb71645228d1edf5",
+  "candidate_sha256": "097b9120b1c999a2728326090ad565a3a7deb3cbc852148ed3ff405fec67dfce",
+  "score_v2": {
+    "macs": 0,
+    "memory": 1030,
+    "params": 63,
+    "cost": 1093,
+    "points": 18.003319
+  },
+  "profile_real_cost": {
+    "static_cost": 1093,
+    "profile_cost": 1093,
+    "memory": 1030,
+    "params": 63,
+    "n_inputs": 267,
+    "raw": "task185 task185_v5_u8_step_chain.onnx: static=1093 profile=1093 (memory 1030 + params 63; 267 real inputs)"
+  },
+  "delta_vs_live": {
+    "candidate_minus_live_cost": -3,
+    "candidate_minus_live_memory": -3,
+    "candidate_minus_live_params": 0,
+    "score_compare_raw": "A Team_Best_Onnx/task185.onnx: memory=1033 params=63 cost=1096; B v5: memory=1030 params=63 cost=1093; B cheaper by 3 bytes"
+  },
+  "named_saving": {
+    "summary": "F16 scalar spacing chain replaced by U8 scalar spacing chain.",
+    "charged_tensors_removed": [
+      "bg_gt420_h FLOAT16 []",
+      "bg_gt500_h FLOAT16 []",
+      "step_extra_h FLOAT16 []",
+      "step3_h FLOAT16 []"
+    ],
+    "charged_tensors_added": [
+      "bg_gt420_u8 UINT8 []",
+      "bg_gt500_u8 UINT8 []",
+      "step_extra_u8 UINT8 []",
+      "step_u8 UINT8 []",
+      "step3_u8 UINT8 []",
+      "step_h FLOAT16 []"
+    ],
+    "net_profile_delta_bytes": -3,
+    "graph_cost_diff_tool": {
+      "command": "python tools/ng_graph_cost_diff.py --task 185 --live Team_Best_Onnx/task185.onnx --candidate The_400_Tasks/Task_by_Task/task185/prototypes/task185_v5_u8_step_chain.onnx",
+      "result_note": "Tool uses the stale/static 1054 cost lens for task185 and reported net cost delta 0, but named the same changed structures: removed three_h, added three_u8, and replaced bg_gt*/step* F16 scalar tensors with U8 scalar tensors. Official score_v2/profile_real_cost are the cost authority here."
+    }
+  },
+  "proof_commands_run": [
+    "python The_400_Tasks/Task_by_Task/task185/prototypes/build_task185_v5_u8_step_chain.py",
+    "python tools/ng_gate.py visible --task 185 --cand The_400_Tasks/Task_by_Task/task185/prototypes/task185_v5_u8_step_chain.onnx",
+    "python tools/agent_helpers/profile_real_cost.py --task 185 --cand The_400_Tasks/Task_by_Task/task185/prototypes/task185_v5_u8_step_chain.onnx --arcgen 266",
+    "python tools/agent_helpers/score_compare.py Team_Best_Onnx/task185.onnx The_400_Tasks/Task_by_Task/task185/prototypes/task185_v5_u8_step_chain.onnx",
+    "python tools/ng_graph_cost_diff.py --task 185 --live Team_Best_Onnx/task185.onnx --candidate The_400_Tasks/Task_by_Task/task185/prototypes/task185_v5_u8_step_chain.onnx",
+    "python tools/ng_gate.py truth --task 185 --cand The_400_Tasks/Task_by_Task/task185/prototypes/task185_v5_u8_step_chain.onnx --n 5000",
+    "python tools/ng_gate.py ab --task 185 --cand The_400_Tasks/Task_by_Task/task185/prototypes/task185_v5_u8_step_chain.onnx --n 20000",
+    "python tools/ng_gate.py ab --task 185 --cand The_400_Tasks/Task_by_Task/task185/prototypes/task185_v5_u8_step_chain.onnx --n 19999 --no-watch-queue",
+    "python tools/ng_gate.py ab --task 185 --cand The_400_Tasks/Task_by_Task/task185/prototypes/task185_v5_u8_step_chain.onnx --full",
+    "python tools/ng_safety.py model --task 185 --cand The_400_Tasks/Task_by_Task/task185/prototypes/task185_v5_u8_step_chain.onnx --json",
+    "python -m json.tool The_400_Tasks/Task_by_Task/task185/staged_candidates/task185_u8_step_chain_cost1093/manifest.json",
+    "python tools/ng_gate.py visible --task 185 --cand The_400_Tasks/Task_by_Task/task185/staged_candidates/task185_u8_step_chain_cost1093/task185.onnx --no-watch-queue",
+    "python tools/agent_helpers/profile_real_cost.py --task 185 --cand The_400_Tasks/Task_by_Task/task185/staged_candidates/task185_u8_step_chain_cost1093/task185.onnx --arcgen 266"
+  ],
+  "proof_results": {
+    "builder_visible": "Prototype vs expected 267/267; Live vs expected 267/267; Prototype vs LIVE 267/267",
+    "visible": "[visible] 267/267 (100.00%) PASS",
+    "score_v2": "memory=1030 params=63 cost=1093 points=18.003319",
+    "profile_real_cost": "static=1093 profile=1093 (memory 1030 + params 63; 267 real inputs)",
+    "truth_n5000": "[truth] vs ARC-GEN ground truth: 5000/5000 (100.000%)",
+    "ab_n20000": "[ab] vs submission.zip: match 20267/20267 | divergences=0 | byte_equal=True (first_div=None)",
+    "ab_n19999": "[ab] vs submission.zip: match 20266/20266 | divergences=0 | byte_equal=True (first_div=None)",
+    "ab_full": "TIMEOUT after 1804.1s with no result while shared heavy gate slot was occupied by PID 19212 (heavy t119). Reviewer must rerun ab --full before LOCAL_GOLD.",
+    "ng_graph_cost_diff": "reported stale/static tie at 1054 vs 1054; named F16 step scalar chain -> U8 step scalar chain but did not price scalar-profile bytes",
+    "safety": "PASS; 0 failures; 0 warnings",
+    "staged_copy_visible": "[visible] 267/267 (100.00%) PASS",
+    "staged_copy_profile": "task185 task185.onnx: static=1093 profile=1093 (memory 1030 + params 63; 267 real inputs)",
+    "manifest_json": "valid JSON"
+  },
+  "safety": {
+    "kind": "model",
+    "source": "The_400_Tasks\\Task_by_Task\\task185\\prototypes\\task185_v5_u8_step_chain.onnx",
+    "verdict": "PASS",
+    "summary": {
+      "n_failures": 0,
+      "n_warnings": 0,
+      "runtime_integer_denominator_count": 0
+    },
+    "model": {
+      "task": "task185",
+      "name": "task185_v5_u8_step_chain.onnx",
+      "source": "The_400_Tasks\\Task_by_Task\\task185\\prototypes\\task185_v5_u8_step_chain.onnx",
+      "sha256": "097b9120b1c999a2728326090ad565a3a7deb3cbc852148ed3ff405fec67dfce",
+      "size_bytes": 6962,
+      "failures": [],
+      "warnings": [],
+      "op_inventory": {
+        "Add": 5,
+        "ArgMax": 3,
+        "Cast": 12,
+        "Concat": 2,
+        "Einsum": 3,
+        "Equal": 11,
+        "Gather": 3,
+        "Greater": 8,
+        "GridSample": 1,
+        "Mul": 4,
+        "Pad": 1,
+        "ReduceSum": 1,
+        "Reshape": 1,
+        "Split": 1,
+        "Where": 18
+      },
+      "risk_op_flags": [
+        "Cast"
+      ],
+      "runtime_integer_denominators": [],
+      "runtime_denominators_unknown_dtype": [],
+      "official_io_contract": {
+        "data_inputs": [
+          "input"
+        ],
+        "outputs": [
+          "output"
+        ],
+        "ok": true
+      },
+      "load_after_sanitize": "ok",
+      "verdict": "PASS"
+    }
+  },
+  "x86_required": false,
+  "kaggle_probe_required": false,
+  "reviewer_full_ab_required": true,
+  "proof_commands_required_before_local_gold": [
+    "python tools/ng_gate.py ab --task 185 --cand The_400_Tasks/Task_by_Task/task185/staged_candidates/task185_u8_step_chain_cost1093/task185.onnx --full --no-watch-queue",
+    "python tools/ng_graph_cost_diff.py --task 185 --live Team_Best_Onnx/task185.onnx --candidate The_400_Tasks/Task_by_Task/task185/staged_candidates/task185_u8_step_chain_cost1093/task185.onnx"
+  ],
+  "what_failed": [
+    "ab --full attempted once and timed out after 1804.1 seconds because another process held the shared heavy gate slot (heavy t119).",
+    "ng_graph_cost_diff currently reports task185 through a stale/static 1054 lens, so it does not price the real 3-byte scalar-profile saving; score_v2/profile_real_cost do price it."
+  ],
+  "hard_record_paths": [
+    "The_400_Tasks/Task_by_Task/task185/hard_records/qlinear_carrier_collapse.md"
+  ],
+  "remaining_floor_hypothesis": "The current algorithm is still dominated by sample6_oh F32 [1,10,6,1] (240B), row_rare/col_rare F32 [30] (120B each), and out_bool33 BOOL [1,10,3,3] (90B). The viable remaining floor work is scalar-byte polishing like this U8 step chain; the larger QLinear/color-index/separable routes are documented net losses unless a representation avoids both full-frame F32 casting and F32 selector planes."
+}

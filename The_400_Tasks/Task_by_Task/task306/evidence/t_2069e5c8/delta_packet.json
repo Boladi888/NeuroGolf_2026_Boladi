@@ -1,0 +1,44 @@
+{
+  "task_id": "task306",
+  "kanban_task": "t_2069e5c8",
+  "verdict": "NO_SUBMIT_NOOP_CURRENT_CANONICAL_ALREADY_CONTAINS_TASK306_V3",
+  "source_candidate": "C:\\Users\\Qx\\Documents\\Py_cx\\.notongit\\NeuroGolf_nogit\\orchestrator\\preserved\\candidates\\task306_v3_concat_fp16out_bgcount_20260515T211030Z\\task306.onnx",
+  "current_submission_zip": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.worktrees\\t_2069e5c8\\submissions\\submission.zip",
+  "current_submission_sha256": "5AA1390A09B66B0C5318B872A3FFAD431C7F58F36154CFC7150BEC12044959B6",
+  "zip_entry_count": 401,
+  "task306_entry_index": 306,
+  "current_task306": {
+    "macs": 0,
+    "memory": 72188,
+    "params": 165,
+    "cost": 72353,
+    "points": 13.810687803699816,
+    "sha256": "A8ABB9F9A495CF5BD14B96FAA3F4AFDDDF5B7E2F1F1BE9CFD4896B18DF110969"
+  },
+  "candidate_task306_v3": {
+    "macs": 0,
+    "memory": 72188,
+    "params": 165,
+    "cost": 72353,
+    "points": 13.810687803699816,
+    "sha256": "A8ABB9F9A495CF5BD14B96FAA3F4AFDDDF5B7E2F1F1BE9CFD4896B18DF110969"
+  },
+  "byte_identical": true,
+  "delta_vs_current": {
+    "cost": 0,
+    "points": 0.0
+  },
+  "historical_delta_vs_task306_v1_cost_192047": {
+    "cost": -119694,
+    "points": 0.976183216419809
+  },
+  "validation": {
+    "verify_against_live_current_zip": "265/265 expected, 265/265 live, 265/265 proto-vs-live",
+    "preserved_v3_report": "official 265/265 under disable/enable zero/channel0 padding; 9 adversarial modes 50/50 raw-equal/stable",
+    "package_diff_vs_current": "no changed entries for task306 rebase; current canonical already has identical task306 SHA"
+  },
+  "policy": {
+    "kaggle_submission": "not submitted",
+    "reason": "No current-live delta; submitting would duplicate the canonical task306 bytes."
+  }
+}

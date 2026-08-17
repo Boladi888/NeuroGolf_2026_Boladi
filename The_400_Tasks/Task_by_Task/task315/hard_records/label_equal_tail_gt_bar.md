@@ -1,0 +1,7 @@
+# task315 one-channel label/Equal-tail lower-bound record
+
+- Live bar used: 146, SHA-256 `013dbc694b331f0991b4e4f9a637a01c318e96a0f89289052e15bf526280ebb7`, source `python tools/ng_current_bar.py --task 315 --json`, manifest owner Vamshi, updated `2026-07-02T02:35:15Z`.
+- Attempted route: prompt-suggested free-output tail that emits a one-channel color label/mask and makes `Equal` or `Pad` the graph output instead of carrying a charged 10-channel prepad.
+- Exact failed gate: pre-build price/ABI check. A single `[1,1,9,9]` label is only 81 cells, but it is not a legal final output because NeuroGolf compares against the encoded `[1,10,30,30]` target. If `Pad(label9)` feeds final `Equal`, the charged predecessor is at least `[1,1,30,30]` = 900 bytes for a U8 label, or 3,600 bytes for F32. If `Equal(label9, ramp)` feeds final `Pad`, the charged predecessor is `[1,10,9,9]` = 810 BOOL cells.
+- Why dead: the best legal one-label/Equal-tail predecessor is still `900`, which is `+754` versus the refreshed 146-byte live graph and also above the prompt target 60. The current live graph already has zero charged intermediates and only 146 dense params, so this tail family cannot produce a reviewer-ready win.
+- Remaining hypothesis: a genuinely new one-node final-`Einsum` factorization with fewer dense params than `B[3,30] + E/P/T/WL/WB/Q` is the only plausible route; no Pad/Equal label-tail variant should be retried.

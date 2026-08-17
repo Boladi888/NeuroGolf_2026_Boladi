@@ -1,0 +1,9 @@
+# task112 — ArgMax/index-plane route is dead
+
+- Live bar: **1306**, SHA-256 `f26ca35b42a28bb7f4aab573ff84a80867e8804378931e8ac8db1314953501ba` (`ng_current_bar`, manifest-authoritative).
+- Attempted route: faithful ArgMax color-index extraction followed by the proven two-Gather Klein-orbit reflection; artifact `prototypes/task112_argmax_fast_probe.onnx`, SHA-256 `fb82377b954cf4f86f0aa9ce2f32c813e4f2458bb03e01fa308ed7b51586da6d`.
+- Exact failed gate: pricing kill after visible PASS — `[visible] 266/266 (100.00%) PASS`; `score_network_v2=(0,14824,77)` and full real profile `static=14901 profile=14901 (memory 14824 + params 77; 266 real inputs)`.
+- Why dead: `color_idx` alone is INT64 `[1,1,30,30]` = **7200 B**; the complete probe is **+13,595 B vs live** and **+14,181 B vs the 720 target**. Do not build ArgMax/Conv/U8 full-plane variants; the current parent has already removed that carrier.
+- One remaining hypothesis: a carrier-free 11-bit rectangle factorization reproduced the full padded `[10,30,30]` truth on 2,000 fresh ARC-GEN pairs in an in-memory numpy audit. Encode four red row groups, their four background-complement groups, green, background-on-green-rows, and ordinary background into UINT16 factors, then make `BitwiseAnd(row_factor[1,10,30,1], col_factor[1,1,1,30]) -> output`. The terminal factors are exactly 600+60=660 B; a tiny ORT probe confirmed UINT16 BitwiseAnd at opset 18. Construction overhead is unresolved and 720 all-in remains aggressive. For length=3, active-gate the unused `i=3` row because its nominal coordinate can be `-1`/`H`. This was intentionally not built after the prompt's one-crack ArgMax kill; a continuation should price factor construction first and abandon it if the all-in graph cannot stay below 720.
+
+Manifest: `prototypes/task112_argmax_fast_probe.manifest.json`.

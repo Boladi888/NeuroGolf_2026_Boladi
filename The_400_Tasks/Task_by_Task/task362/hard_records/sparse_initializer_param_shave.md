@@ -1,0 +1,7 @@
+# task362 sparse-initializer param shave dead route
+
+- Live/team-best bar: cost 106, sha256 `8da92961a7d497661291994ee3b1da39cf038bd2cb7540d86327e1360fac3ef0`, source `python tools/ng_current_bar.py --task 362 --json` / manifest.
+- Attempted route: convert zero-heavy dense initializers in the one-node 106 `Einsum` parent to `graph.sparse_initializer` entries. Probe builder: `The_400_Tasks/Task_by_Task/task362/prototypes/build_task362_sparse_initializer_probe.py`; probe ONNX sha256 `c2f70b5f3a7435d0dec43076790f20a43897f6c29ac5bec05ee4db1c64fb99f3`.
+- Exact failed gate: `score_network_v2(...) -> None`; `onnx.checker.check_model(..., full_check=True)` failed with `ShapeInferenceError: Rank of input 1 (0) does not match the equation indices (2)` for `Einsum`; `ng_safety.py` failed with `FAIL_ORT_LOAD_AFTER_SANITIZE` because node input `safe_name_1` was not a graph input, initializer, or previous output.
+- Why dead: the official scorer/shape-inference path does not treat sparse initializers as dense tensor inputs to `Einsum`, and sanitizer does not preserve sparse initializer links. This is the same sparse-op-input failure family as traps section 8e, so do not retry sparse constants for this one-node graph.
+- One remaining hypothesis: a real sub-106 route must be a dense-parameter factorization of the one-node polynomial, such as making the fixed active-grid count implicit or replacing the `term`/`Q` basis without adding an equal-size selector. No memory route remains because the parent already has zero charged intermediates.

@@ -1,0 +1,211 @@
+{
+  "baseline": {
+    "path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.worktrees\\neurogolf-worker-8-t_e5341dce-task379\\work\\task379_extract\\submission_task379.onnx",
+    "cost": {
+      "path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.worktrees\\neurogolf-worker-8-t_e5341dce-task379\\work\\task379_extract\\submission_task379.onnx",
+      "macs": 43124,
+      "memory": 106685,
+      "params": 1729,
+      "cost": 108414,
+      "points": 13.4063,
+      "cascade_risk": false,
+      "ops": {
+        "Add": 3,
+        "Cast": 12,
+        "Concat": 1,
+        "Conv": 3,
+        "CumSum": 4,
+        "Greater": 16,
+        "Less": 4,
+        "MaxPool": 2,
+        "Mul": 17,
+        "Pad": 1,
+        "ReduceMax": 2,
+        "ReduceSum": 9,
+        "Slice": 3,
+        "Sub": 13,
+        "Sum": 6,
+        "Where": 16
+      },
+      "error": null
+    }
+  },
+  "attempts": [
+    {
+      "name": "task379_v1_equal_counts.onnx",
+      "description": "Equal rewrite for four scalar count checks",
+      "path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.worktrees\\neurogolf-worker-8-t_e5341dce-task379\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v1_equal_counts.onnx",
+      "cost": {
+        "path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.worktrees\\neurogolf-worker-8-t_e5341dce-task379\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v1_equal_counts.onnx",
+        "macs": 43116,
+        "memory": 106653,
+        "params": 1729,
+        "cost": 108382,
+        "points": 13.4066,
+        "cascade_risk": false,
+        "ops": {
+          "Add": 3,
+          "Cast": 12,
+          "Concat": 1,
+          "Conv": 3,
+          "CumSum": 4,
+          "Equal": 4,
+          "Greater": 16,
+          "MaxPool": 2,
+          "Mul": 13,
+          "Pad": 1,
+          "ReduceMax": 2,
+          "ReduceSum": 9,
+          "Slice": 3,
+          "Sub": 9,
+          "Sum": 6,
+          "Where": 16
+        },
+        "error": null
+      },
+      "verify": {
+        "cases": 266,
+        "mismatches_exact": 0,
+        "max_abs": 0.0,
+        "modes": {
+          "zeros": 1,
+          "sparse-binary": 89,
+          "inner-onehot": 88,
+          "onehot": 88
+        }
+      }
+    },
+    {
+      "name": "task379_v2_fp16_internal.onnx",
+      "description": "FP16 internal conversion of live graph",
+      "path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.worktrees\\neurogolf-worker-8-t_e5341dce-task379\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v2_fp16_internal.onnx",
+      "cost": {
+        "path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.worktrees\\neurogolf-worker-8-t_e5341dce-task379\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v2_fp16_internal.onnx",
+        "macs": 12344,
+        "memory": 76607,
+        "params": 1729,
+        "cost": 78336,
+        "points": 13.7312,
+        "cascade_risk": false,
+        "ops": {
+          "Add": 3,
+          "Cast": 22,
+          "Concat": 1,
+          "Conv": 3,
+          "CumSum": 4,
+          "Greater": 16,
+          "Less": 4,
+          "MaxPool": 2,
+          "Mul": 17,
+          "Pad": 1,
+          "ReduceMax": 2,
+          "ReduceSum": 9,
+          "Slice": 3,
+          "Sub": 13,
+          "Sum": 6,
+          "Where": 16
+        },
+        "error": null
+      },
+      "verify": {
+        "cases": 266,
+        "mismatches_exact": 0,
+        "max_abs": 0.0,
+        "modes": {
+          "zeros": 1,
+          "sparse-binary": 89,
+          "inner-onehot": 88,
+          "onehot": 88
+        }
+      }
+    },
+    {
+      "name": "task379_v3_equal_fp16_simplified.onnx",
+      "description": "Equal rewrite + FP16 + optimizer/simplifier",
+      "path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.worktrees\\neurogolf-worker-8-t_e5341dce-task379\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v3_equal_fp16_simplified.onnx",
+      "cost": {
+        "path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.worktrees\\neurogolf-worker-8-t_e5341dce-task379\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v3_equal_fp16_simplified.onnx",
+        "macs": 12296,
+        "memory": 71271,
+        "params": 1729,
+        "cost": 73000,
+        "points": 13.8018,
+        "cascade_risk": false,
+        "ops": {
+          "Add": 3,
+          "Cast": 16,
+          "Concat": 1,
+          "Conv": 3,
+          "CumSum": 1,
+          "Equal": 4,
+          "Greater": 14,
+          "MaxPool": 2,
+          "Mul": 13,
+          "Pad": 1,
+          "ReduceMax": 2,
+          "ReduceSum": 9,
+          "Slice": 3,
+          "Sub": 9,
+          "Sum": 6,
+          "Where": 13
+        },
+        "error": null
+      },
+      "verify": {
+        "cases": 266,
+        "mismatches_exact": 0,
+        "max_abs": 0.0,
+        "modes": {
+          "zeros": 1,
+          "sparse-binary": 89,
+          "inner-onehot": 88,
+          "onehot": 88
+        }
+      }
+    },
+    {
+      "name": "task379_v4_equal_simplified.onnx",
+      "description": "Equal rewrite + optimizer/simplifier without FP16",
+      "path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.worktrees\\neurogolf-worker-8-t_e5341dce-task379\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v4_equal_simplified.onnx",
+      "cost": {
+        "path": "C:\\Users\\Qx\\Documents\\Py_cx\\K-NeuroGolf\\.worktrees\\neurogolf-worker-8-t_e5341dce-task379\\The_400_Tasks\\Task_by_Task\\task379\\prototypes\\task379_v4_equal_simplified.onnx",
+        "macs": 43116,
+        "memory": 106653,
+        "params": 1729,
+        "cost": 108382,
+        "points": 13.4066,
+        "cascade_risk": false,
+        "ops": {
+          "Add": 3,
+          "Cast": 12,
+          "Concat": 1,
+          "Conv": 3,
+          "CumSum": 4,
+          "Equal": 4,
+          "Greater": 16,
+          "MaxPool": 2,
+          "Mul": 13,
+          "Pad": 1,
+          "ReduceMax": 2,
+          "ReduceSum": 9,
+          "Slice": 3,
+          "Sub": 9,
+          "Sum": 6,
+          "Where": 16
+        },
+        "error": null
+      },
+      "verify": {
+        "cases": 266,
+        "mismatches_exact": 0,
+        "max_abs": 0.0,
+        "modes": {
+          "zeros": 1,
+          "sparse-binary": 89,
+          "inner-onehot": 88,
+          "onehot": 88
+        }
+      }
+    }
+  ]
+}

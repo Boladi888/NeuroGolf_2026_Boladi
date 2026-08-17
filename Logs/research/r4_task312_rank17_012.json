@@ -1,0 +1,22 @@
+{
+  "active_terms_bound": 17,
+  "alphabet": [
+    0,
+    1,
+    2
+  ],
+  "elapsed_s": 3.611829996109009,
+  "model": {
+    "factor_vars": 510,
+    "pair_vars": 1700,
+    "prefix_guard": 16777216,
+    "prefix_vars": 17000,
+    "term_vars": 17000,
+    "zero_term_padding": true
+  },
+  "rank": 17,
+  "solver_response_stats": "CpSolverResponse summary:\nstatus: INFEASIBLE\nobjective: NA\nbest_bound: NA\nintegers: 454\nbooleans: 4317\nconflicts: 4410\nbranches: 45851\npropagations: 7612990\ninteger_propagations: 566417\nrestarts: 43\nlp_iterations: 0\nwalltime: 3.59511\nusertime: 3.59511\ndeterministic_time: 9.70005\ngap_integral: 0\n",
+  "status": "INFEASIBLE",
+  "time_limit_s": 300.0,
+  "workers": 8
+}

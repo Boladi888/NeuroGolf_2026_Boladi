@@ -1,0 +1,75 @@
+{
+  "task": 55,
+  "created_utc": "2026-06-20",
+  "verdict": "no_valid_sub1000_candidate_found",
+  "follow_up_valid_best": {
+    "path": "../task055_valid_cost1113_axis_shape_share_20260620/task055.onnx",
+    "cost": 1113,
+    "memory": 1054,
+    "params": 59,
+    "note": "valid byte-equal follow-up improvement, still not under 1000"
+  },
+  "best_valid_reference": {
+    "path": "../task055_bandselector_sectionid_cost1115/task055.onnx",
+    "cost": 1115,
+    "memory": 1024,
+    "params": 91,
+    "visible": {
+      "correct": 263,
+      "total": 263,
+      "pass": true
+    },
+    "truth_full": {
+      "correct": 200000,
+      "total": 200000,
+      "pass": true
+    },
+    "ab_full": {
+      "correct": 200263,
+      "total": 200263,
+      "byte_equal": true,
+      "pass": true
+    }
+  },
+  "retry_probe": {
+    "path": "do_not_submit_task055_noactive_pruned_cost994.onnx",
+    "status": "failing_probe_do_not_submit",
+    "sha256": "E2A0A8B6E503993C52D60304214394132309F1CA11F76AAC3B17E77DC9E8EF61",
+    "cost": 994,
+    "memory": 904,
+    "params": 90,
+    "visible": {
+      "correct": 0,
+      "total": 263,
+      "pass": false
+    },
+    "change_from_v13": "removed both per-axis active repair gates and pruned the unused zero initializer",
+    "failure_reason": "section codes leak into padded rows/columns; full 30x30 one-hot comparison requires padding to remain all-zero"
+  },
+  "routes_checked": [
+    {
+      "route": "OnnxAdv #141 axis-bitset intersection",
+      "result": "already used by v13; final expansion is at the 330-byte bitset floor"
+    },
+    {
+      "route": "OnnxAdv #119 free-output separable band selector",
+      "result": "triangular relation table and selectors price too high; sparse initializer compression is scorer-rejected"
+    },
+    {
+      "route": "OnnxAdv #122 MatMulInteger / quantized route",
+      "result": "blocked by F32 input; casting or quantizing the full input costs about 9000 bytes"
+    },
+    {
+      "route": "OnnxAdv #142 single-color dissolve",
+      "result": "not applicable to multi-color section fills plus divider/background behavior"
+    },
+    {
+      "route": "CumSum / section-id outer product",
+      "result": "U8 CumSum unsupported; F16/INT32 versions are larger than ArgMax/iota localization"
+    }
+  ],
+  "source_prompts": [
+    "../Prompt_2026-06-19T02055Z_Task055_BandSelectorFreeOutput.md",
+    "../Prompt_2026-06-19T021000Z_Task055_SectionIdOuterProduct.md"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "task": "task374",
+  "candidate": "task374_qscale_share_cost1365",
+  "onnx": "task374.onnx",
+  "builder": "The_400_Tasks/Task_by_Task/task374/prototypes/build_task374_qscale_share.py",
+  "prototype": "The_400_Tasks/Task_by_Task/task374/prototypes/task374_qscale_share.onnx",
+  "scratch_plan": "The_400_Tasks/Task_by_Task/task374/scratch_plan_task374_worker3.md",
+  "sha256": "a4b47de87e8f317148931ead2f15f21c0b0479e1824b25f665dd674a230e5e35",
+  "cost": 1365,
+  "profile_cost": 1365,
+  "memory": 1310,
+  "params": 55,
+  "macs": 0,
+  "bar": {
+    "cost": 1366,
+    "source": "NG_OnnxlyFans_TaskStatus.xlsx Tasks row and Team_Submission/Backend/manifest.csv",
+    "owner": "Vamshi",
+    "sha256": "8b6fdcc9538df7001e3b861cdae1861f27b94ba5dcabfbee31a94584cb90426a",
+    "updated_utc": "2026-07-02T02:35:15Z"
+  },
+  "expected_delta": {
+    "cost": -1,
+    "points": 0.0007,
+    "reason": "Remove the separate h_scale scalar initializer. Reuse q_scale=0.2 for all QLinearConv scales and multiply row/column count kernels by 5 to preserve integer outputs."
+  },
+  "gates": [
+    "python tools/ng_gate.py visible --task 374 --cand The_400_Tasks/Task_by_Task/task374/prototypes/task374_qscale_share.onnx -> [visible] 267/267 (100.00%)  PASS",
+    "python tools/ng_gate.py truth --task 374 --cand The_400_Tasks/Task_by_Task/task374/prototypes/task374_qscale_share.onnx --full -> [truth] vs ARC-GEN ground truth: 200000/200000 (100.000%)",
+    "python tools/ng_gate.py ab --task 374 --cand The_400_Tasks/Task_by_Task/task374/prototypes/task374_qscale_share.onnx --full -> [ab] vs submission.zip: match 200267/200267 | divergences=0 | byte_equal=True (first_div=None)",
+    "python tools/ng_gate.py battery --task 374 --cand The_400_Tasks/Task_by_Task/task374/prototypes/task374_qscale_share.onnx -> === battery task374: PASS ===; [score] cost=1365 (mem 1310+par 55)  points=17.781",
+    "python tools/agent_helpers/profile_real_cost.py --task 374 --cand The_400_Tasks/Task_by_Task/task374/prototypes/task374_qscale_share.onnx --arcgen 266 -> task374 task374_qscale_share.onnx: static=1365 profile=1365 (memory 1310 + params 55; 267 real inputs)"
+  ],
+  "notes": [
+    "This is byte-equal to the current submission.zip behavior on the full A/B window.",
+    "The graph keeps the current two-bit ConvInteger output architecture; it only removes one redundant scalar parameter."
+  ]
+}

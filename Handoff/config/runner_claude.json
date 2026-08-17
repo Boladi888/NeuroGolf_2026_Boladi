@@ -1,0 +1,71 @@
+{
+  "schema": "neurogolf.handoff.runner_claude.v1",
+  "project": {
+    "name": "NeuroGolf_HO",
+    "project_id": "82513bd2-0f60-434a-91b2-538d71010fa8",
+    "team_id": "team_644ac577",
+    "goal_id": "",
+    "_project_note": "Claude lane SHARES the Codex project NeuroGolf_HO / team_644ac577 (the old separate NeuroGolf_HO_CLD project was deleted off the board, which 404'd every sync). Per batch: create a 'Batch NN rewrite prompts (Claude lane)' goal under this project (add_node, boladi_a key) and set goal_id + each task's handoff_task_id to the new node ids. handoff_task_id is config-authoritative in the runner, so a repoint takes effect on the next poll.",
+    "testnet_only": true,
+    "preferred_settlement_network": "base-sepolia"
+  },
+  "agents": {
+    "orchestrator": "bo_ng_cld_orchestrator",
+    "workers": ["bo_ng_cld_worker1", "bo_ng_cld_worker2", "bo_ng_cld_worker3"],
+    "reviewers": ["bo_ng_cld_reviewer1", "bo_ng_cld_reviewer2"],
+    "submit_captain": "bo_ng_cld_submit_captain",
+    "owner_admin": "boladi_a"
+  },
+  "claude": {
+    "executable": "claude",
+    "model": "opus",
+    "effort": "max",
+    "skip_permissions": true,
+    "extra_dirs": ["../K-NeuroGolf-OnnxlyFans", "Q:/AIz/BoBrain"],
+    "timeout_seconds": 14400,
+    "worker_timeout_seconds": 14400,
+    "reviewer_timeout_seconds": 10800
+  },
+  "paths": {
+    "prompt_dir": "The_400_Tasks/Task Prompts/32",
+    "private_state": "Handoff/private/runner_state_cld_batch32.json",
+    "raw_log_dir": "Handoff/logs/raw/runner_cld",
+    "operation_log": "Handoff/logs/operations.jsonl",
+    "captain_lane_inbox": "Agenters/Submit_Captain/Updates_Claude",
+    "runner_prompt_dir": "Handoff/runner/prompts_claude"
+  },
+  "workflow": {
+    "lane": "Claude",
+    "worker_attempts_before_review": 1,
+    "worker_max_failures": 2,
+    "reviewer_max_failures": 1,
+    "max_rework_cycles": 3,
+    "force_first_rework": false,
+    "reviewer_affinity": true,
+    "captain_batch_size": 3,
+    "captain_safe_batch_command": ["probe-batch", "--lane", "claude", "--apply"],
+    "kaggle_submit_default": "disabled_until_allow_flag"
+  },
+  "tasks": [
+    {"task": "task279", "handoff_task_id": "dc7707ab-e196-4421-ba55-61e857d943fd", "title": "PaletteMappingRewrite", "prompt_file": "Prompt_2026-06-28T3201Z_Task279_PaletteMappingRewrite.md", "bar": 11235, "assignee": "bo_ng_cld_worker1"},
+    {"task": "task191", "handoff_task_id": "b687a3ba-dfb1-497f-bd10-3c941ae85b96", "title": "HashmatchFloodRewrite", "prompt_file": "Prompt_2026-06-28T3202Z_Task191_HashmatchFloodRewrite.md", "bar": 11169, "assignee": "bo_ng_cld_worker2"},
+    {"task": "task157", "handoff_task_id": "a2c1e640-1089-4a07-a2c0-7a28660b7fbd", "title": "AnchorShiftObjectRewrite", "prompt_file": "Prompt_2026-06-28T3203Z_Task157_AnchorShiftObjectRewrite.md", "bar": 10452, "assignee": "bo_ng_cld_worker3"},
+    {"task": "task138", "handoff_task_id": "d10339be-5e9b-4256-86d9-3df42daa714c", "title": "ColorCropCollapseRewrite", "prompt_file": "Prompt_2026-06-28T3204Z_Task138_ColorCropCollapseRewrite.md", "bar": 10377, "assignee": "bo_ng_cld_worker1"},
+    {"task": "task017", "handoff_task_id": "43c24de7-28d3-4eb0-99a9-4c2b7629380a", "title": "PeriodicHoleFillRewrite", "prompt_file": "Prompt_2026-06-28T3205Z_Task017_PeriodicHoleFillRewrite.md", "bar": 9892, "assignee": "bo_ng_cld_worker2"},
+    {"task": "task064", "handoff_task_id": "0edfa308-f413-469c-8072-465b4f213d74", "title": "MinmaxColorRewrite", "prompt_file": "Prompt_2026-06-28T3206Z_Task064_MinmaxColorRewrite.md", "bar": 9751, "assignee": "bo_ng_cld_worker3"},
+    {"task": "task002", "handoff_task_id": "0ce83568-db50-40db-800a-a9848ab60649", "title": "FloodFillColorMapRewrite", "prompt_file": "Prompt_2026-06-28T3207Z_Task002_FloodFillColorMapRewrite.md", "bar": 9545, "assignee": "bo_ng_cld_worker1"},
+    {"task": "task198", "handoff_task_id": "42330b85-0c75-47ea-98db-c62c6eb1ed0f", "title": "RegionFillLineageRewrite", "prompt_file": "Prompt_2026-06-28T3208Z_Task198_RegionFillLineageRewrite.md", "bar": 9324, "assignee": "bo_ng_cld_worker2"},
+    {"task": "task350", "handoff_task_id": "e6a877fa-1eb9-4660-945d-613f6fe77f3e", "title": "FillPatternRewrite", "prompt_file": "Prompt_2026-06-28T3209Z_Task350_FillPatternRewrite.md", "bar": 9040, "assignee": "bo_ng_cld_worker3"},
+    {"task": "task370", "handoff_task_id": "24a1a6bf-b1e4-4356-93c0-f8eb1adb4e83", "title": "DiagonalZeroMaskRewrite", "prompt_file": "Prompt_2026-06-28T3210Z_Task370_DiagonalZeroMaskRewrite.md", "bar": 8868, "assignee": "bo_ng_cld_worker1"},
+    {"task": "task216", "handoff_task_id": "6881a30b-f17d-4771-a364-2e8af4463577", "title": "CropObjectRewrite", "prompt_file": "Prompt_2026-06-28T3211Z_Task216_CropObjectRewrite.md", "bar": 8747, "assignee": "bo_ng_cld_worker2"},
+    {"task": "task340", "handoff_task_id": "6930644a-5be2-41bb-997c-2113e8117a77", "title": "FillTopologyRewrite", "prompt_file": "Prompt_2026-06-28T3212Z_Task340_FillTopologyRewrite.md", "bar": 8612, "assignee": "bo_ng_cld_worker3"},
+    {"task": "task338", "handoff_task_id": "7fdd2773-f43f-48b0-b038-4a464b31943a", "title": "SymmetryCompletionRewrite", "prompt_file": "Prompt_2026-06-28T3213Z_Task338_SymmetryCompletionRewrite.md", "bar": 8469, "assignee": "bo_ng_cld_worker1"},
+    {"task": "task379", "handoff_task_id": "91a98a6a-6f21-4797-a8b8-4676ca279731", "title": "RegionFillRewrite", "prompt_file": "Prompt_2026-06-28T3214Z_Task379_RegionFillRewrite.md", "bar": 8427, "assignee": "bo_ng_cld_worker2"},
+    {"task": "task204", "handoff_task_id": "9123c9f5-605e-4758-8382-d20a4ad570dc", "title": "SquareKernelDetectorRewrite", "prompt_file": "Prompt_2026-06-28T3215Z_Task204_SquareKernelDetectorRewrite.md", "bar": 7682, "assignee": "bo_ng_cld_worker3"},
+    {"task": "task182", "handoff_task_id": "dd1cfc60-fc8c-4704-85fb-a2035f4e98d4", "title": "FrameTemplateRewrite", "prompt_file": "Prompt_2026-06-28T3216Z_Task182_FrameTemplateRewrite.md", "bar": 7649, "assignee": "bo_ng_cld_worker1"},
+    {"task": "task383", "handoff_task_id": "2090fa71-05e3-48dc-823c-5dcc8aebadd7", "title": "MaxPoolRuleRewrite", "prompt_file": "Prompt_2026-06-28T3217Z_Task383_MaxPoolRuleRewrite.md", "bar": 7322, "assignee": "bo_ng_cld_worker2"},
+    {"task": "task219", "handoff_task_id": "c2581172-380f-4d4f-82c4-c09cd1944f3f", "title": "HugeGraphRuleRewrite", "prompt_file": "Prompt_2026-06-28T3218Z_Task219_HugeGraphRuleRewrite.md", "bar": 7094, "assignee": "bo_ng_cld_worker3"},
+    {"task": "task328", "handoff_task_id": "f704b8c9-33d2-4fc3-8592-a3c9db49df03", "title": "RegionFillRewrite", "prompt_file": "Prompt_2026-06-28T3219Z_Task328_RegionFillRewrite.md", "bar": 6912, "assignee": "bo_ng_cld_worker1"},
+    {"task": "task077", "handoff_task_id": "9d8dc884-d345-46ac-8282-9dbfc4faba75", "title": "ColorMapRewrite", "prompt_file": "Prompt_2026-06-28T3220Z_Task077_ColorMapRewrite.md", "bar": 6524, "assignee": "bo_ng_cld_worker2"}
+  ]
+}

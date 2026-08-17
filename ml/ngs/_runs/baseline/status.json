@@ -1,0 +1,27 @@
+{
+ "state": "complete",
+ "name": "baseline",
+ "started_utc": "2026-07-10T22:41:47Z",
+ "total": 400,
+ "done": 400,
+ "solved": 23,
+ "wins": 2,
+ "cfg": {
+  "depth": 2,
+  "beam": 8,
+  "top_k": null,
+  "max_evals": 5000,
+  "n_infer": 48,
+  "n_gate": 512,
+  "budget_s": 30,
+  "einsum": true,
+  "batched": false
+ },
+ "heartbeat_utc": "2026-07-10T22:46:24Z",
+ "current_tid": 400,
+ "per_task_sec": 0.46,
+ "eta_seconds": 0,
+ "eta_human": "0s",
+ "elapsed_human": "4m37s",
+ "finished_utc": "2026-07-10T22:46:24Z"
+}

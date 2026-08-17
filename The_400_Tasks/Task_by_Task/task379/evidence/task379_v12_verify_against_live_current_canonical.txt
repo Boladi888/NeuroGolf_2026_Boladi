@@ -1,0 +1,10 @@
+Mode: official convert_to_numpy full-tensor equality
+Task: task379
+Total pairs (<=30x30): 266
+
+  Prototype  vs expected:  266/266
+  Live       vs expected:  266/266
+  Prototype  vs LIVE   :  266/266  <-- key safety check
+
+  OK Prototype matches LIVE on every visible+arc-gen pair.
+     If cheaper than live, safe to ship.

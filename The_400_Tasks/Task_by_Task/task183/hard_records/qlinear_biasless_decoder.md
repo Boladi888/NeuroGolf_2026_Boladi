@@ -1,0 +1,7 @@
+# task183 hard record - qlinear biasless decoder probe
+
+- live bar used: 561 profile/static cost, manifest source via `python tools/ng_current_bar.py --task 183 --json`, live SHA-256 `44f7d89716a510f217456179b3b608b46b753983308aa495c9a065898bb0df57`.
+- attempted route: delete the live graph's `q_b[10]` final `QLinearConv` bias by moving the quadratic code decoder into QLinear zero-points/scales for the existing `[out_code, out_code^2]` U8 carrier.
+- exact failed gate: pre-build feasibility/price gate. `prototypes/probe_qlinear_biasless_decoder.py` found no integer scalar-zero-point solution for U8 `x_zero_point` values 0..10, including the otherwise cost-winning case of adding one new scalar zero-point. The feasible vector/per-channel-scale family is not a cost win before ORT gating: it deletes 10 params but adds `x_zero_point[2]` and/or `w_scale[10]`, so it ties or loses against the 561 live bar.
+- why dead: the current biased quadratic decoder is already the cheaper representation for singleton color-code predicates over task183's code set `{0,1,2,3,4,5,6,7,9}`. Removing the bias either has no integer QLinearConv solution or adds back at least the same number of charged elements.
+- one remaining hypothesis: a true upstream win would need to remove the F32 cyan slice/cast pair (`mask8_f` 144 B + `mask8` 36 B) or fuse the U8 carrier before `q_features`; final-decoder bias removal is not the lever.

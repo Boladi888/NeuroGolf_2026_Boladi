@@ -1,0 +1,22 @@
+NeuroGolf
+Copyright 2026 boladi
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+The Apache-2.0 grant above covers the original work in this repository. It does
+not extend to the third-party material listed below, which is included under its
+own upstream license.
+
+--------------------------------------------------------------------------------
+Third-party material
+--------------------------------------------------------------------------------
+
+This repository includes reference excerpts from onnx-tool 1.0.1.
+
+onnx-tool
+Copyright (c) ThanatosShinji and contributors
+License: MIT
+Upstream: https://github.com/ThanatosShinji/onnx-tool
+
+The reference copies live under tools/onnx_tool_1.0.1_reference/ and are retained
+for historical scorer/profiling analysis, not as active project code.

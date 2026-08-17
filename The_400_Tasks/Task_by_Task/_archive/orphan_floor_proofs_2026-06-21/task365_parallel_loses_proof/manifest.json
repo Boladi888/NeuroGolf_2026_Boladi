@@ -1,0 +1,34 @@
+{
+  "task": "task365",
+  "verdict": "CONFIRM (v16 = 3354 remains the floor; parallel labelling is exact but costs more)",
+  "candidate": "task365.onnx (parallel max-red-box: corner/run-start labelling + scatter red-histogram + QLinearConv output)",
+  "candidate_sha256": "1c0afe9fae9d48551aee082f76eba7a860ce4b159a3d53ec6c04d50864d3579f",
+  "candidate_nodes": 66,
+  "candidate_opset": 18,
+  "baseline": {
+    "name": "task365_peel_u8v16_3dwork_f16red_dynout (sequential 3-peel)",
+    "cost": 3354,
+    "sha256": "38a6bb5fccae58a95bb8ddfcef08ac3e333d69211af4f16438ce180be350d497"
+  },
+  "achieved_cost": {
+    "total": 4902,
+    "static_mem": 4350,
+    "runtime_mem_max": 4339,
+    "params": 552,
+    "credited": 4902,
+    "delta_vs_baseline": "+1548 (WORSE than 3354)"
+  },
+  "static_sibling": "graph IS dynamic (object Slice + dynamic Pad to 6x6, like v16). static mem 4350 >= runtime max 4339, so credited cost = static = 4902; profile==static aim holds (the variable civar/cibox shrink at runtime, never exceed the [1,6,6] annotation).",
+  "cost_method": "ORT measure(): expose every node output, run ORT_DISABLE_ALL on real input, sum non-output/non-input/non-init tensor bytes (final output FREE), + params. Cross-checked with an analytic shape-inference byte sum.",
+  "cost_calibration": "Analytic shape-inference byte-sum reproduces the v16 baseline EXACTLY: mem 2990 + params 364 = 3354. Same method applied to candidate. Runtime measure() and analytic agree within 11 B (4891 vs 4902) -> credited 4902. NOTE: v16 baseline and LIVE both use uint8 Min/Max which sandbox ORT 1.23 has NO CPU kernel for, so they cannot be RUN here; v16's 3354 is confirmed via the calibrated analytic method only. The candidate avoids uint8 Min/Max (uses MaxPool + uint8 Mul/Sub) so it RUNS and was measured both ways.",
+  "subset_gates": {
+    "truth_N": 3000,
+    "truth_result": "3000/3000 (EXACT one-hot bytes vs corpus Y, cast to bool AND exact uint8 one-hot both pass; spot-checked 300/300 byte-exact one-hot {0,1})",
+    "AB_byte_equal": "NOT verifiable in sandbox: LIVE reference (/tmp/live365.onnx) uses uint8 Max -> NOT_IMPLEMENTED in sandbox ORT 1.23. Candidate emits exact one-hot uint8 == corpus Y, so it is in the gold/byte-equal class (LIVE truth=200000/200000); AB confirmation deferred to user's Windows Claude Code env."
+  },
+  "what_changed": "Replaced the v16 SEQUENTIAL 3-peel (per peel: ReduceMax/ArgMax leftmost col -> int32 CumSum run-detect -> width -> red-count Einsum -> Sub the box) with a PARALLEL all-boxes-at-once labelling: occ=(ci>0); vstart=occ&~occ_up, hstart=occ&~occ_left; rstart=cummax_H(rowidx*vstart)*occ and cstart=cummax_W(colidx*hstart)*occ (cummax implemented as MaxPool kernel=10 with asymmetric pad -> NO [10,10,10] temp, NO CumSum); 1-based box-id=((rstart+1)*11+(cstart+1))*occ (constant per box, background=0 so no collision with box(0,0)); per-box red count via ONE ScatterElements(add) histogram[121]; ArgMax -> winner box-id directly decodes r0=wb//11-1, c0=wb%11-1; winner extent via (boxid==wb) mask row/col marginal ReduceMax; dynamic Slice ci[r0:rend,c0:cend] -> Pad to 6x6 -> QLinearConv free output (v16 tail kept verbatim). All work uint8 [1,1,10,10].",
+  "why_confirm": "The parallel labelling is EXACT (3000/3000) and DOES kill the 3x CumSum + work-grid subtract, but it is structurally PLANE-HEAVY: it materializes ~27 distinct [1,1,10,10] uint8 planes (2700 B) for the per-cell run-start/box-id labelling, PLUS a 521 B scatter histogram (int32 idx 400 + uint8 hist 121) to count reds per box. v16's peel is cheaper because it operates on 1-D [10] vectors after locating the leftmost column, and its per-box red count is a near-free Einsum byproduct of masks the peel already builds. Net: colidx read 400 (forced, shared) + ~27 labelling planes 2700 + scatter 521 + output 324 + bookkeeping ~400 + params 552 = 4902. This MATCHES task365_history.md's explicit prediction that 'corner-detect + run-length ... est. ~4,100, worse'. The 2000-2200 absolute exact floor in the history assumes the per-box red count is essentially free (peel byproduct); a parallel labeller has to pay for grouping (the scatter), which v16 avoids. uint8 was already the dtype floor (Min/Max-free via MaxPool), so no dtype lever flips this.",
+  "best_exact_cost_this_architecture": 4902,
+  "floor_note": "v16 = 3354 is reaffirmed as the cheapest exact structure. The radical parallel lever from the prompt is exact but loses by +1548 due to per-cell labelling planes + the per-box-grouping scatter that the sequential peel sidesteps.",
+  "gate_status": "NOT 200k-gated in sandbox — pending Claude Code env; captain ships."
+}
