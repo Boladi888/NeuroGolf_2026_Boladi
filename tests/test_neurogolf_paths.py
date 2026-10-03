@@ -26,4 +26,4 @@ def test_resolve_canonical_root_env_override(tmp_path: Path, monkeypatch):
 def test_default_worktree_root_is_project_local(monkeypatch):
     monkeypatch.delenv("NEUROGOLF_WORKTREE_ROOT", raising=False)
 
-    assert resolve_worktree_root().as_posix().endswith("K-NeuroGolf/.worktrees")
+    assert resolve_worktree_root() == resolve_canonical_root() / ".worktrees"
